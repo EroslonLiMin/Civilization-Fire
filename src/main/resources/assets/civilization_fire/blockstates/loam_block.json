@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "ploughed=false,watered=false": {
+      "model": "civilization_fire:block/loam_block/loam_block"
+    },
+    "ploughed=true,watered=false": {
+      "model": "civilization_fire:block/loam_block/loam_block_ploughed"
+    },
+    "watered=true,ploughed=true": {
+      "model": "civilization_fire:block/loam_block/loam_block_watered"
+    }
+  }
+}

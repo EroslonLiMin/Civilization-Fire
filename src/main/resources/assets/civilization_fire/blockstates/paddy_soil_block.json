@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "watered=false": {
+      "model": "civilization_fire:block/paddy_soil_block/paddy_soil_block"
+    },
+    "watered=true": {
+      "model": "civilization_fire:block/paddy_soil_block/paddy_soil_block_watered"
+    }
+  }
+}

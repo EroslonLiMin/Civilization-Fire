@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "civilization_fire:loam_block",
+    "civilization_fire:clay_block",
+    "civilization_fire:sand_block"
+  ]
+}

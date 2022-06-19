@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "particle": "civilization_fire:block/loam_block/loam_block",
+    "bottom": "civilization_fire:block/loam_block/loam_block",
+    "top": "civilization_fire:block/loam_block/loam_block_watered",
+    "side": "civilization_fire:block/loam_block/loam_block"
+  }
+}

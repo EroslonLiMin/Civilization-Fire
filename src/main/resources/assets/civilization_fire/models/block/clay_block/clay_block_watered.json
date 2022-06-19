@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "particle": "civilization_fire:block/clay_block/clay_block",
+    "bottom": "civilization_fire:block/clay_block/clay_block",
+    "top": "civilization_fire:block/clay_block/clay_block_watered",
+    "side": "civilization_fire:block/clay_block/clay_block"
+  }
+}

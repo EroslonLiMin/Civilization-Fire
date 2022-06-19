@@ -1,0 +1,12 @@
+{
+  "block.civilization_fire.loam_block" : "壤土",
+  "block.civilization_fire.clay_block" : "粘土",
+  "block.civilization_fire.sand_block" : "砂土",
+  "block.civilization_fire.paddy_soil_block": "水田",
+  "block.civilization_fire.mycelial_soil_block": "菌丝",
+
+  "itemGroup.agriculture_creative_mode_tab" : "农业",
+
+  "item.civilization_fire.handle_plough" : "耒耜",
+  "item.civilization_fire.wood_bucket": "木桶"
+}

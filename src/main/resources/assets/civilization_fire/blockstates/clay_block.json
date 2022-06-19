@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "ploughed=false,watered=false": {
+      "model": "civilization_fire:block/clay_block/clay_block"
+    },
+    "ploughed=true,watered=false": {
+      "model": "civilization_fire:block/clay_block/clay_block_ploughed"
+    },
+    "watered=true,ploughed=true": {
+      "model": "civilization_fire:block/clay_block/clay_block_watered"
+    }
+  }
+}
