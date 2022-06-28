@@ -80,7 +80,7 @@ public class SoilBlock extends Block {
 
     //判断一个soilBlock是否适合种植
     public static boolean isSuitability(BlockState state){
-        return state.getBlock() instanceof SoilBlock && state.getValue(BE_PLOUGHED) && state.getValue(BE_WATERED);
+        return state.getBlock() instanceof SoilBlock && (state.hasProperty(BE_PLOUGHED) ? state.getValue(BE_PLOUGHED) : true) && (state.hasProperty(BE_WATERED) ? state.getValue(BE_WATERED) : true);
     }
 
     //临近水源

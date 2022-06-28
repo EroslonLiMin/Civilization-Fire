@@ -24,8 +24,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MYCELIAL_SOIL_BLOCK = ITEMS.register("mycelial_soil_block", () -> new BlockItem(BlockRegistry.MYCELIAL_SOIL_BLOCK.get(), new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB)));
 
     //挖掘工具
-    public static final RegistryObject<Item> HANDLE_PLOUGH = ITEMS.register("handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(500),0));
+    public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(500),0));
+    public static final RegistryObject<Item> STONE_HANDLE_PLOUGH = ITEMS.register("stone_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1000),1));
+    public static final RegistryObject<Item> IRON_HANDLE_PLOUGH = ITEMS.register("iron_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1500),2));
 
-    //灌水工具
     public static final RegistryObject<Item> WOOD_BUCKET = ITEMS.register("wood_bucket", () -> new WateringToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(200),1200));
 }

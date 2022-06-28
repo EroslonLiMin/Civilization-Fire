@@ -1,6 +1,5 @@
 package com.daylight.civilization_fire.block.agriculture;
 
-import com.daylight.civilization_fire.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,32 +13,32 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.Random;
 
 //水田
 public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock {
     //含水的
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 
     public PaddySoilBlock() {
-        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).randomTicks().strength(0.6F).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any().setValue(BE_WATERED, Boolean.FALSE).setValue(WATERLOGGED, false));//设置states
+        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).strength(0.6F).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().noOcclusion());
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING,Direction.NORTH));//设置states
 
     }
 
-    //处理一下tick
+    @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos pos, Random random) {
-        //水田必须得临近水源
-        if (blockState.getBlock() == BlockRegistry.PADDY_SOIL_BLOCK.get()) {
-            setWatered(null, serverLevel, pos, isNearWater(serverLevel, pos));
-        }
+        //TOOL
     }
 
     @Nullable
@@ -48,12 +47,15 @@ public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock 
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = context.getLevel().getBlockState(blockpos);
         if (blockstate.is(this)) {
-            return blockstate.setValue(WATERLOGGED, Boolean.FALSE);
+            return blockstate.setValue(WATERLOGGED, Boolean.FALSE).setValue(FACING, Arrays.stream(context.getNearestLookingDirections()).filter(
+                    direction -> direction.getAxis().isHorizontal()).findFirst().orElse(Direction.NORTH));
         } else {
             FluidState fluidstate = context.getLevel().getFluidState(blockpos);
-            return this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+            return this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER).setValue(FACING, Arrays.stream(context.getNearestLookingDirections()).filter(
+                    direction -> direction.getAxis().isHorizontal()).findFirst().orElse(Direction.NORTH));
         }
     }
+
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
@@ -69,7 +71,7 @@ public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock 
 
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(BE_WATERED, WATERLOGGED);
+        stateBuilder.add(WATERLOGGED,FACING);
     }
 
     @Override

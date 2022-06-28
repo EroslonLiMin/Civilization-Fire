@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.item.agriculture.tool;
 
+import com.daylight.civilization_fire.block.agriculture.PaddySoilBlock;
 import com.daylight.civilization_fire.block.agriculture.SoilBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -127,13 +128,13 @@ public class WateringToolItem extends Item {
         {
             BlockPos pos = blockhitresult.getBlockPos();
             BlockState blockState = level.getBlockState(pos);
-            if (blockState.getBlock() instanceof BucketPickup) {
+            if (blockState.getBlock() instanceof BucketPickup && !(blockState.getBlock() instanceof SoilBlock)) {
                 e.receiveEnergy(500, false);
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                 level.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
                 player.playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
             } else if (blockState.getBlock() instanceof SoilBlock && e.getEnergyStored() > 100) {
-                if (blockState.hasProperty(SoilBlock.BE_WATERED)) {
+                if (blockState.hasProperty(SoilBlock.BE_WATERED) && (blockState.hasProperty(SoilBlock.BE_PLOUGHED) ? blockState.getValue(SoilBlock.BE_PLOUGHED) : true)) {
                     SoilBlock.setWatered(player, level, pos, true);
                     e.extractEnergy(100, false);
                     player.playSound(SoundEvents.BUCKET_EMPTY, 1.0F, 1.0F);

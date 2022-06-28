@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "civilization_fire:block/pepper/pepper_2"
+  }
+}

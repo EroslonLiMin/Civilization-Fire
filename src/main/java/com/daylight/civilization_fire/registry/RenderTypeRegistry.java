@@ -12,6 +12,7 @@ public class RenderTypeRegistry {
     @SubscribeEvent
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+
         });
     }
 }

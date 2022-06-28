@@ -24,8 +24,8 @@ public class PlantItem {
 
         public PlantSeedItem(ResourceLocation stateID, boolean canEat, float... eatingValue) {
             //实现以下food，有点草...
-            super(new Properties().stacksTo(16).tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).food(canEat ? null :
-                    new FoodProperties.Builder().nutrition((int) eatingValue[0]).saturationMod(eatingValue[1]).build()));
+            super(new Properties().stacksTo(16).tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).food(canEat ?
+                    new FoodProperties.Builder().nutrition((int) eatingValue[0]).saturationMod(eatingValue[1]).build() : null));
             this.stateID = stateID;
         }
 
@@ -52,8 +52,8 @@ public class PlantItem {
 
     public static class PlantBlockItem extends BlockItem {
         public PlantBlockItem(Block block, boolean canEat, float... eatingValue) {
-            super(block, new Properties().stacksTo(16).tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).food(canEat ? null :
-                    new FoodProperties.Builder().nutrition((int) eatingValue[0]).saturationMod(eatingValue[1]).build()));
+            super(block, new Properties().stacksTo(16).tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).food(canEat ?
+                    new FoodProperties.Builder().nutrition((int) eatingValue[0]).saturationMod(eatingValue[1]).build() : null));
         }
 
         //重新修订放置处理

@@ -35,7 +35,7 @@ public class ModHoeingToolItem extends Item {
                 if (!useOnContext.getLevel().isClientSide()) {
                     CompoundTag compoundTag = itemStack.getOrCreateTagElement("civilization_fire");
                     if (!compoundTag.contains("ploughed") || !BlockPos.of(compoundTag.getLong("pos")).equals(useOnContext.getClickedPos())) {
-                        compoundTag.putInt("ploughed", Math.max(new Random().nextInt(5) - level, 1));
+                        compoundTag.putInt("ploughed", Math.max(new Random().nextInt(4) - level, 1));
                         compoundTag.putLong("pos", useOnContext.getClickedPos().asLong());
                     }
                     int ploughed = compoundTag.getInt("ploughed");

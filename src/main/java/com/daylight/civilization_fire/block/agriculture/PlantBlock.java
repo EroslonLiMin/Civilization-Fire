@@ -21,8 +21,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
@@ -31,7 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -45,7 +42,7 @@ public class PlantBlock extends BaseEntityBlock {
         LikePumpkin,//像南瓜一样？
     }
 
-    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("grow_up_state", 0, 5);//生长阶段
+    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 0, 5);//生长阶段
 
 
     //方块属性
@@ -68,6 +65,7 @@ public class PlantBlock extends BaseEntityBlock {
 
     }
 
+    
 
     public RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
@@ -189,7 +187,16 @@ public class PlantBlock extends BaseEntityBlock {
         public void deserializeNBT(CompoundTag nbt) {
             this.stopGrowingTick = nbt.getInt("stopGrowingTick");
             this.growingState = nbt.getInt("growingState");
+            this.growingState = nbt.getInt("growingState");
+        }
 
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag compoundTag = new CompoundTag();
+            compoundTag.putInt("stopGrowingTick",this.stopGrowingTick);
+            compoundTag.putInt("growingState",this.growingState);
+            compoundTag.putInt("growingState",this.growingState);
+            return compoundTag;
         }
     }
 }
