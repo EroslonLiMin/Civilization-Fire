@@ -16,10 +16,10 @@ public class PlantLoad {
     public PlantBlock.PlantModel plantModel;
     public final RegistryObject<Block> plantBlockRegistry;
     public final RegistryObject<Item> plantItemRegistry;
-
+    public RegistryObject<Item> plantFruitRegistry;
 
     //名字，种植有几个阶段，种植时间，有无种子，种植方块，种植/果实是否可以直接食用，种植模式，
-    public PlantLoad(String name, int stageLevel, float matureTick, boolean hasSeed, String[] blocks, boolean canEat, PlantBlock.PlantModel plantModel, int round, float... eatingData) {
+    public PlantLoad(String name, int stageLevel, float matureTick, boolean isDistinguishSeed, String[] blocks, boolean canEat, PlantBlock.PlantModel plantModel, int round, float... eatingData) {
         this.name = name;
         this.plantModel = plantModel;
         //开始处理
@@ -27,12 +27,9 @@ public class PlantLoad {
         //方块处理
         //Get延迟处理
         this.plantBlockRegistry = BlockRegistry.BLOCKS.register(name, () -> new PlantBlock(plantModel, fruitResourceLocation, stageLevel, matureTick, blocks, round));
-        this.plantItemRegistry = ItemRegistry.ITEMS.register(name + "_item", () -> {
-            if (hasSeed) {
-                return new PlantItem.PlantSeedItem(fruitResourceLocation, canEat, eatingData);
-            } else {
-                return new PlantItem.PlantBlockItem(plantBlockRegistry.get(), canEat, eatingData);
-            }
-        });
+        if(isDistinguishSeed){
+            this.plantFruitRegistry = ItemRegistry.ITEMS.register(name + "_fruit", () -> new PlantItem.PlantSeedItem(fruitResourceLocation, canEat, eatingData));
+        }
+        this.plantItemRegistry = ItemRegistry.ITEMS.register(name + "_item", () -> new PlantItem.PlantBlockItem(plantBlockRegistry.get(), canEat, eatingData));
     }
 }

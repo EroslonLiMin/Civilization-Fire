@@ -59,6 +59,9 @@
   "block.civilization_fire.carob" : "绿豆",
   "block.civilization_fire.lentil_horn" : "黑豆",
   "block.civilization_fire.white_bean_horn" : "蚕豆",
-  "block.civilization_fire.peanut" : "毛豆角"
+  "block.civilization_fire.peanut" : "毛豆角",
 
+  "entity.civilization_fire.stone_plough_entity" : "石犁",
+  "entity.civilization_fire.iron_plough_entity" : "铁犁",
+  "entity.civilization_fire.curvilinear_entity" : "曲辕犁"
 }

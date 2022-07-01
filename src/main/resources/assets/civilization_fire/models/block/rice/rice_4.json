@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "civilization_fire:block/tall_tinted_cross",
   "textures": {
-    "crop": "civilization_fire:block/rice/rice_4"
+    "bottom_cross": "civilization_fire:block/rice/rice_4_0",
+    "top_cross": "civilization_fire:block/rice/rice_4_1"
   }
 }

@@ -5,13 +5,21 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -42,7 +51,7 @@ public class PlantBlock extends BaseEntityBlock {
         LikePumpkin,//像南瓜一样？
     }
 
-    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 0, 5);//生长阶段
+    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 1, 8);//生长阶段
 
 
     //方块属性
@@ -54,14 +63,14 @@ public class PlantBlock extends BaseEntityBlock {
     public int roundItem;
 
     public PlantBlock(PlantModel plantModel, ResourceLocation fruitID, int stageLevel, float matureTick, String[] plantBlocks,int roundItem) {
-        super(Properties.of(Material.PLANT).noCollission().strength(1));
+        super(Properties.of(Material.PLANT).noCollission().strength(0));
         this.fruitID = fruitID;
         this.plantModel = plantModel;
         this.stageLevel = stageLevel;
         this.matureTick = matureTick;
         this.plantBlocks = plantBlocks;
         this.roundItem = roundItem;
-        this.registerDefaultState(this.stateDefinition.any().setValue(GROW_UP_STATE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(GROW_UP_STATE, 1));
 
     }
 
@@ -80,9 +89,11 @@ public class PlantBlock extends BaseEntityBlock {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player,
                                        boolean willHarvest, FluidState fluid) {
+        System.out.println(true);
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
         if (plantBlockEntity != null) {
             if (plantModel != PlantModel.PickingModel && plantBlockEntity.growingState == this.stageLevel) {
+                System.out.println(true);
                 giveFruitItem(player);
             }
         }
@@ -101,6 +112,10 @@ public class PlantBlock extends BaseEntityBlock {
                 giveFruitItem(pPlayer);
             }
         }
+        if(!pLevel.isClientSide()) {
+            ((PlantBlock) pState.getBlock()).growUpState(pLevel, pPos, plantBlockEntity.growingState + 1);
+            pPlayer.sendMessage(new TextComponent(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick), pPlayer.getUUID());
+        }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
@@ -113,10 +128,16 @@ public class PlantBlock extends BaseEntityBlock {
         pPlayer.addItem(new ItemStack(Registry.ITEM.get(this.fruitID)));
     }
 
-    //生长一个阶段
-    public static void GrowUpState(PlantBlock plantBlock, Level level, BlockPos pos, int state) {
-        PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
 
+
+    //生长一个阶段
+    public void growUpState(Level level, BlockPos pos, int state) {
+        BlockState blockState = level.getBlockState(pos);
+        PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
+        plantBlockEntity.growingState = state;
+        plantBlockEntity.growingTick = (int) (this.matureTick * ((this.stageLevel + 0.0F) / state));
+        level.setBlock(pos,blockState.setValue(GROW_UP_STATE,state),Block.UPDATE_ALL);
+        level.gameEvent(GameEvent.BLOCK_PLACE, pos);
     }
 
     public List<Block> getPlantBlock(){
@@ -184,6 +205,20 @@ public class PlantBlock extends BaseEntityBlock {
         }
 
         @Override
+        public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+            this.handleUpdateTag(Objects.requireNonNull(pkt.getTag()));
+        }
+
+        @Override
+        public CompoundTag getUpdateTag() {
+            CompoundTag compoundTag = super.getUpdateTag();
+            compoundTag.putInt("stopGrowingTick",this.stopGrowingTick);
+            compoundTag.putInt("growingState",this.growingState);
+            compoundTag.putInt("growingState",this.growingState);
+            return compoundTag;
+        }
+
+        @Override
         public void deserializeNBT(CompoundTag nbt) {
             this.stopGrowingTick = nbt.getInt("stopGrowingTick");
             this.growingState = nbt.getInt("growingState");
@@ -192,11 +227,21 @@ public class PlantBlock extends BaseEntityBlock {
 
         @Override
         public CompoundTag serializeNBT() {
-            CompoundTag compoundTag = new CompoundTag();
-            compoundTag.putInt("stopGrowingTick",this.stopGrowingTick);
-            compoundTag.putInt("growingState",this.growingState);
-            compoundTag.putInt("growingState",this.growingState);
-            return compoundTag;
+            return this.getUpdateTag();
+        }
+
+
+        @Nullable
+        @Override
+        public Packet<ClientGamePacketListener> getUpdatePacket() {
+            return ClientboundBlockEntityDataPacket.create(this);
+        }
+
+        @Override
+        public void handleUpdateTag(CompoundTag nbt) {
+            this.stopGrowingTick = nbt.getInt("stopGrowingTick");
+            this.growingState = nbt.getInt("growingState");
+            this.growingState = nbt.getInt("growingState");
         }
     }
 }

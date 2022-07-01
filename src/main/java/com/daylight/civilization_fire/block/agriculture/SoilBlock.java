@@ -55,11 +55,12 @@ public class SoilBlock extends Block {
 
     //处理一下tick
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos pos, Random random) {
-        if (blockState.getValue(BE_PLOUGHED)) {
-            if (blockState.getValue(BE_WATERED)) {
-                setPloughed(null, serverLevel, pos, random.nextBoolean());
+        if (blockState.hasProperty(BE_PLOUGHED) && blockState.getValue(BE_PLOUGHED)) {
+            if (blockState.hasProperty(BE_WATERED) && blockState.getValue(BE_WATERED)) {
+
+                setWatered(null, serverLevel, pos, random.nextBoolean());
             }
-            setWatered(null, serverLevel, pos, random.nextBoolean());
+            setPloughed(null, serverLevel, pos, blockState.getValue(BE_WATERED));
         }
     }
 

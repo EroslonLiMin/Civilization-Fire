@@ -20,6 +20,7 @@ public class ModHoeingToolItem extends Item {
     public ModHoeingToolItem(Properties properties, int level) {
         super(properties);
         this.level = level;
+
     }
 
     //耕地使用~
@@ -47,7 +48,7 @@ public class ModHoeingToolItem extends Item {
                         compoundTag.remove("pos");
                     }
                     //基于冷却
-                    Objects.requireNonNull(useOnContext.getPlayer()).getCooldowns().addCooldown(this, 10);
+                    Objects.requireNonNull(useOnContext.getPlayer()).getCooldowns().addCooldown(this, 10 - level * 2);
                 }
                 if (null != useOnContext.getPlayer()) {
                     //播放耕种音效

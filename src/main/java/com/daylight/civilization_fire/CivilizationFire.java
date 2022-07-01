@@ -2,6 +2,7 @@ package com.daylight.civilization_fire;
 
 import com.daylight.civilization_fire.registry.BlockEntityRegistry;
 import com.daylight.civilization_fire.registry.BlockRegistry;
+import com.daylight.civilization_fire.registry.EntityTypeRegistry;
 import com.daylight.civilization_fire.registry.ItemRegistry;
 import com.daylight.civilization_fire.util.Utils;
 import net.minecraftforge.fml.common.Mod;
@@ -14,5 +15,6 @@ public class CivilizationFire {
         BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockEntityRegistry.BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        EntityTypeRegistry.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
