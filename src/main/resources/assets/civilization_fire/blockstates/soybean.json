@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/soybean/soybean_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/soybean/soybean_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/soybean/soybean_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/soybean/soybean_3"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/soybean/soybean_4"
+    }
+  }
+}

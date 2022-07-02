@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "civilization_fire:block/towel_gourd/towel_gourd_0"
+  }
+}

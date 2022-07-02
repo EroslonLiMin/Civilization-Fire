@@ -14,9 +14,6 @@
     },
     "state=4": {
       "model": "civilization_fire:block/pepper/pepper_4"
-    },
-    "state=5": {
-      "model": "civilization_fire:block/pepper/pepper_5"
     }
   }
 }

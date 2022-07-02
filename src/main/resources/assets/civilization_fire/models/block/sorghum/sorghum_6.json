@@ -1,0 +1,7 @@
+{
+  "parent": "civilization_fire:block/tall_tinted_cross",
+  "textures": {
+    "bottom_cross": "civilization_fire:block/sorghum/sorghum_6_0",
+    "top_cross": "civilization_fire:block/sorghum/sorghum_6_1"
+  }
+}

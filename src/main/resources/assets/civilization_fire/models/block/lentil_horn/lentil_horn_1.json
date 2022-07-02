@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "civilization_fire:block/lentil_horn/lentil_horn_1"
+  }
+}

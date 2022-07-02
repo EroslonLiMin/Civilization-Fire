@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/tomatoes/tomatoes_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/tomatoes/tomatoes_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/tomatoes/tomatoes_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/tomatoes/tomatoes_3"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/tomatoes/tomatoes_4"
+    }
+  }
+}

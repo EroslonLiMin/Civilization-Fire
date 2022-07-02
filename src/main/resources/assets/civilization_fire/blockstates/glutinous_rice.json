@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_3"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_4"
+    },
+    "state=5": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_5"
+    },
+    "state=6": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_6"
+    },
+    "state=7": {
+      "model": "civilization_fire:block/glutinous_rice/glutinous_rice_7"
+    }
+  }
+}

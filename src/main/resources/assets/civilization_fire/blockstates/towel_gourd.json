@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/towel_gourd/towel_gourd_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/towel_gourd/towel_gourd_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/towel_gourd/towel_gourd_2"
+    }
+  }
+}

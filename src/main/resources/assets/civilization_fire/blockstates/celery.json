@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/celery/celery_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/celery/celery_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/celery/celery_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/celery/celery_3"
+    }
+  }
+}

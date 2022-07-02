@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    }
+  }
+}

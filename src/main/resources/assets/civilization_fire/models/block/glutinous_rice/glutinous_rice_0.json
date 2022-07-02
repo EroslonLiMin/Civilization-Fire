@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "civilization_fire:block/glutinous_rice/glutinous_rice_0"
+  }
+}

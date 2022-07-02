@@ -51,7 +51,7 @@ public class PlantBlock extends BaseEntityBlock {
         LikePumpkin,//像南瓜一样？
     }
 
-    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 1, 8);//生长阶段
+    public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 0, 7);//生长阶段
 
 
     //方块属性
@@ -70,7 +70,7 @@ public class PlantBlock extends BaseEntityBlock {
         this.matureTick = matureTick;
         this.plantBlocks = plantBlocks;
         this.roundItem = roundItem;
-        this.registerDefaultState(this.stateDefinition.any().setValue(GROW_UP_STATE, 1));
+        this.registerDefaultState(this.stateDefinition.any().setValue(GROW_UP_STATE, 0));
 
     }
 
@@ -112,7 +112,7 @@ public class PlantBlock extends BaseEntityBlock {
                 giveFruitItem(pPlayer);
             }
         }
-        if(!pLevel.isClientSide()) {
+        if(!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
             ((PlantBlock) pState.getBlock()).growUpState(pLevel, pPos, plantBlockEntity.growingState + 1);
             pPlayer.sendMessage(new TextComponent(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick), pPlayer.getUUID());
         }
@@ -122,10 +122,9 @@ public class PlantBlock extends BaseEntityBlock {
 
     //给予果实物品
     public void giveFruitItem(Player pPlayer) {
-        Random random = new Random();//随机一下
         ItemStack fruitStack = new ItemStack(Registry.ITEM.get(this.fruitID));
-        fruitStack.setCount(random.nextInt(roundItem) + 1);
-        pPlayer.addItem(new ItemStack(Registry.ITEM.get(this.fruitID)));
+        fruitStack.setCount(new Random().nextInt(roundItem) + 1);
+        pPlayer.addItem(fruitStack);
     }
 
 
@@ -135,7 +134,7 @@ public class PlantBlock extends BaseEntityBlock {
         BlockState blockState = level.getBlockState(pos);
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
         plantBlockEntity.growingState = state;
-        plantBlockEntity.growingTick = (int) (this.matureTick * ((this.stageLevel + 0.0F) / state));
+        plantBlockEntity.growingTick = (int) (this.matureTick * ((this.stageLevel + 0.0F) / (this.stageLevel - state)));
         level.setBlock(pos,blockState.setValue(GROW_UP_STATE,state),Block.UPDATE_ALL);
         level.gameEvent(GameEvent.BLOCK_PLACE, pos);
     }

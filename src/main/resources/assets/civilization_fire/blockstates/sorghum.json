@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/sorghum/sorghum_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/sorghum/sorghum_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/sorghum/sorghum_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/sorghum/sorghum_3"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/sorghum/sorghum_4"
+    },
+    "state=5": {
+      "model": "civilization_fire:block/sorghum/sorghum_5"
+    },
+    "state=6": {
+      "model": "civilization_fire:block/sorghum/sorghum_6"
+    },
+    "state=7": {
+      "model": "civilization_fire:block/sorghum/sorghum_7"
+    }
+  }
+}

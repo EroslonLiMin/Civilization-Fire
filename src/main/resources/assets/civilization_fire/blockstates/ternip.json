@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/ternip/ternip_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/ternip/ternip_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/ternip/ternip_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/ternip/ternip_3"
+    }
+  }
+}

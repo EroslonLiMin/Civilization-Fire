@@ -1,5 +1,8 @@
 {
   "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/rice/rice_0"
+    },
     "state=1": {
       "model": "civilization_fire:block/rice/rice_1"
     },

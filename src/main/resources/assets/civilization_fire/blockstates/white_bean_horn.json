@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "state=0": {
+      "model": "civilization_fire:block/white_bean_horn/white_bean_horn_0"
+    },
+    "state=1": {
+      "model": "civilization_fire:block/white_bean_horn/white_bean_horn_1"
+    },
+    "state=2": {
+      "model": "civilization_fire:block/white_bean_horn/white_bean_horn_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/white_bean_horn/white_bean_horn_3"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import com.daylight.civilization_fire.registry.BlockRegistry;
 import com.daylight.civilization_fire.registry.ItemRegistry;
 import com.daylight.civilization_fire.util.Utils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
@@ -19,17 +20,17 @@ public class PlantLoad {
     public RegistryObject<Item> plantFruitRegistry;
 
     //名字，种植有几个阶段，种植时间，有无种子，种植方块，种植/果实是否可以直接食用，种植模式，
-    public PlantLoad(String name, int stageLevel, float matureTick, boolean isDistinguishSeed, String[] blocks, boolean canEat, PlantBlock.PlantModel plantModel, int round, float... eatingData) {
+    public PlantLoad(String name, int stageLevel, float matureTick, boolean isDistinguishSeed, String[] blocks, boolean canEat, PlantBlock.PlantModel plantModel, CreativeModeTab creativeModeTab, int round, float... eatingData) {
         this.name = name;
         this.plantModel = plantModel;
         //开始处理
-        ResourceLocation fruitResourceLocation = new ResourceLocation(Utils.MOD_ID, name + (canEat ? "_item" : ""));
+        ResourceLocation fruitResourceLocation = new ResourceLocation(Utils.MOD_ID, name + "_item");
         //方块处理
         //Get延迟处理
         this.plantBlockRegistry = BlockRegistry.BLOCKS.register(name, () -> new PlantBlock(plantModel, fruitResourceLocation, stageLevel, matureTick, blocks, round));
         if(isDistinguishSeed){
-            this.plantFruitRegistry = ItemRegistry.ITEMS.register(name + "_fruit", () -> new PlantItem.PlantSeedItem(fruitResourceLocation, canEat, eatingData));
+            this.plantFruitRegistry = ItemRegistry.ITEMS.register(name + "_fruit", () -> new PlantItem.PlantFruitItem(creativeModeTab,canEat, eatingData));
         }
-        this.plantItemRegistry = ItemRegistry.ITEMS.register(name + "_item", () -> new PlantItem.PlantBlockItem(plantBlockRegistry.get(), canEat, eatingData));
+        this.plantItemRegistry = ItemRegistry.ITEMS.register(name + "_item", () -> new PlantItem.PlantBlockItem(creativeModeTab,plantBlockRegistry.get(), canEat, eatingData));
     }
 }

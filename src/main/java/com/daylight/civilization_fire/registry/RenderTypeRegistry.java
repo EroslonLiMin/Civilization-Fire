@@ -26,6 +26,26 @@ public class RenderTypeRegistry {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.LENTIL_HORN_PLANT.plantBlockRegistry.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.WHITE_BEAN_HORN_PLANT.plantBlockRegistry.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.PEANUT.plantBlockRegistry.get(), RenderType.translucent());
+
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SHALLOT_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.GREEN_CHINESE_ONION_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.EGGPLANT_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CELERY_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CUCUMBER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.WAX_GOURD_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BALSAM_PEAR_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TOWEL_GOURD_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SOYBEAN_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.GINGER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TERNIP_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.WATER_RADISH_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TOMATOES_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ONION_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.HOT_PEPPER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.PEPPER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FENNEL_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+
         });
     }
 }
