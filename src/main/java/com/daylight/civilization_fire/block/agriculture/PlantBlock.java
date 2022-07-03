@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -13,6 +14,8 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.LockCode;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -89,11 +92,9 @@ public class PlantBlock extends BaseEntityBlock {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player,
                                        boolean willHarvest, FluidState fluid) {
-        System.out.println(true);
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
         if (plantBlockEntity != null) {
             if (plantModel != PlantModel.PickingModel && plantBlockEntity.growingState == this.stageLevel) {
-                System.out.println(true);
                 giveFruitItem(player);
             }
         }
@@ -107,14 +108,14 @@ public class PlantBlock extends BaseEntityBlock {
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) pLevel.getBlockEntity(pPos);
         if (plantBlockEntity != null) {
             if (plantModel == PlantModel.PickingModel && plantBlockEntity.growingState == this.stageLevel) {
-                plantBlockEntity.growingState -= 2;
+                plantBlockEntity.growingState -= 1;
                 plantBlockEntity.growingTick -= this.matureTick / this.stageLevel * 2;
                 giveFruitItem(pPlayer);
             }
         }
         if(!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
-            ((PlantBlock) pState.getBlock()).growUpState(pLevel, pPos, plantBlockEntity.growingState + 1);
-            pPlayer.sendMessage(new TextComponent(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick), pPlayer.getUUID());
+            ((PlantBlock) pState.getBlock()).growUpState(pLevel, pPos, Math.min(plantBlockEntity.growingState + 1, this.stageLevel));
+            System.out.println(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick);
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
@@ -203,6 +204,20 @@ public class PlantBlock extends BaseEntityBlock {
             }
         }
 
+        public void load(CompoundTag nbt) {
+            super.load(nbt);
+            this.stopGrowingTick = nbt.getInt("stopGrowingTick");
+            this.growingState = nbt.getInt("growingState");
+            this.growingTick = nbt.getInt("growingTick");
+        }
+
+        protected void saveAdditional(CompoundTag compoundTag) {
+            super.saveAdditional(compoundTag);
+            compoundTag.putInt("stopGrowingTick",this.stopGrowingTick);
+            compoundTag.putInt("growingState",this.growingState);
+            compoundTag.putInt("growingTick",this.growingTick);
+        }
+
         @Override
         public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
             this.handleUpdateTag(Objects.requireNonNull(pkt.getTag()));
@@ -213,22 +228,9 @@ public class PlantBlock extends BaseEntityBlock {
             CompoundTag compoundTag = super.getUpdateTag();
             compoundTag.putInt("stopGrowingTick",this.stopGrowingTick);
             compoundTag.putInt("growingState",this.growingState);
-            compoundTag.putInt("growingState",this.growingState);
+            compoundTag.putInt("growingTick",this.growingTick);
             return compoundTag;
         }
-
-        @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            this.stopGrowingTick = nbt.getInt("stopGrowingTick");
-            this.growingState = nbt.getInt("growingState");
-            this.growingState = nbt.getInt("growingState");
-        }
-
-        @Override
-        public CompoundTag serializeNBT() {
-            return this.getUpdateTag();
-        }
-
 
         @Nullable
         @Override
@@ -240,7 +242,7 @@ public class PlantBlock extends BaseEntityBlock {
         public void handleUpdateTag(CompoundTag nbt) {
             this.stopGrowingTick = nbt.getInt("stopGrowingTick");
             this.growingState = nbt.getInt("growingState");
-            this.growingState = nbt.getInt("growingState");
+            this.growingTick = nbt.getInt("growingTick");
         }
     }
 }

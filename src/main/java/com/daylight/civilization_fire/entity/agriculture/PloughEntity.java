@@ -77,10 +77,6 @@ public abstract class PloughEntity extends LivingEntity {
         super(entityType, level);
     }
 
-    public PloughEntity(EntityType<? extends LivingEntity> entityType, Level level, EntityItem entityItem) {
-        this(entityType, level);
-        this.entityItem = entityItem;
-    }
 
     //属性处理
     public static AttributeSupplier.Builder prepareAttributes() {
@@ -99,7 +95,7 @@ public abstract class PloughEntity extends LivingEntity {
         if(isFollow) {
             if (followEntity == null) isFollow = false;
             Vec3 vec3 = followEntity.getViewVector(3);
-            this.moveTo(followEntity.xOld - vec3.x * 1, followEntity.yOld, followEntity.zOld - vec3.z * 1, followEntity.getXRot(), this.getYRot());
+            this.moveTo(followEntity.xOld + vec3.x * 2, followEntity.yOld, followEntity.zOld - vec3.z * 1, followEntity.getXRot(), this.getYRot());
             followEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 25, 4 - this.getPloughLevel()));
             this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 25, 5 - this.getPloughLevel()));
         }
