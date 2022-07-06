@@ -1,6 +1,5 @@
 package com.daylight.civilization_fire.block.agriculture;
 
-import com.daylight.civilization_fire.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
@@ -38,10 +37,10 @@ public class SoilBlock extends Block {
         super(properties);
     }
 
-    //修改渲染类型—（因为这傻逼玩意卡了一天的我也是傻逼
+    /*修改渲染类型—（因为这傻逼玩意卡了一天的我也是傻逼
     public RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
-    }
+    }*/
 
     //添加属性
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {

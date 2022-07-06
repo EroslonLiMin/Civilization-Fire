@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "skinned=false": {
+      "model": "civilization_fire:block/cinnamon_tree_wood/cinnamon_tree_wood"
+    },
+    "skinned=true": {
+      "model": "civilization_fire:block/cinnamon_tree_wood/cinnamon_tree_wood_skinned"
+    }
+  }
+}

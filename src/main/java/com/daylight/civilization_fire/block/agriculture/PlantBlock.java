@@ -51,7 +51,6 @@ public class PlantBlock extends BaseEntityBlock {
     public enum PlantModel {
         DestroyModel,//直接打破模式
         PickingModel,//摘下模式
-        LikePumpkin,//像南瓜一样？
     }
 
     public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 0, 7);//生长阶段
@@ -188,10 +187,6 @@ public class PlantBlock extends BaseEntityBlock {
                     if (plantBlock.matureTick / plantBlock.stageLevel * plantBlockEntity.growingState > plantBlockEntity.growingTick && plantBlock.stageLevel > plantBlockEntity.growingState) {
                         level.setBlock(pos, blockState.setValue(GROW_UP_STATE, plantBlockEntity.growingState + 1), Block.UPDATE_ALL);
                         level.gameEvent(GameEvent.BLOCK_PLACE, pos);
-                        if (plantBlock.plantModel == PlantModel.LikePumpkin && plantBlockEntity.growingState == plantBlock.stageLevel) {
-                            level.setBlock(pos, Registry.BLOCK.get(plantBlock.fruitID).defaultBlockState(), Block.UPDATE_ALL);
-                            level.gameEvent(GameEvent.BLOCK_PLACE, pos);
-                        }
                     }
 
                 } else {
@@ -218,7 +213,8 @@ public class PlantBlock extends BaseEntityBlock {
             compoundTag.putInt("growingTick",this.growingTick);
         }
 
-        @Override
+        //服务端处理（好像多此一举了
+        /*@Override
         public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
             this.handleUpdateTag(Objects.requireNonNull(pkt.getTag()));
         }
@@ -243,6 +239,6 @@ public class PlantBlock extends BaseEntityBlock {
             this.stopGrowingTick = nbt.getInt("stopGrowingTick");
             this.growingState = nbt.getInt("growingState");
             this.growingTick = nbt.getInt("growingTick");
-        }
+        }*/
     }
 }

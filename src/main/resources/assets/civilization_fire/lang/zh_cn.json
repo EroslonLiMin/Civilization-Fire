@@ -16,8 +16,18 @@
 
   "item.civilization_fire.wood_bucket": "木桶",
 
-
-
+  "item.civilization_fire.fragrant": "香叶",
+  "item.civilization_fire.cinnamon_bark": "桂皮",
+  "item.civilization_fire.sichuan_pepper": "花椒",
+  "block.civilization_fire.cinnamon_tree_wood" : "肉桂木",
+  "block.civilization_fire.cinnamon_tree_leaf" : "肉桂叶子",
+  "block.civilization_fire.cinnamon_tree_sapling" : "肉桂植株",
+  "block.civilization_fire.fragrant_tree_wood" : "香叶木",
+  "block.civilization_fire.fragrant_tree_leaf" : "香叶",
+  "block.civilization_fire.fragrant_tree_sapling": "香叶植株",
+  "block.civilization_fire.sichuan_pepper_tree_wood" : "花椒木",
+  "block.civilization_fire.sichuan_pepper_tree_leaf" : "花椒叶",
+  "block.civilization_fire.sichuan_pepper_tree_sapling": "花椒植株",
   "block.civilization_fire.rice" : "大米",
   "block.civilization_fire.glutinous_rice" : "糯米",
   "block.civilization_fire.yellow_rice" : "黄米",

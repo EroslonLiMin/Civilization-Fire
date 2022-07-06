@@ -1,8 +1,10 @@
 package com.daylight.civilization_fire.registry;
 
+import com.daylight.civilization_fire.block.agriculture.TreePlant;
 import com.daylight.civilization_fire.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.init.ModGroup;
 import com.daylight.civilization_fire.item.agriculture.EntityItem;
+import com.daylight.civilization_fire.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.item.agriculture.tool.WateringToolItem;
 import com.daylight.civilization_fire.util.Utils;
@@ -26,27 +28,42 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MYCELIAL_SOIL_BLOCK = ITEMS.register("mycelial_soil_block", () -> new BlockItem(BlockRegistry.MYCELIAL_SOIL_BLOCK.get(), new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB)));
 
     //挖掘工具
-    public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(500),0));
-    public static final RegistryObject<Item> STONE_HANDLE_PLOUGH = ITEMS.register("stone_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1000),1));
-    public static final RegistryObject<Item> IRON_HANDLE_PLOUGH = ITEMS.register("iron_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1500),2));
+    public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(500), 0));
+    public static final RegistryObject<Item> STONE_HANDLE_PLOUGH = ITEMS.register("stone_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1000), 1));
+    public static final RegistryObject<Item> IRON_HANDLE_PLOUGH = ITEMS.register("iron_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(1500), 2));
 
-    public static final RegistryObject<Item> WOOD_BUCKET = ITEMS.register("wood_bucket", () -> new WateringToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(200),1200));
+    public static final RegistryObject<Item> WOOD_BUCKET = ITEMS.register("wood_bucket", () -> new WateringToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(200), 1200));
+
+    //植物
+    public static final RegistryObject<Item> CINNAMON_BARK = ItemRegistry.ITEMS.register("cinnamon_bark", () -> new PlantItem.PlantFruitItem(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB, false));
+    public static final RegistryObject<Item> FRAGRANT = ItemRegistry.ITEMS.register("fragrant", () -> new PlantItem.PlantFruitItem(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB, false));
+    public static final RegistryObject<Item> SICHUAN_PEPPER = ItemRegistry.ITEMS.register("sichuan_pepper", () -> new PlantItem.PlantFruitItem(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB, false));
+    public static final RegistryObject<Item> CINNAMON_TREE_WOOD = ITEMS.register("cinnamon_tree_wood", () -> new BlockItem(BlockRegistry.CINNAMON_TREE_WOOD.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> CINNAMON_TREE_LEAF = ITEMS.register("cinnamon_tree_leaf", () -> new BlockItem(BlockRegistry.CINNAMON_TREE_LEAF.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> CINNAMON_TREE_SAPLING = ITEMS.register("cinnamon_tree_sapling", () -> new BlockItem(BlockRegistry.CINNAMON_TREE_SAPLING.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+
+    public static final RegistryObject<Item> FRAGRANT_TREE_WOOD = ITEMS.register("fragrant_tree_wood", () -> new BlockItem(BlockRegistry.FRAGRANT_TREE_WOOD.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> FRAGRANT_TREE_LEAF = ITEMS.register("fragrant_tree_leaf", () -> new BlockItem(BlockRegistry.FRAGRANT_TREE_LEAF.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> FRAGRANT_TREE_SAPLING = ITEMS.register("fragrant_tree_sapling", () -> new BlockItem(BlockRegistry.FRAGRANT_TREE_SAPLING.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> SICHUAN_PEPPER_TREE_WOOD = ITEMS.register("sichuan_pepper_tree_wood", () -> new BlockItem(BlockRegistry.SICHUAN_PEPPER_TREE_WOOD.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> SICHUAN_PEPPER_TREE_LEAF = ITEMS.register("sichuan_pepper_tree_leaf", () -> new BlockItem(BlockRegistry.SICHUAN_PEPPER_TREE_LEAF.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> SICHUAN_PEPPER_TREE_SAPLING = ITEMS.register("sichuan_pepper_tree_sapling", () -> new BlockItem(BlockRegistry.SICHUAN_PEPPER_TREE_SAPLING.get(), new Item.Properties().tab(ModGroup.SPICE_CROPS_CREATIVE_MODE_TAB)));
 
     //召唤实体物品
-    public static final RegistryObject<Item> STONE_PLOUGH_ENTITY_ITEM = ITEMS.register("stone_plough_entity_item", () -> new EntityItem(10000,(level,itemStack) ->{
-        PloughEntity.StonePloughEntity stonePloughEntity =  new PloughEntity.StonePloughEntity(EntityTypeRegistry.STONE_PLOUGH_ENTITY.get(),level);
+    public static final RegistryObject<Item> STONE_PLOUGH_ENTITY_ITEM = ITEMS.register("stone_plough_entity_item", () -> new EntityItem(10000, (level, itemStack) -> {
+        PloughEntity.StonePloughEntity stonePloughEntity = new PloughEntity.StonePloughEntity(EntityTypeRegistry.STONE_PLOUGH_ENTITY.get(), level);
         stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
         stonePloughEntity.setPloughTimes(10000 - itemStack.getDamageValue());
         return stonePloughEntity;
     }));
-    public static final RegistryObject<Item> IRON_PLOUGH_ENTITY_ITEM = ITEMS.register("iron_plough_entity_item", () -> new EntityItem(20000,(level,itemStack) ->{
-        PloughEntity.IronPloughEntity stonePloughEntity =  new PloughEntity.IronPloughEntity(EntityTypeRegistry.IRON_PLOUGH_ENTITY.get(),level);
+    public static final RegistryObject<Item> IRON_PLOUGH_ENTITY_ITEM = ITEMS.register("iron_plough_entity_item", () -> new EntityItem(20000, (level, itemStack) -> {
+        PloughEntity.IronPloughEntity stonePloughEntity = new PloughEntity.IronPloughEntity(EntityTypeRegistry.IRON_PLOUGH_ENTITY.get(), level);
         stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
         stonePloughEntity.setPloughTimes(20000 - itemStack.getDamageValue());
         return stonePloughEntity;
     }));
-    public static final RegistryObject<Item> CURVILINEAR_PLOUGH_ENTITY_ITEM = ITEMS.register("curvilinear_plough_entity_item", () -> new EntityItem(30000,(level,itemStack) ->{
-        PloughEntity.CurvilinearPloughEntity stonePloughEntity =  new PloughEntity.CurvilinearPloughEntity(EntityTypeRegistry.CURVILINEAR_PLOUGH_ENTITY.get(),level);
+    public static final RegistryObject<Item> CURVILINEAR_PLOUGH_ENTITY_ITEM = ITEMS.register("curvilinear_plough_entity_item", () -> new EntityItem(30000, (level, itemStack) -> {
+        PloughEntity.CurvilinearPloughEntity stonePloughEntity = new PloughEntity.CurvilinearPloughEntity(EntityTypeRegistry.CURVILINEAR_PLOUGH_ENTITY.get(), level);
         stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
         stonePloughEntity.setPloughTimes(30000 - itemStack.getDamageValue());
         return stonePloughEntity;

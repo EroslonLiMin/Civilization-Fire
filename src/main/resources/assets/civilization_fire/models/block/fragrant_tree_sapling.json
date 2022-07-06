@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "civilization_fire:block/fragrant_tree_sapling"
+  }
+}

@@ -45,7 +45,14 @@ public class RenderTypeRegistry {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.HOT_PEPPER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.PEPPER_PLANT.plantBlockRegistry.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FENNEL_PLANT.plantBlockRegistry.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BIG_CHINESE_CABBAGE_PLANT.plantBlockRegistry.get(), RenderType.translucent());
 
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CINNAMON_TREE_LEAF.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FRAGRANT_TREE_LEAF.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SICHUAN_PEPPER_TREE_LEAF.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SICHUAN_PEPPER_TREE_SAPLING.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CINNAMON_TREE_SAPLING.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FRAGRANT_TREE_SAPLING.get(), RenderType.translucent());
         });
     }
 }

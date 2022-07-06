@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down" : "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_top",
+    "up": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_top",
+    "north": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_side",
+    "south": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_side",
+    "west": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_side",
+    "east": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_side",
+    "particle": "civilization_fire:block/fragrant_tree_wood/fragrant_tree_wood_side"
+  }
+}
