@@ -1,6 +1,8 @@
 package com.daylight.civilization_fire.registry;
 
 import com.daylight.civilization_fire.block.agriculture.*;
+import com.daylight.civilization_fire.block.cooking.CasseroleBlock;
+import com.daylight.civilization_fire.block.cooking.CookingBench;
 import com.daylight.civilization_fire.init.ModGroup;
 import com.daylight.civilization_fire.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -23,6 +25,11 @@ public class BlockRegistry {
     public static final RegistryObject<Block> MYCELIAL_SOIL_BLOCK = BLOCKS.register("mycelial_soil_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(0.6F).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().noOcclusion()));//菌丝
 
+    //烹饪工具
+    public static final RegistryObject<Block> CASSEROLE_BLOCK = BLOCKS.register("casserole_block", CasseroleBlock::new);//铁锅
+    public static final RegistryObject<Block> COOKING_BENCH_BLOCK = BLOCKS.register("cooking_bench_block", CookingBench::new);//铁锅
+
+
     /////树木植物
     //肉桂
     public static final RegistryObject<Block> CINNAMON_TREE_WOOD = BLOCKS.register("cinnamon_tree_wood", () -> new TreePlant.TreeWood(true,((player, level, pos, happened) -> player.addItem(new ItemStack(ItemRegistry.CINNAMON_BARK.get())))));//给予桂皮 })));
@@ -31,11 +38,11 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> FRAGRANT_TREE_WOOD = BLOCKS.register("fragrant_tree_wood", () -> new TreePlant.TreeWood(false));
     public static final RegistryObject<Block> FRAGRANT_TREE_LEAF = BLOCKS.register("fragrant_tree_leaf", () -> new TreePlant.TreeLeaf((player, level, pos, happened) ->{ if(level.getBlockState(pos).getValue(TreePlant.TreeLeaf.IS_BLOOM)) player.addItem(new ItemStack(ItemRegistry.FRAGRANT.get()));}));
-    public static final RegistryObject<Block> FRAGRANT_TREE_SAPLING = BLOCKS.register("fragrant_tree_sapling", () -> new TreePlant.TreeSapling(new String[]{"civilization_fire:loam_block", "civilization_fire:clay_block"},"civilization_fire:fragrant_tree_wood","civilization_fire:cinnamon_tree_leaf"));
+    public static final RegistryObject<Block> FRAGRANT_TREE_SAPLING = BLOCKS.register("fragrant_tree_sapling", () -> new TreePlant.TreeSapling(new String[]{"civilization_fire:loam_block", "civilization_fire:clay_block"},"civilization_fire:fragrant_tree_wood","civilization_fire:fragrant_tree_leaf"));
 
     public static final RegistryObject<Block> SICHUAN_PEPPER_TREE_WOOD = BLOCKS.register("sichuan_pepper_tree_wood", () -> new TreePlant.TreeWood(false));
     public static final RegistryObject<Block> SICHUAN_PEPPER_TREE_LEAF = BLOCKS.register("sichuan_pepper_tree_leaf",() -> new TreePlant.TreeLeaf((player, level, pos, happened) -> player.addItem(new ItemStack(ItemRegistry.SICHUAN_PEPPER.get()))));
-    public static final RegistryObject<Block> SICHUAN_PEPPER_TREE_SAPLING = BLOCKS.register("sichuan_pepper_tree_sapling", () -> new TreePlant.TreeSapling(new String[]{"civilization_fire:loam_block", "civilization_fire:clay_block"},"civilization_fire:fragrant_tree_wood","civilization_fire:cinnamon_tree_leaf"));
+    public static final RegistryObject<Block> SICHUAN_PEPPER_TREE_SAPLING = BLOCKS.register("sichuan_pepper_tree_sapling", () -> new TreePlant.TreeSapling(new String[]{"civilization_fire:loam_block", "civilization_fire:clay_block"},"civilization_fire:sichuan_pepper_tree_wood","civilization_fire:sichuan_pepper_tree_leaf"));
 
     //植物
     //////粮食作物
@@ -97,7 +104,7 @@ public class BlockRegistry {
     /*洋葱*/
     public static final PlantLoad ONION_PLANT = new PlantLoad("onion", 4, 2000.00F, true, new String[]{"civilization_fire:sand_block"}, true, PlantBlock.PlantModel.DestroyModel, ModGroup.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 2, 0);
     /*大白菜*/
-    public static final PlantLoad BIG_CHINESE_CABBAGE_PLANT = new PlantLoad("big_chinese_cabbage", 4, 2000.00F, true, new String[]{"civilization_fire:loam_block","civilization_fire:clay_block","civilization_fire:sand_block"}, false, PlantBlock.PlantModel.DestroyModel,ModGroup.VEGETABLE_CROPS_CREATIVE_MODE_TAB,  2);
+    public static final PlantLoad BIG_CHINESE_CABBAGE_PLANT = new PlantLoad("big_chinese_cabbage", 3, 2000.00F, true, new String[]{"civilization_fire:loam_block","civilization_fire:clay_block","civilization_fire:sand_block"}, false, PlantBlock.PlantModel.DestroyModel,ModGroup.VEGETABLE_CROPS_CREATIVE_MODE_TAB,  2);
 
     //////香料作物
     /*辣椒*/

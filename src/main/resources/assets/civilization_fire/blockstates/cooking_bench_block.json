@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "bench=0": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block"
+    },
+    "bench=1": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_with_wood"
+    },
+    "bench=2": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=3": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=4": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=5": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=6": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=7": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "bench=8": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    }
+  }
+}

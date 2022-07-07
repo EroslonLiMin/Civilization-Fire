@@ -53,6 +53,8 @@ public class RenderTypeRegistry {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SICHUAN_PEPPER_TREE_SAPLING.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CINNAMON_TREE_SAPLING.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FRAGRANT_TREE_SAPLING.get(), RenderType.translucent());
+
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CASSEROLE_BLOCK.get(), RenderType.translucent());
         });
     }
 }

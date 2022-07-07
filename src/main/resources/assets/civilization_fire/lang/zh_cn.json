@@ -5,6 +5,10 @@
   "block.civilization_fire.paddy_soil_block": "水田",
   "block.civilization_fire.mycelial_soil_block": "菌丝",
 
+  "block.civilization_fire.casserole_block" : "铁锅",
+
+  "condiment_item.hover.text" : "剩余使用次数:%s",
+
   "itemGroup.agriculture_creative_mode_tab" : "农业",
   "itemGroup.grain_crops_creative_mode_tab" : "粮食作物",
   "itemGroup.spice_crops_creative_mode_tab" : "香料作物",
@@ -15,6 +19,11 @@
   "item.civilization_fire.iron_handle_plough" : "铁制耒耜",
 
   "item.civilization_fire.wood_bucket": "木桶",
+  "item.civilization_fire.salt" : "盐",
+  "item.civilization_fire.oil" : "油",
+  "item.civilization_fire.sauce" : "酱",
+  "item.civilization_fire.vinegar" : "醋",
+  "item.civilization_fire.cooking_wine" : "料酒",
 
   "item.civilization_fire.fragrant": "香叶",
   "item.civilization_fire.cinnamon_bark": "桂皮",

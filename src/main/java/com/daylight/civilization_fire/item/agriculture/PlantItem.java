@@ -41,7 +41,7 @@ public class PlantItem {
             Level level = useOnContext.getLevel();
             BlockState aboveState = level.getBlockState(useOnContext.getClickedPos().above());
             //判断一下是否符合需要的方块条件
-            if (aboveState.getBlock() == Blocks.AIR) {
+            if (aboveState.getBlock() == Blocks.AIR && level.getBlockState(useOnContext.getClickedPos()).getMaterial() == Material.DIRT) {
                 return super.useOn(useOnContext);
             }
             return InteractionResult.PASS;

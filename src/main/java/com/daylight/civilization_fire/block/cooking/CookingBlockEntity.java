@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.block.cooking;
 
+import com.daylight.civilization_fire.item.cooking.CondimentItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -7,21 +8,21 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class CookingBlockEntity extends BlockEntity {
     public List<ItemStack> cookingStacks = new ArrayList<>();
+    public Map<CondimentItem,Integer> addCondimentItem = new HashMap<>();
 
-    public CookingBlockEntity(BlockEntityType<?> p_155228_, BlockPos pos, BlockState state) {
-        super(p_155228_, pos, state);
+    public CookingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
+        super(blockEntityType, pos, state);
     }
 
     public void load(CompoundTag nbt) {
@@ -30,6 +31,12 @@ public class CookingBlockEntity extends BlockEntity {
         ListTag listTag = nbt.getList("cookingStacks", 10);
         for (int i = 0; i < listTag.size(); i++) {
             cookingStacks.add(ItemStack.of(listTag.getCompound(i)));
+        }
+        addCondimentItem.clear();
+        ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
+        for (int i = 0; i < addCondimentItemListTag.size(); i++) {
+            CompoundTag tag = addCondimentItemListTag.getCompound(i);
+            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getInt("times"));
         }
     }
 
@@ -40,6 +47,14 @@ public class CookingBlockEntity extends BlockEntity {
             listTag.add(itemStack.serializeNBT());
         }
         compoundTag.put("cookingStacks", listTag);
+        ListTag addCondimentItemListTag = new ListTag();
+        addCondimentItem.forEach((key,value) ->{
+            CompoundTag tag = new CompoundTag();
+            tag.putInt("key", Item.getId(key));
+            tag.putInt("times",value);
+            addCondimentItemListTag.add(tag);
+        });
+        compoundTag.put("addCondimentItem", addCondimentItemListTag);
     }
 
     @Override
@@ -55,6 +70,14 @@ public class CookingBlockEntity extends BlockEntity {
             listTag.add(itemStack.serializeNBT());
         }
         compoundTag.put("cookingStacks", listTag);
+        ListTag addCondimentItemListTag = new ListTag();
+        addCondimentItem.forEach((key,value) ->{
+            CompoundTag tag = new CompoundTag();
+            tag.putInt("key", Item.getId(key));
+            tag.putInt("times",value);
+            addCondimentItemListTag.add(tag);
+        });
+        compoundTag.put("addCondimentItem", addCondimentItemListTag);
         return compoundTag;
     }
 
@@ -70,6 +93,12 @@ public class CookingBlockEntity extends BlockEntity {
         ListTag listTag = nbt.getList("cookingStacks", 10);
         for (int i = 0; i < listTag.size(); i++) {
             cookingStacks.add(ItemStack.of(listTag.getCompound(i)));
+        }
+        addCondimentItem.clear();
+        ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
+        for (int i = 0; i < addCondimentItemListTag.size(); i++) {
+            CompoundTag tag = addCondimentItemListTag.getCompound(i);
+            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getInt("times"));
         }
     }
 }
