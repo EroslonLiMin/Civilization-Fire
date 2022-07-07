@@ -57,18 +57,20 @@ public class CasseroleBlock extends BaseEntityBlock {
     }
 
     public static class CasseroleBlockEntity extends CookingBlockEntity{
-
+        public int cookingHeight;//烹饪时候菜品落下的高度(颠锅
         public CasseroleBlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityRegistry.CASSEROLE_BLOCK_ENTITY.get(), pos, state);
         }
     }
 
-    //随机一下
+    //block entity渲染处理
     @OnlyIn(Dist.CLIENT)
     public static class CasseroleBlockBER implements BlockEntityRenderer<CookingBlockEntity>{
         public CasseroleBlockBER(BlockEntityRendererProvider.Context context) {
 
         }
+
+        //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
         public void render(CookingBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
