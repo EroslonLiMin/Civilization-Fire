@@ -53,7 +53,7 @@ public class ModHoeingToolItem extends Item {
                     //基于冷却
                     Objects.requireNonNull(useOnContext.getPlayer()).getCooldowns().addCooldown(this, 10 - level * 2);
                 }
-                if (null != useOnContext.getPlayer()) {
+                if (useOnContext.getPlayer() != null) {
                     //播放耕种音效
                     useOnContext.getPlayer().playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
                 }
