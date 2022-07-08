@@ -1,7 +1,5 @@
 package com.daylight.civilization_fire.util;
 
-import com.google.gson.Gson;
-
 import java.util.Random;
 
 public class Utils {

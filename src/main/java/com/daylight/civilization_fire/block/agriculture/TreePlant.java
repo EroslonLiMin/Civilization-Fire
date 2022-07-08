@@ -2,7 +2,6 @@ package com.daylight.civilization_fire.block.agriculture;
 
 import com.daylight.civilization_fire.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -10,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -22,8 +20,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class TreePlant {
         public TreeHappened treeHappened;
         public boolean canBeSkinned;
 
-        public TreeWood(boolean canBeSkinned,TreeHappened... happened) {
+        public TreeWood(boolean canBeSkinned, TreeHappened... happened) {
             super(Properties.of(Material.WOOD).strength(1F).sound(SoundType.WOOD).requiresCorrectToolForDrops());
             this.registerDefaultState(this.stateDefinition.any().setValue(BE_SKINNED, Boolean.FALSE));//设置states
             this.treeHappened = happened == null || happened.length <= 0 ? null : happened[0];
@@ -51,19 +50,20 @@ public class TreePlant {
 
         //处理一下剥皮
         @Override
-        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
+                InteractionHand pHand, BlockHitResult pHit) {
             if (pPlayer.getItemInHand(pHand).getItem() instanceof AxeItem && this.canBeSkinned) {
                 pPlayer.getItemInHand(pHand).setDamageValue(pPlayer.getItemInHand(pHand).getDamageValue() + 1);
                 setSkinned(pPlayer, pLevel, pPos, true);
             }
-            return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+
+            return InteractionResult.PASS;
         }
 
         //添加属性
         protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
             stateBuilder.add(BE_SKINNED);
         }
-
 
         //剥皮
         public static void setSkinned(Player player, Level level, BlockPos pos, boolean b) {
@@ -81,23 +81,26 @@ public class TreePlant {
         public TreeHappened treeHappened;
 
         public TreeLeaf(TreeHappened... happened) {
-            super(Properties.of(Material.LEAVES).randomTicks().noCollission().strength(0.2F).sound(SoundType.AZALEA_LEAVES).requiresCorrectToolForDrops());
+            super(Properties.of(Material.LEAVES).randomTicks().noCollission().strength(0.2F)
+                    .sound(SoundType.AZALEA_LEAVES).requiresCorrectToolForDrops());
             this.registerDefaultState(this.stateDefinition.any().setValue(IS_BLOOM, Boolean.FALSE));//设置states
             this.treeHappened = happened == null || happened.length <= 0 ? null : happened[0];
         }
 
         //处理一下剥皮
         @Override
-        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
+                InteractionHand pHand, BlockHitResult pHit) {
             if (pPlayer.getItemInHand(pHand).getItem() == Items.SHEARS) {
                 pPlayer.getItemInHand(pHand).setDamageValue(pPlayer.getItemInHand(pHand).getDamageValue() + 1);
-                pLevel.setBlock(pPos,Blocks.AIR.defaultBlockState(),Block.UPDATE_ALL);
+                pLevel.setBlock(pPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                 pLevel.gameEvent(GameEvent.BLOCK_PLACE, pPlayer);
-                if(treeHappened != null) ((TreeLeaf) pState.getBlock()).treeHappened.happened(pPlayer, pLevel, pPos, null);
+                if (treeHappened != null)
+                    ((TreeLeaf) pState.getBlock()).treeHappened.happened(pPlayer, pLevel, pPos, null);
             }
-            return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-        }
 
+            return InteractionResult.PASS;
+        }
 
         //处理一下tick
         public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos pos, Random random) {
@@ -125,7 +128,7 @@ public class TreePlant {
         public String treeWood;//植物木头
         public String treeLeaf;//植物树叶
 
-        public TreeSapling(String[] plantBlocks,String treeWood,String treeLeaf) {
+        public TreeSapling(String[] plantBlocks, String treeWood, String treeLeaf) {
             super(Properties.of(Material.PLANT).strength(0.1F).noCollission().sound(SoundType.AZALEA_LEAVES));
             this.plantBlocks = plantBlocks;
             this.treeWood = treeWood;
@@ -139,20 +142,23 @@ public class TreePlant {
         @Nullable
         @Override
         public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-            return new TreeSaplingBlockEntity(pos,state);
+            return new TreeSaplingBlockEntity(pos, state);
         }
 
         public List<Block> getPlantBlock() {
             List<Block> plantList = new ArrayList<>();
             for (String str : this.plantBlocks) {
-                plantList.add(Registry.BLOCK.get(new ResourceLocation(str)));
+                plantList.add(ForgeRegistries.BLOCKS.getHolder(new ResourceLocation(str)).get().value());
             }
             return plantList;
         }
 
         public void place(Level level, BlockPos pos) {
-            TreeWood treeWood = (TreeWood) Registry.BLOCK.get(new ResourceLocation(this.treeWood));
-            TreeLeaf treeLeaf = (TreeLeaf) Registry.BLOCK.get(new ResourceLocation(this.treeLeaf));
+            TreeWood treeWood = (TreeWood) ForgeRegistries.BLOCKS.getHolder(new ResourceLocation(this.treeWood)).get()
+                    .value();
+            TreeLeaf treeLeaf = (TreeLeaf) ForgeRegistries.BLOCKS.getHolder(new ResourceLocation(this.treeLeaf)).get()
+                    .value();
+
             for (int y = pos.getY(); y < pos.getY() + 5; y++) {
                 level.setBlock(pos.atY(y), treeWood.defaultBlockState(), Block.UPDATE_ALL);
             }
@@ -169,8 +175,10 @@ public class TreePlant {
         }
 
         //tick
-        public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> entityType) {
-            return createTickerHelper(entityType, BlockEntityRegistry.TREE_SAPLING_BLOCK_ENTITY.get(), level.isClientSide ? null : TreeSaplingBlockEntity::serverTick);
+        public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
+                BlockEntityType<T> entityType) {
+            return createTickerHelper(entityType, BlockEntityRegistry.TREE_SAPLING_BLOCK_ENTITY.get(),
+                    level.isClientSide ? null : TreeSaplingBlockEntity::serverTick);
         }
 
     }
@@ -184,10 +192,11 @@ public class TreePlant {
             super(BlockEntityRegistry.TREE_SAPLING_BLOCK_ENTITY.get(), pos, state);
         }
 
-        public static void serverTick(Level level, BlockPos pos, BlockState blockState, TreeSaplingBlockEntity treeSaplingBlockEntity) {
+        public static void serverTick(Level level, BlockPos pos, BlockState blockState,
+                TreeSaplingBlockEntity treeSaplingBlockEntity) {
             TreeSapling treeSapling = (TreeSapling) blockState.getBlock();
-            treeSaplingBlockEntity.growTicks+=1;
-            if(treeSaplingBlockEntity.growTicks >=100){
+            treeSaplingBlockEntity.growTicks += 1;
+            if (treeSaplingBlockEntity.growTicks >= 100) {
                 treeSapling.place(level, pos);
             }
             /*

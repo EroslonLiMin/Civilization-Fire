@@ -25,16 +25,18 @@ public class CondimentItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
         Level level = useOnContext.getLevel();
-        if(level.getBlockEntity(useOnContext.getClickedPos()) instanceof CookingBlockEntity cookingBlockEntity){
-            cookingBlockEntity.addCondimentItem.put(this,true);
+        if (level.getBlockEntity(useOnContext.getClickedPos()) instanceof CookingBlockEntity cookingBlockEntity) {
+            cookingBlockEntity.addCondimentItem.put(this, true);
             useOnContext.getItemInHand().setDamageValue(useOnContext.getItemInHand().getDamageValue() + 1);
         }
         return super.useOn(useOnContext);
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components,
+            TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, components, tooltipFlag);
-        components.add(new TextComponent(I18n.get("condiment_item.hover.text",this.getMaxDamage() - itemStack.getDamageValue())));
+        components.add(new TextComponent(I18n.get("condiment_item.hover.text",
+                itemStack.getMaxDamage() - itemStack.getDamageValue())));
     }
 }

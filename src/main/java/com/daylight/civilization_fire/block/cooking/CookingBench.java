@@ -21,18 +21,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import java.util.Random;
 
 public class CookingBench extends Block {
-    public static final IntegerProperty BENCH_STATE = IntegerProperty.create("bench",0,8);//阶段
+    public static final IntegerProperty BENCH_STATE = IntegerProperty.create("bench", 0, 8);//阶段
 
     public CookingBench() {
-        super(Properties.of(Material.STONE).randomTicks().noOcclusion().strength(2F).sound(SoundType.STONE).requiresCorrectToolForDrops());
+        super(Properties.of(Material.STONE).randomTicks().noOcclusion().strength(2F).sound(SoundType.STONE)
+                .requiresCorrectToolForDrops());
         this.registerDefaultState(this.stateDefinition.any().setValue(BENCH_STATE, 0));
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
-        super.randomTick(state, level, pos, random);
         int bench = state.getValue(BENCH_STATE);
-        if(bench > 2 && random.nextBoolean()){
+        if (bench > 2 && random.nextBoolean()) {
             setBenchState(null, level, pos, (bench - 1) > 2 ? bench - 1 : 0);
         }
     }
@@ -43,16 +43,18 @@ public class CookingBench extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+            BlockHitResult result) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if(itemStack.getItem() instanceof BlockItem && ((BlockItem)itemStack.getItem()).getBlock().defaultBlockState().getMaterial() == Material.WOOD){
+        if (itemStack.getItem() instanceof BlockItem
+                && ((BlockItem) itemStack.getItem()).getBlock().defaultBlockState().getMaterial() == Material.WOOD) {
             itemStack.shrink(1);
-            setBenchState(player,level,pos,1);
-        } else if(itemStack.getItem() == Items.FLINT_AND_STEEL && state.getValue(BENCH_STATE) == 1){
+            setBenchState(player, level, pos, 1);
+        } else if (itemStack.getItem() == Items.FLINT_AND_STEEL && state.getValue(BENCH_STATE) == 1) {
             itemStack.setDamageValue(itemStack.getDamageValue() + 1);
-            setBenchState(player,level,pos,8);
+            setBenchState(player, level, pos, 8);
         }
-        return super.use(state, level, pos, player, hand, result);
+        return InteractionResult.PASS;
     }
 
     public static void setBenchState(Player player, Level level, BlockPos pos, int b) {

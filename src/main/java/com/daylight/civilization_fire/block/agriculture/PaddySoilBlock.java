@@ -29,10 +29,11 @@ public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-
     public PaddySoilBlock() {
-        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).strength(0.6F).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING,Direction.NORTH));//设置states
+        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).strength(0.6F).sound(SoundType.GRAVEL)
+                .requiresCorrectToolForDrops().noOcclusion());
+        this.registerDefaultState(
+                this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));//设置states
 
     }
 
@@ -47,37 +48,41 @@ public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock 
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = context.getLevel().getBlockState(blockpos);
         if (blockstate.is(this)) {
-            return blockstate.setValue(WATERLOGGED, Boolean.FALSE).setValue(FACING, Arrays.stream(context.getNearestLookingDirections()).filter(
-                    direction -> direction.getAxis().isHorizontal()).findFirst().orElse(Direction.NORTH));
+            return blockstate
+                    .setValue(WATERLOGGED, Boolean.FALSE).setValue(FACING,
+                            Arrays.stream(context.getNearestLookingDirections()).filter(
+                                    direction -> direction.getAxis().isHorizontal()).findFirst()
+                                    .orElse(Direction.NORTH));
         } else {
             FluidState fluidstate = context.getLevel().getFluidState(blockpos);
-            return this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER).setValue(FACING, Arrays.stream(context.getNearestLookingDirections()).filter(
-                    direction -> direction.getAxis().isHorizontal()).findFirst().orElse(Direction.NORTH));
+            return this
+                    .defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER).setValue(FACING,
+                            Arrays.stream(context.getNearestLookingDirections()).filter(
+                                    direction -> direction.getAxis().isHorizontal()).findFirst()
+                                    .orElse(Direction.NORTH));
         }
     }
-
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor levelAccessor, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState,
+            LevelAccessor levelAccessor, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
             levelAccessor.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
         }
 
-        return super.updateShape(stateIn, facing, facingState, levelAccessor, currentPos, facingPos);
+        return stateIn;
     }
 
-
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(WATERLOGGED,FACING);
+        stateBuilder.add(WATERLOGGED, FACING);
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
     }
-
 
 }

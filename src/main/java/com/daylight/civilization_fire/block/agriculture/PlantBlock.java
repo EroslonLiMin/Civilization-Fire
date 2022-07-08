@@ -2,7 +2,6 @@ package com.daylight.civilization_fire.block.agriculture;
 
 import com.daylight.civilization_fire.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -102,7 +101,8 @@ public class PlantBlock extends BaseEntityBlock {
                     Math.min(plantBlockEntity.growingState + 1, this.stageLevel));
             System.out.println(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick);
         }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+
+        return InteractionResult.PASS;
     }
 
     //给予果实物品

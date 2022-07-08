@@ -8,7 +8,6 @@ import net.minecraft.world.level.Level;
 
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -29,8 +28,10 @@ public class SoilBlock extends Block {
     //种植属性 - 基准都为0 - 1
 
     public SoilBlock() {
-        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).randomTicks().strength(0.6F).sound(SoundType.GRAVEL).requiresCorrectToolForDrops());
-        this.registerDefaultState(this.stateDefinition.any().setValue(BE_PLOUGHED, Boolean.FALSE).setValue(BE_WATERED, Boolean.FALSE));//设置states
+        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).randomTicks().strength(0.6F).sound(SoundType.GRAVEL)
+                .requiresCorrectToolForDrops());
+        this.registerDefaultState(
+                this.stateDefinition.any().setValue(BE_PLOUGHED, Boolean.FALSE).setValue(BE_WATERED, Boolean.FALSE));//设置states
     }
 
     public SoilBlock(Properties properties) {
@@ -63,7 +64,6 @@ public class SoilBlock extends Block {
         }
     }
 
-
     //耕锄
     public static void setPloughed(Player player, Level level, BlockPos pos, boolean b) {
         BlockState blockState = level.getBlockState(pos);
@@ -79,13 +79,15 @@ public class SoilBlock extends Block {
     }
 
     //判断一个soilBlock是否适合种植
-    public static boolean isSuitability(BlockState state){
-        return state.getBlock() instanceof SoilBlock && (state.hasProperty(BE_PLOUGHED) ? state.getValue(BE_PLOUGHED) : true) && (state.hasProperty(BE_WATERED) ? state.getValue(BE_WATERED) : true);
+    public static boolean isSuitability(BlockState state) {
+        return state.getBlock() instanceof SoilBlock
+                && (state.hasProperty(BE_PLOUGHED) ? state.getValue(BE_PLOUGHED) : true)
+                && (state.hasProperty(BE_WATERED) ? state.getValue(BE_WATERED) : true);
     }
 
     //临近水源
     protected static boolean isNearWater(LevelReader levelReader, BlockPos pos) {
-        for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+        for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
             if (levelReader.getFluidState(blockpos).is(FluidTags.WATER)) {
                 return true;
             }

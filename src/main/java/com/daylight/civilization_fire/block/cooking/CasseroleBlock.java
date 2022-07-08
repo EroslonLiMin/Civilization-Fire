@@ -29,38 +29,41 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 //砂锅
 public class CasseroleBlock extends BaseEntityBlock {
     public CasseroleBlock() {
-        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL).requiresCorrectToolForDrops());
+        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL)
+                .requiresCorrectToolForDrops());
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new CasseroleBlockEntity(pos,state);
+        return new CasseroleBlockEntity(pos, state);
     }
+
     //修改渲染类型
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        CasseroleBlockEntity casseroleBlockEntity =(CasseroleBlockEntity) pLevel.getBlockEntity(pPos);
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+            BlockHitResult pHit) {
+        CasseroleBlockEntity casseroleBlockEntity = (CasseroleBlockEntity) pLevel.getBlockEntity(pPos);
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
-        if(itemStack.getItem() != Items.AIR && (itemStack.getItem() instanceof PlantItem.PlantFruitItem || itemStack.getItem() instanceof PlantItem.PlantBlockItem)) {
+        if (itemStack.getItem() != Items.AIR && (itemStack.getItem() instanceof PlantItem.PlantFruitItem
+                || itemStack.getItem() instanceof PlantItem.PlantBlockItem)) {
             assert casseroleBlockEntity != null;
             casseroleBlockEntity.cookingStacks.add(itemStack);
             pPlayer.getItemInHand(pHand).shrink(1);
         }
 
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+        return InteractionResult.PASS;
     }
 
-    public static class CasseroleBlockEntity extends CookingBlockEntity{
+    public static class CasseroleBlockEntity extends CookingBlockEntity {
         public float cookingHeight;//烹饪时候菜品落下的高度(颠锅
+
         public CasseroleBlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityRegistry.CASSEROLE_BLOCK_ENTITY.get(), pos, state);
         }
@@ -68,26 +71,29 @@ public class CasseroleBlock extends BaseEntityBlock {
 
     //block entity渲染处理
     @OnlyIn(Dist.CLIENT)
-    public static class CasseroleBlockBER implements BlockEntityRenderer<CasseroleBlockEntity>{
+    public static class CasseroleBlockBER implements BlockEntityRenderer<CasseroleBlockEntity> {
         public CasseroleBlockBER(BlockEntityRendererProvider.Context context) {
 
         }
 
         //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
-        public void render(CasseroleBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+        public void render(CasseroleBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
+                MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-            for(int i = 0;i < cookingBlockEntity.cookingStacks.size();i++) {
+            for (int i = 0; i < cookingBlockEntity.cookingStacks.size(); i++) {
                 poseStack.pushPose();
                 //乱七八糟的处理...e
                 double v1 = 1.25 - 0.1;
                 double v2 = 0.5 - 0.1;
-                poseStack.translate(v1,i * 0.03, v2);
-                poseStack.scale(0.5F,0.5F,0.5F);
+                poseStack.translate(v1, i * 0.03, v2);
+                poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
-                poseStack.translate(-v1,-(i * 0.03), -(v2));
-                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.get(i), cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacks.get(i), ItemTransforms.TransformType.FIXED, true, poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
+                poseStack.translate(-v1, -(i * 0.03), -(v2));
+                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.get(i),
+                        cookingBlockEntity.getLevel(), null, 0);
+                itemRenderer.render(cookingBlockEntity.cookingStacks.get(i), ItemTransforms.TransformType.FIXED, true,
+                        poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
                 poseStack.popPose();
             }
         }
