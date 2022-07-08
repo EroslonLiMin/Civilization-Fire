@@ -7,11 +7,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import org.jetbrains.annotations.Nullable;
 
 public class PsionicEarthFire extends BaseEntityBlock {
     public PsionicEarthFire() {
-        super(Properties.of(Material.FIRE,MaterialColor.FIRE).noCollission().instabreak().lightLevel((p_152605_) -> {
+        super(Properties.of(Material.FIRE, MaterialColor.FIRE).noCollission().instabreak().lightLevel((p_152605_) -> {
             return 15;
         }).sound(SoundType.WOOL));
     }
@@ -21,6 +20,5 @@ public class PsionicEarthFire extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
         return null;
     }
-
 
 }
