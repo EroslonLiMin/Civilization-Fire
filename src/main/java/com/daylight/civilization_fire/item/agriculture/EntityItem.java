@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.item.agriculture;
 
 import com.daylight.civilization_fire.init.ModGroup;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
@@ -18,9 +19,12 @@ public class EntityItem extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
-        Entity entity = onPress.withEntity(useOnContext.getLevel(),useOnContext.getItemInHand());
-        entity.setPos(useOnContext.getClickedPos().getX(),useOnContext.getClickedPos().getY(),useOnContext.getClickedPos().getZ());
-        useOnContext.getLevel().addFreshEntity(entity);
+        if(!useOnContext.getLevel().isClientSide()) {
+            Entity entity = onPress.withEntity(useOnContext.getLevel(), useOnContext.getItemInHand());
+            BlockPos pos = new BlockPos(useOnContext.getClickedPos().getX(), useOnContext.getClickedPos().getY() + 1, useOnContext.getClickedPos().getZ());
+            entity.setPosRaw(pos.getX(),pos.getY(),pos.getZ());
+            useOnContext.getLevel().addFreshEntity(entity);
+        }
         return super.useOn(useOnContext);
     }
 

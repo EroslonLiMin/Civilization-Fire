@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all" : "civilization_fire:block/sichuan_pepper_tree_leaf"
+  }
+}

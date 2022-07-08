@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Material;
 
 //种子物品
 public class PlantItem {
@@ -38,10 +39,9 @@ public class PlantItem {
         //重新修订放置处理
         public InteractionResult useOn(UseOnContext useOnContext) {
             Level level = useOnContext.getLevel();
-            BlockPos abovePos = useOnContext.getClickedPos().above();
-            BlockState aboveState = level.getBlockState(abovePos);
+            BlockState aboveState = level.getBlockState(useOnContext.getClickedPos().above());
             //判断一下是否符合需要的方块条件
-            if (aboveState.getBlock() == Blocks.AIR) {
+            if (aboveState.getBlock() == Blocks.AIR && level.getBlockState(useOnContext.getClickedPos()).getMaterial() == Material.DIRT) {
                 return super.useOn(useOnContext);
             }
             return InteractionResult.PASS;

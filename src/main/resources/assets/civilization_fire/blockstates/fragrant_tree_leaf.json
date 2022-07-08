@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bloom=false": {
+      "model": "civilization_fire:block/fragrant_tree_leaf"
+    },
+    "bloom=true": {
+      "model": "civilization_fire:block/fragrant_tree_leaf_bloom"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "civilization_fire:block/big_chinese_cabbage/big_chinese_cabbage_0"
+  }
+}
