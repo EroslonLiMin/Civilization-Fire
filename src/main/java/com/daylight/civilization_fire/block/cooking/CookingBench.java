@@ -24,7 +24,7 @@ public class CookingBench extends Block {
     public static final IntegerProperty BENCH_STATE = IntegerProperty.create("bench",0,8);//阶段
 
     public CookingBench() {
-        super(Properties.of(Material.STONE).randomTicks().strength(2F).sound(SoundType.STONE).requiresCorrectToolForDrops());
+        super(Properties.of(Material.STONE).randomTicks().noOcclusion().strength(2F).sound(SoundType.STONE).requiresCorrectToolForDrops());
         this.registerDefaultState(this.stateDefinition.any().setValue(BENCH_STATE, 0));
     }
 

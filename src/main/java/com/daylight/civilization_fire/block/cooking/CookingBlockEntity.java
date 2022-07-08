@@ -19,7 +19,8 @@ import java.util.*;
 
 public class CookingBlockEntity extends BlockEntity {
     public List<ItemStack> cookingStacks = new ArrayList<>();
-    public Map<CondimentItem,Integer> addCondimentItem = new HashMap<>();
+    public Map<CondimentItem,Boolean> addCondimentItem = new HashMap<>();
+    public int cookingTime;
 
     public CookingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
@@ -36,7 +37,7 @@ public class CookingBlockEntity extends BlockEntity {
         ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
         for (int i = 0; i < addCondimentItemListTag.size(); i++) {
             CompoundTag tag = addCondimentItemListTag.getCompound(i);
-            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getInt("times"));
+            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getBoolean("is"));
         }
     }
 
@@ -51,7 +52,7 @@ public class CookingBlockEntity extends BlockEntity {
         addCondimentItem.forEach((key,value) ->{
             CompoundTag tag = new CompoundTag();
             tag.putInt("key", Item.getId(key));
-            tag.putInt("times",value);
+            tag.putBoolean("is",value);
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
@@ -74,7 +75,7 @@ public class CookingBlockEntity extends BlockEntity {
         addCondimentItem.forEach((key,value) ->{
             CompoundTag tag = new CompoundTag();
             tag.putInt("key", Item.getId(key));
-            tag.putInt("times",value);
+            tag.putBoolean("is",value);
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
@@ -98,7 +99,7 @@ public class CookingBlockEntity extends BlockEntity {
         ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
         for (int i = 0; i < addCondimentItemListTag.size(); i++) {
             CompoundTag tag = addCondimentItemListTag.getCompound(i);
-            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getInt("times"));
+            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")),tag.getBoolean("is"));
         }
     }
 }

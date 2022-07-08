@@ -29,12 +29,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MYCELIAL_SOIL = ITEMS.register("mycelial_soil_block", () -> new BlockItem(BlockRegistry.MYCELIAL_SOIL_BLOCK.get(), new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB)));
 
     //烹饪
-    public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block", () -> new BlockItem(BlockRegistry.CASSEROLE_BLOCK.get(), new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block", () -> new BlockItem(BlockRegistry.CASSEROLE_BLOCK.get(), new Item.Properties().tab(ModGroup.COOKING_CREATIVE_MODE_TAB)));
     public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt",()->new CondimentItem(20));
     public static final RegistryObject<Item> OIL_ITEM = ITEMS.register("oil",()->new CondimentItem(15));
     public static final RegistryObject<Item> SAUCE_ITEM = ITEMS.register("sauce",()->new CondimentItem(10));
     public static final RegistryObject<Item> VINEGAR_ITEM = ITEMS.register("vinegar",()->new CondimentItem(25));
     public static final RegistryObject<Item> COOKING_WINE_ITEM = ITEMS.register("cooking_wine",()->new CondimentItem(22));
+    public static final RegistryObject<Item> COOKING_BENCH_BLOCK = ITEMS.register("cooking_bench_block", () -> new BlockItem(BlockRegistry.COOKING_BENCH_BLOCK.get(), new Item.Properties().tab(ModGroup.COOKING_CREATIVE_MODE_TAB)));
 
     //挖掘工具
     public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough", () -> new ModHoeingToolItem(new Item.Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(500), 0));

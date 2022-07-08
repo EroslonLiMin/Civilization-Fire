@@ -7,12 +7,14 @@
 
   "block.civilization_fire.casserole_block" : "铁锅",
 
+
   "condiment_item.hover.text" : "剩余使用次数:%s",
 
   "itemGroup.agriculture_creative_mode_tab" : "农业",
   "itemGroup.grain_crops_creative_mode_tab" : "粮食作物",
   "itemGroup.spice_crops_creative_mode_tab" : "香料作物",
   "itemGroup.vegetable_crops_creative_mode_tab" : "蔬菜作物",
+  "itemGroup.cooking_creative_mode_tab" : "烹饪",
 
   "item.civilization_fire.wood_handle_plough" : "木制耒耜",
   "item.civilization_fire.stone_handle_plough" : "石制耒耜",
@@ -24,6 +26,7 @@
   "item.civilization_fire.sauce" : "酱",
   "item.civilization_fire.vinegar" : "醋",
   "item.civilization_fire.cooking_wine" : "料酒",
+  "block.civilization_fire.cooking_bench_block": "灶台",
 
   "item.civilization_fire.fragrant": "香叶",
   "item.civilization_fire.cinnamon_bark": "桂皮",

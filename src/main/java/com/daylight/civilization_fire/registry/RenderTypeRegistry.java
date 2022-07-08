@@ -55,6 +55,7 @@ public class RenderTypeRegistry {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FRAGRANT_TREE_SAPLING.get(), RenderType.translucent());
 
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CASSEROLE_BLOCK.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COOKING_BENCH_BLOCK.get(), RenderType.translucent());
         });
     }
 }

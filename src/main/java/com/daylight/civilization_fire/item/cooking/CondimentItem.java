@@ -18,7 +18,7 @@ import java.util.List;
 //调料物品
 public class CondimentItem extends Item {
     public CondimentItem(int useTimes) {
-        super(new Properties().tab(ModGroup.AGRICULTURE_CREATIVE_MODE_TAB).durability(useTimes));
+        super(new Properties().tab(ModGroup.COOKING_CREATIVE_MODE_TAB).durability(useTimes));
     }
 
     //处理一下使用
@@ -26,8 +26,8 @@ public class CondimentItem extends Item {
     public InteractionResult useOn(UseOnContext useOnContext) {
         Level level = useOnContext.getLevel();
         if(level.getBlockEntity(useOnContext.getClickedPos()) instanceof CookingBlockEntity cookingBlockEntity){
-            cookingBlockEntity.addCondimentItem.put(this,cookingBlockEntity.addCondimentItem.get(this) + 1);
-            this.damageItem(useOnContext.getItemInHand(),1,useOnContext.getPlayer(),(player) -> player.broadcastBreakEvent(useOnContext.getHand()));
+            cookingBlockEntity.addCondimentItem.put(this,true);
+            useOnContext.getItemInHand().setDamageValue(useOnContext.getItemInHand().getDamageValue() + 1);
         }
         return super.useOn(useOnContext);
     }

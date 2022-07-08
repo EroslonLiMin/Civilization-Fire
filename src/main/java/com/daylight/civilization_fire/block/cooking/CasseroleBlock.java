@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.block.cooking;
 
+import com.daylight.civilization_fire.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.registry.BlockEntityRegistry;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -28,6 +29,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Random;
+
 //砂锅
 public class CasseroleBlock extends BaseEntityBlock {
     public CasseroleBlock() {
@@ -47,7 +50,7 @@ public class CasseroleBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         CasseroleBlockEntity casseroleBlockEntity =(CasseroleBlockEntity) pLevel.getBlockEntity(pPos);
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
-        if(itemStack.getItem() != Items.AIR) {
+        if(itemStack.getItem() != Items.AIR && (itemStack.getItem() instanceof PlantItem.PlantFruitItem || itemStack.getItem() instanceof PlantItem.PlantBlockItem)) {
             assert casseroleBlockEntity != null;
             casseroleBlockEntity.cookingStacks.add(itemStack);
             pPlayer.getItemInHand(pHand).shrink(1);
@@ -57,7 +60,7 @@ public class CasseroleBlock extends BaseEntityBlock {
     }
 
     public static class CasseroleBlockEntity extends CookingBlockEntity{
-        public int cookingHeight;//烹饪时候菜品落下的高度(颠锅
+        public float cookingHeight;//烹饪时候菜品落下的高度(颠锅
         public CasseroleBlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityRegistry.CASSEROLE_BLOCK_ENTITY.get(), pos, state);
         }
@@ -65,21 +68,20 @@ public class CasseroleBlock extends BaseEntityBlock {
 
     //block entity渲染处理
     @OnlyIn(Dist.CLIENT)
-    public static class CasseroleBlockBER implements BlockEntityRenderer<CookingBlockEntity>{
+    public static class CasseroleBlockBER implements BlockEntityRenderer<CasseroleBlockEntity>{
         public CasseroleBlockBER(BlockEntityRendererProvider.Context context) {
 
         }
 
         //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
-        public void render(CookingBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+        public void render(CasseroleBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             for(int i = 0;i < cookingBlockEntity.cookingStacks.size();i++) {
                 poseStack.pushPose();
-                //乱七八糟的处理...
-                double v = i % 2 == 0 ? -(0.15 + (i / 10.0)) : 0.15 + (i / 10.0);
-                double v1 = 1.25 + v;
-                double v2 = 0.5 + v;
+                //乱七八糟的处理...e
+                double v1 = 1.25 - 0.1;
+                double v2 = 0.5 - 0.1;
                 poseStack.translate(v1,i * 0.03, v2);
                 poseStack.scale(0.5F,0.5F,0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
