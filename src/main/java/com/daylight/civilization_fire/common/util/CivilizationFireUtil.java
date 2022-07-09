@@ -97,7 +97,9 @@ public final class CivilizationFireUtil {
 
     /**
      * Damage items and handle them properly when they are broken.
-     * @param item
+     * @param item Item to damage.
+     * @param entity Entity who damages item.
+     * @param hand The hand that holds the item.
      */
     public static final void hurtItem(@Nonnull final ItemStack item, @Nonnull final LivingEntity entity,
             @Nonnull final InteractionHand hand) {
