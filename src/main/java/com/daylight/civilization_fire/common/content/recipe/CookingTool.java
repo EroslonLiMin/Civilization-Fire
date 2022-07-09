@@ -1,4 +1,4 @@
-package com.daylight.civilization_fire.data.cooking;
+package com.daylight.civilization_fire.common.content.recipe;
 
 public enum CookingTool {
     FoodSteamer,

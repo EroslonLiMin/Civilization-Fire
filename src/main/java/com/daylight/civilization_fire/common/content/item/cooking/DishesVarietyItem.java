@@ -1,7 +1,7 @@
 package com.daylight.civilization_fire.common.content.item.cooking;
 
+import com.daylight.civilization_fire.common.content.recipe.CookingDishesType;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
-import com.daylight.civilization_fire.data.cooking.CookingDishesType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -20,8 +20,9 @@ public class DishesVarietyItem extends Item {
     //归还碗/盘子
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
-        if(livingEntity instanceof Player player) {
-                player.addItem(new ItemStack(cookingDishesType.equals(CookingDishesType.Bowl) ? CivilizationFireItems.BOWL.get() : CivilizationFireItems.PLATE.get()));
+        if(livingEntity instanceof Player) {
+            Player player = (Player) livingEntity;
+            player.addItem(new ItemStack(cookingDishesType.equals(CookingDishesType.Bowl) ? CivilizationFireItems.BOWL.get() : CivilizationFireItems.PLATE.get()));
         }
         return super.finishUsingItem(itemStack, level, livingEntity);
     }

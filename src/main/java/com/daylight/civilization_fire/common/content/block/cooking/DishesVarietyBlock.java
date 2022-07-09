@@ -1,6 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
-import com.daylight.civilization_fire.data.cooking.CookingDishesType;
+import com.daylight.civilization_fire.common.content.recipe.CookingDishesType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
 
