@@ -7,6 +7,8 @@ import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 public class CookingSyntheticFormula {
     public PlantItem[] needCookingItems;
     public CondimentItem[] needCondimentItems;
+    public String name;//配方名称
+
 
     public CookingSyntheticFormula(){
     }
