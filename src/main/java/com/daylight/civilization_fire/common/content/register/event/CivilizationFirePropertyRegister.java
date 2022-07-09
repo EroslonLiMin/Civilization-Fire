@@ -14,7 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 //物品Properties
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class CivilizationFireRegister {
+public class CivilizationFirePropertyRegister {
     @SubscribeEvent
     public static void propertyOverrideRegistry(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> ItemProperties.register(CivilizationFireItems.WOOD_BUCKET.get(),
