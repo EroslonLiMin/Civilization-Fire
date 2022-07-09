@@ -2,6 +2,7 @@ package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
+import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -11,8 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class CivilizationEntityTypes {
         public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(
-                        ForgeRegistries.ENTITIES,
-                        CivilizationFire.MODID);
+                        ForgeRegistries.ENTITIES, CivilizationFire.MODID);
 
         public static final RegistryObject<EntityType<PloughEntity.StonePloughEntity>> STONE_PLOUGH_ENTITY = ENTITY_TYPES
                         .register("stone_plough_entity",
@@ -37,4 +37,13 @@ public class CivilizationEntityTypes {
                                                         .sized(0.5F, 1.5F).clientTrackingRange(10)
                                                         .build("curvilinear_entity"));
 
+        /**
+         * TODO: Change the size and track range of the guardian bot.
+         */
+        public static final RegistryObject<EntityType<GuardianBot>> GUARDIAN_BOT = ENTITY_TYPES
+                        .register("guardian_bot",
+                                        () -> EntityType.Builder
+                                                        .of(GuardianBot::new, MobCategory.MISC)
+                                                        .sized(0.5F, 1.5F).clientTrackingRange(10)
+                                                        .build("guardian_bot"));
 }
