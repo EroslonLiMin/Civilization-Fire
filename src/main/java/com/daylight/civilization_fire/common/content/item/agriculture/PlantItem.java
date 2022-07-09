@@ -13,9 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
 //种子物品
-public class PlantItem {
+public interface PlantItem {
     //种植植物
-    public static class PlantFruitItem extends Item {
+    class PlantFruitItem extends Item implements PlantItem{
 
         public PlantFruitItem(CreativeModeTab creativeModeTab, boolean canEat, float... eatingValue) {
             //实现以下food，有点草...
@@ -27,7 +27,7 @@ public class PlantItem {
         }
     }
 
-    public static class PlantBlockItem extends BlockItem {
+    class PlantBlockItem extends BlockItem implements PlantItem{
         public PlantBlockItem(CreativeModeTab creativeModeTab, Block block, boolean canEat, float... eatingValue) {
             super(block,
                     new Properties().stacksTo(16).tab(creativeModeTab).food(canEat

@@ -23,6 +23,8 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
@@ -61,6 +63,13 @@ public class CasseroleBlock extends BaseEntityBlock {
         return InteractionResult.PASS;
     }
 
+    //tick
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
+                                                                  BlockEntityType<T> entityType) {
+        return createTickerHelper(entityType, CivilizationFireBlockEntities.CASSEROLE_BLOCK_ENTITY.get(),
+                CookingBlockEntity::tick);
+    }
+
     public static class CasseroleBlockEntity extends CookingBlockEntity {
         public float cookingHeight;//烹饪时候菜品落下的高度(颠锅
 
@@ -81,12 +90,16 @@ public class CasseroleBlock extends BaseEntityBlock {
         public void render(CasseroleBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
                 MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+            if(cookingBlockEntity.cookingHeight > 0){
+                cookingBlockEntity.cookingHeight -= 0.01;
+            }
             for (int i = 0; i < cookingBlockEntity.cookingStacks.size(); i++) {
+
                 poseStack.pushPose();
                 //乱七八糟的处理...e
                 double v1 = 1.25 - 0.1;
                 double v2 = 0.5 - 0.1;
-                poseStack.translate(v1, i * 0.03, v2);
+                poseStack.translate(v1, i * 0.03 + (cookingBlockEntity.cookingHeight + (i / 100.0)), v2);
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));
