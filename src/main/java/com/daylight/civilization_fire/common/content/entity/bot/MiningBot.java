@@ -19,4 +19,14 @@ public final class MiningBot extends Bot {
         return 10000;
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (energyAvailable()) {
+            //
+            // TODO: Add mining function.
+            //
+        }
+    }
 }
