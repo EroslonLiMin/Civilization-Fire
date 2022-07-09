@@ -100,10 +100,11 @@ public final class CivilizationFireUtil {
      * @param item Item to damage.
      * @param entity Entity who damages item.
      * @param hand The hand that holds the item.
+     * @param damage Damage amount.
      */
     public static final void hurtItem(@Nonnull final ItemStack item, @Nonnull final LivingEntity entity,
-            @Nonnull final InteractionHand hand) {
-        item.hurtAndBreak(1, entity, v -> {
+            @Nonnull final InteractionHand hand, int damage) {
+        item.hurtAndBreak(damage, entity, v -> {
             //
             // Broadcast break event.
             //
