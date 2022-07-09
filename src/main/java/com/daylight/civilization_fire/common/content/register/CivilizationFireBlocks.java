@@ -261,4 +261,14 @@ public class CivilizationFireBlocks {
         //    /*平菇*/public static final PlantLoad BLACK_SOYA_BEAN_PLANT = new PlantLoad("black_soya_bean", 5, 2000.00F, true,
         //            new String[]{"civilization_fire:loam_block,civilization_fire:clay_block,civilization_fire:sand_block"},
         //            false, PlantBlock.PlantModel.PickingModel, 3);
+
+
+
+
+
+
+
+
+        /////菜品
+
 }

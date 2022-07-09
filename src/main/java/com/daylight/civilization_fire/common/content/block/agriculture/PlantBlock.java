@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.agriculture;
 
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -107,7 +108,7 @@ public class PlantBlock extends BaseEntityBlock {
 
     //给予果实物品
     public void giveFruitItem(Player pPlayer) {
-        ItemStack fruitStack = new ItemStack(ForgeRegistries.ITEMS.getHolder(fruitID).get().value());
+        ItemStack fruitStack = new ItemStack(CivilizationFireUtil.asPlantItem(this).get());
         fruitStack.setCount(new Random().nextInt(roundItem) + 1);
         pPlayer.addItem(fruitStack);
     }
