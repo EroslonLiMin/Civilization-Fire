@@ -82,7 +82,11 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
 
     @Override
     public final void aiStep() {
-
+        if (getEnergy() != 0) {
+            super.aiStep();
+        } else {
+            setEnergy(getEnergy() - 1);
+        }
     }
 
     @Override
