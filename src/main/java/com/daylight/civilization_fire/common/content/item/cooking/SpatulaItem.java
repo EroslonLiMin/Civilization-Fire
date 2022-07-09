@@ -28,9 +28,10 @@ public class SpatulaItem extends Item {
             ironPotBlockEntity.cookingHeight += 0.25;
             ironPotBlockEntity.cookingTime += 5;
             useOnContext.getItemInHand().setDamageValue(useOnContext.getItemInHand().getDamageValue() + 1);
+            return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.SUCCESS;
+        return InteractionResult.PASS;
     }
 
     @Override
