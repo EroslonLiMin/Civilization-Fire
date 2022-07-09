@@ -51,6 +51,11 @@ public class ModHoeingToolItem extends Item {
                         compoundTag.remove("pos");
                     }
                     //基于冷却
+
+                    //
+                    // TODO: Delete Objects.requireNonNull.
+                    // useOnContext.getPlayer() will always generate NPE if it is null
+                    //
                     Objects.requireNonNull(useOnContext.getPlayer()).getCooldowns().addCooldown(this, 10 - level * 2);
                 }
                 if (useOnContext.getPlayer() != null) {
