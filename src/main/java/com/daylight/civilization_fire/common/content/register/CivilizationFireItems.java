@@ -8,6 +8,7 @@ import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHo
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 
+import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -37,7 +38,7 @@ public class CivilizationFireItems {
 
         //烹饪
         public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
-                        () -> new BlockItem(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
+                        () -> new BlockItem(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
         public static final RegistryObject<Item> OIL_ITEM = ITEMS.register("oil", () -> new CondimentItem(15));
@@ -48,7 +49,14 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> COOKING_BENCH_BLOCK = ITEMS.register("cooking_bench_block",
                         () -> new BlockItem(CivilizationFireBlocks.COOKING_BENCH_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-
+        public static final RegistryObject<Item> BOWL = ITEMS.register("bowl",
+            () -> new BlockItem(CivilizationFireBlocks.BOWL.get(),
+                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> PLATE = ITEMS.register("plate",
+            () -> new BlockItem(CivilizationFireBlocks.PLATE.get(),
+                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> IRON_SPATULA = ITEMS.register("iron_spatula", () -> new SpatulaItem(5000));
+        public static final RegistryObject<Item> WOODEN_SPATULA = ITEMS.register("wooden_spatula", () -> new SpatulaItem(20000));
         //挖掘工具
         public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough",
                         () -> new ModHoeingToolItem(
@@ -71,11 +79,11 @@ public class CivilizationFireItems {
                         1200));
 
         //植物
-        public static final RegistryObject<Item> CINNAMON_BARK = CivilizationFireItems.ITEMS.register("cinnamon_bark",
+        public static final RegistryObject<Item> CINNAMON_BARK = CivilizationFireItems.ITEMS.register("cinnamon_bark_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
-        public static final RegistryObject<Item> FRAGRANT = CivilizationFireItems.ITEMS.register("fragrant",
+        public static final RegistryObject<Item> FRAGRANT = CivilizationFireItems.ITEMS.register("fragrant_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
-        public static final RegistryObject<Item> SICHUAN_PEPPER = CivilizationFireItems.ITEMS.register("sichuan_pepper",
+        public static final RegistryObject<Item> SICHUAN_PEPPER = CivilizationFireItems.ITEMS.register("sichuan_pepper_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
         public static final RegistryObject<Item> CINNAMON_TREE_WOOD = ITEMS.register("cinnamon_tree_wood",
                         () -> new BlockItem(CivilizationFireBlocks.CINNAMON_TREE_WOOD.get(),

@@ -3,7 +3,7 @@ package com.daylight.civilization_fire.common.content.register;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.TreePlant;
-import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBlock;
+import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -73,10 +73,10 @@ public class CivilizationFireBlockEntities {
                                                                                         .get())
                                                         .build(null));
 
-        public static final RegistryObject<BlockEntityType<CasseroleBlock.CasseroleBlockEntity>> CASSEROLE_BLOCK_ENTITY = BLOCK_ENTITIES
-                        .register("casserole_block_entity",
+        public static final RegistryObject<BlockEntityType<IronPotBlock.IronPotBlockEntity>> IRON_POT_BLOCK_ENTITY = BLOCK_ENTITIES
+                        .register("iron_pot_block_entity",
                                         () -> BlockEntityType.Builder
-                                                        .of(CasseroleBlock.CasseroleBlockEntity::new,
-                                                                        CivilizationFireBlocks.CASSEROLE_BLOCK.get())
+                                                        .of(IronPotBlock.IronPotBlockEntity::new,
+                                                                        CivilizationFireBlocks.IRON_POT_BLOCK.get())
                                                         .build(null));
 }

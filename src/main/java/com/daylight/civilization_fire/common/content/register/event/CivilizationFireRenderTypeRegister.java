@@ -118,10 +118,14 @@ public class CivilizationFireRenderTypeRegister {
                         ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.FRAGRANT_TREE_SAPLING.get(),
                                         RenderType.translucent());
 
-                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
                                         RenderType.translucent());
                         ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.COOKING_BENCH_BLOCK.get(),
                                         RenderType.translucent());
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.PLATE.get(),
+                                RenderType.translucent());
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.BOWL.get(),
+                                RenderType.translucent());
                 });
         }
 }

@@ -100,7 +100,6 @@ public class PlantBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
             ((PlantBlock) pState.getBlock()).growUpState(pLevel, pPos,
                     Math.min(plantBlockEntity.growingState + 1, this.stageLevel));
-            System.out.println(plantBlockEntity.growingState + " tick:" + plantBlockEntity.growingTick);
         }
 
         return InteractionResult.PASS;

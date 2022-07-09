@@ -21,6 +21,8 @@
     "item.civilization_fire.vinegar": "Vinegar",
     "item.civilization_fire.cooking_wine": "Cooking Wine",
     "block.civilization_fire.cooking_bench_block": "Cooking Bench",
+    "block.civilization_fire.plate" : "Plate",
+    "block.civilization_fire.bowl" : "Bowl",
     "item.civilization_fire.fragrant": "Fragrant",
     "item.civilization_fire.cinnamon_bark": "Cinnamon Brak",
     "item.civilization_fire.sichuan_pepper": "Sichuan Pepper (Zanthoxylum bungeanum Maxim)",

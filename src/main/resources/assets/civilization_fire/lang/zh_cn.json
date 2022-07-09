@@ -27,6 +27,8 @@
   "item.civilization_fire.vinegar" : "醋",
   "item.civilization_fire.cooking_wine" : "料酒",
   "block.civilization_fire.cooking_bench_block": "灶台",
+  "block.civilization_fire.plate" : "盘子",
+  "block.civilization_fire.bowl" : "碗",
 
   "item.civilization_fire.fragrant": "香叶",
   "item.civilization_fire.cinnamon_bark": "桂皮",

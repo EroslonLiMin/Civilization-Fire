@@ -32,15 +32,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 //砂锅
-public class CasseroleBlock extends BaseEntityBlock {
-    public CasseroleBlock() {
+public class IronPotBlock extends BaseEntityBlock {
+    public IronPotBlock() {
         super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL)
                 .requiresCorrectToolForDrops());
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new CasseroleBlockEntity(pos, state);
+        return new IronPotBlockEntity(pos, state);
     }
 
     //修改渲染类型
@@ -51,12 +51,12 @@ public class CasseroleBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
             BlockHitResult pHit) {
-        CasseroleBlockEntity casseroleBlockEntity = (CasseroleBlockEntity) pLevel.getBlockEntity(pPos);
+        IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         if (itemStack.getItem() != Items.AIR && (itemStack.getItem() instanceof PlantItem.PlantFruitItem
                 || itemStack.getItem() instanceof PlantItem.PlantBlockItem)) {
-            assert casseroleBlockEntity != null;
-            casseroleBlockEntity.cookingStacks.add(itemStack);
+            assert ironPotBlockEntity != null;
+            ironPotBlockEntity.cookingStacks.add(itemStack);
             pPlayer.getItemInHand(pHand).shrink(1);
         }
 
@@ -66,29 +66,29 @@ public class CasseroleBlock extends BaseEntityBlock {
     //tick
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
                                                                   BlockEntityType<T> entityType) {
-        return createTickerHelper(entityType, CivilizationFireBlockEntities.CASSEROLE_BLOCK_ENTITY.get(),
+        return createTickerHelper(entityType, CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(),
                 CookingBlockEntity::tick);
     }
 
-    public static class CasseroleBlockEntity extends CookingBlockEntity {
+    public static class IronPotBlockEntity extends CookingBlockEntity {
         public float cookingHeight;//烹饪时候菜品落下的高度(颠锅
 
-        public CasseroleBlockEntity(BlockPos pos, BlockState state) {
-            super(CivilizationFireBlockEntities.CASSEROLE_BLOCK_ENTITY.get(), pos, state);
+        public IronPotBlockEntity(BlockPos pos, BlockState state) {
+            super(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(), pos, state);
         }
     }
 
     //block entity渲染处理
     @OnlyIn(Dist.CLIENT)
-    public static class CasseroleBlockBER implements BlockEntityRenderer<CasseroleBlockEntity> {
+    public static class CasseroleBlockBER implements BlockEntityRenderer<IronPotBlockEntity> {
         public CasseroleBlockBER(BlockEntityRendererProvider.Context context) {
 
         }
 
         //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
-        public void render(CasseroleBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
-                MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+        public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
+                           MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             if(cookingBlockEntity.cookingHeight > 0){
                 cookingBlockEntity.cookingHeight -= 0.01;

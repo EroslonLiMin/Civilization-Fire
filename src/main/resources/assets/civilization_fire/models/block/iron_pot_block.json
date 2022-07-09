@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "civilization_fire:block/casserole_block",
-		"particle": "civilization_fire:block/casserole_block"
+		"0": "civilization_fire:block/iron_pot_block",
+		"particle": "civilization_fire:block/iron_pot_block"
 	},
 	"elements": [
 		{
