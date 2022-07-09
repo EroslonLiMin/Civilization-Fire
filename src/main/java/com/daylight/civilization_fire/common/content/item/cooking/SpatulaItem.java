@@ -2,6 +2,8 @@ package com.daylight.civilization_fire.common.content.item.cooking;
 
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireTab;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
+
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -21,13 +23,13 @@ public class SpatulaItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-        Level level = useOnContext.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
         if (level.getBlockEntity(
-                useOnContext.getClickedPos()) instanceof IronPotBlock.IronPotBlockEntity ironPotBlockEntity) {
+                context.getClickedPos()) instanceof IronPotBlock.IronPotBlockEntity ironPotBlockEntity) {
             ironPotBlockEntity.cookingHeight += 0.25;
             ironPotBlockEntity.cookingTime += 5;
-            useOnContext.getItemInHand().setDamageValue(useOnContext.getItemInHand().getDamageValue() + 1);
+            CivilizationFireUtil.hurtItem(context.getItemInHand(), context.getPlayer(), context.getHand(), 1);
             return InteractionResult.SUCCESS;
         }
 

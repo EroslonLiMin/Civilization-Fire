@@ -21,6 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
+
 public class CookingBench extends Block {
     public static final IntegerProperty BENCH_STATE = IntegerProperty.create("bench", 0, 8);//阶段
 
@@ -43,11 +45,11 @@ public class CookingBench extends Block {
         stateBuilder.add(BENCH_STATE);
     }
 
-
     @Override
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
         return (state.getValue(BENCH_STATE) > 4) ? 1 : 0;
     }
+
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
             BlockHitResult result) {
@@ -57,7 +59,7 @@ public class CookingBench extends Block {
             itemStack.shrink(1);
             setBenchState(player, level, pos, 1);
         } else if (itemStack.getItem() == Items.FLINT_AND_STEEL && state.getValue(BENCH_STATE) == 1) {
-            itemStack.setDamageValue(itemStack.getDamageValue() + 1);
+            CivilizationFireUtil.hurtItem(itemStack, player, hand, 1);
             setBenchState(player, level, pos, 8);
         }
         return InteractionResult.PASS;
