@@ -103,6 +103,15 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
             return InteractionResult.CONSUME;
         }
 
+        if (player.isShiftKeyDown()) {
+            //
+            // Press shift to open the gui.
+            //
+            // TODO: Open gui.
+            //
+            return InteractionResult.SUCCESS;
+        }
+
         final var item = player.getItemInHand(hand);
         final var equipmentSlot = Mob.getEquipmentSlotForItem(item);
 

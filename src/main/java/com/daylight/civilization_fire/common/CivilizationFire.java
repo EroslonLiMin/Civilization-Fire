@@ -29,6 +29,7 @@ public class CivilizationFire {
 
     /**
      * Directly reference a slf4j logger
+     * @author Heckerpowered
      */
     public static final Logger LOGGER = LogUtils.getLogger();
 
