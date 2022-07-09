@@ -8,7 +8,6 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -33,16 +32,18 @@ public class CookingBlockEntity extends BlockEntity {
 
     //tick进行刷新
     public static void tick(Level level, BlockPos pos, BlockState blockState,
-                                  CookingBlockEntity plantBlockEntity) {
+            CookingBlockEntity plantBlockEntity) {
         BlockState belowState = level.getBlockState(pos.below());
-        if(belowState.getBlock() instanceof CookingBench){
-            if(belowState.getValue(CookingBench.BENCH_STATE) > 4){
+        if (belowState.getBlock() instanceof CookingBench) {
+            if (belowState.getValue(CookingBench.BENCH_STATE) > 4) {
                 plantBlockEntity.cookingTime += 1;
-                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
+                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D,
+                        0.0D);
                 level.addParticle(ParticleTypes.SMOKE, pos.getX(), pos.getY() + 1.5, pos.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
     }
+
     public void load(CompoundTag nbt) {
         super.load(nbt);
         cookingStacks.clear();
