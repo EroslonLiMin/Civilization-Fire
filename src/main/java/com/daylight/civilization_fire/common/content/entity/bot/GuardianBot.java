@@ -162,7 +162,6 @@ public final class GuardianBot extends Bot {
 
     @Override
     public long getMaxEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
+        return 10000;
     }
 }
