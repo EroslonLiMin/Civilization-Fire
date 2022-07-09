@@ -23,17 +23,19 @@ public class SpatulaItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
         Level level = useOnContext.getLevel();
-        if (level.getBlockEntity(useOnContext.getClickedPos()) instanceof IronPotBlock.IronPotBlockEntity ironPotBlockEntity) {
+        if (level.getBlockEntity(
+                useOnContext.getClickedPos()) instanceof IronPotBlock.IronPotBlockEntity ironPotBlockEntity) {
             ironPotBlockEntity.cookingHeight += 0.25;
             ironPotBlockEntity.cookingTime += 5;
             useOnContext.getItemInHand().setDamageValue(useOnContext.getItemInHand().getDamageValue() + 1);
         }
-        return super.useOn(useOnContext);
+
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components,
-                                TooltipFlag tooltipFlag) {
+            TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, components, tooltipFlag);
         components.add(new TextComponent(I18n.get("condiment_item.hover.text",
                 itemStack.getMaxDamage() - itemStack.getDamageValue())));
