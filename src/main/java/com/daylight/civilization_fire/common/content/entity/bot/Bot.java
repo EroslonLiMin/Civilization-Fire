@@ -105,7 +105,7 @@ public abstract class Bot extends PathfinderMob {
 
     @Override
     public final void aiStep() {
-        if (getEnergy() != 0) {
+        if (energyAvailable()) {
             //
             // If there is no energy, make the AI stop working.
             //
@@ -116,6 +116,10 @@ public abstract class Bot extends PathfinderMob {
             //
             setEnergy(getEnergy() - getEnergyCost());
         }
+    }
+
+    protected final boolean energyAvailable() {
+        return getEnergy() != 0;
     }
 
     @Override
