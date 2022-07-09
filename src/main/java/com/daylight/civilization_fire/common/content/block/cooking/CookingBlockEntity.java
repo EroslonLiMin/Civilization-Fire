@@ -1,14 +1,17 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +31,18 @@ public class CookingBlockEntity extends BlockEntity {
         super(blockEntityType, pos, state);
     }
 
+    //tick进行刷新
+    public static void tick(Level level, BlockPos pos, BlockState blockState,
+                                  CookingBlockEntity plantBlockEntity) {
+        BlockState belowState = level.getBlockState(pos.below());
+        if(belowState.getBlock() instanceof CookingBench){
+            if(belowState.getValue(CookingBench.BENCH_STATE) > 4){
+                plantBlockEntity.cookingTime += 1;
+                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
+                level.addParticle(ParticleTypes.SMOKE, pos.getX(), pos.getY() + 1.5, pos.getZ(), 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
     public void load(CompoundTag nbt) {
         super.load(nbt);
         cookingStacks.clear();
