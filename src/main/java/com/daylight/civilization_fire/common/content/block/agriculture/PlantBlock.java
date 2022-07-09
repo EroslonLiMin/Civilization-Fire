@@ -45,11 +45,11 @@ public class PlantBlock extends BaseEntityBlock {
     public ResourceLocation fruitID;
     public PlantModel plantModel;//种植模式
     public int stageLevel;//种植的阶段
-    public float matureTick;//成熟需要的时间
+    public int matureTick;//成熟需要的时间
     public String[] plantBlocks;//所能种植的方块
     public int roundItem;
 
-    public PlantBlock(PlantModel plantModel, ResourceLocation fruitID, int stageLevel, float matureTick,
+    public PlantBlock(PlantModel plantModel, ResourceLocation fruitID, int stageLevel, int matureTick,
             String[] plantBlocks, int roundItem) {
         super(Properties.of(Material.PLANT).noCollission().strength(0));
         this.fruitID = fruitID;

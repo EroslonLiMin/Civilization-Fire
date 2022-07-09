@@ -76,59 +76,59 @@ public class CivilizationFireBlocks {
         //植物
         //////粮食作物
         /*大米*/
-        public static final PlantLoad RICE_PLANT = new PlantLoad("rice", 7, 2000.00F, false,
+        public static final PlantLoad RICE_PLANT = new PlantLoad("rice", 7, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:paddy_soil_block" }, false,
                         PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*糯米*/
-        public static final PlantLoad GLUTINOUS_RICE_PLANT = new PlantLoad("glutinous_rice", 7, 2000.00F, false,
+        public static final PlantLoad GLUTINOUS_RICE_PLANT = new PlantLoad("glutinous_rice", 7, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:paddy_soil_block" }, false,
                         PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*黄米*/
-        public static final PlantLoad YELLOW_RICE_PLANT = new PlantLoad("yellow_rice", 7, 2000.00F, false,
+        public static final PlantLoad YELLOW_RICE_PLANT = new PlantLoad("yellow_rice", 7, 2000, false,
                         new String[] { "", "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*高粱*/
-        public static final PlantLoad SORGHUM_PLANT = new PlantLoad("sorghum", 7, 2000.00F, false,
+        public static final PlantLoad SORGHUM_PLANT = new PlantLoad("sorghum", 7, 2000, false,
                         new String[] { "civilization_fire:loam_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*玉米*/
-        public static final PlantLoad CORN_PLANT = new PlantLoad("corn", 7, 2000.00F, false,
+        public static final PlantLoad CORN_PLANT = new PlantLoad("corn", 7, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:paddy_soil_block" }, false,
                         PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*红薯*/
-        public static final PlantLoad SWEET_POTATO_PLANT = new PlantLoad("sweet_potato", 3, 2000.00F, false,
+        public static final PlantLoad SWEET_POTATO_PLANT = new PlantLoad("sweet_potato", 3, 2000, false,
                         new String[] { "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*芋头*/
-        public static final PlantLoad TARO_PLANT = new PlantLoad("taro", 3, 2000.00F, false,
+        public static final PlantLoad TARO_PLANT = new PlantLoad("taro", 3, 2000, false,
                         new String[] { "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*黄豆*/
-        public static final PlantLoad BROAD_BEAN_PLANT = new PlantLoad("broad_bean", 3, 2000.00F, false,
+        public static final PlantLoad BROAD_BEAN_PLANT = new PlantLoad("broad_bean", 3, 2000, false,
                         new String[] { "civilization_fire:clay_block" }, false, PlantBlock.PlantModel.PickingModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 5);
         /*红豆*/
-        public static final PlantLoad YOUNG_SOYBEAN_PLANT = new PlantLoad("young_soybean", 3, 2000.00F, false,
+        public static final PlantLoad YOUNG_SOYBEAN_PLANT = new PlantLoad("young_soybean", 3, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block",
                                         "civilization_fire:sand_block" },
                         false, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB,
                         5);
         /*绿豆*/
-        public static final PlantLoad CAROB_PLANT = new PlantLoad("carob", 3, 2000.00F, false,
+        public static final PlantLoad CAROB_PLANT = new PlantLoad("carob", 3, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block",
                                         "civilization_fire:sand_block" },
                         false, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB,
                         8);
         /*黑豆*/
-        public static final PlantLoad LENTIL_HORN_PLANT = new PlantLoad("lentil_horn", 3, 2000.00F, false,
+        public static final PlantLoad LENTIL_HORN_PLANT = new PlantLoad("lentil_horn", 3, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 8);
         /*蚕豆*/
-        public static final PlantLoad WHITE_BEAN_HORN_PLANT = new PlantLoad("white_bean_horn", 3, 2000.00F, false,
+        public static final PlantLoad WHITE_BEAN_HORN_PLANT = new PlantLoad("white_bean_horn", 3, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 8);
         /*毛豆角*/
-        public static final PlantLoad PEANUT = new PlantLoad("peanut", 3, 2000.00F, false,
+        public static final PlantLoad PEANUT = new PlantLoad("peanut", 3, 2000, false,
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 12, 2, 4);
 
@@ -142,7 +142,7 @@ public class CivilizationFireBlocks {
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 1, 0);
         /*茄子*/
-        public static final PlantLoad EGGPLANT_PLANT = new PlantLoad("eggplant", 4, 2000.00F, true,
+        public static final PlantLoad EGGPLANT_PLANT = new PlantLoad("eggplant", 4, 2000, true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 3);
         /*芹菜*/
@@ -150,50 +150,50 @@ public class CivilizationFireBlocks {
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1);
         /*黄瓜*/
-        public static final PlantLoad CUCUMBER_PLANT = new PlantLoad("cucumber", 2, 2000.00F, true,
+        public static final PlantLoad CUCUMBER_PLANT = new PlantLoad("cucumber", 2, 2000, true,
                         new String[] { "civilization_fire:loam_block" }, true, PlantBlock.PlantModel.PickingModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 5, 3, 3);
         /*冬瓜*/
-        public static final PlantLoad WAX_GOURD_PLANT = new PlantLoad("wax_gourd", 4, 2000.00F, true,
+        public static final PlantLoad WAX_GOURD_PLANT = new PlantLoad("wax_gourd", 4, 2000, true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 8);
         /*苦瓜*/
-        public static final PlantLoad BALSAM_PEAR_PLANT = new PlantLoad("balsam_pear", 2, 2000.00F, true,
+        public static final PlantLoad BALSAM_PEAR_PLANT = new PlantLoad("balsam_pear", 2, 2000, true,
                         new String[] { "civilization_fire:loam_block",
                                         "civilization_fire:clay_block,civilization_fire:sand_block" },
                         true, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB,
                         5, 3, 3);
         /*丝瓜*/
-        public static final PlantLoad TOWEL_GOURD_PLANT = new PlantLoad("towel_gourd", 2, 2000.00F, true,
+        public static final PlantLoad TOWEL_GOURD_PLANT = new PlantLoad("towel_gourd", 2, 2000, true,
                         new String[] { "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.PickingModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 5);
         /*香菇*/
-        public static final PlantLoad SOYBEAN_PLANT = new PlantLoad("soybean", 4, 2000.00F, false,
+        public static final PlantLoad SOYBEAN_PLANT = new PlantLoad("soybean", 4, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block" }, false,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1);
         /*姜*/
-        public static final PlantLoad GINGER_PLANT = new PlantLoad("ginger", 3, 2000.00F, false,
+        public static final PlantLoad GINGER_PLANT = new PlantLoad("ginger", 3, 2000, false,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, false,
                         PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1);
         /*白萝卜*/
-        public static final PlantLoad TERNIP_PLANT = new PlantLoad("ternip", 4, 2000.00F, true,
+        public static final PlantLoad TERNIP_PLANT = new PlantLoad("ternip", 4, 2000, true,
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 3, 3, 3.6F);
         /*水萝卜*/
-        public static final PlantLoad WATER_RADISH_PLANT = new PlantLoad("water_radish", 4, 2000.00F, true,
+        public static final PlantLoad WATER_RADISH_PLANT = new PlantLoad("water_radish", 4, 2000, true,
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 2, 2);
         /*西红柿*/
-        public static final PlantLoad TOMATOES_PLANT = new PlantLoad("tomatoes", 4, 2000.00F, true,
+        public static final PlantLoad TOMATOES_PLANT = new PlantLoad("tomatoes", 4, 2000, true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:sand_block" }, true,
                         PlantBlock.PlantModel.PickingModel, CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 2,
                         0);
         /*洋葱*/
-        public static final PlantLoad ONION_PLANT = new PlantLoad("onion", 4, 2000.00F, true,
+        public static final PlantLoad ONION_PLANT = new PlantLoad("onion", 4, 2000, true,
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 2, 0);
         /*大白菜*/
-        public static final PlantLoad BIG_CHINESE_CABBAGE_PLANT = new PlantLoad("big_chinese_cabbage", 3, 2000.00F,
+        public static final PlantLoad BIG_CHINESE_CABBAGE_PLANT = new PlantLoad("big_chinese_cabbage", 3, 2000,
                         true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block",
                                         "civilization_fire:sand_block" },
@@ -202,7 +202,7 @@ public class CivilizationFireBlocks {
 
         //////香料作物
         /*辣椒*/
-        public static final PlantLoad HOT_PEPPER_PLANT = new PlantLoad("hot_pepper", 5, 2000.00F, true,
+        public static final PlantLoad HOT_PEPPER_PLANT = new PlantLoad("hot_pepper", 5, 2000, true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block",
                                         "civilization_fire:sand_block" },
                         true, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, 2,
@@ -212,7 +212,7 @@ public class CivilizationFireBlocks {
                         new String[] { "civilization_fire:loam_block" }, true, PlantBlock.PlantModel.PickingModel,
                         CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, 2, 1, 0);
         /*茴香*/
-        public static final PlantLoad FENNEL_PLANT = new PlantLoad("fennel", 3, 2000.00F, true,
+        public static final PlantLoad FENNEL_PLANT = new PlantLoad("fennel", 3, 2000, true,
                         new String[] { "civilization_fire:loam_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, 1);
 

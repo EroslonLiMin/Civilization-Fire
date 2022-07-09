@@ -1,7 +1,14 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
+import javax.annotation.CheckForSigned;
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
+import com.daylight.civilization_fire.common.CivilizationFire;
+
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -23,7 +30,13 @@ import net.minecraft.world.phys.Vec3;
  * wandering in a 5x5 range, can be equipped.
  * @author Heckerpowered
  */
-public final class GuardianBot extends PathfinderMob {
+public final class GuardianBot extends PathfinderMob implements EnergyBot {
+
+    /**
+     * Synchornize bot's energy.
+     */
+    private static final EntityDataAccessor<Integer> DATA_ENERGY = SynchedEntityData.defineId(
+            GuardianBot.class, EntityDataSerializers.INT);
 
     public GuardianBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -66,7 +79,12 @@ public final class GuardianBot extends PathfinderMob {
     }
 
     @Override
-    public InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
+    public final void aiStep() {
+
+    }
+
+    @Override
+    public final InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
         if (player.isSpectator()) {
             //
             // Spectators cannot interact with bots.
@@ -86,6 +104,7 @@ public final class GuardianBot extends PathfinderMob {
             //
             // Take off the equipment from the bot.
             //
+
             final var slot = getClickedSlot(location);
             if (hasItemInSlot(slot)) {
                 final var itemInSlot = getItemBySlot(slot);
@@ -127,6 +146,39 @@ public final class GuardianBot extends PathfinderMob {
         }
 
         return super.interactAt(player, location, hand);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(DATA_ENERGY, 0);
+    }
+
+    /**
+     * Get the energy of the bot.
+     * @return the energy of the bot, always positive.
+     */
+    @Override
+    @Nonnegative
+    public final int getEnergy() {
+        return getEntityData().get(DATA_ENERGY);
+    }
+
+    /**
+     * Set the energy of the bot.
+     * @param energy Energy amount to be set, cannot be negative.
+     */
+    @Override
+    public final void setEnergy(@Nonnegative @CheckForSigned int energy) {
+        if (energy < 0) {
+            //
+            // Whenever possible, we should log an error and continue to run, rather than crash.
+            //
+            CivilizationFire.LOGGER.error("Energy cannot be negative: {}", energy);
+            energy = 0;
+        }
+
+        getEntityData().set(DATA_ENERGY, energy);
     }
 
     /**
