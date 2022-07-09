@@ -1,20 +1,10 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
-import javax.annotation.CheckForSigned;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-
-import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
-
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
+import com.daylight.civilization_fire.common.content.util.CivilizationFireUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -32,14 +22,7 @@ import net.minecraft.world.phys.Vec3;
  * wandering in a 5x5 range, can be equipped.
  * @author Heckerpowered
  */
-public final class GuardianBot extends PathfinderMob implements EnergyBot {
-
-    /**
-     * Synchornize bot's energy.
-     */
-    private static final EntityDataAccessor<Integer> DATA_ENERGY = SynchedEntityData.defineId(
-            GuardianBot.class, EntityDataSerializers.INT);
-
+public final class GuardianBot extends Bot {
     public GuardianBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
@@ -83,15 +66,6 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
         // Make guardian bot not attack player.
         //
         return entityType != EntityType.PLAYER;
-    }
-
-    @Override
-    public final void aiStep() {
-        if (getEnergy() != 0) {
-            super.aiStep();
-        } else {
-            setEnergy(getEnergy() - 1);
-        }
     }
 
     @Override
@@ -187,68 +161,8 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(DATA_ENERGY, 0);
-    }
-
-    /**
-     * Get the energy of the bot.
-     * @return the energy of the bot, always positive.
-     */
-    @Override
-    @Nonnegative
-    public final int getEnergy() {
-        return getEntityData().get(DATA_ENERGY);
-    }
-
-    /**
-     * Set the energy of the bot.
-     * @param energy Energy amount to be set, cannot be negative.
-     */
-    @Override
-    public final void setEnergy(@Nonnegative @CheckForSigned int energy) {
-        if (energy < 0) {
-            //
-            // Whenever possible, we should log an error and continue to run, rather than crash.
-            //
-            CivilizationFire.LOGGER.error("Energy cannot be negative: {}", energy);
-            energy = 0;
-        }
-
-        getEntityData().set(DATA_ENERGY, energy);
-    }
-
-    @Override
-    public int getMaxEnergy() {
-        return 10000;
-    }
-
-    /**
-     * Determine which part of the bot the player clicked on.
-     * @param location The location player clicked on.
-     * @return The slot player clicked on.
-     * @see ArmorStand.getClickedSlot(Vec3)
-     */
-    private final EquipmentSlot getClickedSlot(@Nonnull final Vec3 location) {
-        EquipmentSlot slot = EquipmentSlot.MAINHAND;
-        boolean isBaby = isBaby();
-        double y = isBaby ? location.y * 2.0D : location.y;
-        EquipmentSlot equipmentslot1 = EquipmentSlot.FEET;
-
-        if (y >= 0.1D && y < 0.1D + (isBaby ? 0.8D : 0.45D) && hasItemInSlot(equipmentslot1)) {
-            slot = EquipmentSlot.FEET;
-        } else if (y >= 0.9D + (isBaby ? 0.3D : 0.0D) && y < 0.9D + (isBaby ? 1.0D : 0.7D)
-                && hasItemInSlot(EquipmentSlot.CHEST)) {
-            slot = EquipmentSlot.CHEST;
-        } else if (y >= 0.4D && y < 0.4D + (isBaby ? 1.0D : 0.8D) && hasItemInSlot(EquipmentSlot.LEGS)) {
-            slot = EquipmentSlot.LEGS;
-        } else if (y >= 1.6D && hasItemInSlot(EquipmentSlot.HEAD)) {
-            slot = EquipmentSlot.HEAD;
-        } else if (!hasItemInSlot(EquipmentSlot.MAINHAND) && hasItemInSlot(EquipmentSlot.OFFHAND)) {
-            slot = EquipmentSlot.OFFHAND;
-        }
-
-        return slot;
+    public long getMaxEnergy() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }
