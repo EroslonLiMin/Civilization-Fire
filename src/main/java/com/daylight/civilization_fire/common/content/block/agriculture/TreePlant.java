@@ -24,7 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireBlockEntities;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
 
 import java.util.ArrayList;
 import java.util.List;

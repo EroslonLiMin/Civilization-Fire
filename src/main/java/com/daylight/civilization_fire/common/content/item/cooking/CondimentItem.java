@@ -1,7 +1,7 @@
 package com.daylight.civilization_fire.common.content.item.cooking;
 
 import com.daylight.civilization_fire.common.content.block.cooking.CookingBlockEntity;
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireTab;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireTab;
 
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;

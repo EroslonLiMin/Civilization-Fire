@@ -1,7 +1,7 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireBlockEntities;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;

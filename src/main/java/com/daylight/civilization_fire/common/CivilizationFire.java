@@ -4,10 +4,10 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import com.daylight.civilization_fire.common.content.registry.CivilizationEntityTypes;
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireBlockEntities;
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireBlocks;
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireItems;
+import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;

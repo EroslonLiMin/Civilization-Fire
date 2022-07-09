@@ -1,6 +1,6 @@
 package com.daylight.civilization_fire.common.content.item.agriculture;
 
-import com.daylight.civilization_fire.common.content.registry.CivilizationFireTab;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireTab;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
