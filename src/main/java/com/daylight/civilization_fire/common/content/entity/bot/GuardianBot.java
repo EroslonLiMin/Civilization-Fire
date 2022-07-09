@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.content.util.CivilizationFireUtil;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

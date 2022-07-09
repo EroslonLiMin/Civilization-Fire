@@ -1,4 +1,4 @@
-package com.daylight.civilization_fire.common.content.util;
+package com.daylight.civilization_fire.common.util;
 
 import java.util.Optional;
 
