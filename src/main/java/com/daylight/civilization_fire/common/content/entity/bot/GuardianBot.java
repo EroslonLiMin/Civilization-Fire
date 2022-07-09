@@ -5,6 +5,8 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.util.CivilizationFireUtil;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -105,6 +107,24 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
             // Take off the equipment from the bot.
             //
 
+            if (getEnergy() <= getMaxEnergy() && item.getItem() instanceof PlantItem.PlantFruitItem fruit) {
+                //
+                // Charge the bot.
+                //
+                final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
+                if (growTime.isPresent()) {
+                    //
+                    // Allow a small "overflow" when charging,
+                    // So we don't need to check the amount of charge.
+                    //
+                    setEnergy(getEnergy() + growTime.get());
+                    item.shrink(1);
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            }
+
             final var slot = getClickedSlot(location);
             if (hasItemInSlot(slot)) {
                 final var itemInSlot = getItemBySlot(slot);
@@ -179,6 +199,11 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
         }
 
         getEntityData().set(DATA_ENERGY, energy);
+    }
+
+    @Override
+    public int getMaxEnergy() {
+        return 10000;
     }
 
     /**
