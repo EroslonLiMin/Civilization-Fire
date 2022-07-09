@@ -19,7 +19,6 @@ public final class CivilizationFireUtil {
     private CivilizationFireUtil() {
     }
 
-
     /**
      * Map PlantFruitItem to PlantBlock
      * @param item Plant fruit.
@@ -29,7 +28,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<PlantBlock> asPlantBlock(@Nonnull final PlantFruitItem item) {
         final var itemResourceKey = ForgeRegistries.ITEMS.getResourceKey(item);
-        if (itemResourceKey.isPresent()) {
+        if (itemResourceKey.isEmpty()) {
             CivilizationFire.LOGGER.error("Cannot find item's resource key: {}", item);
             return Optional.empty();
         }
@@ -41,7 +40,7 @@ public final class CivilizationFireUtil {
         }
 
         final var holder = ForgeRegistries.BLOCKS.getHolder(blockResourceKey);
-        if (holder.isPresent()) {
+        if (holder.isEmpty()) {
             CivilizationFire.LOGGER.error("Cannot block block's holder: {}", blockResourceKey);
             return Optional.empty();
         }
@@ -58,7 +57,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<Integer> getPlantGrowTime(@Nonnull final PlantFruitItem item) {
         final var plantBlock = asPlantBlock(item);
-        if (plantBlock.isPresent()) {
+        if (plantBlock.isEmpty()) {
             return Optional.empty();
         }
 

@@ -1,7 +1,8 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.content.util.CivilizationFireUtil;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -162,7 +163,6 @@ public final class GuardianBot extends Bot {
 
     @Override
     public long getMaxEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
+        return 10000;
     }
 }

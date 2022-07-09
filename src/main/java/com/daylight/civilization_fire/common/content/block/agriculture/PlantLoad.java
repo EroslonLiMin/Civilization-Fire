@@ -25,6 +25,11 @@ public class PlantLoad {
          * @author Heckerpowered
          */
         public static final Map<ResourceKey<Item>, ResourceKey<Block>> PLANT_BLOCK_MAP = new HashMap<>();
+        /**
+         * Reversed "PLANT_BLOCK_MAP"
+         * @author Heckerpowered
+         */
+        public static final Map<ResourceKey<Block>, ResourceKey<Item>> BLOCK_PLANT_MAP = new HashMap<>();
 
         public String name;//植物名称
         public PlantBlock.PlantModel plantModel;
@@ -55,5 +60,6 @@ public class PlantLoad {
                                                 canEat && !isDistinguishSeed, eatingData));
 
                 PLANT_BLOCK_MAP.put(plantItemRegistry.getKey(), plantBlockRegistry.getKey());
+                BLOCK_PLANT_MAP.put(plantBlockRegistry.getKey(), plantItemRegistry.getKey());
         }
 }
