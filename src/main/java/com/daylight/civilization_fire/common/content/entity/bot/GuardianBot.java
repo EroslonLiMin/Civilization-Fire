@@ -70,6 +70,11 @@ public final class GuardianBot extends PathfinderMob implements EnergyBot {
         // Make guardian bot attack the enemy who attacks him.
         //
         targetSelector.addGoal(2, new HurtByTargetGoal(this));
+
+        //
+        // Register other goals.
+        //
+        super.registerGoals();
     }
 
     @Override
