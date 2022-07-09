@@ -1,11 +1,10 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
-import javax.annotation.Nonnull;
-
+import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.util.CivilizationFireUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -23,8 +22,7 @@ import net.minecraft.world.phys.Vec3;
  * wandering in a 5x5 range, can be equipped.
  * @author Heckerpowered
  */
-public final class GuardianBot extends PathfinderMob {
-
+public final class GuardianBot extends Bot {
     public GuardianBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
@@ -55,6 +53,11 @@ public final class GuardianBot extends PathfinderMob {
         // Make guardian bot attack the enemy who attacks him.
         //
         targetSelector.addGoal(2, new HurtByTargetGoal(this));
+
+        //
+        // Register other goals.
+        //
+        super.registerGoals();
     }
 
     @Override
@@ -66,7 +69,7 @@ public final class GuardianBot extends PathfinderMob {
     }
 
     @Override
-    public InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
+    public final InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
         if (player.isSpectator()) {
             //
             // Spectators cannot interact with bots.
@@ -79,6 +82,15 @@ public final class GuardianBot extends PathfinderMob {
             return InteractionResult.CONSUME;
         }
 
+        if (player.isShiftKeyDown()) {
+            //
+            // Press shift to open the gui.
+            //
+            // TODO: Open gui.
+            //
+            return InteractionResult.SUCCESS;
+        }
+
         final var item = player.getItemInHand(hand);
         final var equipmentSlot = Mob.getEquipmentSlotForItem(item);
 
@@ -86,6 +98,25 @@ public final class GuardianBot extends PathfinderMob {
             //
             // Take off the equipment from the bot.
             //
+
+            if (getEnergy() <= getMaxEnergy() && item.getItem() instanceof PlantItem.PlantFruitItem fruit) {
+                //
+                // Charge the bot.
+                //
+                final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
+                if (growTime.isPresent()) {
+                    //
+                    // Allow a small "overflow" when charging,
+                    // So we don't need to check the amount of charge.
+                    //
+                    setEnergy(getEnergy() + growTime.get());
+                    item.shrink(1);
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            }
+
             final var slot = getClickedSlot(location);
             if (hasItemInSlot(slot)) {
                 final var itemInSlot = getItemBySlot(slot);
@@ -129,31 +160,9 @@ public final class GuardianBot extends PathfinderMob {
         return super.interactAt(player, location, hand);
     }
 
-    /**
-     * Determine which part of the bot the player clicked on.
-     * @param location The location player clicked on.
-     * @return The slot player clicked on.
-     * @see ArmorStand.getClickedSlot(Vec3)
-     */
-    private final EquipmentSlot getClickedSlot(@Nonnull final Vec3 location) {
-        EquipmentSlot slot = EquipmentSlot.MAINHAND;
-        boolean isBaby = isBaby();
-        double y = isBaby ? location.y * 2.0D : location.y;
-        EquipmentSlot equipmentslot1 = EquipmentSlot.FEET;
-
-        if (y >= 0.1D && y < 0.1D + (isBaby ? 0.8D : 0.45D) && hasItemInSlot(equipmentslot1)) {
-            slot = EquipmentSlot.FEET;
-        } else if (y >= 0.9D + (isBaby ? 0.3D : 0.0D) && y < 0.9D + (isBaby ? 1.0D : 0.7D)
-                && hasItemInSlot(EquipmentSlot.CHEST)) {
-            slot = EquipmentSlot.CHEST;
-        } else if (y >= 0.4D && y < 0.4D + (isBaby ? 1.0D : 0.8D) && hasItemInSlot(EquipmentSlot.LEGS)) {
-            slot = EquipmentSlot.LEGS;
-        } else if (y >= 1.6D && hasItemInSlot(EquipmentSlot.HEAD)) {
-            slot = EquipmentSlot.HEAD;
-        } else if (!hasItemInSlot(EquipmentSlot.MAINHAND) && hasItemInSlot(EquipmentSlot.OFFHAND)) {
-            slot = EquipmentSlot.OFFHAND;
-        }
-
-        return slot;
+    @Override
+    public long getMaxEnergy() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

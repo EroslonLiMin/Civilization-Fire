@@ -5,16 +5,27 @@ import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Nullable;
 
 //加载植物
 public class PlantLoad {
+
+        /**
+         * Map of plant block to plant item.
+         * @author Heckerpowered
+         */
+        public static final Map<ResourceKey<Item>, ResourceKey<Block>> PLANT_BLOCK_MAP = new HashMap<>();
+
         public String name;//植物名称
         public PlantBlock.PlantModel plantModel;
         public final RegistryObject<Block> plantBlockRegistry;
@@ -22,7 +33,7 @@ public class PlantLoad {
         public RegistryObject<Item> plantFruitRegistry;
 
         //名字，种植有几个阶段，种植时间，有无种子，种植方块，种植/果实是否可以直接食用，种植模式，
-        public PlantLoad(String name, int stageLevel, float matureTick, boolean isDistinguishSeed, String[] blocks,
+        public PlantLoad(String name, int stageLevel, int matureTick, boolean isDistinguishSeed, String[] blocks,
                         boolean canEat, PlantBlock.PlantModel plantModel, CreativeModeTab creativeModeTab, int round,
                         @Nullable float... eatingData) {
                 this.name = name;
@@ -42,5 +53,7 @@ public class PlantLoad {
                 this.plantItemRegistry = CivilizationFireItems.ITEMS.register(name + "_item",
                                 () -> new PlantItem.PlantBlockItem(creativeModeTab, plantBlockRegistry.get(),
                                                 canEat && !isDistinguishSeed, eatingData));
+
+                PLANT_BLOCK_MAP.put(plantItemRegistry.getKey(), plantBlockRegistry.getKey());
         }
 }
