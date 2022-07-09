@@ -4,20 +4,20 @@ import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 
 //烹饪合成配方
-public class CookingSyntheticFormula {
+public class CookingRecipe {
     public PlantItem[] needCookingItems;
     public CondimentItem[] needCondimentItems;
     public String name;//配方名称
 
-    public CookingSyntheticFormula() {
+    public CookingRecipe() {
     }
 
-    public CookingSyntheticFormula setNeedCookingItems(PlantItem... plantItems) {
+    public CookingRecipe setNeedCookingItems(PlantItem... plantItems) {
         this.needCookingItems = plantItems;
         return this;
     }
 
-    public CookingSyntheticFormula setNeedCondimentItems(CondimentItem... condimentItems) {
+    public CookingRecipe setNeedCondimentItems(CondimentItem... condimentItems) {
         this.needCondimentItems = condimentItems;
         return this;
     }
