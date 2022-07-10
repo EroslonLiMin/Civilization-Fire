@@ -112,7 +112,30 @@
     "entity.civilization_fire.stone_plough_entity": "Stone Plough",
     "entity.civilization_fire.iron_plough_entity": "Iron Plough",
     "entity.civilization_fire.curvilinear_entity": "Curvilinear",
-    "item.civilization_fire.curvilinear_plough_entity_item": "Curvilinear Plough",
-    "item.civilization_fire.stone_plough_entity_item": "Stone Plough",
-    "item.civilization_fire.iron_plough_entity_item": "Iron Plough"
+    "block.civilization_fire.curvilinear_plough_entity_item": "Curvilinear Plough",
+    "block.civilization_fire.stone_plough_entity_item": "Stone Plough",
+    "block.civilization_fire.iron_plough_entity_item": "Iron Plough",
+    "block.civilization_fire.steamed_sichuan_fish" : "Steamed Sichuan Fish",
+    "block.civilization_fire.sichuan_cooked_pork" : "Sichuan Cooked Pork",
+    "block.civilization_fire.chinese_cabbage_soup" : "Chinese Cabbage Soup",
+    "block.civilization_fire.fish_flavored_eggplant" : "Fish Flavored Eggplant",
+    "block.civilization_fire.stir_fried_beef" : "Stir Fried Beef",
+    "block.civilization_fire.stuffed_bean_curd" : "Stuffed Bean Curd",
+    "block.civilization_fire.hakka_suop" : "Hakka Suop",
+    "block.civilization_fire.carrot_corn_pork_soup" : "Carrot Corn Pork Soup",
+    "block.civilization_fire.rabbis_mess" : "Rabbis Mess",
+    "block.civilization_fire.stuffed_bitter_melon" : "Stuffed Bitter Melon",
+    "block.civilization_fire.braised_intestines_brown_Sauce" : "Braised Intestines Brown Sauce",
+    "block.civilization_fire.yangzhou_fried_rice" : "Yangzhou Fried Rice",
+    "block.civilization_fire.scrambled_tomato_egg" : "Scrambled Tomato Egg",
+    "block.civilization_fire.rice_dishes" : "Rice",
+    "block.civilization_fire.coarse_grain_rice" : "Coarse Grain Rice",
+    "block.civilization_fire.celery_fried_meat" : "Celery Fried Meat",
+    "block.civilization_fire.hot_sour_cucumber" : "Hot Sour Cucumber",
+    "block.civilization_fire.corn_gourd_soup" : "Corn Gourd Soup",
+    "block.civilization_fire. towel_gourd_egg" : " Towel Gourd Egg",
+    "block.civilization_fire.halogen_egg" : "Halogen Egg",
+    "block.civilization_fire.pot_stewed_meat" : "Pot Stewed Meat"
+
+
 }

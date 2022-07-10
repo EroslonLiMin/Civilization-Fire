@@ -37,7 +37,7 @@ public class CivilizationFireItems {
                                         new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
 
         //烹饪
-        public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
+        public static final RegistryObject<Item> IRON_POT_BLOCK = ITEMS.register("iron_pot_block",
                         () -> new BlockItem(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));

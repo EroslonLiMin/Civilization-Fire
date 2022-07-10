@@ -6,7 +6,7 @@ import com.daylight.civilization_fire.common.content.recipe.CookingRecipe;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 
 //合成列表
-public class CivilizationCookingSyntheticFormulas {
+public class CivilizationCookingRecipes {
 
     /*清蒸江团*/
     public static final CookingRecipe STEAMED_SICHUAN_FISH = new CookingRecipe(CookingDishesType.Plate, "steamed_sichuan_fish", CookingTool.FoodSteamer).setNeedCondimentItems("sauce","salt").setNeedCookingItems("minecraft:fish","soybean","shallot","hot_pepper","pepper");
@@ -31,7 +31,7 @@ public class CivilizationCookingSyntheticFormulas {
     /*九转大肠*/
     public static final CookingRecipe BRAISED_INTESTINES_BROWN_SAUCE = new CookingRecipe(CookingDishesType.Plate, "braised_intestines_brown_Sauce",CookingTool.IronPot).setNeedCondimentItems("oil","salt","vinegar").setNeedCookingItems("carob","cinnamon","minecraft:porkchop").setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("carob","broad_bean","young_soybean","lentil_horn","white_bean_horn","peanut"));
     /*扬州炒饭*/
-    public static final CookingRecipe YANGZHOU_FRIED_RICE = new CookingRecipe(CookingDishesType.Plate, "yangzhou_fried_rice",CookingTool.IronPot).setNeedCookingItems("rice","minecraft:egg","minecraft:porkchop","water_radish","carob").setNeedCondimentItems("oil","salt","sauce").setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("rice","glutinous_rice","yellow_rice","sorghum","white_bean_horn","peanut")).setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("carob","broad_bean","young_soybean","lentil_horn","white_bean_horn","peanut"));;
+    public static final CookingRecipe YANGZHOU_FRIED_RICE = new CookingRecipe(CookingDishesType.Plate, "yangzhou_fried_rice",CookingTool.IronPot).setNeedCookingItems("rice","minecraft:egg","minecraft:porkchop","water_radish","carob").setNeedCondimentItems("oil","salt","sauce").setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("rice","glutinous_rice","yellow_rice","sorghum","white_bean_horn","peanut")).setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("carob","broad_bean","young_soybean","lentil_horn","white_bean_horn","peanut"));
     /*番茄炒鸡蛋*/
     public static final CookingRecipe SCRAMBLED_TOMATO_EGG = new CookingRecipe(CookingDishesType.Plate, "scrambled_tomato_egg",CookingTool.IronPot).setNeedCondimentItems("oil","salt","sauce","vinegar").setNeedCookingItems("tomatoes","minecraft:egg");
     /*白米饭*/
