@@ -24,8 +24,8 @@ public abstract class Bot extends PathfinderMob {
      * Synchornize bot's energy.
      * @author Heckerpowered
      */
-    private static final EntityDataAccessor<Long> DATA_ENERGY = SynchedEntityData.defineId(
-            GuardianBot.class, CivilizationFireEntityDataSerializers.LONG);
+    private static final EntityDataAccessor<Long> DATA_ENERGY = SynchedEntityData.defineId(Bot.class,
+            CivilizationFireEntityDataSerializers.LONG);
 
     public Bot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
