@@ -1,8 +1,10 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
 import com.daylight.civilization_fire.client.model.CurvilinearPloughModel;
+import com.daylight.civilization_fire.client.model.GuardianBotModel;
 import com.daylight.civilization_fire.client.model.IronPloughModel;
 import com.daylight.civilization_fire.client.model.StonePloughModel;
+import com.daylight.civilization_fire.client.renderer.GuardianBotRenderer;
 import com.daylight.civilization_fire.client.renderer.PloughEntityRenderer;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
@@ -31,6 +33,7 @@ public class CivilizationFireEntityRendererRegister {
                                                                 "textures/entity/curvilinear_plough_entity.png"),
                                                 new CurvilinearPloughModel(data
                                                                 .bakeLayer(CurvilinearPloughModel.LAYER_LOCATION))));
+                event.registerEntityRenderer(CivilizationEntityTypes.GUARDIAN_BOT.get(),(data) -> new GuardianBotRenderer(data,new GuardianBotModel(data.bakeLayer(GuardianBotModel.LAYER_LOCATION)),1));
         }
 
         @SubscribeEvent
@@ -39,5 +42,6 @@ public class CivilizationFireEntityRendererRegister {
                 event.registerLayerDefinition(IronPloughModel.LAYER_LOCATION, IronPloughModel::createBodyLayer);
                 event.registerLayerDefinition(CurvilinearPloughModel.LAYER_LOCATION,
                                 CurvilinearPloughModel::createBodyLayer);
+                event.registerLayerDefinition(GuardianBotModel.LAYER_LOCATION, GuardianBotModel::createBodyLayer);
         }
 }
