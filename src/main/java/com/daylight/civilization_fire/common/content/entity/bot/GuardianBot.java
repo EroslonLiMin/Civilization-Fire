@@ -87,6 +87,8 @@ public final class GuardianBot extends Bot {
             //
             // Press shift to open the gui.
             //
+
+            //
             // TODO: Open gui.
             //
             return InteractionResult.SUCCESS;

@@ -30,7 +30,6 @@ import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 

@@ -75,6 +75,7 @@ public abstract class Bot extends PathfinderMob {
 
     /**
     * Determine which part of the bot the player clicked on.
+    *
     * @param location The location player clicked on.
     * @return The slot player clicked on.
     * @see ArmorStand.getClickedSlot(Vec3)
