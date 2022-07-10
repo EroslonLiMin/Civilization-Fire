@@ -13,7 +13,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class CivilizationFireBlockEntityRendererRegister {
     @SubscribeEvent
     public static void onClientEvent(FMLClientSetupEvent event) {
-        BlockEntityRenderers.register(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(),
-                IronPotBlock.CasseroleBlockBER::new);
+
     }
 }

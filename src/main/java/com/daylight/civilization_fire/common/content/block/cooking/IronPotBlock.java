@@ -71,8 +71,6 @@ public class IronPotBlock extends BaseEntityBlock {
     }
 
     public static class IronPotBlockEntity extends CookingBlockEntity {
-        public float cookingHeight;//烹饪时候菜品落下的高度(颠锅
-
         public IronPotBlockEntity(BlockPos pos, BlockState state) {
             super(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(), pos, state);
         }
@@ -90,16 +88,13 @@ public class IronPotBlock extends BaseEntityBlock {
         public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
                            MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-            if(cookingBlockEntity.cookingHeight > 0){
-                cookingBlockEntity.cookingHeight -= 0.01;
-            }
             for (int i = 0; i < cookingBlockEntity.cookingStacks.size(); i++) {
 
                 poseStack.pushPose();
                 //乱七八糟的处理...e
                 double v1 = 1.25 - 0.1;
                 double v2 = 0.5 - 0.1;
-                poseStack.translate(v1, i * 0.03 + (cookingBlockEntity.cookingHeight + (i / 100.0)), v2);
+                poseStack.translate(v1, i * 0.03 + ( (i / 100.0)), v2);
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));

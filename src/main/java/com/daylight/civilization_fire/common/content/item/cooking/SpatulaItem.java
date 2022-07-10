@@ -27,7 +27,6 @@ public class SpatulaItem extends Item {
         Level level = context.getLevel();
         if (level.getBlockEntity(
                 context.getClickedPos()) instanceof IronPotBlock.IronPotBlockEntity ironPotBlockEntity) {
-            ironPotBlockEntity.cookingHeight += 0.25;
             ironPotBlockEntity.cookingTime += 5;
             CivilizationFireUtil.hurtItem(context.getItemInHand(), context.getPlayer(), context.getHand(), 1);
             return InteractionResult.SUCCESS;
