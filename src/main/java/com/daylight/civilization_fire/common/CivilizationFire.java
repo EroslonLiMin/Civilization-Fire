@@ -36,6 +36,7 @@ public class CivilizationFire {
     public CivilizationFire() {
         //加载植物
         initialize_content(FMLJavaModLoadingContext.get().getModEventBus());
+
     }
 
     private static final void initialize_content(@Nonnull final IEventBus eventBus) {

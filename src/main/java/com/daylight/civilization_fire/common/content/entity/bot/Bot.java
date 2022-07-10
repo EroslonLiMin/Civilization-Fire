@@ -5,7 +5,7 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
-import com.daylight.civilization_fire.common.network.synchronization.CivilizationFireEntityDataSerializers;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireEntityDataSerializers;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -25,7 +25,7 @@ public abstract class Bot extends PathfinderMob {
      * @author Heckerpowered
      */
     private static final EntityDataAccessor<Long> DATA_ENERGY = SynchedEntityData.defineId(Bot.class,
-            CivilizationFireEntityDataSerializers.LONG);
+            CivilizationFireEntityDataSerializers.Serializers.LONG);
 
     public Bot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
