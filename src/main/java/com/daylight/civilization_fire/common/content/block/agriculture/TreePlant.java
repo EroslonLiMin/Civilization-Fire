@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -25,6 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +53,13 @@ public class TreePlant {
 
         //处理一下剥皮
         @Override
-        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
-                InteractionHand pHand, BlockHitResult pHit) {
-            if (pPlayer.getItemInHand(pHand).getItem() instanceof AxeItem && this.canBeSkinned) {
-                pPlayer.getItemInHand(pHand).setDamageValue(pPlayer.getItemInHand(pHand).getDamageValue() + 1);
-                setSkinned(pPlayer, pLevel, pPos, true);
+        public InteractionResult use(BlockState block, Level level, BlockPos location, Player player,
+                InteractionHand hand, BlockHitResult hit) {
+            ItemStack item = player.getItemInHand(hand);
+
+            if (item.getItem() instanceof AxeItem && this.canBeSkinned) {
+                CivilizationFireUtil.hurtItem(item, player, hand, 1);
+                setSkinned(player, level, location, true);
             }
 
             return InteractionResult.PASS;
@@ -90,14 +94,15 @@ public class TreePlant {
 
         //处理一下剥皮
         @Override
-        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
-                InteractionHand pHand, BlockHitResult pHit) {
-            if (pPlayer.getItemInHand(pHand).getItem() == Items.SHEARS) {
-                pPlayer.getItemInHand(pHand).setDamageValue(pPlayer.getItemInHand(pHand).getDamageValue() + 1);
-                pLevel.setBlock(pPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-                pLevel.gameEvent(GameEvent.BLOCK_PLACE, pPlayer);
+        public InteractionResult use(BlockState block, Level level, BlockPos location, Player player,
+                InteractionHand hand, BlockHitResult hit) {
+            final var item = player.getItemInHand(hand);
+            if (item.getItem() == Items.SHEARS) {
+                CivilizationFireUtil.hurtItem(item, player, hand, 1);
+                level.setBlock(location, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                level.gameEvent(GameEvent.BLOCK_PLACE, player);
                 if (treeHappened != null)
-                    ((TreeLeaf) pState.getBlock()).treeHappened.happened(pPlayer, pLevel, pPos, null);
+                    ((TreeLeaf) block.getBlock()).treeHappened.happened(player, level, location, null);
             }
 
             return InteractionResult.PASS;

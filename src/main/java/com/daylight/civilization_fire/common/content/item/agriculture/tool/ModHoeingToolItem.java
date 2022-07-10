@@ -1,18 +1,14 @@
 package com.daylight.civilization_fire.common.content.item.agriculture.tool;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Objects;
 import java.util.Random;
 
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 //耕锄工具
 public class ModHoeingToolItem extends Item {
@@ -26,50 +22,47 @@ public class ModHoeingToolItem extends Item {
 
     //耕地使用~
     @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-
-        BlockState clickBlock = useOnContext.getLevel().getBlockState(useOnContext.getClickedPos());
-        ItemStack itemStack = useOnContext.getItemInHand();
-        //判断是否为可耕种方块且在服务端
-        if (clickBlock.getBlock() instanceof SoilBlock) {
-            if (clickBlock.hasProperty(SoilBlock.BE_PLOUGHED)) {
-                //很偷懒得用了nbt
-                if (!useOnContext.getLevel().isClientSide()) {
-                    CompoundTag compoundTag = itemStack.getOrCreateTagElement("civilization_fire");
-                    if (!compoundTag.contains("ploughed")
-                            || !BlockPos.of(compoundTag.getLong("pos")).equals(useOnContext.getClickedPos())) {
-                        compoundTag.putInt("ploughed", Math.max(new Random().nextInt(4) - level, 1));
-                        compoundTag.putLong("pos", useOnContext.getClickedPos().asLong());
-                    }
-                    int ploughed = compoundTag.getInt("ploughed");
-                    compoundTag.putInt("ploughed", ploughed - 1);
-                    //System.out.println(ploughed); Test
-                    if (ploughed < 0) {
-                        SoilBlock.setPloughed(useOnContext.getPlayer(), useOnContext.getLevel(),
-                                useOnContext.getClickedPos(), true);
-                        compoundTag.remove("ploughed");
-                        compoundTag.remove("pos");
-                    }
-                    //基于冷却
-
-                    //
-                    // TODO: Delete Objects.requireNonNull.
-                    // useOnContext.getPlayer() will always generate NPE if it is null
-                    //
-                    Objects.requireNonNull(useOnContext.getPlayer()).getCooldowns().addCooldown(this, 10 - level * 2);
-                }
-
-                //
-                // TODO: Inline useOnContext.getPlayer().
-                //
-                if (useOnContext.getPlayer() != null) {
-                    //播放耕种音效
-                    useOnContext.getPlayer().playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
-                }
-                itemStack.setDamageValue(itemStack.getDamageValue() + 1);
-            }
+    public InteractionResult useOn(UseOnContext context) {
+        final var player = context.getPlayer();
+        if (player == null) {
+            return InteractionResult.FAIL;
         }
-        return super.useOn(useOnContext);
+
+        final var block = context.getLevel().getBlockState(context.getClickedPos());
+        final var item = context.getItemInHand();
+        //判断是否为可耕种方块且在服务端
+        if (block.getBlock() instanceof SoilBlock && block.hasProperty(SoilBlock.BE_PLOUGHED)) {
+            //很偷懒得用了nbt
+
+            if (!context.getLevel().isClientSide()) {
+                final var tag = item.getOrCreateTagElement("civilization_fire");
+                if (!tag.contains("ploughed") || !BlockPos.of(tag.getLong("pos")).equals(context.getClickedPos())) {
+                    tag.putInt("ploughed", Math.max(new Random().nextInt(4) - level, 1));
+                    tag.putLong("pos", context.getClickedPos().asLong());
+                }
+
+                final var ploughed = tag.getInt("ploughed");
+                tag.putInt("ploughed", ploughed - 1);
+                //System.out.println(ploughed); Test
+
+                if (ploughed < 0) {
+                    SoilBlock.setPloughed(player, context.getLevel(), context.getClickedPos(), true);
+                    tag.remove("ploughed");
+                    tag.remove("pos");
+                }
+                //基于冷却
+
+                player.getCooldowns().addCooldown(this, 10 - level * 2);
+            }
+
+            if (player != null) {
+                //播放耕种音效
+                player.playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
+            }
+
+            CivilizationFireUtil.hurtItem(item, null, null, EAT_DURATION);
+        }
+        return super.useOn(context);
     }
 
 }

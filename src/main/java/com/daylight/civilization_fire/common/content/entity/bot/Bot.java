@@ -36,8 +36,7 @@ public abstract class Bot extends PathfinderMob {
      * @return the energy of the bot, always positive.
      * @author Heckerpowered
      */
-    @Nonnegative
-    public final long getEnergy() {
+    public final @Nonnegative long getEnergy() {
         return getEntityData().get(DATA_ENERGY);
     }
 
@@ -64,25 +63,24 @@ public abstract class Bot extends PathfinderMob {
      * @return the max energy of the bot, always poostive.
      * @author Heckerpowered
      */
-    @Nonnegative
-    public abstract long getMaxEnergy();
+    public abstract @Nonnegative long getMaxEnergy();
 
     /**
      * Get the energy needed per tick.
      * @return energy per tick.
      */
-    @Nonnegative
-    public long getEnergyCost() {
+    public @Nonnegative long getEnergyCost() {
         return 1;
     }
 
     /**
     * Determine which part of the bot the player clicked on.
+    *
     * @param location The location player clicked on.
     * @return The slot player clicked on.
     * @see ArmorStand.getClickedSlot(Vec3)
     */
-    protected final EquipmentSlot getClickedSlot(@Nonnull final Vec3 location) {
+    protected final @Nonnull EquipmentSlot getClickedSlot(@Nonnull final Vec3 location) {
         final var isBaby = isBaby();
         final var y = isBaby ? location.y * 2.0D : location.y;
         final var slot = EquipmentSlot.FEET;

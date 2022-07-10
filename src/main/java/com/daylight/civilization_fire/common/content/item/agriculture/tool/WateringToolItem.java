@@ -31,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import java.util.List;
 import java.util.Objects;
@@ -127,7 +128,7 @@ public class WateringToolItem extends Item {
             }
             //基于冷却
             player.getCooldowns().addCooldown(this, 10);
-            itemStack.setDamageValue(itemStack.getDamageValue() + 1);
+            CivilizationFireUtil.hurtItem(itemStack, player, hand, 1);
         });
         return super.use(level, player, hand);
     }

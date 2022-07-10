@@ -2,6 +2,7 @@ package com.daylight.civilization_fire.common.content.entity.agriculture;
 
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.EntityItem;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -129,7 +130,7 @@ public abstract class PloughEntity extends LivingEntity {
     public InteractionResult interact(Player player, InteractionHand hand) {
         if (player.isShiftKeyDown()) {
             ItemStack itemStack = new ItemStack(this.entityItem);
-            itemStack.setDamageValue(getPloughLevel() * 10000 - this.getPloughTimes());
+            CivilizationFireUtil.hurtItem(itemStack, player, hand, getPloughLevel() * 10000 - this.getPloughTimes());
             player.addItem(itemStack);
             //删除它
             this.discard();

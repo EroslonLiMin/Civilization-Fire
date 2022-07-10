@@ -10,7 +10,12 @@ import com.daylight.civilization_fire.common.content.block.agriculture.PlantLoad
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem.PlantFruitItem;
 
 import net.minecraft.core.Holder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
@@ -71,7 +76,6 @@ public final class CivilizationFireUtil {
             return Optional.empty();
         }
 
-
         return ForgeRegistries.ITEMS.getHolder(itemResourceKey);
     }
 
@@ -89,5 +93,29 @@ public final class CivilizationFireUtil {
         }
 
         return Optional.of(plantBlock.get().matureTick);
+    }
+
+    /**
+     * Damage items and handle them properly when they are broken.
+     * @param item Item to damage.
+     * @param entity Entity who damages item.
+     * @param hand The hand that holds the item.
+     * @param damage Damage amount.
+     */
+    public static final void hurtItem(@Nonnull final ItemStack item, @Nonnull final LivingEntity entity,
+            @Nonnull final InteractionHand hand, int damage) {
+        item.hurtAndBreak(damage, entity, v -> {
+            //
+            // Broadcast break event.
+            //
+            entity.broadcastBreakEvent(hand);
+
+            if (entity instanceof Player player) {
+                //
+                // Trigger forge events.
+                //
+                ForgeEventFactory.onPlayerDestroyItem(player, item, hand);
+            }
+        });
     }
 }
