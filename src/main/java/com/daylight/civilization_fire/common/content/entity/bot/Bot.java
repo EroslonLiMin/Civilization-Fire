@@ -5,9 +5,9 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireEntityDataSerializers;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,8 +24,8 @@ public abstract class Bot extends PathfinderMob {
      * Synchornize bot's energy.
      * @author Heckerpowered
      */
-    private static final EntityDataAccessor<Long> DATA_ENERGY = SynchedEntityData.defineId(Bot.class,
-            CivilizationFireEntityDataSerializers.Serializers.LONG);
+    private static final EntityDataAccessor<Integer> DATA_ENERGY = SynchedEntityData.defineId(Bot.class,
+            EntityDataSerializers.INT);
 
     public Bot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -36,7 +36,7 @@ public abstract class Bot extends PathfinderMob {
      * @return the energy of the bot, always positive.
      * @author Heckerpowered
      */
-    public final @Nonnegative long getEnergy() {
+    public final @Nonnegative int getEnergy() {
         return getEntityData().get(DATA_ENERGY);
     }
 
@@ -46,7 +46,7 @@ public abstract class Bot extends PathfinderMob {
      * check for unsigned, do not check unsigned before call.
      * @author Heckerpowered
      */
-    public final void setEnergy(@Nonnegative @CheckForSigned long energy) {
+    public final void setEnergy(@Nonnegative @CheckForSigned int energy) {
         if (energy < 0) {
             //
             // Whenever possible, we should log an error and continue to run, rather than crash.
@@ -63,13 +63,13 @@ public abstract class Bot extends PathfinderMob {
      * @return the max energy of the bot, always poostive.
      * @author Heckerpowered
      */
-    public abstract @Nonnegative long getMaxEnergy();
+    public abstract @Nonnegative int getMaxEnergy();
 
     /**
      * Get the energy needed per tick.
      * @return energy per tick.
      */
-    public @Nonnegative long getEnergyCost() {
+    public @Nonnegative int getEnergyCost() {
         return 1;
     }
 
@@ -127,6 +127,6 @@ public abstract class Bot extends PathfinderMob {
         //
         // Define energy serializer.
         //
-        entityData.define(DATA_ENERGY, 0L);
+        entityData.define(DATA_ENERGY, 0);
     }
 }

@@ -60,7 +60,7 @@ public class ModHoeingToolItem extends Item {
                 player.playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
             }
 
-            CivilizationFireUtil.hurtItem(item, null, null, EAT_DURATION);
+            CivilizationFireUtil.hurtItem(item, player, context.getHand(), 1);
         }
         return super.useOn(context);
     }
