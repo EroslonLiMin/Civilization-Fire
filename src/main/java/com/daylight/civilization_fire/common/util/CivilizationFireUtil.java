@@ -8,13 +8,17 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantLoad;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem.PlantFruitItem;
+import com.daylight.civilization_fire.common.util.sort.DistanceComparator;
+import com.daylight.civilization_fire.common.util.sort.EntityDistanceComparator;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -36,19 +40,19 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<PlantBlock> asPlantBlock(@Nonnull final PlantFruitItem item) {
         final var itemResourceKey = ForgeRegistries.ITEMS.getResourceKey(item);
-        if (itemResourceKey.isPresent()) {
+        if (itemResourceKey.isEmpty()) {
             CivilizationFire.LOGGER.error("Cannot find item's resource key: {}", item);
             return Optional.empty();
         }
 
-        final var blockResourceKey = PlantLoad.PLANT_BLOCK_MAP.get(itemResourceKey.get());
+        final var blockResourceKey = PlantLoad.FRUIT_BLOCK_MAP.get(itemResourceKey.get());
         if (blockResourceKey == null) {
             CivilizationFire.LOGGER.error("Cannot find block's resource key: {}", itemResourceKey);
             return Optional.empty();
         }
 
         final var holder = ForgeRegistries.BLOCKS.getHolder(blockResourceKey);
-        if (holder.isPresent()) {
+        if (holder.isEmpty()) {
             CivilizationFire.LOGGER.error("Cannot find block's holder: {}", holder);
             return Optional.empty();
         }
@@ -65,12 +69,12 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final @NotNull Optional<Holder<Item>> asPlantItem(@Nonnull final PlantBlock block) {
         final var blockResourceKey = ForgeRegistries.BLOCKS.getResourceKey(block);
-        if (blockResourceKey.isPresent()) {
+        if (blockResourceKey.isEmpty()) {
             CivilizationFire.LOGGER.error("Cannot find block's resource key: {}", block);
             return Optional.empty();
         }
 
-        final var itemResourceKey = PlantLoad.BLOCK_PLANT_MAP.get(blockResourceKey.get());
+        final var itemResourceKey = PlantLoad.BLOCK_FRUIT_MAP.get(blockResourceKey.get());
         if (itemResourceKey == null) {
             CivilizationFire.LOGGER.error("Cannot find block's resource key: {}", blockResourceKey);
             return Optional.empty();
@@ -88,7 +92,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<Integer> getPlantGrowTime(@Nonnull final PlantFruitItem item) {
         final var plantBlock = asPlantBlock(item);
-        if (plantBlock.isPresent()) {
+        if (plantBlock.isEmpty()) {
             return Optional.empty();
         }
 
@@ -117,5 +121,19 @@ public final class CivilizationFireUtil {
                 ForgeEventFactory.onPlayerDestroyItem(player, item, hand);
             }
         });
+    }
+
+    /**
+     * Sort by distance.
+     */
+    public static DistanceComparator sortByDistance(@Nonnull final Vec3 location) {
+        return new DistanceComparator(location);
+    }
+
+    /**
+     * Sort by distance.
+     */
+    public static EntityDistanceComparator sortByDistance(@Nonnull final Entity entity) {
+        return new EntityDistanceComparator(entity);
     }
 }

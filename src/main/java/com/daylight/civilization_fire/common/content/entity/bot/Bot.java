@@ -4,8 +4,7 @@ import javax.annotation.CheckForSigned;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import com.daylight.civilization_fire.common.CivilizationFire;
-
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -48,10 +47,6 @@ public abstract class Bot extends PathfinderMob {
      */
     public final void setEnergy(@Nonnegative @CheckForSigned int energy) {
         if (energy < 0) {
-            //
-            // Whenever possible, we should log an error and continue to run, rather than crash.
-            //
-            CivilizationFire.LOGGER.error("Energy cannot be negative: {}", energy);
             energy = 0;
         }
 
@@ -102,17 +97,17 @@ public abstract class Bot extends PathfinderMob {
     }
 
     @Override
-    public final void aiStep() {
+    public void tick() {
+        super.tick();
+        setEnergy(getEnergy() - getEnergyCost());
+
+        setCustomName(new TextComponent(String.valueOf((int) ((double) getHealth() / (double) getMaxHealth() * 100))));
+    }
+
+    @Override
+    public void aiStep() {
         if (energyAvailable()) {
-            //
-            // If there is no energy, make the AI stop working.
-            //
             super.aiStep();
-        } else {
-            //
-            // setEnergy tests parameter is unsigned, so we don't need to check it.
-            //
-            setEnergy(getEnergy() - getEnergyCost());
         }
     }
 
