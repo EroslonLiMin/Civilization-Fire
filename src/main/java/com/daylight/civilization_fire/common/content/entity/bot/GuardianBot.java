@@ -1,20 +1,30 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
+import javax.annotation.Nullable;
+
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -24,6 +34,12 @@ import net.minecraft.world.phys.Vec3;
  * @author Heckerpowered
  */
 public final class GuardianBot extends Bot {
+    /**
+     * The target the bot about to attack.
+     */
+    @Nullable
+    private Monster target;
+
     public GuardianBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
@@ -31,34 +47,34 @@ public final class GuardianBot extends Bot {
     @Override
     protected final void registerGoals() {
         //
-        // Make guardian bot wandering in a 5x5 range with speed 0.9.
-        //
-        goalSelector.addGoal(1, new MoveTowardsTargetGoal(this, 0.9D, 5.0F));
-
-        //
         // Make guardian bot attack the enemy who is selected by the bot.
         // Bot's attack range is only 1, bot will follow the target if he doesn't see the target.
         //
         // Guardian bot's movement speed will increase from 0.9 to 1.0 when following the target
         //
-        goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+
+        //
+        // Make guardian bot wandering in a 5x5 range with speed 0.9.
+        //
+        goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 5.0F));
+
+        //
+        // Make guardian bot look around randomly.
+        //
+        goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+
+        //
+        // Make guardian bot attack the enemy who attacks him.
+        //
+        targetSelector.addGoal(1, new HurtByTargetGoal(this));
 
         //
         // Make guardian bot attack enemies, guardian bot can select
         // enemies as targets without seeing or reaching them.
         //
-        targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Mob.class, 5,
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5,
                 false, false, e -> e instanceof Enemy));
-
-        //
-        // Make guardian bot attack the enemy who attacks him.
-        //
-        targetSelector.addGoal(2, new HurtByTargetGoal(this));
-
-        //
-        // Register other goals.
-        //
-        super.registerGoals();
     }
 
     @Override
@@ -94,32 +110,13 @@ public final class GuardianBot extends Bot {
             return InteractionResult.SUCCESS;
         }
 
-        final var item = player.getItemInHand(hand);
-        final var equipmentSlot = Mob.getEquipmentSlotForItem(item);
+        final var stack = player.getItemInHand(hand);
+        final var equipmentSlot = Mob.getEquipmentSlotForItem(stack);
 
-        if (item.isEmpty()) {
+        if (stack.isEmpty()) {
             //
             // Take off the equipment from the bot.
             //
-
-            if (getEnergy() <= getMaxEnergy() && item.getItem() instanceof PlantItem.PlantFruitItem fruit) {
-                //
-                // Charge the bot.
-                //
-                final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
-                if (growTime.isPresent()) {
-                    //
-                    // Allow a small "overflow" when charging,
-                    // So we don't need to check the amount of charge.
-                    //
-                    setEnergy(getEnergy() + growTime.get());
-                    item.shrink(1);
-                    return InteractionResult.SUCCESS;
-                } else {
-                    return InteractionResult.FAIL;
-                }
-            }
-
             final var slot = getClickedSlot(location);
             if (hasItemInSlot(slot)) {
                 final var itemInSlot = getItemBySlot(slot);
@@ -129,34 +126,58 @@ public final class GuardianBot extends Bot {
                 return InteractionResult.FAIL;
             }
         } else {
+            final var item = stack.getItem();
+            if (item instanceof PlantItem.PlantFruitItem fruit) {
+                if (getEnergy() <= getMaxEnergy()) {
+                    //
+                    // Charge the bot.
+                    //
+                    final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
+                    if (growTime.isPresent()) {
+                        //
+                        // Allow a small "overflow" when charging,
+                        // So we don't need to check the amount of charge.
+                        //
+                        setEnergy(getEnergy() + growTime.get());
+                        stack.shrink(1);
+                        return InteractionResult.SUCCESS;
+                    }
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            }
+
             //
             // Equipping the bot.
             //
 
-            //
-            // Determine whether the slot already has an item.
-            //
-            if (hasItemInSlot(equipmentSlot)) {
+            if (item instanceof ArmorItem || item instanceof DiggerItem
+                    || item instanceof SwordItem) {
                 //
-                // Swap items in this slot with items in the player's hand.
+                // Determine whether the slot already has an item.
                 //
-                final var swapItem = getItemBySlot(equipmentSlot);
-                player.setItemInHand(hand, swapItem);
-                setItemSlot(equipmentSlot, item);
-            } else {
-                //
-                // Duplicate the item in the player's hand.
-                // It is possible for a player to have more than 1 piece of equipment on hand.
-                //
-                final var equipmentItem = item.copy();
-                equipmentItem.setCount(1);
+                if (hasItemInSlot(equipmentSlot)) {
+                    //
+                    // Swap items in this slot with items in the player's hand.
+                    //
+                    final var swapItem = getItemBySlot(equipmentSlot);
+                    player.setItemInHand(hand, swapItem);
+                    setItemSlot(equipmentSlot, stack);
+                } else {
+                    //
+                    // Duplicate the item in the player's hand.
+                    // It is possible for a player to have more than 1 piece of equipment on hand.
+                    //
+                    final var equipmentItem = stack.copy();
+                    equipmentItem.setCount(1);
 
-                setItemSlot(equipmentSlot, equipmentItem);
+                    setItemSlot(equipmentSlot, equipmentItem);
 
-                //
-                // Reduce the number of player items by 1
-                //
-                item.shrink(1);
+                    //
+                    // Reduce the number of player items by 1
+                    //
+                    stack.shrink(1);
+                }
             }
         }
 
@@ -164,7 +185,26 @@ public final class GuardianBot extends Bot {
     }
 
     @Override
-    public long getMaxEnergy() {
+    public int getMaxEnergy() {
         return 10000;
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        final var sourceEntity = source.getEntity();
+        if (sourceEntity != null && sourceEntity instanceof Monster monster && distanceToSqr(sourceEntity) <= 25.0D) {
+            target = monster;
+        }
+
+        return super.hurt(source, amount);
+    }
+
+    /**
+     * Create a new attribute supplier for the bot.
+     * @return
+     */
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 5.0D);
     }
 }

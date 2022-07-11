@@ -37,13 +37,10 @@ public class CivilizationEntityTypes {
                                                         .sized(0.5F, 1.5F).clientTrackingRange(10)
                                                         .build("curvilinear_entity"));
 
-        /**
-         * TODO: Change the size and track range of the guardian bot.
-         */
         public static final RegistryObject<EntityType<GuardianBot>> GUARDIAN_BOT = ENTITY_TYPES
                         .register("guardian_bot",
                                         () -> EntityType.Builder
                                                         .of(GuardianBot::new, MobCategory.MISC)
-                                                        .sized(0.5F, 1.5F).clientTrackingRange(10)
+                                                        .sized(1.4F, 2.7F).clientTrackingRange(10)
                                                         .build("guardian_bot"));
 }

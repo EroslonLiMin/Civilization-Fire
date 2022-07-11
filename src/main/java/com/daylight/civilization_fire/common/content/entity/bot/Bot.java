@@ -4,11 +4,7 @@ import javax.annotation.CheckForSigned;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import com.daylight.civilization_fire.common.CivilizationFire;
-import com.daylight.civilization_fire.common.network.synchronization.CivilizationFireEntityDataSerializers;
-
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
@@ -24,8 +20,7 @@ public abstract class Bot extends PathfinderMob {
      * Synchornize bot's energy.
      * @author Heckerpowered
      */
-    private static final EntityDataAccessor<Long> DATA_ENERGY = SynchedEntityData.defineId(
-            GuardianBot.class, CivilizationFireEntityDataSerializers.LONG);
+    private static final String ENERGY_STRING = "civilization_fire_energy";
 
     public Bot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -37,7 +32,7 @@ public abstract class Bot extends PathfinderMob {
      * @author Heckerpowered
      */
     public final @Nonnegative long getEnergy() {
-        return getEntityData().get(DATA_ENERGY);
+        return getPersistentData().getLong(ENERGY_STRING);
     }
 
     /**
@@ -48,14 +43,10 @@ public abstract class Bot extends PathfinderMob {
      */
     public final void setEnergy(@Nonnegative @CheckForSigned long energy) {
         if (energy < 0) {
-            //
-            // Whenever possible, we should log an error and continue to run, rather than crash.
-            //
-            CivilizationFire.LOGGER.error("Energy cannot be negative: {}", energy);
             energy = 0;
         }
 
-        getEntityData().set(DATA_ENERGY, energy);
+        getPersistentData().putLong(ENERGY_STRING, energy);
     }
 
     /**
@@ -63,13 +54,13 @@ public abstract class Bot extends PathfinderMob {
      * @return the max energy of the bot, always poostive.
      * @author Heckerpowered
      */
-    public abstract @Nonnegative long getMaxEnergy();
+    public abstract @Nonnegative int getMaxEnergy();
 
     /**
      * Get the energy needed per tick.
      * @return energy per tick.
      */
-    public @Nonnegative long getEnergyCost() {
+    public @Nonnegative int getEnergyCost() {
         return 1;
     }
 
@@ -102,31 +93,24 @@ public abstract class Bot extends PathfinderMob {
     }
 
     @Override
-    public final void aiStep() {
-        if (energyAvailable()) {
-            //
-            // If there is no energy, make the AI stop working.
-            //
+    public void tick() {
+        super.tick();
+        setEnergy(getEnergy() - getEnergyCost());
+
+        if (!level.isClientSide) {
+            setCustomName(
+                    new TextComponent(String.valueOf((long) (100 * (double) getEnergy() / (double) getMaxEnergy()))));
+        }
+    }
+
+    @Override
+    public void aiStep() {
+        if (energyAvailable() || level.isClientSide) {
             super.aiStep();
-        } else {
-            //
-            // setEnergy tests parameter is unsigned, so we don't need to check it.
-            //
-            setEnergy(getEnergy() - getEnergyCost());
         }
     }
 
     protected final boolean energyAvailable() {
         return getEnergy() != 0;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-
-        //
-        // Define energy serializer.
-        //
-        entityData.define(DATA_ENERGY, 0L);
     }
 }

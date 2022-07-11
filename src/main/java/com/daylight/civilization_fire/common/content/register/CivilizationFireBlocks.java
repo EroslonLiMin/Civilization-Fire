@@ -2,7 +2,6 @@ package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.block.agriculture.*;
-import com.daylight.civilization_fire.common.content.block.cooking.DishesVarietyBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.DishesVarietyLoad;
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.CookingBench;
@@ -38,11 +37,11 @@ public class CivilizationFireBlocks {
         public static final RegistryObject<Block> COOKING_BENCH_BLOCK = BLOCKS.register("cooking_bench_block",
                         CookingBench::new);//灶炉
         public static final RegistryObject<Block> PLATE = BLOCKS.register("plate",
-                () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
-                        .requiresCorrectToolForDrops().noOcclusion()));//盘子
+                        () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
+                                        .requiresCorrectToolForDrops().noOcclusion()));//盘子
         public static final RegistryObject<Block> BOWL = BLOCKS.register("bowl",
-                () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
-                        .requiresCorrectToolForDrops().noOcclusion()));//碗
+                        () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
+                                        .requiresCorrectToolForDrops().noOcclusion()));//碗
 
         /////树木植物
         //肉桂
@@ -265,49 +264,69 @@ public class CivilizationFireBlocks {
         //            new String[]{"civilization_fire:loam_block,civilization_fire:clay_block,civilization_fire:sand_block"},
         //            false, PlantBlock.PlantModel.PickingModel, 3);
 
-
         /////菜品
         /*清蒸江团*/
-        public static final DishesVarietyLoad STEAMED_SICHUAN_FISH = new DishesVarietyLoad("steamed_sichuan_fish",CookingDishesType.Plate,10,15);
+        public static final DishesVarietyLoad STEAMED_SICHUAN_FISH = new DishesVarietyLoad("steamed_sichuan_fish",
+                        CookingDishesType.Plate, 10, 15);
         /*回锅肉*/
-        public static final DishesVarietyLoad SICHUAN_COOKED_PORK = new DishesVarietyLoad("sichuan_cooked_pork",CookingDishesType.Plate,8,5);
+        public static final DishesVarietyLoad SICHUAN_COOKED_PORK = new DishesVarietyLoad("sichuan_cooked_pork",
+                        CookingDishesType.Plate, 8, 5);
         /*开水白菜*/
-        public static final DishesVarietyLoad CHINESE_CABBAGE_SOUP = new DishesVarietyLoad("chinese_cabbage_soup",CookingDishesType.Plate,1,5);
+        public static final DishesVarietyLoad CHINESE_CABBAGE_SOUP = new DishesVarietyLoad("chinese_cabbage_soup",
+                        CookingDishesType.Plate, 1, 5);
         /*鱼香茄子*/
-        public static final DishesVarietyLoad FISH_FLAVORED_EGGPLANT = new DishesVarietyLoad("fish_flavored_eggplant",CookingDishesType.Plate,12,10);
+        public static final DishesVarietyLoad FISH_FLAVORED_EGGPLANT = new DishesVarietyLoad("fish_flavored_eggplant",
+                        CookingDishesType.Plate, 12, 10);
         /*干炒牛河*/
-        public static final DishesVarietyLoad STIR_FRIED_BEEF = new DishesVarietyLoad("stir_fried_beef",CookingDishesType.Plate,15,20);
+        public static final DishesVarietyLoad STIR_FRIED_BEEF = new DishesVarietyLoad("stir_fried_beef",
+                        CookingDishesType.Plate, 15, 20);
         /*酿豆腐*/
-        public static final DishesVarietyLoad STUFFED_BEAN_CURD = new DishesVarietyLoad("stuffed_bean_curd",CookingDishesType.Plate,8,10);
+        public static final DishesVarietyLoad STUFFED_BEAN_CURD = new DishesVarietyLoad("stuffed_bean_curd",
+                        CookingDishesType.Plate, 8, 10);
         /*三及第*/
-        public static final DishesVarietyLoad HAKKA_SUOP = new DishesVarietyLoad("hakka_suop",CookingDishesType.Bowl,5,6);
+        public static final DishesVarietyLoad HAKKA_SUOP = new DishesVarietyLoad("hakka_suop", CookingDishesType.Bowl,
+                        5, 6);
         /*胡萝卜玉米排骨汤*/
-        public static final DishesVarietyLoad CARROT_CORN_PORK_SOUP = new DishesVarietyLoad("carrot_corn_pork_soup",CookingDishesType.Bowl,7,8);
+        public static final DishesVarietyLoad CARROT_CORN_PORK_SOUP = new DishesVarietyLoad("carrot_corn_pork_soup",
+                        CookingDishesType.Bowl, 7, 8);
         /*萝卜丸*/
-        public static final DishesVarietyLoad RABBIS_MESS = new DishesVarietyLoad("rabbis_mess",CookingDishesType.Plate,8,10);
+        public static final DishesVarietyLoad RABBIS_MESS = new DishesVarietyLoad("rabbis_mess",
+                        CookingDishesType.Plate, 8, 10);
         /*酿苦瓜*/
-        public static final DishesVarietyLoad STUFFED_BITTER_MELON = new DishesVarietyLoad("stuffed_bitter_melon",CookingDishesType.Plate,5,8);
+        public static final DishesVarietyLoad STUFFED_BITTER_MELON = new DishesVarietyLoad("stuffed_bitter_melon",
+                        CookingDishesType.Plate, 5, 8);
         /*九转大肠*/
-        public static final DishesVarietyLoad BRAISED_INTESTINES_BROWN_SAUCE = new DishesVarietyLoad("braised_intestines_brown_sauce",CookingDishesType.Plate,10,12);
+        public static final DishesVarietyLoad BRAISED_INTESTINES_BROWN_SAUCE = new DishesVarietyLoad(
+                        "braised_intestines_brown_sauce", CookingDishesType.Plate, 10, 12);
         /*扬州炒饭*/
-        public static final DishesVarietyLoad YANGZHOU_FRIED_RICE = new DishesVarietyLoad("yangzhou_fried_rice",CookingDishesType.Plate,15,20);
+        public static final DishesVarietyLoad YANGZHOU_FRIED_RICE = new DishesVarietyLoad("yangzhou_fried_rice",
+                        CookingDishesType.Plate, 15, 20);
         /*番茄炒鸡蛋*/
-        public static final DishesVarietyLoad SCRAMBLED_TOMATO_EGG = new DishesVarietyLoad("scrambled_tomato_egg",CookingDishesType.Plate,8,6);
+        public static final DishesVarietyLoad SCRAMBLED_TOMATO_EGG = new DishesVarietyLoad("scrambled_tomato_egg",
+                        CookingDishesType.Plate, 8, 6);
         /*白米饭*/
-        public static final DishesVarietyLoad RICE = new DishesVarietyLoad("rice_dishes",CookingDishesType.Plate,10,10);
+        public static final DishesVarietyLoad RICE = new DishesVarietyLoad("rice_dishes", CookingDishesType.Plate, 10,
+                        10);
         /*杂粮饭*/
-        public static final DishesVarietyLoad COARSE_GRAIN_RICE = new DishesVarietyLoad("coarse_grain_rice",CookingDishesType.Plate,10,12);
+        public static final DishesVarietyLoad COARSE_GRAIN_RICE = new DishesVarietyLoad("coarse_grain_rice",
+                        CookingDishesType.Plate, 10, 12);
         /*芹菜炒肉*/
-        public static final DishesVarietyLoad CELERY_FRIED_MEAT = new DishesVarietyLoad("celery_fried_meat",CookingDishesType.Plate,8,8);
+        public static final DishesVarietyLoad CELERY_FRIED_MEAT = new DishesVarietyLoad("celery_fried_meat",
+                        CookingDishesType.Plate, 8, 8);
         /*酸辣黄瓜*/
-        public static final DishesVarietyLoad HOT_SOUR_CUCUMBER = new DishesVarietyLoad("hot_sour_cucumber",CookingDishesType.Plate,3,2);
+        public static final DishesVarietyLoad HOT_SOUR_CUCUMBER = new DishesVarietyLoad("hot_sour_cucumber",
+                        CookingDishesType.Plate, 3, 2);
         /*玉米冬瓜汤*/
-        public static final DishesVarietyLoad CORN_GOURD_SOUP = new DishesVarietyLoad("corn_gourd_soup",CookingDishesType.Bowl,7,8);
+        public static final DishesVarietyLoad CORN_GOURD_SOUP = new DishesVarietyLoad("corn_gourd_soup",
+                        CookingDishesType.Bowl, 7, 8);
         /*丝瓜炒蛋*/
-        public static final DishesVarietyLoad  TOWEL_GOURD_EGG = new DishesVarietyLoad("towel_gourd_egg",CookingDishesType.Plate,8,7);
+        public static final DishesVarietyLoad TOWEL_GOURD_EGG = new DishesVarietyLoad("towel_gourd_egg",
+                        CookingDishesType.Plate, 8, 7);
         /*卤鸡蛋*/
-        public static final DishesVarietyLoad HALOGEN_EGG = new DishesVarietyLoad("halogen_egg",CookingDishesType.Plate,5,5);
+        public static final DishesVarietyLoad HALOGEN_EGG = new DishesVarietyLoad("halogen_egg",
+                        CookingDishesType.Plate, 5, 5);
         /*卤肉*/
-        public static final DishesVarietyLoad POT_STEWED_MEAT = new DishesVarietyLoad("pot_stewed_meat",CookingDishesType.Plate,10,12);
+        public static final DishesVarietyLoad POT_STEWED_MEAT = new DishesVarietyLoad("pot_stewed_meat",
+                        CookingDishesType.Plate, 10, 12);
 
 }

@@ -45,7 +45,7 @@ public final class MiningBot extends Bot {
     }
 
     @Override
-    public long getMaxEnergy() {
+    public int getMaxEnergy() {
         return 10000;
     }
 

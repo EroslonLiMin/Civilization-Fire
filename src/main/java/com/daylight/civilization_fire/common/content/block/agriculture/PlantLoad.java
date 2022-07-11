@@ -24,12 +24,12 @@ public class PlantLoad {
          * Map of plant block to plant item.
          * @author Heckerpowered
          */
-        public static final Map<ResourceKey<Item>, ResourceKey<Block>> PLANT_BLOCK_MAP = new HashMap<>();
+        public static final Map<ResourceKey<Item>, ResourceKey<Block>> FRUIT_BLOCK_MAP = new HashMap<>();
         /**
          * Reversed "PLANT_BLOCK_MAP"
          * @author Heckerpowered
          */
-        public static final Map<ResourceKey<Block>, ResourceKey<Item>> BLOCK_PLANT_MAP = new HashMap<>();
+        public static final Map<ResourceKey<Block>, ResourceKey<Item>> BLOCK_FRUIT_MAP = new HashMap<>();
 
         public String name;//植物名称
         public PlantBlock.PlantModel plantModel;
@@ -59,7 +59,9 @@ public class PlantLoad {
                                 () -> new PlantItem.PlantBlockItem(creativeModeTab, plantBlockRegistry.get(),
                                                 canEat && !isDistinguishSeed, eatingData));
 
-                PLANT_BLOCK_MAP.put(plantItemRegistry.getKey(), plantBlockRegistry.getKey());
-                BLOCK_PLANT_MAP.put(plantBlockRegistry.getKey(), plantItemRegistry.getKey());
+                if (isDistinguishSeed) {
+                        FRUIT_BLOCK_MAP.put(plantFruitRegistry.getKey(), plantBlockRegistry.getKey());
+                        BLOCK_FRUIT_MAP.put(plantBlockRegistry.getKey(), plantFruitRegistry.getKey());
+                }
         }
 }
