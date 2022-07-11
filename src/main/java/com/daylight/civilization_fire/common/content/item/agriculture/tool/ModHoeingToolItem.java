@@ -55,12 +55,10 @@ public class ModHoeingToolItem extends Item {
                 player.getCooldowns().addCooldown(this, 10 - level * 2);
             }
 
-            if (player != null) {
-                //播放耕种音效
-                player.playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
-            }
+            //播放耕种音效
+            player.playSound(SoundEvents.HOE_TILL, 1.0F, 1.0F);
 
-            CivilizationFireUtil.hurtItem(item, null, null, EAT_DURATION);
+            CivilizationFireUtil.hurtItem(item, player, context.getHand(), EAT_DURATION);
         }
         return super.useOn(context);
     }

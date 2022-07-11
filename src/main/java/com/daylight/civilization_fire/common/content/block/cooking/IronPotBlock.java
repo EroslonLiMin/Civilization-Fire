@@ -48,21 +48,6 @@ public class IronPotBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-            BlockHitResult pHit) {
-        IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
-        ItemStack itemStack = pPlayer.getItemInHand(pHand);
-        if (itemStack.getItem() != Items.AIR && (itemStack.getItem() instanceof PlantItem.PlantFruitItem
-                || itemStack.getItem() instanceof PlantItem.PlantBlockItem)) {
-            assert ironPotBlockEntity != null;
-            ironPotBlockEntity.cookingStacks.add(itemStack);
-            pPlayer.getItemInHand(pHand).shrink(1);
-        }
-
-        return InteractionResult.PASS;
-    }
-
     //tick
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
                                                                   BlockEntityType<T> entityType) {
@@ -88,7 +73,7 @@ public class IronPotBlock extends BaseEntityBlock {
         public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
                            MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-            for (int i = 0; i < cookingBlockEntity.cookingStacks.size(); i++) {
+            for (int i = 0; i < cookingBlockEntity.cookingStacks.getSlots(); i++) {
 
                 poseStack.pushPose();
                 //乱七八糟的处理...e
@@ -98,9 +83,9 @@ public class IronPotBlock extends BaseEntityBlock {
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));
-                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.get(i),
+                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.getStackInSlot(i),
                         cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacks.get(i), ItemTransforms.TransformType.FIXED, true,
+                itemRenderer.render(cookingBlockEntity.cookingStacks.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
                         poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
                 poseStack.popPose();
             }

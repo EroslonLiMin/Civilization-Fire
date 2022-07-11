@@ -18,11 +18,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
+import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.*;
 
 public class CookingBlockEntity extends BlockEntity {
-    public List<ItemStack> cookingStacks = new ArrayList<>();
+    public ItemStackHandler cookingStacks = new ItemStackHandler();
     public Map<CondimentItem, Boolean> addCondimentItem = new HashMap<>();
     public int cookingTime;
 
@@ -37,20 +38,16 @@ public class CookingBlockEntity extends BlockEntity {
         if (belowState.getBlock() instanceof CookingBench) {
             if (belowState.getValue(CookingBench.BENCH_STATE) > 4) {
                 plantBlockEntity.cookingTime += 1;
-                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D,
+                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY()-0.75, pos.getZ(), 0.0D, 0.0D,
                         0.0D);
-                level.addParticle(ParticleTypes.SMOKE, pos.getX(), pos.getY() + 1.5, pos.getZ(), 0.0D, 0.0D, 0.0D);
+                level.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        cookingStacks.clear();
-        ListTag listTag = nbt.getList("cookingStacks", 10);
-        for (int i = 0; i < listTag.size(); i++) {
-            cookingStacks.add(ItemStack.of(listTag.getCompound(i)));
-        }
+        cookingStacks.deserializeNBT(nbt.getCompound("cookingStacks"));
         addCondimentItem.clear();
         ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
         for (int i = 0; i < addCondimentItemListTag.size(); i++) {
@@ -61,11 +58,7 @@ public class CookingBlockEntity extends BlockEntity {
 
     protected void saveAdditional(CompoundTag compoundTag) {
         super.saveAdditional(compoundTag);
-        ListTag listTag = new ListTag();
-        for (ItemStack itemStack : this.cookingStacks) {
-            listTag.add(itemStack.serializeNBT());
-        }
-        compoundTag.put("cookingStacks", listTag);
+        compoundTag.put("cookingStacks", this.cookingStacks.serializeNBT());
         ListTag addCondimentItemListTag = new ListTag();
         addCondimentItem.forEach((key, value) -> {
             CompoundTag tag = new CompoundTag();
@@ -84,11 +77,7 @@ public class CookingBlockEntity extends BlockEntity {
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compoundTag = super.getUpdateTag();
-        ListTag listTag = new ListTag();
-        for (ItemStack itemStack : this.cookingStacks) {
-            listTag.add(itemStack.serializeNBT());
-        }
-        compoundTag.put("cookingStacks", listTag);
+        compoundTag.put("cookingStacks", this.cookingStacks.serializeNBT());
         ListTag addCondimentItemListTag = new ListTag();
         addCondimentItem.forEach((key, value) -> {
             CompoundTag tag = new CompoundTag();
@@ -108,11 +97,7 @@ public class CookingBlockEntity extends BlockEntity {
 
     @Override
     public void handleUpdateTag(CompoundTag nbt) {
-        cookingStacks.clear();
-        ListTag listTag = nbt.getList("cookingStacks", 10);
-        for (int i = 0; i < listTag.size(); i++) {
-            cookingStacks.add(ItemStack.of(listTag.getCompound(i)));
-        }
+        cookingStacks.deserializeNBT(nbt.getCompound("cookingStacks"));
         addCondimentItem.clear();
         ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
         for (int i = 0; i < addCondimentItemListTag.size(); i++) {
