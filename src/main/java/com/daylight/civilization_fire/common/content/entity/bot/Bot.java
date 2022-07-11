@@ -5,9 +5,6 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
@@ -23,8 +20,7 @@ public abstract class Bot extends PathfinderMob {
      * Synchornize bot's energy.
      * @author Heckerpowered
      */
-    private static final EntityDataAccessor<Integer> DATA_ENERGY = SynchedEntityData.defineId(Bot.class,
-            EntityDataSerializers.INT);
+    private static final String ENERGY_STRING = "civilization_fire_energy";
 
     public Bot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -35,8 +31,8 @@ public abstract class Bot extends PathfinderMob {
      * @return the energy of the bot, always positive.
      * @author Heckerpowered
      */
-    public final @Nonnegative int getEnergy() {
-        return getEntityData().get(DATA_ENERGY);
+    public final @Nonnegative long getEnergy() {
+        return getPersistentData().getLong(ENERGY_STRING);
     }
 
     /**
@@ -45,12 +41,12 @@ public abstract class Bot extends PathfinderMob {
      * check for unsigned, do not check unsigned before call.
      * @author Heckerpowered
      */
-    public final void setEnergy(@Nonnegative @CheckForSigned int energy) {
+    public final void setEnergy(@Nonnegative @CheckForSigned long energy) {
         if (energy < 0) {
             energy = 0;
         }
 
-        getEntityData().set(DATA_ENERGY, energy);
+        getPersistentData().putLong(ENERGY_STRING, energy);
     }
 
     /**
@@ -101,27 +97,20 @@ public abstract class Bot extends PathfinderMob {
         super.tick();
         setEnergy(getEnergy() - getEnergyCost());
 
-        setCustomName(new TextComponent(String.valueOf((int) ((double) getHealth() / (double) getMaxHealth() * 100))));
+        if (!level.isClientSide) {
+            setCustomName(
+                    new TextComponent(String.valueOf((long) (100 * (double) getEnergy() / (double) getMaxEnergy()))));
+        }
     }
 
     @Override
     public void aiStep() {
-        if (energyAvailable()) {
+        if (energyAvailable() || level.isClientSide) {
             super.aiStep();
         }
     }
 
     protected final boolean energyAvailable() {
         return getEnergy() != 0;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-
-        //
-        // Define energy serializer.
-        //
-        entityData.define(DATA_ENERGY, 0);
     }
 }

@@ -21,7 +21,10 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -107,10 +110,10 @@ public final class GuardianBot extends Bot {
             return InteractionResult.SUCCESS;
         }
 
-        final var item = player.getItemInHand(hand);
-        final var equipmentSlot = Mob.getEquipmentSlotForItem(item);
+        final var stack = player.getItemInHand(hand);
+        final var equipmentSlot = Mob.getEquipmentSlotForItem(stack);
 
-        if (item.isEmpty()) {
+        if (stack.isEmpty()) {
             //
             // Take off the equipment from the bot.
             //
@@ -123,7 +126,8 @@ public final class GuardianBot extends Bot {
                 return InteractionResult.FAIL;
             }
         } else {
-            if (item.getItem() instanceof PlantItem.PlantFruitItem fruit) {
+            final var item = stack.getItem();
+            if (item instanceof PlantItem.PlantFruitItem fruit) {
                 if (getEnergy() <= getMaxEnergy()) {
                     //
                     // Charge the bot.
@@ -135,7 +139,7 @@ public final class GuardianBot extends Bot {
                         // So we don't need to check the amount of charge.
                         //
                         setEnergy(getEnergy() + growTime.get());
-                        item.shrink(1);
+                        stack.shrink(1);
                         return InteractionResult.SUCCESS;
                     }
                 } else {
@@ -147,30 +151,33 @@ public final class GuardianBot extends Bot {
             // Equipping the bot.
             //
 
-            //
-            // Determine whether the slot already has an item.
-            //
-            if (hasItemInSlot(equipmentSlot)) {
+            if (item instanceof ArmorItem || item instanceof DiggerItem
+                    || item instanceof SwordItem) {
                 //
-                // Swap items in this slot with items in the player's hand.
+                // Determine whether the slot already has an item.
                 //
-                final var swapItem = getItemBySlot(equipmentSlot);
-                player.setItemInHand(hand, swapItem);
-                setItemSlot(equipmentSlot, item);
-            } else {
-                //
-                // Duplicate the item in the player's hand.
-                // It is possible for a player to have more than 1 piece of equipment on hand.
-                //
-                final var equipmentItem = item.copy();
-                equipmentItem.setCount(1);
+                if (hasItemInSlot(equipmentSlot)) {
+                    //
+                    // Swap items in this slot with items in the player's hand.
+                    //
+                    final var swapItem = getItemBySlot(equipmentSlot);
+                    player.setItemInHand(hand, swapItem);
+                    setItemSlot(equipmentSlot, stack);
+                } else {
+                    //
+                    // Duplicate the item in the player's hand.
+                    // It is possible for a player to have more than 1 piece of equipment on hand.
+                    //
+                    final var equipmentItem = stack.copy();
+                    equipmentItem.setCount(1);
 
-                setItemSlot(equipmentSlot, equipmentItem);
+                    setItemSlot(equipmentSlot, equipmentItem);
 
-                //
-                // Reduce the number of player items by 1
-                //
-                item.shrink(1);
+                    //
+                    // Reduce the number of player items by 1
+                    //
+                    stack.shrink(1);
+                }
             }
         }
 
