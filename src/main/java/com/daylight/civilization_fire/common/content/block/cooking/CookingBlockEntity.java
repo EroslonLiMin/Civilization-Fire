@@ -45,6 +45,14 @@ public class CookingBlockEntity extends BlockEntity {
         }
     }
 
+    public CompoundTag saveOthersCompoundTag(){
+        return new CompoundTag();
+    }
+
+    public void loadOthersCompoundTag(CompoundTag compoundTag){
+        //TOOL
+    }
+
     public void load(CompoundTag nbt) {
         super.load(nbt);
         cookingStacks.deserializeNBT(nbt.getCompound("cookingStacks"));
@@ -54,6 +62,7 @@ public class CookingBlockEntity extends BlockEntity {
             CompoundTag tag = addCondimentItemListTag.getCompound(i);
             addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")), tag.getBoolean("is"));
         }
+        loadOthersCompoundTag(nbt.getCompound("saveOthersCompoundTag"));
     }
 
     protected void saveAdditional(CompoundTag compoundTag) {
@@ -67,6 +76,7 @@ public class CookingBlockEntity extends BlockEntity {
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
+        compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
     }
 
     @Override
@@ -86,6 +96,7 @@ public class CookingBlockEntity extends BlockEntity {
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
+        compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
         return compoundTag;
     }
 
@@ -104,5 +115,6 @@ public class CookingBlockEntity extends BlockEntity {
             CompoundTag tag = addCondimentItemListTag.getCompound(i);
             addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")), tag.getBoolean("is"));
         }
+        loadOthersCompoundTag(nbt.getCompound("saveOthersCompoundTag"));
     }
 }

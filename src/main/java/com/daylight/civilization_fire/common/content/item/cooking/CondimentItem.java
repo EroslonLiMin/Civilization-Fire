@@ -27,7 +27,9 @@ public class CondimentItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
-        if (level.getBlockEntity(context.getClickedPos()) instanceof CookingBlockEntity cookingBlockEntity) {
+        if (level.getBlockEntity(context.getClickedPos()) instanceof CookingBlockEntity) {
+            CookingBlockEntity cookingBlockEntity = (CookingBlockEntity) level.getBlockEntity(context.getClickedPos());
+            assert cookingBlockEntity != null;
             cookingBlockEntity.addCondimentItem.put(this, true);
             CivilizationFireUtil.hurtItem(context.getItemInHand(), context.getPlayer(), context.getHand(), 1);
         }

@@ -48,6 +48,10 @@
   "block.civilization_fire.towel_gourd_egg" : "丝瓜炒蛋",
   "block.civilization_fire.halogen_egg" : "卤鸡蛋",
   "block.civilization_fire.pot_stewed_meat" : "卤肉",
+  "block.civilization_fire.iron_pot_block": "铁锅",
+  "item.civilization_fire.iron_spatula" : "铁锅铲",
+  "item.civilization_fire.wooden_spatula" : "木锅铲",
+
 
   "item.civilization_fire.fragrant": "香叶",
   "item.civilization_fire.cinnamon_bark": "桂皮",

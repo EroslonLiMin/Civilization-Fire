@@ -7,6 +7,7 @@ import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 
 //合成列表
 public class CivilizationCookingRecipes {
+    public CivilizationCookingRecipes(){}
 
     /*清蒸江团*/
     public static final CookingRecipe STEAMED_SICHUAN_FISH = new CookingRecipe(CookingDishesType.Plate, "steamed_sichuan_fish", CookingTool.FoodSteamer).setNeedCondimentItems("sauce","salt").setNeedCookingItems("minecraft:fish","soybean","shallot","hot_pepper","pepper");

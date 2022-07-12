@@ -4,12 +4,9 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.daylight.civilization_fire.common.content.register.*;
 import org.slf4j.Logger;
 
-import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.resources.ResourceLocation;
@@ -44,6 +41,8 @@ public class CivilizationFire {
         CivilizationFireItems.ITEMS.register(eventBus);
         CivilizationFireBlockEntities.BLOCK_ENTITIES.register(eventBus);
         CivilizationEntityTypes.ENTITY_TYPES.register(eventBus);
+        CivilizationMenuTypes.MENUS.register(eventBus);
+        new CivilizationCookingRecipes();
     }
 
     @Nonnull

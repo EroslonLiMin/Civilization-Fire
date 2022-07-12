@@ -1,6 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
-import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -13,11 +13,17 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -30,6 +36,9 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.Nullable;
 
 //砂锅
 public class IronPotBlock extends BaseEntityBlock {
@@ -55,9 +64,45 @@ public class IronPotBlock extends BaseEntityBlock {
                 CookingBlockEntity::tick);
     }
 
-    public static class IronPotBlockEntity extends CookingBlockEntity {
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+                                 BlockHitResult pHit) {
+        if (!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
+            IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
+            NetworkHooks.openGui((ServerPlayer) pPlayer, ironPotBlockEntity, pPos);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    public static class IronPotBlockEntity extends CookingBlockEntity implements MenuProvider {
+        public ItemStackHandler toolsItemStackHandler = new ItemStackHandler(2);
         public IronPotBlockEntity(BlockPos pos, BlockState state) {
             super(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(), pos, state);
+        }
+
+        @Override
+        public CompoundTag saveOthersCompoundTag() {
+            CompoundTag compoundTag = super.saveOthersCompoundTag();
+            compoundTag.put("toolsItemStackHandler",toolsItemStackHandler.serializeNBT());
+            return compoundTag;
+        }
+
+        @Override
+        public void loadOthersCompoundTag(CompoundTag compoundTag) {
+            toolsItemStackHandler.deserializeNBT(compoundTag.getCompound("toolsItemStackHandler"));
+            super.loadOthersCompoundTag(compoundTag);
+        }
+
+
+        @Override
+        public Component getDisplayName() {
+            return new TranslatableComponent("iron_pot.block_entity");
+        }
+
+        @Nullable
+        @Override
+        public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player player) {
+            return new IronPotMenu(pInventory, pContainerId, this);
         }
     }
 
