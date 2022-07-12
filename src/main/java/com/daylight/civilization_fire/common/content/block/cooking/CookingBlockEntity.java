@@ -9,7 +9,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -38,18 +37,19 @@ public class CookingBlockEntity extends BlockEntity {
         if (belowState.getBlock() instanceof CookingBench) {
             if (belowState.getValue(CookingBench.BENCH_STATE) > 4) {
                 plantBlockEntity.cookingTime += 1;
-                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY()-0.75, pos.getZ(), 0.0D, 0.0D,
+                level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY() - 0.75, pos.getZ(), 0.0D,
+                        0.0D,
                         0.0D);
                 level.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
-    public CompoundTag saveOthersCompoundTag(){
+    public CompoundTag saveOthersCompoundTag() {
         return new CompoundTag();
     }
 
-    public void loadOthersCompoundTag(CompoundTag compoundTag){
+    public void loadOthersCompoundTag(CompoundTag compoundTag) {
         //TOOL
     }
 
@@ -76,7 +76,7 @@ public class CookingBlockEntity extends BlockEntity {
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
-        compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
+        compoundTag.put("saveOthersCompoundTag", saveOthersCompoundTag());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CookingBlockEntity extends BlockEntity {
             addCondimentItemListTag.add(tag);
         });
         compoundTag.put("addCondimentItem", addCondimentItemListTag);
-        compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
+        compoundTag.put("saveOthersCompoundTag", saveOthersCompoundTag());
         return compoundTag;
     }
 

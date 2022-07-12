@@ -14,7 +14,6 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,14 +58,14 @@ public class IronPotBlock extends BaseEntityBlock {
 
     //tick
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
-                                                                  BlockEntityType<T> entityType) {
+            BlockEntityType<T> entityType) {
         return createTickerHelper(entityType, CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(),
                 CookingBlockEntity::tick);
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-                                 BlockHitResult pHit) {
+            BlockHitResult pHit) {
         if (!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
             IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
             NetworkHooks.openGui((ServerPlayer) pPlayer, ironPotBlockEntity, pPos);
@@ -76,6 +75,7 @@ public class IronPotBlock extends BaseEntityBlock {
 
     public static class IronPotBlockEntity extends CookingBlockEntity implements MenuProvider {
         public ItemStackHandler toolsItemStackHandler = new ItemStackHandler(2);
+
         public IronPotBlockEntity(BlockPos pos, BlockState state) {
             super(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(), pos, state);
         }
@@ -83,7 +83,7 @@ public class IronPotBlock extends BaseEntityBlock {
         @Override
         public CompoundTag saveOthersCompoundTag() {
             CompoundTag compoundTag = super.saveOthersCompoundTag();
-            compoundTag.put("toolsItemStackHandler",toolsItemStackHandler.serializeNBT());
+            compoundTag.put("toolsItemStackHandler", toolsItemStackHandler.serializeNBT());
             return compoundTag;
         }
 
@@ -92,7 +92,6 @@ public class IronPotBlock extends BaseEntityBlock {
             toolsItemStackHandler.deserializeNBT(compoundTag.getCompound("toolsItemStackHandler"));
             super.loadOthersCompoundTag(compoundTag);
         }
-
 
         @Override
         public Component getDisplayName() {
@@ -116,7 +115,7 @@ public class IronPotBlock extends BaseEntityBlock {
         //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
         public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
-                           MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+                MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             for (int i = 0; i < cookingBlockEntity.cookingStacks.getSlots(); i++) {
 
@@ -124,13 +123,14 @@ public class IronPotBlock extends BaseEntityBlock {
                 //乱七八糟的处理...e
                 double v1 = 1.25 - 0.1;
                 double v2 = 0.5 - 0.1;
-                poseStack.translate(v1, i * 0.03 + ( (i / 100.0)), v2);
+                poseStack.translate(v1, i * 0.03 + ((i / 100.0)), v2);
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));
                 BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.getStackInSlot(i),
                         cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacks.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
+                itemRenderer.render(cookingBlockEntity.cookingStacks.getStackInSlot(i),
+                        ItemTransforms.TransformType.FIXED, true,
                         poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
                 poseStack.popPose();
             }
