@@ -4,7 +4,6 @@ import javax.annotation.CheckForSigned;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
@@ -96,11 +95,6 @@ public abstract class Bot extends PathfinderMob {
     public void tick() {
         super.tick();
         setEnergy(getEnergy() - getEnergyCost());
-
-        if (!level.isClientSide) {
-            setCustomName(
-                    new TextComponent(String.valueOf((long) (100 * (double) getEnergy() / (double) getMaxEnergy()))));
-        }
     }
 
     @Override
