@@ -8,8 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
-
-public class BaseContainerScreen <T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
+public class BaseContainerScreen<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
     private final ResourceLocation GUI;
 
     public BaseContainerScreen(T pMenu, Inventory pPlayerInventory, Component pTitle, ResourceLocation gui) {
