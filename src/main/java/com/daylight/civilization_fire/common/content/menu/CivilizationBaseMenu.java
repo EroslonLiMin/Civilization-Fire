@@ -19,8 +19,6 @@ public class CivilizationBaseMenu extends AbstractContainerMenu {
         super(type, pContainerId);
         this.inventory = inventory;
         invHandler = new InvWrapper(inventory);
-
-        layoutPlayerInventorySlots(7 + 1, 83 + 1);
     }
 
     @Override

@@ -19,13 +19,13 @@ public class BaseContainerScreen<T extends AbstractContainerMenu> extends Abstra
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
         this.renderBackground(pPoseStack);
-        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
     @Override
     protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.setShaderTexture(0, GUI);
-        this.blit(matrixStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
+        blit(matrixStack, leftPos, topPos, 0,0, this.imageWidth, this.imageHeight,this.imageWidth, this.imageHeight);
     }
 }

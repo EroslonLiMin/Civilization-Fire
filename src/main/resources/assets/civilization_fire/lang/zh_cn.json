@@ -52,7 +52,9 @@
   "item.civilization_fire.iron_spatula" : "铁锅铲",
   "item.civilization_fire.wooden_spatula" : "木锅铲",
 
+  "iron_pot.block_entity": "铁锅",
 
+  "item.civilization_fire.carob_fruit": "绿豆果实",
   "item.civilization_fire.fragrant": "香叶",
   "item.civilization_fire.cinnamon_bark": "桂皮",
   "item.civilization_fire.sichuan_pepper": "花椒",

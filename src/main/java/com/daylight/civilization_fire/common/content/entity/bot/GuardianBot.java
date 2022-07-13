@@ -27,13 +27,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.IAnimationTickable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 /**
  * Guardian Bot, attack hostile creatures(Monster) automatically,
  * wandering in a 5x5 range, can be equipped.
  * @author Heckerpowered
  */
-public final class GuardianBot extends Bot {
+public final class GuardianBot extends Bot implements IAnimatable, IAnimationTickable {
     /**
      * The target the bot about to attack.
      */
@@ -192,7 +200,7 @@ public final class GuardianBot extends Bot {
     @Override
     public boolean hurt(DamageSource source, float amount) {
         final var sourceEntity = source.getEntity();
-        if (sourceEntity != null && sourceEntity instanceof Monster monster && distanceToSqr(sourceEntity) <= 25.0D) {
+        if (sourceEntity instanceof Monster monster && distanceToSqr(sourceEntity) <= 25.0D) {
             target = monster;
         }
 
@@ -206,5 +214,37 @@ public final class GuardianBot extends Bot {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 5.0D);
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        AnimationController<GuardianBot> controller = new AnimationController<>(this, "controller", 0,
+                this::predicate);
+        data.addAnimationController(controller);
+    }
+
+    private final AnimationFactory factory = new AnimationFactory(this);
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
+        if (event.isMoving()) {
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
+        } else if(this.isAggressive()){
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
+        }else {
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.stand", false));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public int tickTimer() {
+        return this.tickCount;
     }
 }

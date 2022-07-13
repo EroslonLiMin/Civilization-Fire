@@ -33,7 +33,7 @@ public class CivilizationFireEntityRendererRegister {
                                                                 "textures/entity/curvilinear_plough_entity.png"),
                                                 new CurvilinearPloughModel(data
                                                                 .bakeLayer(CurvilinearPloughModel.LAYER_LOCATION))));
-                event.registerEntityRenderer(CivilizationEntityTypes.GUARDIAN_BOT.get(),(data) -> new GuardianBotRenderer(data,new GuardianBotModel(data.bakeLayer(GuardianBotModel.LAYER_LOCATION)),1));
+                event.registerEntityRenderer(CivilizationEntityTypes.GUARDIAN_BOT.get(), GuardianBotRenderer::new);
         }
 
         @SubscribeEvent
@@ -42,6 +42,5 @@ public class CivilizationFireEntityRendererRegister {
                 event.registerLayerDefinition(IronPloughModel.LAYER_LOCATION, IronPloughModel::createBodyLayer);
                 event.registerLayerDefinition(CurvilinearPloughModel.LAYER_LOCATION,
                                 CurvilinearPloughModel::createBodyLayer);
-                event.registerLayerDefinition(GuardianBotModel.LAYER_LOCATION, GuardianBotModel::createBodyLayer);
         }
 }

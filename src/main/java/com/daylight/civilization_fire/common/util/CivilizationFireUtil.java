@@ -40,7 +40,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<PlantBlock> asPlantBlock(@Nonnull final PlantFruitItem item) {
         final var itemResourceKey = ForgeRegistries.ITEMS.getResourceKey(item);
-        if (itemResourceKey.isPresent()) {
+        if (!itemResourceKey.isPresent()) {
             CivilizationFire.LOGGER.error("Cannot find item's resource key: {}", item);
             return Optional.empty();
         }
@@ -52,7 +52,7 @@ public final class CivilizationFireUtil {
         }
 
         final var holder = ForgeRegistries.BLOCKS.getHolder(blockResourceKey);
-        if (holder.isPresent()) {
+        if (!holder.isPresent()) {
             CivilizationFire.LOGGER.error("Cannot find block's holder: {}", holder);
             return Optional.empty();
         }
@@ -69,7 +69,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final @NotNull Optional<Holder<Item>> asPlantItem(@Nonnull final PlantBlock block) {
         final var blockResourceKey = ForgeRegistries.BLOCKS.getResourceKey(block);
-        if (blockResourceKey.isPresent()) {
+        if (!blockResourceKey.isPresent()) {
             CivilizationFire.LOGGER.error("Cannot find block's resource key: {}", block);
             return Optional.empty();
         }
@@ -92,7 +92,7 @@ public final class CivilizationFireUtil {
     @Nonnull
     public static final Optional<Integer> getPlantGrowTime(@Nonnull final PlantFruitItem item) {
         final var plantBlock = asPlantBlock(item);
-        if (plantBlock.isPresent()) {
+        if (!plantBlock.isPresent()) {
             return Optional.empty();
         }
 

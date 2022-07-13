@@ -122,7 +122,7 @@ public class CivilizationFireBlocks {
                         false, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB,
                         5);
         /*绿豆*/
-        public static final PlantLoad CAROB_PLANT = new PlantLoad("carob", 3, 2000, false,
+        public static final PlantLoad CAROB_PLANT = new PlantLoad("carob", 3, 2000, true,
                         new String[] { "civilization_fire:loam_block", "civilization_fire:clay_block",
                                         "civilization_fire:sand_block" },
                         false, PlantBlock.PlantModel.PickingModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB,
