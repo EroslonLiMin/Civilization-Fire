@@ -1,14 +1,14 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.recipe.CookingRecipe;
+import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -17,15 +17,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.*;
 
-public class CookingBlockEntity extends BlockEntity {
-    public ItemStackHandler cookingStacks = new ItemStackHandler();
-    public Map<CondimentItem, Boolean> addCondimentItem = new HashMap<>();
-    public int cookingTime;
+public abstract class CookingBlockEntity extends BlockEntity {
+    public ItemStackHandler cookingStacksItemStackHandler = new ItemStackHandler(9);
+    public final ItemStackHandler addCondimentItemStackHandler = new ItemStackHandler(5);
+    public final ItemStackHandler outputItemStackHandler = new ItemStackHandler(1);
+    public int cookingFire;
 
     public CookingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
@@ -33,16 +33,33 @@ public class CookingBlockEntity extends BlockEntity {
 
     //tick进行刷新
     public static void tick(Level level, BlockPos pos, BlockState blockState,
-            CookingBlockEntity plantBlockEntity) {
+            CookingBlockEntity cookingBlockEntity) {
         BlockState belowState = level.getBlockState(pos.below());
         if (belowState.getBlock() instanceof CookingBench) {
             if (belowState.getValue(CookingBench.BENCH_STATE) > 4) {
-                plantBlockEntity.cookingTime += 1;
+                cookingBlockEntity.cookingFire = (cookingBlockEntity.cookingFire >= 1000) ? 1000 : cookingBlockEntity.cookingFire + 1;
                 level.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.5, pos.getY()-0.75, pos.getZ(), 0.0D, 0.0D,
                         0.0D);
                 level.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
+        if(cookingBlockEntity.cookingFire >= 500){
+            cookingBlockEntity.outputItemStackHandler.setStackInSlot(0,cookingBlockEntity.getCookingItemStack());
+        }
+    }
+
+    public abstract boolean isComplianceCookingTool(CookingTool cookingTool);
+
+    public ItemStack getCookingItemStack(){
+        ItemStack itemStack = ItemStack.EMPTY;
+        for(CookingRecipe cookingRecipe : CookingRecipe.COOKING_RECIPE_MAP.values()){
+            if(this.isComplianceCookingTool(cookingRecipe.cookingTool)){
+                if(cookingRecipe.isComplianceItemsWithMenu(this.cookingStacksItemStackHandler, this.addCondimentItemStackHandler)){
+                    itemStack = new ItemStack(cookingRecipe.getCookingItem());
+                }
+            }
+        }
+        return itemStack;
     }
 
     public CompoundTag saveOthersCompoundTag(){
@@ -55,27 +72,15 @@ public class CookingBlockEntity extends BlockEntity {
 
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        cookingStacks.deserializeNBT(nbt.getCompound("cookingStacks"));
-        addCondimentItem.clear();
-        ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
-        for (int i = 0; i < addCondimentItemListTag.size(); i++) {
-            CompoundTag tag = addCondimentItemListTag.getCompound(i);
-            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")), tag.getBoolean("is"));
-        }
+        cookingStacksItemStackHandler.deserializeNBT(nbt.getCompound("cookingStacksItemStackHandler"));
+        addCondimentItemStackHandler.deserializeNBT(nbt.getCompound("addCondimentItemStackHandler"));
         loadOthersCompoundTag(nbt.getCompound("saveOthersCompoundTag"));
     }
 
     protected void saveAdditional(CompoundTag compoundTag) {
         super.saveAdditional(compoundTag);
-        compoundTag.put("cookingStacks", this.cookingStacks.serializeNBT());
-        ListTag addCondimentItemListTag = new ListTag();
-        addCondimentItem.forEach((key, value) -> {
-            CompoundTag tag = new CompoundTag();
-            tag.putInt("key", Item.getId(key));
-            tag.putBoolean("is", value);
-            addCondimentItemListTag.add(tag);
-        });
-        compoundTag.put("addCondimentItem", addCondimentItemListTag);
+        compoundTag.put("cookingStacksItemStackHandler", this.cookingStacksItemStackHandler.serializeNBT());
+        compoundTag.put("addCondimentItemStackHandler", this.addCondimentItemStackHandler.serializeNBT());
         compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
     }
 
@@ -87,15 +92,8 @@ public class CookingBlockEntity extends BlockEntity {
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compoundTag = super.getUpdateTag();
-        compoundTag.put("cookingStacks", this.cookingStacks.serializeNBT());
-        ListTag addCondimentItemListTag = new ListTag();
-        addCondimentItem.forEach((key, value) -> {
-            CompoundTag tag = new CompoundTag();
-            tag.putInt("key", Item.getId(key));
-            tag.putBoolean("is", value);
-            addCondimentItemListTag.add(tag);
-        });
-        compoundTag.put("addCondimentItem", addCondimentItemListTag);
+        compoundTag.put("cookingStacksItemStackHandler", this.cookingStacksItemStackHandler.serializeNBT());
+        compoundTag.put("addCondimentItemStackHandler", this.addCondimentItemStackHandler.serializeNBT());
         compoundTag.put("saveOthersCompoundTag",saveOthersCompoundTag());
         return compoundTag;
     }
@@ -108,13 +106,8 @@ public class CookingBlockEntity extends BlockEntity {
 
     @Override
     public void handleUpdateTag(CompoundTag nbt) {
-        cookingStacks.deserializeNBT(nbt.getCompound("cookingStacks"));
-        addCondimentItem.clear();
-        ListTag addCondimentItemListTag = nbt.getList("addCondimentItem", 10);
-        for (int i = 0; i < addCondimentItemListTag.size(); i++) {
-            CompoundTag tag = addCondimentItemListTag.getCompound(i);
-            addCondimentItem.put((CondimentItem) Item.byId(tag.getInt("key")), tag.getBoolean("is"));
-        }
+        cookingStacksItemStackHandler.deserializeNBT(nbt.getCompound("cookingStacksItemStackHandler"));
+        addCondimentItemStackHandler.deserializeNBT(nbt.getCompound("addCondimentItemStackHandler"));
         loadOthersCompoundTag(nbt.getCompound("saveOthersCompoundTag"));
     }
 }

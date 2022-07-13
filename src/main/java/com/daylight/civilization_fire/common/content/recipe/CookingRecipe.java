@@ -6,6 +6,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,13 +42,35 @@ public class CookingRecipe {
         return this;
     }
 
+    public Item getCookingItem(){
+        return ForgeRegistries.ITEMS.getHolder(CivilizationFire.resource(cookingItem)).get().value();
+    }
+
     //设置可以替代的食材
     public CookingRecipe setCanChangeCookingItems(CanChangeCookingItem... canChanges){
         this.canChangeCookingItems = canChanges;
         return this;
     }
 
-    //获取农作物Item
+    public boolean isComplianceCookingTool(CookingTool cookingTool){
+        return this.cookingTool == cookingTool;
+    }
+
+    public boolean isComplianceItemsWithMenu(ItemStackHandler cookingItems,ItemStackHandler condimentItems){
+        List<Item> cookingItemList = new ArrayList<>();
+        for(int i = 0;i < cookingItems.getSlots();i++){
+            cookingItemList.add(cookingItems.getStackInSlot(i).getItem());
+            System.out.println("cookingItemList:" + cookingItems.getStackInSlot(i).getItem().getRegistryName().getNamespace());
+        }
+        List<Item> condimentItemList = new ArrayList<>();
+        for(int i = 0;i < condimentItems.getSlots();i++){
+            condimentItemList.add(cookingItems.getStackInSlot(i).getItem());
+            System.out.println("condimentItemList:" + condimentItems.getStackInSlot(i).getItem().getRegistryName().getNamespace());
+        }
+        return isComplianceNeedCondimentItems(condimentItemList) && isComplianceNeedCookingItems(cookingItemList);
+    }
+
+    //获取烹饪调料item
     public Item[] getNeedCondimentItems(){
         Item[] items = new Item[needCookingItems.length];
         for(int i = 0;i < items.length;i++){
@@ -62,9 +85,10 @@ public class CookingRecipe {
         return items;
     }
 
-    //判断是否需要农作物吻合
-    public boolean isComplianceCondimentItems(List<Item> addItems){
-        Item[] items = this.getNeedCookingItems();
+
+    //判断烹饪调料是否符合
+    public boolean isComplianceNeedCondimentItems(List<Item> addItems){
+        Item[] items = this.getNeedCondimentItems();
         for(int i = 0;i < items.length;i++){
             if(!addItems.contains(items[i])){
                 return isCanChangeItem(needCondimentItems[i], items[i].getRegistryName().getNamespace());
@@ -77,9 +101,9 @@ public class CookingRecipe {
     public Item[] getNeedCookingItems(){
         Item[] items = new Item[needCookingItems.length];
         for(int i = 0;i < items.length;i++){
-            String str = needCookingItems[i].contains(":") ? needCookingItems[i] : CivilizationFire.MODID + ":" + needCookingItems[i];
+            String str = CivilizationFire.MODID + ":" + needCookingItems[i];
             Optional<Holder<Item>> forgeGetItemHolder = ForgeRegistries.ITEMS.getHolder(new ResourceLocation(str));
-            if (forgeGetItemHolder.isPresent()) {
+            if (!forgeGetItemHolder.isPresent()) {
                 CivilizationFire.LOGGER.error("Cannot find item's resource key");
                 return new Item[0];
             }

@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
 import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
+import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -14,7 +15,6 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -81,6 +81,11 @@ public class IronPotBlock extends BaseEntityBlock {
         }
 
         @Override
+        public boolean isComplianceCookingTool(CookingTool cookingTool) {
+            return cookingTool == CookingTool.IronPot;
+        }
+
+        @Override
         public CompoundTag saveOthersCompoundTag() {
             CompoundTag compoundTag = super.saveOthersCompoundTag();
             compoundTag.put("toolsItemStackHandler",toolsItemStackHandler.serializeNBT());
@@ -118,7 +123,7 @@ public class IronPotBlock extends BaseEntityBlock {
         public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
                            MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-            for (int i = 0; i < cookingBlockEntity.cookingStacks.getSlots(); i++) {
+            for (int i = 0; i < cookingBlockEntity.cookingStacksItemStackHandler.getSlots(); i++) {
 
                 poseStack.pushPose();
                 //乱七八糟的处理...e
@@ -128,9 +133,9 @@ public class IronPotBlock extends BaseEntityBlock {
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));
-                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacks.getStackInSlot(i),
+                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i),
                         cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacks.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
+                itemRenderer.render(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
                         poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
                 poseStack.popPose();
             }
