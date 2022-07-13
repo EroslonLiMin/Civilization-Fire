@@ -7,7 +7,7 @@ import net.minecraft.world.level.material.Material;
 public class DishesVarietyBlock extends Block {
     public CookingDishesType cookingDishesType;//装盘方式
     public DishesVarietyBlock(CookingDishesType cookingDishesType) {
-        super(Properties.of(Material.EGG).noOcclusion().strength(0.6F)
+        super(Properties.of(Material.EGG).noCollission().strength(0.6F)
                 .requiresCorrectToolForDrops());
         this.cookingDishesType = cookingDishesType;
     }

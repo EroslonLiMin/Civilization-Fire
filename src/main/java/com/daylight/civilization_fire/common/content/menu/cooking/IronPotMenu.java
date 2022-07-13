@@ -1,7 +1,6 @@
 package com.daylight.civilization_fire.common.content.menu.cooking;
 
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
-import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 import com.daylight.civilization_fire.common.content.register.CivilizationMenuTypes;
 import net.minecraft.world.entity.player.Inventory;
@@ -20,13 +19,7 @@ public class IronPotMenu extends CivilizationCookingMenu<IronPotBlock.IronPotBlo
         //添加3*3方格农作物
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 3; ++j) {
-                this.addSlot(new SlotItemHandler(this.blockEntity.cookingStacksItemStackHandler, j + i * 3, 82 + j * 18, 17 + i * 18){
-                    //只能放置农作物
-                    @Override
-                    public boolean mayPlace(@NotNull ItemStack stack) {
-                        return stack.getItem() instanceof PlantItem && super.mayPlace(stack);
-                    }
-                });
+                this.addSlot(this.blockEntity.cookingStacksItemStackHandler, j + i * 3, 82 + j * 18, 17 + i * 18);
             }
         }
 
@@ -44,7 +37,7 @@ public class IronPotMenu extends CivilizationCookingMenu<IronPotBlock.IronPotBlo
         this.addSlot(this.blockEntity.toolsItemStackHandler,0,20,89);
         this.addSlot(this.blockEntity.toolsItemStackHandler,1,38,89);
 
-        this.addSlot(this.blockEntity.outputItemStackHandler,0,152,32);
+        this.addSlot(this.blockEntity.outputItemStackHandler,0,153,35);
     }
 
 

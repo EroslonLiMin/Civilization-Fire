@@ -5,10 +5,9 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
+import org.stringtemplate.v4.ST;
 
 import java.util.*;
 
@@ -21,7 +20,7 @@ public class CookingRecipe {
     public CookingDishesType cookingDishesType;//方式
     public String cookingItem;//合成出来的物品
     public CookingTool cookingTool;//烹饪工具
-    public CanChangeCookingItem[] canChangeCookingItems;
+    public CanChangeCookingItem[] canChangeCookingItems = new CanChangeCookingItem[0];
 
     public CookingRecipe(CookingDishesType cookingDishesType, String cookingItem, CookingTool cookingTool){
         this.cookingDishesType = cookingDishesType;
@@ -52,76 +51,47 @@ public class CookingRecipe {
         return this;
     }
 
-    public boolean isComplianceCookingTool(CookingTool cookingTool){
-        return this.cookingTool == cookingTool;
+    @Override
+    public String toString() {
+        StringBuilder needCookingItemsStr = new StringBuilder();
+        for(String str : this.needCookingItems){
+            needCookingItemsStr.append(str).append("-");
+        }
+        StringBuilder needCondimentItemsStr = new StringBuilder();
+        for(String str : this.needCondimentItems){
+            needCondimentItemsStr.append(str).append("-");
+        }
+        return "needCookingItemsStr" + needCookingItemsStr.toString() + "\n"
+                + "needCondimentItemsStr:" + needCondimentItemsStr.toString();
     }
 
-    public boolean isComplianceItemsWithMenu(ItemStackHandler cookingItems,ItemStackHandler condimentItems){
-        List<Item> cookingItemList = new ArrayList<>();
+    public boolean isComplianceItemsWithMenu(ItemStackHandler cookingItems, ItemStackHandler condimentItems){
+        List<String> cookingItemList = new ArrayList<>();
         for(int i = 0;i < cookingItems.getSlots();i++){
-            cookingItemList.add(cookingItems.getStackInSlot(i).getItem());
-            System.out.println("cookingItemList:" + cookingItems.getStackInSlot(i).getItem().getRegistryName().getNamespace());
+            cookingItemList.add(Objects.requireNonNull(cookingItems.getStackInSlot(i).getItem().getRegistryName()).getPath());
         }
-        List<Item> condimentItemList = new ArrayList<>();
+        List<String> condimentItemList = new ArrayList<>();
         for(int i = 0;i < condimentItems.getSlots();i++){
-            condimentItemList.add(cookingItems.getStackInSlot(i).getItem());
-            System.out.println("condimentItemList:" + condimentItems.getStackInSlot(i).getItem().getRegistryName().getNamespace());
+            condimentItemList.add(Objects.requireNonNull(condimentItems.getStackInSlot(i).getItem().getRegistryName()).getPath());
         }
         return isComplianceNeedCondimentItems(condimentItemList) && isComplianceNeedCookingItems(cookingItemList);
     }
 
-    //获取烹饪调料item
-    public Item[] getNeedCondimentItems(){
-        Item[] items = new Item[needCookingItems.length];
-        for(int i = 0;i < items.length;i++){
-            String str = needCookingItems[i].contains(":") ? needCookingItems[i] : CivilizationFire.MODID + ":" + needCookingItems[i];
-            Optional<Holder<Item>> forgeGetItemHolder = ForgeRegistries.ITEMS.getHolder(new ResourceLocation(str));
-            if (forgeGetItemHolder.isPresent()) {
-                CivilizationFire.LOGGER.error("Cannot find item's resource key");
-                return new Item[0];
-            }
-            items[i] = forgeGetItemHolder.get().value();
-        }
-        return items;
-    }
-
-
-    //判断烹饪调料是否符合
-    public boolean isComplianceNeedCondimentItems(List<Item> addItems){
-        Item[] items = this.getNeedCondimentItems();
-        for(int i = 0;i < items.length;i++){
-            if(!addItems.contains(items[i])){
-                return isCanChangeItem(needCondimentItems[i], items[i].getRegistryName().getNamespace());
-            }
+    public boolean isComplianceNeedCondimentItems(List<String> strings){
+        for(String str : this.needCondimentItems){
+            if(!strings.contains(str)) return false;
         }
         return true;
     }
 
-    //获取农作物Item
-    public Item[] getNeedCookingItems(){
-        Item[] items = new Item[needCookingItems.length];
-        for(int i = 0;i < items.length;i++){
-            String str = CivilizationFire.MODID + ":" + needCookingItems[i];
-            Optional<Holder<Item>> forgeGetItemHolder = ForgeRegistries.ITEMS.getHolder(new ResourceLocation(str));
-            if (!forgeGetItemHolder.isPresent()) {
-                CivilizationFire.LOGGER.error("Cannot find item's resource key");
-                return new Item[0];
-            }
-            items[i] = forgeGetItemHolder.get().value();
-        }
-        return items;
-    }
-
-    //判断是否需要农作物吻合
-    public boolean isComplianceNeedCookingItems(List<Item> addItems){
-        Item[] items = this.getNeedCookingItems();
-        for(int i = 0;i < items.length;i++){
-            if(!addItems.contains(items[i])){
-                return isCanChangeItem(needCookingItems[i], items[i].getRegistryName().getNamespace());
-            }
+    public boolean isComplianceNeedCookingItems(List<String> strings){
+        for(String str : this.needCookingItems){
+            if(!strings.contains(str)) return false;
         }
         return true;
     }
+
+
 
     public boolean isCanChangeItem(String str,String itemStr){
         for(CanChangeCookingItem canChangeCookingItem : this.canChangeCookingItems){
@@ -140,7 +110,6 @@ public class CookingRecipe {
 
         public boolean canChangeItem(String str,String itemStr){
             if(str.equals(cookingItem)){
-                itemStr = !itemStr.contains("civilization_fire:") ? itemStr : itemStr.substring(itemStr.indexOf(":"));
                 return canChanges.contains(itemStr);
             }
             return false;
