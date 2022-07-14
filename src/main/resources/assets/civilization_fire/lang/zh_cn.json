@@ -5,8 +5,6 @@
   "block.civilization_fire.paddy_soil_block": "水田",
   "block.civilization_fire.mycelial_soil_block": "菌丝",
 
-  "block.civilization_fire.casserole_block" : "铁锅",
-
 
   "condiment_item.hover.text" : "剩余使用次数:%s",
 
@@ -49,10 +47,14 @@
   "block.civilization_fire.halogen_egg" : "卤鸡蛋",
   "block.civilization_fire.pot_stewed_meat" : "卤肉",
   "block.civilization_fire.iron_pot_block": "铁锅",
+  "block.civilization_fire.casserole": "砂锅",
   "item.civilization_fire.iron_spatula" : "铁锅铲",
   "item.civilization_fire.wooden_spatula" : "木锅铲",
-
+  "block.civilization_fire.food_steamer_block": "蒸笼",
+  "block.civilization_fire.food_steamer_hat_block": "蒸笼帽",
   "iron_pot.block_entity": "铁锅",
+  "food_steamer.block_entity": "蒸笼",
+  "casserole.block_entity": "蒸笼",
 
   "item.civilization_fire.carob_fruit": "绿豆果实",
   "item.civilization_fire.fragrant": "香叶",

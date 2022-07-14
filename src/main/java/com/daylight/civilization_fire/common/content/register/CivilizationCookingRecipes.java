@@ -26,7 +26,7 @@ public class CivilizationCookingRecipes {
     /*胡萝卜玉米排骨汤*/
     public static final CookingRecipe CARROT_CORN_PORK_SOUP = new CookingRecipe(CookingDishesType.Bowl, "carrot_corn_pork_soup",CookingTool.Casserole).setNeedCookingItems("porkchop","water_radish_fruit","corn_item");
     /*萝卜丸*/
-    public static final CookingRecipe RABBIS_MESS = new CookingRecipe(CookingDishesType.Plate, "rabbis_mess",CookingTool.FoodSteamer).setNeedCondimentItems("oil","salt","sauce").setNeedCookingItems("ternip_item");
+    public static final CookingRecipe RABBIS_MESS = new CookingRecipe(CookingDishesType.Plate, "rabbis_mess",CookingTool.FoodSteamer).setNeedCondimentItems("oil","salt","sauce").setNeedCookingItems("ternip_fruit");
     /*酿苦瓜*/
     public static final CookingRecipe STUFFED_BITTER_MELON = new CookingRecipe(CookingDishesType.Plate, "stuffed_bitter_melon",CookingTool.Casserole).setNeedCondimentItems("sauce","salt").setNeedCookingItems("balsam_pear_fruit","ginger_fruit","porkchop");
     /*九转大肠*/

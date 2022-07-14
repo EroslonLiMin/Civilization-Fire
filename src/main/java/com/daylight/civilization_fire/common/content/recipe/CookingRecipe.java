@@ -2,12 +2,9 @@ package com.daylight.civilization_fire.common.content.recipe;
 
 
 import com.daylight.civilization_fire.common.CivilizationFire;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.stringtemplate.v4.ST;
 
 import java.util.*;
 
@@ -15,8 +12,8 @@ import java.util.*;
 public class CookingRecipe {
     //COOKING_RECIPE MAP
     public static final Map<String ,CookingRecipe> COOKING_RECIPE_MAP = new HashMap<>();
-    public String[] needCookingItems;//合成需要的物品
-    public String[] needCondimentItems;//合成需要的调料
+    public String[] needCookingItems = new String[0];//合成需要的物品
+    public String[] needCondimentItems= new String[0];//合成需要的调料
     public CookingDishesType cookingDishesType;//方式
     public String cookingItem;//合成出来的物品
     public CookingTool cookingTool;//烹饪工具
