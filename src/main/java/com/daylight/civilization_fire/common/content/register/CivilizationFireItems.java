@@ -4,6 +4,7 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.item.agriculture.EntityItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.item.agriculture.SeedBagItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
@@ -43,13 +44,13 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> FOOD_STEAMER_BLOCK = ITEMS.register("food_steamer_block",
             () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get(),
                     new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-    public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
+        public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
             () -> new BlockItem(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
                     new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> FOOD_STEAMER_HAT_BLOCK = ITEMS.register("food_steamer_hat_block",
             () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_HAT_BLOCK.get(),
                     new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-         public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
+        public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
         public static final RegistryObject<Item> OIL_ITEM = ITEMS.register("oil", () -> new CondimentItem(15));
         public static final RegistryObject<Item> SAUCE_ITEM = ITEMS.register("sauce", () -> new CondimentItem(10));
         public static final RegistryObject<Item> VINEGAR_ITEM = ITEMS.register("vinegar", () -> new CondimentItem(25));
@@ -86,6 +87,11 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> WOOD_BUCKET = ITEMS.register("wood_bucket", () -> new WateringToolItem(
                         new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB).durability(200),
                         1200));
+        public static final RegistryObject<Item> DIPPER = ITEMS.register("dipper", () -> new WateringToolItem(
+            new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB).durability(50),
+            500));
+    public static final RegistryObject<Item> SEED_BAG_ITEM = ITEMS.register("seed_bag", SeedBagItem::new);
+
 
         //植物
         public static final RegistryObject<Item> CINNAMON_BARK = CivilizationFireItems.ITEMS.register("cinnamon_bark_fruit",

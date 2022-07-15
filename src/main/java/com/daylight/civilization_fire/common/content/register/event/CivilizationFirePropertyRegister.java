@@ -22,5 +22,10 @@ public class CivilizationFirePropertyRegister {
                     LazyOptional<IEnergyStorage> lazyOptional = itemStack.getCapability(CapabilityEnergy.ENERGY);
                     return lazyOptional.map(e -> (float) e.getEnergyStored() / e.getMaxEnergyStored()).orElse(0.0F);
                 }));
+        event.enqueueWork(() -> ItemProperties.register(CivilizationFireItems.DIPPER.get(),
+                CivilizationFire.resource("with_water"), (itemStack, level, livingEntity, i) -> {
+                    LazyOptional<IEnergyStorage> lazyOptional = itemStack.getCapability(CapabilityEnergy.ENERGY);
+                    return lazyOptional.map(e -> (float) e.getEnergyStored() / e.getMaxEnergyStored()).orElse(0.0F);
+                }));
     }
 }
