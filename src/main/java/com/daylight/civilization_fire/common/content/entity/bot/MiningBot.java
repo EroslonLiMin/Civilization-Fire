@@ -9,15 +9,26 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.IAnimationTickable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 /**
  * Mining bot, automatic mining after giving ore.
  * @author Heckerpowered
  */
-public final class MiningBot extends Bot {
+public final class MiningBot extends Bot implements IAnimatable, IAnimationTickable {
 
     /**
      * Worker thread to find ores in one chunk.
@@ -103,11 +114,53 @@ public final class MiningBot extends Bot {
                 // Try to move to target location.
                 //
                 final var location = target.get();
-                CivilizationFire.LOGGER.debug("Ore location: ", location.toString());
+                CivilizationFire.LOGGER.debug("Ore location: {}", location.toString());
                 target = Optional.empty();
             } else {
                 lock.notifyAll();
             }
         }
     }
+
+    /**
+     * Create a new attribute supplier for the bot.
+     * @return
+     */
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 1.0D);
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        AnimationController<MiningBot> controller = new AnimationController<>(this, "controller", 0,
+                this::predicate);
+        data.addAnimationController(controller);
+    }
+
+    private final AnimationFactory factory = new AnimationFactory(this);
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
+        if(this.swinging){
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
+        } else if (event.isMoving()) {
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
+        } else {
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.stand", false));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public int tickTimer() {
+        return this.tickCount;
+    }
+
 }

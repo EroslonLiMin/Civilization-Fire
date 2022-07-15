@@ -21,6 +21,6 @@ public class FireWorkNode extends GuiComponent {
         RenderSystem.setShaderTexture(0, FireWorkScreen.TEXTURE_LOCATION);
         this.blit(poseStack, offsetX, offsetY,  218, 0, 32, 32);
 
-        hLine(poseStack, offsetX, offsetX + 100, offsetY, 0);
+        hLine(poseStack, offsetX, offsetY, offsetY + 100, -16711681);
     }
 }

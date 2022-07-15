@@ -10,7 +10,7 @@ public class GuardianBotModel extends AnimatedTickingGeoModel<GuardianBot> {
 
 	@Override
 	public ResourceLocation getModelLocation(GuardianBot object) {
-		return CivilizationFire.resource("models/entity/guardian_bot.geo.json");
+		return CivilizationFire.resource("geo/guardian_bot.geo.json");
 	}
 
 	@Override
@@ -20,6 +20,6 @@ public class GuardianBotModel extends AnimatedTickingGeoModel<GuardianBot> {
 
 	@Override
 	public ResourceLocation getAnimationFileLocation(GuardianBot animatable) {
-		return CivilizationFire.resource("animation/guardian_bot.animation.json");
+		return CivilizationFire.resource("animations/entity/guardian_bot.animation.json");
 	}
 }

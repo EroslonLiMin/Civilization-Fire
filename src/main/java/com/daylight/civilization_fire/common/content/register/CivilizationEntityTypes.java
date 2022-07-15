@@ -4,6 +4,7 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 
+import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,4 +44,11 @@ public class CivilizationEntityTypes {
                                                         .of(GuardianBot::new, MobCategory.MISC)
                                                         .sized(1.4F, 2.7F).clientTrackingRange(10)
                                                         .build("guardian_bot"));
+
+        public static final RegistryObject<EntityType<MiningBot>> MINING_BOT = ENTITY_TYPES
+                .register("mining_bot",
+                        () -> EntityType.Builder
+                                .of(MiningBot::new, MobCategory.MISC)
+                                .sized(1.4F, 2.7F).clientTrackingRange(10)
+                                .build("mining_bot"));
 }

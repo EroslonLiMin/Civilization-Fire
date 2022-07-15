@@ -223,6 +223,11 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
         data.addAnimationController(controller);
     }
 
+    public void aiStep() {
+        this.updateSwingTime();
+        super.aiStep();
+    }
+
     private final AnimationFactory factory = new AnimationFactory(this);
     @Override
     public AnimationFactory getFactory() {
@@ -230,13 +235,13 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
     }
 
     private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
-        if (event.isMoving()) {
-            event.getController()
-                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
-        } else if(this.isAggressive()){
+        if(this.swingTime > 0){
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
-        }else {
+        }else if (event.isMoving()) {
+            event.getController()
+                    .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
+        } else {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.stand", false));
         }

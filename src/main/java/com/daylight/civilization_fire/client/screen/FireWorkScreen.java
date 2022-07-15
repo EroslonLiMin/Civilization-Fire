@@ -4,7 +4,6 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -32,14 +31,15 @@ public class FireWorkScreen extends Screen {
         nodes.put(selectedTab, new FireWorkNode());
     }
 
+
     @Override
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(poseStack);
-        RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-        poseStack.pushPose();
         int offsetX = (this.width - 216) / 2;
         int offsetY = (this.height - 203) / 2;
+        this.renderBackground(poseStack);
+        RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
         this.blit(poseStack, offsetX, offsetY,  0, 13, 216, 203);
+        poseStack.pushPose();
         double guiScale = this.minecraft.getWindow().getGuiScale();
         //RenderSystem.enableScissor((int) ((offsetX + 17) * guiScale), (int) ((offsetY + 94) * guiScale) + 2, (int) (182 * guiScale), (int) (88 * guiScale));
 
@@ -47,9 +47,11 @@ public class FireWorkScreen extends Screen {
             nodes.get(selectedTab).drawNode(poseStack, offsetX + (216 / 2) - 16, offsetY + (130 / 2) - 16);
         }
 
-        //RenderSystem.disableScissor();
-        poseStack.popPose();
+        RenderSystem.disableScissor();
+        //poseStack.popPose();
     }
+
+
 
 
 }

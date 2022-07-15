@@ -2,6 +2,7 @@ package com.daylight.civilization_fire.common.content.register.event;
 
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
+import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -16,5 +17,6 @@ public class CivilizationFireEntityAttributeRegister {
         event.put(CivilizationEntityTypes.IRON_PLOUGH_ENTITY.get(), PloughEntity.prepareAttributes().build());
         event.put(CivilizationEntityTypes.STONE_PLOUGH_ENTITY.get(), PloughEntity.prepareAttributes().build());
         event.put(CivilizationEntityTypes.GUARDIAN_BOT.get(), GuardianBot.createAttributes().build());
+        event.put(CivilizationEntityTypes.MINING_BOT.get(), MiningBot.createAttributes().build());
     }
 }
