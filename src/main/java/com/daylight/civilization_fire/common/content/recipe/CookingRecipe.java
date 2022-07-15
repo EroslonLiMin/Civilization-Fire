@@ -11,8 +11,8 @@ import java.util.*;
 public class CookingRecipe {
     //COOKING_RECIPE MAP
     public static final Map<String, CookingRecipe> COOKING_RECIPE_MAP = new HashMap<>();
-    public String[] needCookingItems;//合成需要的物品
-    public String[] needCondimentItems;//合成需要的调料
+    public String[] needCookingItems = new String[0];//合成需要的物品
+    public String[] needCondimentItems = new String[0];//合成需要的调料
     public CookingDishesType cookingDishesType;//方式
     public String cookingItem;//合成出来的物品
     public CookingTool cookingTool;//烹饪工具

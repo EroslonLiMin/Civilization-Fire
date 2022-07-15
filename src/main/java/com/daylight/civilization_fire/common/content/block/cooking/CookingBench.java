@@ -35,8 +35,8 @@ public class CookingBench extends Block {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
         int bench = state.getValue(BENCH_STATE);
-        if (bench > 2 && random.nextBoolean()) {
-            setBenchState(null, level, pos, (bench - 1) > 2 ? bench - 1 : 0);
+        if (bench >= 2 && random.nextBoolean()) {
+            setBenchState(null, level, pos, (bench - 1) >= 2 ? bench - 1 : 0);
         }
     }
 
@@ -47,7 +47,7 @@ public class CookingBench extends Block {
 
     @Override
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-        return (state.getValue(BENCH_STATE) > 4) ? 1 : 0;
+        return (state.getValue(BENCH_STATE) >= 2) ? 1 : 0;
     }
 
     @Override

@@ -40,7 +40,16 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> IRON_POT_BLOCK = ITEMS.register("iron_pot_block",
                         () -> new BlockItem(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-        public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
+        public static final RegistryObject<Item> FOOD_STEAMER_BLOCK = ITEMS.register("food_steamer_block",
+            () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get(),
+                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
+            () -> new BlockItem(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
+                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> FOOD_STEAMER_HAT_BLOCK = ITEMS.register("food_steamer_hat_block",
+            () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_HAT_BLOCK.get(),
+                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+         public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
         public static final RegistryObject<Item> OIL_ITEM = ITEMS.register("oil", () -> new CondimentItem(15));
         public static final RegistryObject<Item> SAUCE_ITEM = ITEMS.register("sauce", () -> new CondimentItem(10));
         public static final RegistryObject<Item> VINEGAR_ITEM = ITEMS.register("vinegar", () -> new CondimentItem(25));

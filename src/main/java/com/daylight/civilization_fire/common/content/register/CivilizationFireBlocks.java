@@ -2,9 +2,7 @@ package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.block.agriculture.*;
-import com.daylight.civilization_fire.common.content.block.cooking.DishesVarietyLoad;
-import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
-import com.daylight.civilization_fire.common.content.block.cooking.CookingBench;
+import com.daylight.civilization_fire.common.content.block.cooking.*;
 
 import com.daylight.civilization_fire.common.content.recipe.CookingDishesType;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +32,13 @@ public class CivilizationFireBlocks {
         //烹饪工具
         public static final RegistryObject<Block> IRON_POT_BLOCK = BLOCKS.register("iron_pot_block",
                         IronPotBlock::new);//铁锅
+        public static final RegistryObject<Block> FOOD_STEAMER_BLOCK = BLOCKS.register("food_steamer_block",
+                FoodSteamerBlock::new);//蒸笼
+        public static final RegistryObject<Block> CASSEROLE_BLOCK = BLOCKS.register("casserole_block",
+                CasseroleBlock::new);//铁锅
+        public static final RegistryObject<Block> FOOD_STEAMER_HAT_BLOCK = BLOCKS.register("food_steamer_hat_block",
+                () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F)
+                        .requiresCorrectToolForDrops().noOcclusion()));//盘子
         public static final RegistryObject<Block> COOKING_BENCH_BLOCK = BLOCKS.register("cooking_bench_block",
                         CookingBench::new);//灶炉
         public static final RegistryObject<Block> PLATE = BLOCKS.register("plate",
@@ -42,6 +47,7 @@ public class CivilizationFireBlocks {
         public static final RegistryObject<Block> BOWL = BLOCKS.register("bowl",
                         () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
                                         .requiresCorrectToolForDrops().noOcclusion()));//碗
+
 
         /////树木植物
         //肉桂

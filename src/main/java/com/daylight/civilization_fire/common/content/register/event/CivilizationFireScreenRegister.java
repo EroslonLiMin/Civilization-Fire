@@ -1,5 +1,7 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
+import com.daylight.civilization_fire.client.screen.cooking.CasseroleScreen;
+import com.daylight.civilization_fire.client.screen.cooking.FoodSteamerScreen;
 import com.daylight.civilization_fire.client.screen.cooking.IronPotScreen;
 import com.daylight.civilization_fire.common.content.register.CivilizationMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -14,6 +16,8 @@ public class CivilizationFireScreenRegister {
     public static void init(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MenuScreens.register(CivilizationMenuTypes.IRON_POT_MENU.get(), IronPotScreen::new);
+            MenuScreens.register(CivilizationMenuTypes.FOOD_STEAMER_MENU.get(), FoodSteamerScreen::new);
+            MenuScreens.register(CivilizationMenuTypes.CASSEROLE_MENU.get(), CasseroleScreen::new);
         });
     }
 }

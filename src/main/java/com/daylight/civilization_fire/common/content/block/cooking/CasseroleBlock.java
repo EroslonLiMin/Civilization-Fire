@@ -1,10 +1,9 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
-import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
+import com.daylight.civilization_fire.common.content.menu.cooking.CasseroleMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -15,8 +14,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
-
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,20 +35,19 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 //砂锅
-public class IronPotBlock extends BaseEntityBlock {
-    public IronPotBlock() {
-        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL)
+public class CasseroleBlock extends BaseEntityBlock {
+    public CasseroleBlock() {
+        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.STONE)
                 .requiresCorrectToolForDrops());
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new IronPotBlockEntity(pos, state);
+        return new CasseroleBlockEntity(pos, state);
     }
 
     //修改渲染类型
@@ -62,78 +58,40 @@ public class IronPotBlock extends BaseEntityBlock {
     //tick
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
                                                                   BlockEntityType<T> entityType) {
-        return createTickerHelper(entityType, CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(),
-                IronPotBlockEntity::tick);
+        return createTickerHelper(entityType, CivilizationFireBlockEntities.CASSEROLE_BLOCK_ENTITY.get(),
+                CookingBlockEntity::tick);
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
                                  BlockHitResult pHit) {
         if (!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
-            IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
+            CasseroleBlockEntity ironPotBlockEntity = (CasseroleBlockEntity) pLevel.getBlockEntity(pPos);
             NetworkHooks.openGui((ServerPlayer) pPlayer, ironPotBlockEntity, pPos);
         }
         return InteractionResult.SUCCESS;
     }
 
-    public static class IronPotBlockEntity extends CookingBlockEntity implements MenuProvider {
-        public IronPotBlockEntity(BlockPos pos, BlockState state) {
-            super(CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(), pos, state);
+    public static class CasseroleBlockEntity extends CookingBlockEntity implements MenuProvider {
+        public CasseroleBlockEntity(BlockPos pos, BlockState state) {
+            super(CivilizationFireBlockEntities.CASSEROLE_BLOCK_ENTITY.get(), pos, state);
         }
 
         @Override
         public boolean isComplianceCookingTool(CookingTool cookingTool) {
-            return cookingTool == CookingTool.IronPot;
+            return cookingTool == CookingTool.Casserole;
         }
 
         @Override
         public Component getDisplayName() {
-            return new TranslatableComponent("iron_pot.block_entity");
+            return new TranslatableComponent("casserole.block_entity");
         }
 
         @Nullable
         @Override
         public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player player) {
-            return new IronPotMenu(pInventory, pContainerId, this);
-        }
-
-        //tick进行刷新
-        public static void tick(Level level, BlockPos pos, BlockState blockState,
-                                CookingBlockEntity cookingBlockEntity) {
-            if (cookingBlockEntity.toolsItemStackHandler.getStackInSlot(1).getItem() instanceof SpatulaItem) {
-                CookingBlockEntity.tick(level, pos, blockState, cookingBlockEntity);
-            }
+            return new CasseroleMenu(pInventory, pContainerId, this);
         }
     }
 
-    //block entity渲染处理
-    @OnlyIn(Dist.CLIENT)
-    public static class IronPotBER implements BlockEntityRenderer<IronPotBlockEntity> {
-        public IronPotBER(BlockEntityRendererProvider.Context context) {
-
-        }
-
-        //主要是在锅里把玩家放入的菜品都渲染进去
-        @Override
-        public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
-                           MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
-            ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-            for (int i = 0; i < cookingBlockEntity.cookingStacksItemStackHandler.getSlots(); i++) {
-
-                poseStack.pushPose();
-                //乱七八糟的处理...e
-                double v1 = 1.25 - 0.1;
-                double v2 = 0.5 - 0.1;
-                poseStack.translate(v1, i * 0.03 + ( (i / 100.0)), v2);
-                poseStack.scale(0.5F, 0.5F, 0.5F);
-                poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
-                poseStack.translate(-v1, -(i * 0.03), -(v2));
-                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i),
-                        cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
-                        poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
-                poseStack.popPose();
-            }
-        }
-    }
 }
