@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire;
 
 import com.daylight.civilization_fire.client.screen.FireWorkScreen;
+
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,5 +17,4 @@ public class TestEventListener {
             Minecraft.getInstance().setScreen(new FireWorkScreen());
         }
     }
-
 }
