@@ -2,11 +2,9 @@ package com.daylight.civilization_fire.common.content.block.agriculture;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -85,14 +83,4 @@ public class SoilBlock extends Block {
                 && (state.hasProperty(BE_WATERED) ? state.getValue(BE_WATERED) : true);
     }
 
-    //临近水源
-    protected static boolean isNearWater(LevelReader levelReader, BlockPos pos) {
-        for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-            if (levelReader.getFluidState(blockpos).is(FluidTags.WATER)) {
-                return true;
-            }
-        }
-
-        return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(levelReader, pos);
-    }
 }

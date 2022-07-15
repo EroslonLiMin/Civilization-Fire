@@ -19,12 +19,12 @@ public class CivilizationMenuTypes {
 
     public static final RegistryObject<MenuType<IronPotMenu>> IRON_POT_MENU =
             MENUS.register("iron_pot_menu", () -> IForgeMenuType.create((id, inv, data) ->
-                    new IronPotMenu(inv,id, (IronPotBlock.IronPotBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
+                    new IronPotMenu(inv, id, (IronPotBlock.IronPotBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
     public static final RegistryObject<MenuType<FoodSteamerMenu>> FOOD_STEAMER_MENU =
             MENUS.register("food_steamer_menu", () -> IForgeMenuType.create((id, inv, data) ->
-                    new FoodSteamerMenu(inv,id, (FoodSteamerBlock.FoodSteamerBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
+                    new FoodSteamerMenu(inv, id, (FoodSteamerBlock.FoodSteamerBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
     public static final RegistryObject<MenuType<CasseroleMenu>> CASSEROLE_MENU =
             MENUS.register("casserole_block", () -> IForgeMenuType.create((id, inv, data) ->
-                    new CasseroleMenu(inv,id, (CasseroleBlock.CasseroleBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
+                    new CasseroleMenu(inv, id, (CasseroleBlock.CasseroleBlockEntity) inv.player.getLevel().getBlockEntity(data.readBlockPos()))));
 
 }
