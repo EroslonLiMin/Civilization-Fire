@@ -137,4 +137,16 @@ public final class CivilizationFireUtil {
     public static EntityDistanceComparator sortByDistance(@Nonnull final Entity entity) {
         return new EntityDistanceComparator(entity);
     }
+
+    /**
+     * Cast value without warning.
+     *
+     * @param <T> Type to cast.
+     * @param value Value to cast.
+     * @return Casted value.
+     */
+    @SuppressWarnings("unchecked")
+    public static final <T> T genericCast(final Object value) {
+        return (T) value;
+    }
 }
