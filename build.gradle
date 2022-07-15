@@ -19,7 +19,6 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-
 version = '1.0'
 group = 'com.daylight.civilization_fire' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'civilization_fire'
@@ -42,8 +41,8 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.18.2'
-    // mappings channel: 'parchment', version: '1.18.1-2022.03.06-1.18.2'
+    // mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'parchment', version: '2022.07.10-1.18.2'
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
     // Default run configurations.
