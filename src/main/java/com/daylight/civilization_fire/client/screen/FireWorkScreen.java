@@ -13,7 +13,8 @@ import java.util.Map;
 
 public class FireWorkScreen extends Screen {
 
-    public static final ResourceLocation TEXTURE_LOCATION = CivilizationFire.resource("textures/gui/fire_work_screen.png");
+    public static final ResourceLocation TEXTURE_LOCATION = CivilizationFire
+            .resource("textures/gui/fire_work_screen.png");
 
     private FireWorkTab selectedTab;
 
@@ -31,27 +32,23 @@ public class FireWorkScreen extends Screen {
         nodes.put(selectedTab, new FireWorkNode());
     }
 
-
     @Override
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        int offsetX = (this.width - 216) / 2;
-        int offsetY = (this.height - 203) / 2;
         this.renderBackground(poseStack);
         RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-        this.blit(poseStack, offsetX, offsetY,  0, 13, 216, 203);
         poseStack.pushPose();
-        double guiScale = this.minecraft.getWindow().getGuiScale();
+        int offsetX = (this.width - 216) / 2;
+        int offsetY = (this.height - 203) / 2;
+        this.blit(poseStack, offsetX, offsetY, 0, 13, 216, 203);
+        // double guiScale = this.minecraft.getWindow().getGuiScale();
         //RenderSystem.enableScissor((int) ((offsetX + 17) * guiScale), (int) ((offsetY + 94) * guiScale) + 2, (int) (182 * guiScale), (int) (88 * guiScale));
 
         if (selectedTab != null) {
             nodes.get(selectedTab).drawNode(poseStack, offsetX + (216 / 2) - 16, offsetY + (130 / 2) - 16);
         }
 
-        RenderSystem.disableScissor();
-        //poseStack.popPose();
+        //RenderSystem.disableScissor();
+        poseStack.popPose();
     }
-
-
-
 
 }
