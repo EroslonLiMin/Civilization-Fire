@@ -2,7 +2,6 @@ package com.daylight.civilization_fire.client.model;
 
 
 import com.daylight.civilization_fire.common.CivilizationFire;
-import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
