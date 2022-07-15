@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentBlockTable;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.TreePlant;
 import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBlock;
@@ -82,15 +83,23 @@ public class CivilizationFireBlockEntities {
                                                                         CivilizationFireBlocks.IRON_POT_BLOCK.get())
                                                         .build(null));
         public static final RegistryObject<BlockEntityType<FoodSteamerBlock.FoodSteamerBlockEntity>> FOOD_STEAMER_BLOCK_ENTITY = BLOCK_ENTITIES
-                .register("food_steamer_block_entity",
-                        () -> BlockEntityType.Builder
-                                .of(FoodSteamerBlock.FoodSteamerBlockEntity::new,
-                                        CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get())
-                                .build(null));
+                        .register("food_steamer_block_entity",
+                                        () -> BlockEntityType.Builder
+                                                        .of(FoodSteamerBlock.FoodSteamerBlockEntity::new,
+                                                                        CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get())
+                                                        .build(null));
         public static final RegistryObject<BlockEntityType<CasseroleBlock.CasseroleBlockEntity>> CASSEROLE_BLOCK_ENTITY = BLOCK_ENTITIES
-                .register("casserole_block_entity",
-                        () -> BlockEntityType.Builder
-                                .of(CasseroleBlock.CasseroleBlockEntity::new,
-                                        CivilizationFireBlocks.CASSEROLE_BLOCK.get())
-                                .build(null));
+                        .register("casserole_block_entity",
+                                        () -> BlockEntityType.Builder
+                                                        .of(CasseroleBlock.CasseroleBlockEntity::new,
+                                                                        CivilizationFireBlocks.CASSEROLE_BLOCK.get())
+                                                        .build(null));
+
+        public static final RegistryObject<BlockEntityType<AgricultureEnchantmentBlockTable.AgricultureEnchantmentTableBlockEntity>> AGRICULTURE_ENCHANTMENT_TABLE_BLOCK_ENTITY = BLOCK_ENTITIES
+                        .register("agriculture_enchantment_table_block_entity",
+                                        () -> BlockEntityType.Builder
+                                                        .of(AgricultureEnchantmentBlockTable.AgricultureEnchantmentTableBlockEntity::new,
+                                                                        CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE
+                                                                                        .get())
+                                                        .build(null));
 }

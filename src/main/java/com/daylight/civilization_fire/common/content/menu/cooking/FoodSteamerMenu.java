@@ -2,7 +2,7 @@ package com.daylight.civilization_fire.common.content.menu.cooking;
 
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
-import com.daylight.civilization_fire.common.content.register.CivilizationMenuTypes;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireMenuTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class FoodSteamerMenu extends CivilizationCookingMenu<FoodSteamerBlock.FoodSteamerBlockEntity> {
     public FoodSteamerMenu(Inventory inventory, int pContainerId,
             FoodSteamerBlock.FoodSteamerBlockEntity foodSteamerBlockEntity) {
-        super(CivilizationMenuTypes.FOOD_STEAMER_MENU.get(), pContainerId, inventory, foodSteamerBlockEntity);
+        super(CivilizationFireMenuTypes.FOOD_STEAMER_MENU.get(), pContainerId, inventory, foodSteamerBlockEntity);
 
     }
 

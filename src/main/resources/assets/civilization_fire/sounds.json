@@ -1,0 +1,10 @@
+{
+    "never_gonna_give_you_up": {
+        "sounds": [
+            {
+                "name": "civilization_fire:never_gonna_give_you_up",
+                "stream": true
+            }
+        ]
+    }
+}
