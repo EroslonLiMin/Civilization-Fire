@@ -4,7 +4,6 @@ import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
 import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
-import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -16,7 +15,6 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,7 +36,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,14 +58,14 @@ public class IronPotBlock extends BaseEntityBlock {
 
     //tick
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
-                                                                  BlockEntityType<T> entityType) {
+            BlockEntityType<T> entityType) {
         return createTickerHelper(entityType, CivilizationFireBlockEntities.IRON_POT_BLOCK_ENTITY.get(),
                 IronPotBlockEntity::tick);
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
-                                 BlockHitResult pHit) {
+            BlockHitResult pHit) {
         if (!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND) {
             IronPotBlockEntity ironPotBlockEntity = (IronPotBlockEntity) pLevel.getBlockEntity(pPos);
             NetworkHooks.openGui((ServerPlayer) pPlayer, ironPotBlockEntity, pPos);
@@ -99,7 +96,7 @@ public class IronPotBlock extends BaseEntityBlock {
 
         //tick进行刷新
         public static void tick(Level level, BlockPos pos, BlockState blockState,
-                                CookingBlockEntity cookingBlockEntity) {
+                CookingBlockEntity cookingBlockEntity) {
             if (cookingBlockEntity.toolsItemStackHandler.getStackInSlot(1).getItem() instanceof SpatulaItem) {
                 CookingBlockEntity.tick(level, pos, blockState, cookingBlockEntity);
             }
@@ -116,7 +113,7 @@ public class IronPotBlock extends BaseEntityBlock {
         //主要是在锅里把玩家放入的菜品都渲染进去
         @Override
         public void render(IronPotBlockEntity cookingBlockEntity, float partialTicks, PoseStack poseStack,
-                           MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+                MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             for (int i = 0; i < cookingBlockEntity.cookingStacksItemStackHandler.getSlots(); i++) {
 
@@ -124,13 +121,15 @@ public class IronPotBlock extends BaseEntityBlock {
                 //乱七八糟的处理...e
                 double v1 = 1.25 - 0.1;
                 double v2 = 0.5 - 0.1;
-                poseStack.translate(v1, i * 0.03 + ( (i / 100.0)), v2);
+                poseStack.translate(v1, i * 0.03 + ((i / 100.0)), v2);
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90));
                 poseStack.translate(-v1, -(i * 0.03), -(v2));
-                BakedModel bakedModel = itemRenderer.getModel(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i),
+                BakedModel bakedModel = itemRenderer.getModel(
+                        cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i),
                         cookingBlockEntity.getLevel(), null, 0);
-                itemRenderer.render(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i), ItemTransforms.TransformType.FIXED, true,
+                itemRenderer.render(cookingBlockEntity.cookingStacksItemStackHandler.getStackInSlot(i),
+                        ItemTransforms.TransformType.FIXED, true,
                         poseStack, multiBufferSource, combinedLightIn, combinedOverlayIn, bakedModel);
                 poseStack.popPose();
             }
