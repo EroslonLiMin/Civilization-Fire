@@ -209,7 +209,8 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
 
     /**
      * Create a new attribute supplier for the bot.
-     * @return
+     *
+     * @return AttributeSupplier.Builder
      */
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D)
@@ -224,6 +225,7 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
     }
 
     private final AnimationFactory factory = new AnimationFactory(this);
+
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
@@ -233,10 +235,10 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
         if (event.isMoving()) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
-        } else if(this.isAggressive()){
+        } else if (this.isAggressive()) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
-        }else {
+        } else {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.stand", false));
         }
@@ -245,6 +247,6 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
 
     @Override
     public int tickTimer() {
-        return this.tickCount;
+        return tickCount;
     }
 }

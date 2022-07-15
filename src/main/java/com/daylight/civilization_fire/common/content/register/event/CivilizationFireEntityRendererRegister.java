@@ -1,7 +1,6 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
 import com.daylight.civilization_fire.client.model.CurvilinearPloughModel;
-import com.daylight.civilization_fire.client.model.GuardianBotModel;
 import com.daylight.civilization_fire.client.model.IronPloughModel;
 import com.daylight.civilization_fire.client.model.StonePloughModel;
 import com.daylight.civilization_fire.client.renderer.GuardianBotRenderer;
