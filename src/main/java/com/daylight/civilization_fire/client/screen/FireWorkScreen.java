@@ -40,7 +40,7 @@ public class FireWorkScreen extends Screen {
         int offsetX = (this.width - 216) / 2;
         int offsetY = (this.height - 203) / 2;
         this.blit(poseStack, offsetX, offsetY, 0, 13, 216, 203);
-        double guiScale = this.minecraft.getWindow().getGuiScale();
+        // double guiScale = this.minecraft.getWindow().getGuiScale();
         //RenderSystem.enableScissor((int) ((offsetX + 17) * guiScale), (int) ((offsetY + 94) * guiScale) + 2, (int) (182 * guiScale), (int) (88 * guiScale));
 
         if (selectedTab != null) {
