@@ -1,6 +1,8 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.entity.agriculture.BucketsWaterwheelEntity;
+import com.daylight.civilization_fire.common.content.entity.agriculture.KeelWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 
@@ -51,4 +53,16 @@ public class CivilizationEntityTypes {
                                 .of(MiningBot::new, MobCategory.MISC)
                                 .sized(1.4F, 2.7F).clientTrackingRange(10)
                                 .build("mining_bot"));
+        public static final RegistryObject<EntityType<KeelWaterwheelEntity>> KEEL_WATER_WHEEL_ENTITY = ENTITY_TYPES
+                .register("keel_water_wheel_entity",
+                        () -> EntityType.Builder
+                                .of(KeelWaterwheelEntity::new, MobCategory.MISC)
+                                .sized(2, 4).clientTrackingRange(10)
+                                .build("keel_water_wheel_entity"));
+        public static final RegistryObject<EntityType<BucketsWaterwheelEntity>> BUCKETS_WATER_WHEEL_ENTITY = ENTITY_TYPES
+                .register("buckets_water_wheel_entity",
+                        () -> EntityType.Builder
+                                .of(BucketsWaterwheelEntity::new, MobCategory.MISC)
+                                .sized(2, 4).clientTrackingRange(10)
+                                .build("buckets_water_wheel_entity"));
 }

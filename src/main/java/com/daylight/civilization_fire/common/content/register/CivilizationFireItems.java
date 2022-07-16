@@ -1,6 +1,8 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.entity.agriculture.BucketsWaterwheelEntity;
+import com.daylight.civilization_fire.common.content.entity.agriculture.KeelWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.item.agriculture.EntityItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
@@ -158,5 +160,11 @@ public class CivilizationFireItems {
                 stonePloughEntity.setPloughTimes(30000 - itemStack.getDamageValue());
                 return stonePloughEntity;
             }));
+
+    public static final RegistryObject<Item> KEEL_WATERWHEEL_ENTITY_ITEM = ITEMS
+            .register("keel_waterwheel_entity_item", () -> new EntityItem(30000, (level, itemStack) -> new KeelWaterwheelEntity(CivilizationEntityTypes.KEEL_WATER_WHEEL_ENTITY.get(),level)));
+
+    public static final RegistryObject<Item> BUCKETS_WATERWHEEL_ENTITY_ITEM = ITEMS
+            .register("buckets_waterwheel_entity_item", () -> new EntityItem(30000, (level, itemStack) -> new BucketsWaterwheelEntity(CivilizationEntityTypes.BUCKETS_WATER_WHEEL_ENTITY.get(),level)));
 
 }

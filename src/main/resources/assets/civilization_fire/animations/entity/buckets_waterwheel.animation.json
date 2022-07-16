@@ -1,0 +1,39 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.model.running": {
+			"animation_length": 3.16,
+			"bones": {
+				"shuiche": {
+					"rotation": {
+						"0.28": {
+							"vector": [0, 0, 83]
+						},
+						"0.64": {
+							"vector": [0, 0, 125]
+						},
+						"1.0": {
+							"vector": [0, 0, 168]
+						},
+						"1.36": {
+							"vector": [0, 0, 210]
+						},
+						"1.72": {
+							"vector": [0, 0, 250]
+						},
+						"2.08": {
+							"vector": [0, 0, 290]
+						},
+						"2.44": {
+							"vector": [0, 0, 320]
+						},
+						"2.84": {
+							"vector": [0, 0, 360]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

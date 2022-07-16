@@ -4,10 +4,10 @@ import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEn
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class PloughEntityRenderer<T extends PloughEntity, M extends EntityModel<T>> extends LivingEntityRenderer<T, M> {
+public class PloughEntityRenderer<T extends PloughEntity, M extends EntityModel<T>> extends MobRenderer<T, M> {
     public final ResourceLocation resourceLocation;//贴图资源文件
 
     public PloughEntityRenderer(EntityRendererProvider.Context context, ResourceLocation resourceLocation,

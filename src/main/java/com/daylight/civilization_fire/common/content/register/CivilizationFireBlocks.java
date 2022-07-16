@@ -99,7 +99,7 @@ public class CivilizationFireBlocks {
                 PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*黄米*/
         public static final PlantLoad YELLOW_RICE_PLANT = new PlantLoad("yellow_rice", 7, 2000, false,
-                new String[]{"", "civilization_fire:sand_block"}, false, PlantBlock.PlantModel.DestroyModel,
+                new String[]{"civilization_fire:sand_block"}, false, PlantBlock.PlantModel.DestroyModel,
                 CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*高粱*/
         public static final PlantLoad SORGHUM_PLANT = new PlantLoad("sorghum", 7, 2000, false,
