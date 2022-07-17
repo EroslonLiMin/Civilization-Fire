@@ -4,6 +4,8 @@ import javax.annotation.CheckForSigned;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
@@ -14,6 +16,8 @@ import net.minecraft.world.phys.Vec3;
  * All bot's base class.
  * @author Heckerpowered
  */
+@MethodsReturnNonnullByDefault
+@FieldsAreNonnullByDefault
 public abstract class Bot extends PathfinderMob {
     /**
      * Synchornize bot's energy.
