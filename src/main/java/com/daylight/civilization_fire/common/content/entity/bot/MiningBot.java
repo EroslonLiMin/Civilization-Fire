@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
 
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -28,6 +30,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
  * Mining bot, automatic mining after giving ore.
  * @author Heckerpowered
  */
+@FieldsAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public final class MiningBot extends Bot implements IAnimatable, IAnimationTickable {
 
     /**
@@ -139,13 +143,14 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
     }
 
     private final AnimationFactory factory = new AnimationFactory(this);
+
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
     }
 
     private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
-        if(this.swinging){
+        if (this.swinging) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
         } else if (event.isMoving()) {

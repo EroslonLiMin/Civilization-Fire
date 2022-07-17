@@ -19,5 +19,6 @@ public final class AgricultureEnchantmentMenu extends CivilizationBaseMenu {
 
     public AgricultureEnchantmentMenu(int containerId, Inventory inventory) {
         super(CivilizationFireMenuTypes.AGRICULTURE_ENCHANTMENT_MENU.get(), containerId, inventory);
+        layoutPlayerInventorySlots(28, 134);
     }
 }

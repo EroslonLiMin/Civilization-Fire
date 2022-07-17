@@ -14,7 +14,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.energy.CapabilityEnergy;
 
-
 public class WellBlock extends Block {
 
     public WellBlock() {
@@ -23,12 +22,15 @@ public class WellBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+            BlockHitResult pHit) {
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
-        if(itemStack.getItem() instanceof WateringToolItem){
-            itemStack.getCapability(CapabilityEnergy.ENERGY).ifPresent(e -> e.receiveEnergy(e.getMaxEnergyStored() - e.getEnergyStored(),false));
+        if (itemStack.getItem() instanceof WateringToolItem) {
+            itemStack.getCapability(CapabilityEnergy.ENERGY)
+                    .ifPresent(e -> e.receiveEnergy(e.getMaxEnergyStored() - e.getEnergyStored(), false));
         }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+
+        return InteractionResult.PASS;
     }
 
 }
