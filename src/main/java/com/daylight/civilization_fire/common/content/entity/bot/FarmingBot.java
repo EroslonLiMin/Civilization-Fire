@@ -11,24 +11,19 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BucketPickup;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class FarmingBot extends Bot {
     public BlockPos targetPos;
+
     public FarmingBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
-
 
     @Override
     protected final void registerGoals() {
@@ -47,22 +42,23 @@ public class FarmingBot extends Bot {
     @Override
     public void tick() {
         super.tick();
-        if(targetPos == null) {
+        if (targetPos == null) {
             for (int x = this.getBlockX() - 10; x < this.getBlockX() + 10; x++) {
                 for (int y = this.getBlockY() - 10; y < this.getBlockY() + 10; y++) {
                     for (int z = this.getBlockZ() - 10; z < this.getBlockZ() + 10; z++) {
                         BlockState blockState = this.level.getBlockState(new BlockPos(x, y, z));
-                        if (blockState.hasProperty(SoilBlock.BE_PLOUGHED) && !blockState.getValue(SoilBlock.BE_PLOUGHED)) {
-                            targetPos = new BlockPos(x,y,z);
+                        if (blockState.hasProperty(SoilBlock.BE_PLOUGHED)
+                                && !blockState.getValue(SoilBlock.BE_PLOUGHED)) {
+                            targetPos = new BlockPos(x, y, z);
                         }
                     }
                 }
             }
         }
-        if(this.targetPos != null){
-            this.getNavigation().moveTo(targetPos.getX(),targetPos.getY(), targetPos.getZ(), this.followLeashSpeed());
-            if(targetPos.distSqr(this.getOnPos()) < 2){
-                SoilBlock.setPloughed(null,this.level,this.targetPos,true);
+        if (this.targetPos != null) {
+            this.getNavigation().moveTo(targetPos.getX(), targetPos.getY(), targetPos.getZ(), this.followLeashSpeed());
+            if (targetPos.distSqr(this.getOnPos()) < 2) {
+                SoilBlock.setPloughed(null, this.level, this.targetPos, true);
             }
         }
     }
