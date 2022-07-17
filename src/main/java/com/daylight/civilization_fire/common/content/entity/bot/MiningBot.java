@@ -10,12 +10,18 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.IAnimationTickable;
@@ -35,6 +41,14 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public final class MiningBot extends Bot implements IAnimatable, IAnimationTickable {
 
     /**
+     * This mutex is used to interrupt the worker thread after
+     * any ore is found, after the worker thread finds the location of the ore,
+     * it calls lock.wait() to interrupt worker thread, until the ore is mined,
+     * then it calls lock.notify() to awake the worker thread.
+     */
+    private Object lock = new Object();
+
+    /**
      * Worker thread to find ores in one chunk.
      */
     @Nullable
@@ -44,19 +58,10 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
      * Locked ore location.
      */
     @Nonnull
-    private Optional<BlockPos> target;
-
-    /**
-     * After the worker thread finds the location of the ore, it calls lock.wait(),
-     * until the ore is mined, then it calls lock.notify().
-     */
-    @Nonnull
-    private Object lock;
+    private Optional<BlockPos> target = Optional.empty();
 
     public MiningBot(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
-        target = Optional.empty();
-        lock = new Object();
     }
 
     @Override
@@ -64,6 +69,15 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
         return 10000;
     }
 
+    /**
+     * Mining bot won't process logical when following condition is true,
+     * The bot is on the client side, or there is no energy left.
+     * if the worker thread is not presented yet, it will create one,
+     * the worker thread will try to find any ore in bot's chunk,
+     * after any ore is found, it will call lock.wait() to interrupt
+     * the worker thread, until the ore is mined, then it will call
+     * lock.notify() to awake worker thread.
+     */
     @Override
     public void tick() {
         super.tick();
@@ -75,7 +89,7 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
             return;
         }
 
-        /*if (energyAvailable()) {
+        if (energyAvailable()) {
             if (worker == null) {
                 //
                 // It is coroutine... in some ways?
@@ -95,13 +109,24 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
                                 final var blockState = level.getBlockState(new BlockPos(x, y, z));
                                 if (blockState.is(Tags.Blocks.ORES)) {
                                     target = Optional.of(new BlockPos(x, y, z));
-                                    try {
-                                        lock.wait();
-                                    } catch (InterruptedException e) {
-                                        //
-                                        // Clears interrupt state.
-                                        //
-                                        CivilizationFire.LOGGER.error("Lock released.", e);
+
+                                    CivilizationFire.LOGGER.debug("Ore location: {}", target.get().toString());
+
+                                    //
+                                    // Hold the lock, so that we can wait until the ore is mined.
+                                    //
+                                    synchronized (lock) {
+                                        try {
+                                            //
+                                            // Wait until the ore is mined.
+                                            //
+                                            lock.wait();
+                                        } catch (InterruptedException e) {
+                                            //
+                                            // Clears interrupt state.
+                                            //
+                                            CivilizationFire.LOGGER.error("Lock released.", e);
+                                        }
                                     }
                                 }
                             }
@@ -113,17 +138,57 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
                     //
                     worker = null;
                 });
+
+                //
+                // Start worker thread.
+                //
+                worker.start();
             } else if (target.isPresent()) {
                 //
-                // Try to move to target location.
+                // Get the ore's location.
                 //
                 final var location = target.get();
-                CivilizationFire.LOGGER.debug("Ore location: {}", location.toString());
-                target = Optional.empty();
+                final var blockState = level.getBlockState(location);
+
+                if (level instanceof ServerLevel serverLevel) {
+                    for (final var drop : blockState
+                            .getDrops(new LootContext.Builder(serverLevel).withRandom(level.random).withParameter(
+                                    LootContextParams.TOOL, ItemStack.EMPTY)
+                                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(location))
+                                    .withOptionalParameter(LootContextParams.BLOCK_ENTITY,
+                                            level.getBlockEntity(location))
+                                    .withParameter(LootContextParams.THIS_ENTITY, this)
+                                    .withParameter(LootContextParams.BLOCK_STATE, blockState))) {
+                        //
+                        // Drop item, create a new item entity.
+                        //
+                        final var itemEntity = new ItemEntity(serverLevel, getX(), getY(), getZ(), drop);
+
+                        //
+                        // Spawn entity in the level.
+                        //
+                        serverLevel.addFreshEntity(itemEntity);
+                    }
+
+                    //
+                    // Destroy the block.
+                    //
+                    serverLevel.destroyBlock(location, false);
+
+                    target = Optional.empty();
+                } else {
+                    CivilizationFire.LOGGER.info("level not instanceof ServerLevel, this should be impossible.");
+                }
             } else {
-                //lock.notifyAll();
+                //
+                // Hold the lock, so that we can call lock.notifyAll() to
+                // awake the worker thread.
+                //
+                synchronized (lock) {
+                    lock.notifyAll();
+                }
             }
-        }*/
+        }
     }
 
     /**

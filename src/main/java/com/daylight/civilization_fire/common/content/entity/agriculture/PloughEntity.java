@@ -8,9 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -82,10 +79,10 @@ public abstract class PloughEntity extends PathfinderMob {
     //耕种次数
     public int useTimes = 0;
     public EntityItem entityItem;//耕种物品
+
     public PloughEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
-
 
     public abstract int getPloughLevel();
 
@@ -129,8 +126,6 @@ public abstract class PloughEntity extends PathfinderMob {
         return super.interactAt(player, pVec, hand);
     }
 
-
-
     //获取与设置
     public int getPloughTimes() {
         return useTimes;
@@ -156,7 +151,7 @@ public abstract class PloughEntity extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         compoundTag.putInt("entityItem", Item.getId(entityItem));
-        compoundTag.putInt("useTimes",useTimes);
+        compoundTag.putInt("useTimes", useTimes);
         super.addAdditionalSaveData(compoundTag);
     }
 
@@ -164,6 +159,5 @@ public abstract class PloughEntity extends PathfinderMob {
     public Packet<?> getAddEntityPacket() {
         return new ClientboundAddEntityPacket(this);
     }
-
 
 }

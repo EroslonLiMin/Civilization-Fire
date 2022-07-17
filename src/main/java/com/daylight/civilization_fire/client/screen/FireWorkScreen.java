@@ -4,6 +4,7 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -11,10 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
 
+
 public class FireWorkScreen extends Screen {
 
-    public static final ResourceLocation TEXTURE_LOCATION = CivilizationFire
-            .resource("textures/gui/fire_work_screen.png");
+    public static final ResourceLocation TEXTURE_LOCATION = CivilizationFire.resource("textures/gui/fire_work_screen.png");
 
     private FireWorkTab selectedTab;
 
@@ -29,7 +30,35 @@ public class FireWorkScreen extends Screen {
     protected void init() {
         super.init();
         this.selectedTab = new FireWorkTab("test");
-        nodes.put(selectedTab, new FireWorkNode());
+        FireWorkNode value = new FireWorkNode();
+        nodes.put(selectedTab, value);
+        FireWorkNode node = new FireWorkNode();
+        node.addNode(new FireWorkNode());
+        FireWorkNode node1 = new FireWorkNode();
+        node1.addNode(new FireWorkNode());
+        node1.addNode(new FireWorkNode());
+        node1.addNode(new FireWorkNode());
+        node.addNode(node1);
+        value.addNode(node);
+        FireWorkNode node2 = new FireWorkNode();
+        node2.addNode(new FireWorkNode());
+        node2.addNode(new FireWorkNode());
+        node2.addNode(new FireWorkNode());
+        FireWorkNode node6 = new FireWorkNode();
+        node6.addNode(new FireWorkNode());
+        node6.addNode(new FireWorkNode());
+        node2.addNode(node6);
+        node2.addNode(new FireWorkNode());
+        value.addNode(node2);
+        FireWorkNode node4 = new FireWorkNode();
+        node4.addNode(new FireWorkNode());
+        node4.addNode(new FireWorkNode());
+        node4.addNode(new FireWorkNode());
+        value.addNode(node4);
+        FireWorkNode node3 = new FireWorkNode();
+        value.addNode(node3);
+        node3.addNode(new FireWorkNode());
+        node3.addNode(new FireWorkNode());
     }
 
     @Override
@@ -39,16 +68,21 @@ public class FireWorkScreen extends Screen {
         poseStack.pushPose();
         int offsetX = (this.width - 216) / 2;
         int offsetY = (this.height - 203) / 2;
-        this.blit(poseStack, offsetX, offsetY, 0, 13, 216, 203);
-        // double guiScale = this.minecraft.getWindow().getGuiScale();
+        //this.blit(poseStack, offsetX, offsetY,  0, 13, 216, 203);
+        double guiScale = this.minecraft.getWindow().getGuiScale();
         //RenderSystem.enableScissor((int) ((offsetX + 17) * guiScale), (int) ((offsetY + 94) * guiScale) + 2, (int) (182 * guiScale), (int) (88 * guiScale));
 
         if (selectedTab != null) {
+            poseStack.pushPose();
+            poseStack.translate(50, 100, 0);
+            poseStack.scale(0.5f, 0.5f, 1);
             nodes.get(selectedTab).drawNode(poseStack, offsetX + (216 / 2) - 16, offsetY + (130 / 2) - 16);
+            poseStack.popPose();
         }
 
         //RenderSystem.disableScissor();
         poseStack.popPose();
     }
+
 
 }

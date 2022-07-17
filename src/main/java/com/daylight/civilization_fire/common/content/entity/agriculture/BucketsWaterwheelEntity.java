@@ -1,6 +1,5 @@
 package com.daylight.civilization_fire.common.content.entity.agriculture;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -16,8 +15,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-
-public class BucketsWaterwheelEntity extends IrrigationEntity{
+public class BucketsWaterwheelEntity extends IrrigationEntity {
     public BucketsWaterwheelEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -26,7 +24,6 @@ public class BucketsWaterwheelEntity extends IrrigationEntity{
     public int getIrrigationLevel() {
         return 10;
     }
-
 
     @Override
     public void registerControllers(AnimationData data) {
@@ -43,13 +40,14 @@ public class BucketsWaterwheelEntity extends IrrigationEntity{
     }
 
     private final AnimationFactory factory = new AnimationFactory(this);
+
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
     }
 
     private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
-        if(this.level.getBlockState(this.getOnPos().above()).getBlock() instanceof BucketPickup){
+        if (this.level.getBlockState(this.getOnPos().above()).getBlock() instanceof BucketPickup) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.running", true));
         }
