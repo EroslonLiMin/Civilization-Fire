@@ -8,12 +8,14 @@
   "item.civilization_fire.keel_waterwheel_entity_item": "龙骨水车",
 
   "condiment_item.hover.text" : "剩余使用次数:%s",
+  "civilization_fire.bot_menu": "机器人界面",
 
-  "itemGroup.agriculture_creative_mode_tab" : "农业",
-  "itemGroup.grain_crops_creative_mode_tab" : "粮食作物",
-  "itemGroup.spice_crops_creative_mode_tab" : "香料作物",
-  "itemGroup.vegetable_crops_creative_mode_tab" : "蔬菜作物",
-  "itemGroup.cooking_creative_mode_tab" : "烹饪",
+  "itemGroup.agriculture_creative_mode_tab" : "五谷神农火-农业",
+  "itemGroup.grain_crops_creative_mode_tab" : "五谷神农火-粮食作物",
+  "itemGroup.spice_crops_creative_mode_tab" : "五谷神农火-香料作物",
+  "itemGroup.vegetable_crops_creative_mode_tab" : "五谷神农火-蔬菜作物",
+  "itemGroup.cooking_creative_mode_tab" : "五谷神农火-烹饪",
+  "itemGroup.add_creative_mode_tab": "五谷神农火-附加",
 
   "item.civilization_fire.wood_handle_plough" : "木制耒耜",
   "item.civilization_fire.stone_handle_plough" : "石制耒耜",

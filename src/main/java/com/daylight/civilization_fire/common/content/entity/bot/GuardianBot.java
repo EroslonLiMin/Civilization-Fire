@@ -3,10 +3,14 @@ package com.daylight.civilization_fire.common.content.entity.bot;
 import javax.annotation.Nullable;
 
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -27,6 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.IAnimationTickable;
 import software.bernie.geckolib3.core.PlayState;
@@ -107,7 +112,7 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
             return InteractionResult.CONSUME;
         }
 
-        if (player.isShiftKeyDown()) {
+        if (player.isShiftKeyDown() && !player.level.isClientSide()) {
             //
             // Press shift to open the gui.
             //
@@ -115,6 +120,7 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
             //
             // TODO: Open gui.
             //
+            openHorseInventory((ServerPlayer) player,this);
             return InteractionResult.SUCCESS;
         }
 
@@ -194,7 +200,7 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
 
     @Override
     public int getMaxEnergy() {
-        return 10000;
+        return 10000 * (1 + this.getEnergyAddLevel());
     }
 
     @Override
@@ -213,7 +219,20 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
      */
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 5.0D);
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 5.0D).add(Attributes.ARMOR,2);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        updateAttributes();
+    }
+
+    public void updateAttributes(){
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20 * (1 + this.getMCAttributeAddLevel() + this.getCorrespondingAbilityAddLevel()));
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25 * (1 + this.getMCAttributeAddLevel() + this.getCorrespondingAbilityAddLevel()));
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(5 * (1 + this.getMCAttributeAddLevel() + this.getCorrespondingAbilityAddLevel()));
+        this.getAttribute(Attributes.ARMOR).setBaseValue(2 * (1 + this.getMCAttributeAddLevel() + this.getCorrespondingAbilityAddLevel()));
     }
 
     @Override

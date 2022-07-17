@@ -23,5 +23,8 @@ public final class CivilizationFireTab {
         public static final ModCreativeModeTab COOKING_CREATIVE_MODE_TAB = new ModCreativeModeTab(
                 "cooking_creative_mode_tab",
                 () -> new ItemStack(CivilizationFireBlocks.COOKING_BENCH_BLOCK.get()));//烹饪
+        public static final ModCreativeModeTab ADD_MODE_TAB = new ModCreativeModeTab(
+                "add_creative_mode_tab",
+                () -> new ItemStack(CivilizationFireBlocks.COOKING_BENCH_BLOCK.get()));//增加物品
 
 }

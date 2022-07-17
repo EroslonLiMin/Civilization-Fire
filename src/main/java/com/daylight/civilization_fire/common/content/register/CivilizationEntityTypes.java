@@ -1,9 +1,11 @@
 package com.daylight.civilization_fire.common.content.register;
 
+import com.daylight.civilization_fire.client.renderer.FarmingBotRenderer;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.entity.agriculture.BucketsWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.KeelWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
+import com.daylight.civilization_fire.common.content.entity.bot.FarmingBot;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
@@ -65,4 +67,10 @@ public class CivilizationEntityTypes {
                                 .of(BucketsWaterwheelEntity::new, MobCategory.MISC)
                                 .sized(2, 6).clientTrackingRange(10)
                                 .build("buckets_water_wheel_entity"));
+        public static final RegistryObject<EntityType<FarmingBot>> FARMING_BOT_ENTITY = ENTITY_TYPES
+                .register("farming_bot",
+                        () -> EntityType.Builder
+                                .of(FarmingBot::new, MobCategory.MISC)
+                                .sized(1.5F, 1.5F).clientTrackingRange(10)
+                                .build("farming_bot"));
 }

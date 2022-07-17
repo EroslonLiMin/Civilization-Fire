@@ -58,9 +58,11 @@ public class CookingBench extends Block {
                 && ((BlockItem) itemStack.getItem()).getBlock().defaultBlockState().getMaterial() == Material.WOOD) {
             itemStack.shrink(1);
             setBenchState(player, level, pos, 1);
+            return InteractionResult.SUCCESS;
         } else if (itemStack.getItem() == Items.FLINT_AND_STEEL && state.getValue(BENCH_STATE) == 1) {
             CivilizationFireUtil.hurtItem(itemStack, player, hand, 1);
             setBenchState(player, level, pos, 8);
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }

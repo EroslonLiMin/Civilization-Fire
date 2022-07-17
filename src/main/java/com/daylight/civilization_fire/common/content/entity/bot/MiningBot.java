@@ -75,7 +75,7 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
             return;
         }
 
-        if (energyAvailable()) {
+        /*if (energyAvailable()) {
             if (worker == null) {
                 //
                 // It is coroutine... in some ways?
@@ -121,9 +121,9 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
                 CivilizationFire.LOGGER.debug("Ore location: {}", location.toString());
                 target = Optional.empty();
             } else {
-                lock.notifyAll();
+                //lock.notifyAll();
             }
-        }
+        }*/
     }
 
     /**

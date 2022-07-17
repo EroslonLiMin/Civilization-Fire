@@ -21,6 +21,8 @@ public final class AgricultureEnchantmentScreen extends BaseContainerScreen<Agri
 
     public AgricultureEnchantmentScreen(AgricultureEnchantmentMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, CivilizationFire.resource("textures/gui/agriculture_enchantment_screen.png"));
+        this.imageWidth = 216;
+        this.imageHeight = 216;
     }
 
 }
