@@ -18,7 +18,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
 public class BucketsWaterwheelEntity extends IrrigationEntity{
-    BlockPos setPos;
     public BucketsWaterwheelEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -39,7 +38,7 @@ public class BucketsWaterwheelEntity extends IrrigationEntity{
     //属性处理
     public static AttributeSupplier.Builder prepareAttributes() {
         return LivingEntity.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
+                .add(Attributes.MAX_HEALTH, 50)
                 .add(Attributes.FOLLOW_RANGE, 40.0D);
     }
 

@@ -63,6 +63,6 @@ public class CivilizationEntityTypes {
                 .register("buckets_water_wheel_entity",
                         () -> EntityType.Builder
                                 .of(BucketsWaterwheelEntity::new, MobCategory.MISC)
-                                .sized(2, 4).clientTrackingRange(10)
+                                .sized(2, 6).clientTrackingRange(10)
                                 .build("buckets_water_wheel_entity"));
 }

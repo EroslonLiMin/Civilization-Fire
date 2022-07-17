@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -25,6 +26,11 @@ public class CivilizationBaseMenu extends AbstractContainerMenu {
         return inventory.stillValid(pPlayer);
     }
 
+
+    @Override
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+        return ItemStack.EMPTY;
+    }
 
     protected Slot addSlot(IItemHandler handler, int index, int x, int y) {
         return addSlot(new SlotItemHandler(handler, index, x, y));
