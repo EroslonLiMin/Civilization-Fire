@@ -4,11 +4,18 @@ import javax.annotation.CheckForSigned;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
+import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
+
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -40,6 +47,7 @@ public abstract class Bot extends PathfinderMob {
 
     /**
      * Set the energy of the bot.
+     *
      * @param energy Energy amount to be set, cannot be negative.
      * check for unsigned, do not check unsigned before call.
      * @author Heckerpowered
@@ -54,6 +62,7 @@ public abstract class Bot extends PathfinderMob {
 
     /**
      * Get the max energy of the bot.
+     *
      * @return the max energy of the bot, always poostive.
      * @author Heckerpowered
      */
@@ -61,6 +70,7 @@ public abstract class Bot extends PathfinderMob {
 
     /**
      * Get the energy needed per tick.
+     *
      * @return energy per tick.
      */
     public @Nonnegative int getEnergyCost() {
@@ -108,7 +118,64 @@ public abstract class Bot extends PathfinderMob {
         }
     }
 
+    /**
+     * Determine if there is energy left, returns true if
+     * current energy greater than zero.
+     *
+     * @return Returns true if current energy greater than zero.
+     */
     protected final boolean energyAvailable() {
         return getEnergy() != 0;
+    }
+
+    /**
+     * Charges the bot with an item, returns InteractionResult.SUCCESS if the item was charged.
+     * Return InteractionResult.FAIL if one of the following conditions is true:
+     * The item is not a valid energy source (fruit item), the fruit item don't
+     * have grow time (The amount of energy charged depends on fruit's grow time),
+     * the current energy reaches the bot's maxium energy. The overflow during
+     * charging is allowed. e.g. When the current energy plus the energy charged
+     * is greater than the maxium energy, the current energy can be greater than
+     * the maxium energy. However, you can't charge when the current energy is greater
+     * than or equal to the maxium energy.
+     *
+     * @param stack ItemStack to charge
+     * @return Return InteractionResult.SUCCESS if the item was charged, Return
+     * InteractionResult.FAIL if the item was not charged.
+     */
+    protected final InteractionResult charge(@Nonnull final ItemStack stack) {
+        final var item = stack.getItem();
+        if (item instanceof PlantItem.PlantFruitItem fruit) {
+            if (getEnergy() <= getMaxEnergy()) {
+                //
+                // Charge the bot.
+                //
+                final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
+                if (growTime.isPresent()) {
+                    //
+                    // Allow a small "overflow" when charging,
+                    // So we don't need to check the amount of charge.
+                    //
+                    setEnergy(getEnergy() + growTime.get());
+                    stack.shrink(1);
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            } else {
+                return InteractionResult.FAIL;
+            }
+        } else {
+            return InteractionResult.FAIL;
+        }
+    }
+
+    @Override
+    public InteractionResult interactAt(Player player, Vec3 vec, InteractionHand hand) {
+        if (!player.level.isClientSide) {
+            return charge(player.getItemInHand(hand));
+        }
+
+        return super.interactAt(player, vec, hand);
     }
 }

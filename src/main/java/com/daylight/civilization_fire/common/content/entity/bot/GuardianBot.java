@@ -2,9 +2,6 @@ package com.daylight.civilization_fire.common.content.entity.bot;
 
 import javax.annotation.Nullable;
 
-import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -135,30 +132,10 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
             }
         } else {
             final var item = stack.getItem();
-            if (item instanceof PlantItem.PlantFruitItem fruit) {
-                if (getEnergy() <= getMaxEnergy()) {
-                    //
-                    // Charge the bot.
-                    //
-                    final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
-                    if (growTime.isPresent()) {
-                        //
-                        // Allow a small "overflow" when charging,
-                        // So we don't need to check the amount of charge.
-                        //
-                        setEnergy(getEnergy() + growTime.get());
-                        stack.shrink(1);
-                        return InteractionResult.SUCCESS;
-                    }
-                } else {
-                    return InteractionResult.FAIL;
-                }
-            }
 
             //
             // Equipping the bot.
             //
-
             if (item instanceof ArmorItem || item instanceof DiggerItem
                     || item instanceof SwordItem) {
                 //
@@ -229,16 +206,17 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
     }
 
     private final AnimationFactory factory = new AnimationFactory(this);
+
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
     }
 
     private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
-        if(this.swingTime > 0){
+        if (this.swingTime > 0) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.attack", true));
-        }else if (event.isMoving()) {
+        } else if (event.isMoving()) {
             event.getController()
                     .setAnimation(new AnimationBuilder().addAnimation("animation.model.move", true));
         } else {
