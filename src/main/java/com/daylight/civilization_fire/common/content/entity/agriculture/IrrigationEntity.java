@@ -1,18 +1,31 @@
 package com.daylight.civilization_fire.common.content.entity.agriculture;
 
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
+import com.daylight.civilization_fire.common.content.item.agriculture.EntityItem;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BucketPickup;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.IAnimationTickable;
 
 public abstract class IrrigationEntity extends PathfinderMob implements IAnimatable, IAnimationTickable {
     private BlockPos setPos;
+    public int useTimes;
+    public EntityItem entityItem;//翻车物品
+
     protected IrrigationEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -23,6 +36,50 @@ public abstract class IrrigationEntity extends PathfinderMob implements IAnimata
     public Packet<?> getAddEntityPacket() {
         return new ClientboundAddEntityPacket(this);
     }
+
+    @Override
+    public InteractionResult interactAt(Player player, Vec3 pVec, InteractionHand hand) {
+        if (player.isShiftKeyDown()) {
+            ItemStack itemStack = new ItemStack(this.entityItem);
+            CivilizationFireUtil.hurtItem(itemStack, player, hand, getIrrigationLevel() * 10000000 - this.getUseTimes());
+            player.addItem(itemStack);
+            //删除它
+            this.discard();
+        }
+        return super.interactAt(player, pVec, hand);
+    }
+
+    //获取与设置
+    public int getUseTimes() {
+        return this.useTimes;
+    }
+
+    public void setUseTimes(int times) {
+        this.useTimes = times;
+    }
+
+    public void addUseTimes() {
+        useTimes += 1;
+    }
+
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compoundTag) {
+        compoundTag.putInt("entityItem", Item.getId(entityItem));
+        compoundTag.putInt("useTimes", useTimes);
+        super.addAdditionalSaveData(compoundTag);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag compoundTag) {
+        this.entityItem = (Item.byId(compoundTag.getInt("entityItem")) instanceof EntityItem
+                ? (EntityItem) Item.byId(compoundTag.getInt("entityItem"))
+                : null);
+        this.useTimes = compoundTag.getInt("useTimes");
+        super.readAdditionalSaveData(compoundTag);
+    }
+
+
 
     @Override
     public void tick() {
@@ -54,6 +111,12 @@ public abstract class IrrigationEntity extends PathfinderMob implements IAnimata
                     }
                 }
             }
+        }
+        addUseTimes();
+        if (getUseTimes() >= getIrrigationLevel() * 1000000) {
+            this.discard();
+            this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_BREAK,
+                    this.getSoundSource(), 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F, false);
         }
     }
 

@@ -80,8 +80,7 @@ public abstract class PloughEntity extends PathfinderMob {
     }
 
     //耕种次数
-    private static final EntityDataAccessor<Integer> PLOUGH_TIMES = SynchedEntityData.defineId(PloughEntity.class,
-            EntityDataSerializers.INT);
+    public int useTimes = 0;
     public EntityItem entityItem;//耕种物品
     public PloughEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -131,38 +130,33 @@ public abstract class PloughEntity extends PathfinderMob {
     }
 
 
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PLOUGH_TIMES, 0);
-    }
 
     //获取与设置
     public int getPloughTimes() {
-        return this.entityData.get(PLOUGH_TIMES);
+        return useTimes;
     }
 
     public void setPloughTimes(int times) {
-        this.entityData.set(PLOUGH_TIMES, times);
+        this.useTimes = times;
     }
 
     public void addPloughTimes() {
-        this.entityData.set(PLOUGH_TIMES, getPloughLevel() + 1);
+        useTimes += 1;
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
-        this.entityData.set(PLOUGH_TIMES, compoundTag.getInt("plough_times"));
         this.entityItem = (Item.byId(compoundTag.getInt("entityItem")) instanceof EntityItem
                 ? (EntityItem) Item.byId(compoundTag.getInt("entityItem"))
                 : null);
+        this.useTimes = compoundTag.getInt("useTimes");
         super.readAdditionalSaveData(compoundTag);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
-        compoundTag.putInt("plough_times", getPloughLevel());
-        compoundTag.putInt("ploughItem", Item.getId(entityItem));
+        compoundTag.putInt("entityItem", Item.getId(entityItem));
+        compoundTag.putInt("useTimes",useTimes);
         super.addAdditionalSaveData(compoundTag);
     }
 

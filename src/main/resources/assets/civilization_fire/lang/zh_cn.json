@@ -4,6 +4,7 @@
   "block.civilization_fire.sand_block": "砂土",
   "block.civilization_fire.paddy_soil_block": "水田",
   "block.civilization_fire.mycelial_soil_block": "菌丝",
+<<<<<<< HEAD
   "block.civilization_fire.buckets_waterwheel_entity_item": "筒车",
   "condiment_item.hover.text": "剩余使用次数:%s",
   "itemGroup.agriculture_creative_mode_tab": "农业",
@@ -14,6 +15,35 @@
   "item.civilization_fire.wood_handle_plough": "木制耒耜",
   "item.civilization_fire.stone_handle_plough": "石制耒耜",
   "item.civilization_fire.iron_handle_plough": "铁制耒耜",
+=======
+  "item.civilization_fire.buckets_waterwheel_entity_item": "筒车",
+  "item.civilization_fire.keel_waterwheel_entity_item": "龙骨水车",
+
+  "condiment_item.hover.text" : "剩余使用次数:%s",
+
+  "itemGroup.agriculture_creative_mode_tab" : "农业",
+  "itemGroup.grain_crops_creative_mode_tab" : "粮食作物",
+  "itemGroup.spice_crops_creative_mode_tab" : "香料作物",
+  "itemGroup.vegetable_crops_creative_mode_tab" : "蔬菜作物",
+  "itemGroup.cooking_creative_mode_tab" : "烹饪",
+
+  "item.civilization_fire.wood_handle_plough" : "木制耒耜",
+  "item.civilization_fire.stone_handle_plough" : "石制耒耜",
+  "item.civilization_fire.iron_handle_plough" : "铁制耒耜",
+
+  "item.civilization_fire.dragon_channel_fire" : "龙渠道火",
+
+  "item.civilization_fire.agricultural_spot_fire" : "农薪道火",
+
+  "item.civilization_fire.shennong_channel_fire" : "神农道火",
+
+  "item.civilization_fire.grain_channel_fire" : "五谷道火",
+
+  "item.civilization_fire.esophagus_channel_fire" : "食神道火",
+
+
+
+>>>>>>> 19ac8e0e59c92cbc7d67790ba2a718df3f6e7afc
   "block.civilization_fire.well_block": "水井",
   "item.civilization_fire.wood_bucket": "木桶",
   "item.civilization_fire.dipper": "水瓢",
