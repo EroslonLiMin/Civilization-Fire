@@ -1,11 +1,9 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
 import com.daylight.civilization_fire.client.model.CurvilinearPloughModel;
-import com.daylight.civilization_fire.client.model.GuardianBotModel;
 import com.daylight.civilization_fire.client.model.IronPloughModel;
 import com.daylight.civilization_fire.client.model.StonePloughModel;
-import com.daylight.civilization_fire.client.renderer.GuardianBotRenderer;
-import com.daylight.civilization_fire.client.renderer.PloughEntityRenderer;
+import com.daylight.civilization_fire.client.renderer.*;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
 
@@ -34,6 +32,9 @@ public class CivilizationFireEntityRendererRegister {
                                                 new CurvilinearPloughModel(data
                                                                 .bakeLayer(CurvilinearPloughModel.LAYER_LOCATION))));
                 event.registerEntityRenderer(CivilizationEntityTypes.GUARDIAN_BOT.get(), GuardianBotRenderer::new);
+                event.registerEntityRenderer(CivilizationEntityTypes.MINING_BOT.get(), MiningBotRenderer::new);
+                event.registerEntityRenderer(CivilizationEntityTypes.KEEL_WATER_WHEEL_ENTITY.get(), KeelWaterwheelRenderer::new);
+                event.registerEntityRenderer(CivilizationEntityTypes.BUCKETS_WATER_WHEEL_ENTITY.get(), BucketsWaterwheelRenderer::new);
         }
 
         @SubscribeEvent

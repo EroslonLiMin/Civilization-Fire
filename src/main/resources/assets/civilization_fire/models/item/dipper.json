@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "civilization_fire:item/dipper"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "civilization_fire:with_water": 0
+      },
+      "model": "civilization_fire:item/dipper"
+    },
+    {
+      "predicate": {
+        "civilization_fire:with_water": 0.1
+      },
+      "model": "civilization_fire:item/dipper_with_water"
+    }
+  ]
+}

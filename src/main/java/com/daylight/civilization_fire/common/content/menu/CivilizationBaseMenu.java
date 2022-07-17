@@ -26,32 +26,9 @@ public class CivilizationBaseMenu extends AbstractContainerMenu {
         return inventory.stillValid(pPlayer);
     }
 
+
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        var slot = slots.get(index);
-        var slotItem = slot.getItem();
-        var playerSlotSize = 36;
-
-        if (index < playerSlotSize) {
-            for (int i = slots.size() - 1; i >= playerSlotSize; i--) {
-                var temp = slots.get(i);
-
-                if (temp.safeInsert(slotItem).isEmpty()) {
-                    return ItemStack.EMPTY;
-                }
-            }
-
-        } else {
-            for (int i = 0; i < playerSlotSize; i++) {
-                var temp = slots.get(i);
-
-                if (temp.safeInsert(slotItem).isEmpty()) {
-                    return ItemStack.EMPTY;
-                }
-            }
-
-        }
-
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         return ItemStack.EMPTY;
     }
 

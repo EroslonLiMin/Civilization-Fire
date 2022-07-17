@@ -19,13 +19,16 @@ public class EntityItem extends Item {
         this.onPress = onPress;
     }
 
+
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
-        if (!useOnContext.getLevel().isClientSide()) {
+        if (!useOnContext.getLevel().isClientSide() && useOnContext.getPlayer()!= null) {
             Entity entity = onPress.withEntity(useOnContext.getLevel(), useOnContext.getItemInHand());
             BlockPos pos = new BlockPos(useOnContext.getClickedPos().getX(), useOnContext.getClickedPos().getY() + 1,
                     useOnContext.getClickedPos().getZ());
-            entity.setPosRaw(pos.getX(), pos.getY(), pos.getZ());
+            entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+            entity.setXRot(useOnContext.getPlayer().getXRot());
+            entity.setYRot(useOnContext.getPlayer().getYRot());
             useOnContext.getLevel().addFreshEntity(entity);
         }
         return super.useOn(useOnContext);

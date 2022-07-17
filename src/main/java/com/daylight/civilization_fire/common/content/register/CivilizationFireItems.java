@@ -1,9 +1,12 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.entity.agriculture.BucketsWaterwheelEntity;
+import com.daylight.civilization_fire.common.content.entity.agriculture.KeelWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
 import com.daylight.civilization_fire.common.content.item.agriculture.EntityItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
+import com.daylight.civilization_fire.common.content.item.agriculture.SeedBagItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
@@ -35,21 +38,24 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> MYCELIAL_SOIL = ITEMS.register("mycelial_soil_block",
                         () -> new BlockItem(CivilizationFireBlocks.MYCELIAL_SOIL_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> WELL_BLOCK = ITEMS.register("well_block",
+                        () -> new BlockItem(CivilizationFireBlocks.WELL_BLOCK.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
 
         //烹饪
         public static final RegistryObject<Item> IRON_POT_BLOCK = ITEMS.register("iron_pot_block",
                         () -> new BlockItem(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> FOOD_STEAMER_BLOCK = ITEMS.register("food_steamer_block",
-            () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get(),
-                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-    public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
-            () -> new BlockItem(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
-                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+                        () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_BLOCK.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> CASSEROLE_BLOCK = ITEMS.register("casserole_block",
+                        () -> new BlockItem(CivilizationFireBlocks.CASSEROLE_BLOCK.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> FOOD_STEAMER_HAT_BLOCK = ITEMS.register("food_steamer_hat_block",
-            () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_HAT_BLOCK.get(),
-                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-         public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
+                        () -> new BlockItem(CivilizationFireBlocks.FOOD_STEAMER_HAT_BLOCK.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new CondimentItem(20));
         public static final RegistryObject<Item> OIL_ITEM = ITEMS.register("oil", () -> new CondimentItem(15));
         public static final RegistryObject<Item> SAUCE_ITEM = ITEMS.register("sauce", () -> new CondimentItem(10));
         public static final RegistryObject<Item> VINEGAR_ITEM = ITEMS.register("vinegar", () -> new CondimentItem(25));
@@ -59,13 +65,15 @@ public class CivilizationFireItems {
                         () -> new BlockItem(CivilizationFireBlocks.COOKING_BENCH_BLOCK.get(),
                                         new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> BOWL = ITEMS.register("bowl",
-            () -> new BlockItem(CivilizationFireBlocks.BOWL.get(),
-                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+                        () -> new BlockItem(CivilizationFireBlocks.BOWL.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
         public static final RegistryObject<Item> PLATE = ITEMS.register("plate",
-            () -> new BlockItem(CivilizationFireBlocks.PLATE.get(),
-                    new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
-        public static final RegistryObject<Item> IRON_SPATULA = ITEMS.register("iron_spatula", () -> new SpatulaItem(5000));
-        public static final RegistryObject<Item> WOODEN_SPATULA = ITEMS.register("wooden_spatula", () -> new SpatulaItem(20000));
+                        () -> new BlockItem(CivilizationFireBlocks.PLATE.get(),
+                                        new Item.Properties().tab(CivilizationFireTab.COOKING_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> IRON_SPATULA = ITEMS.register("iron_spatula",
+                        () -> new SpatulaItem(5000));
+        public static final RegistryObject<Item> WOODEN_SPATULA = ITEMS.register("wooden_spatula",
+                        () -> new SpatulaItem(20000));
         //挖掘工具
         public static final RegistryObject<Item> WOOD_HANDLE_PLOUGH = ITEMS.register("wood_handle_plough",
                         () -> new ModHoeingToolItem(
@@ -86,13 +94,35 @@ public class CivilizationFireItems {
         public static final RegistryObject<Item> WOOD_BUCKET = ITEMS.register("wood_bucket", () -> new WateringToolItem(
                         new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB).durability(200),
                         1200));
+        public static final RegistryObject<Item> DIPPER = ITEMS.register("dipper", () -> new WateringToolItem(
+                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB).durability(50),
+                        500));
+        public static final RegistryObject<Item> SEED_BAG_ITEM = ITEMS.register("seed_bag", SeedBagItem::new);
+        //FIRE
+        public static final RegistryObject<Item> DRAGON_CHANNEL_FIRE = ITEMS.register("dragon_channel_fire",
+                        () -> new Item(
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> AGRICULTURAL_SPOT_FIRE = ITEMS.register("agricultural_spot_fire",
+                        () -> new Item(
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> SHENNONG_CHANNEL_FIRE = ITEMS.register("shennong_channel_fire",
+                        () -> new Item(
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> GRAIN_CHANNEL_FIRE = ITEMS.register("grain_channel_fire",
+                        () -> new Item(
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+        public static final RegistryObject<Item> ESOPHAGUS_CHANNEL_FIRE = ITEMS.register("esophagus_channel_fire",
+                        () -> new Item(
+                                        new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
 
         //植物
-        public static final RegistryObject<Item> CINNAMON_BARK = CivilizationFireItems.ITEMS.register("cinnamon_bark_fruit",
+        public static final RegistryObject<Item> CINNAMON_BARK = CivilizationFireItems.ITEMS.register(
+                        "cinnamon_bark_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
         public static final RegistryObject<Item> FRAGRANT = CivilizationFireItems.ITEMS.register("fragrant_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
-        public static final RegistryObject<Item> SICHUAN_PEPPER = CivilizationFireItems.ITEMS.register("sichuan_pepper_fruit",
+        public static final RegistryObject<Item> SICHUAN_PEPPER = CivilizationFireItems.ITEMS.register(
+                        "sichuan_pepper_fruit",
                         () -> new PlantItem.PlantFruitItem(CivilizationFireTab.SPICE_CROPS_CREATIVE_MODE_TAB, false));
         public static final RegistryObject<Item> CINNAMON_TREE_WOOD = ITEMS.register("cinnamon_tree_wood",
                         () -> new BlockItem(CivilizationFireBlocks.CINNAMON_TREE_WOOD.get(),
@@ -130,7 +160,7 @@ public class CivilizationFireItems {
                                 PloughEntity.StonePloughEntity stonePloughEntity = new PloughEntity.StonePloughEntity(
                                                 CivilizationEntityTypes.STONE_PLOUGH_ENTITY.get(), level);
                                 stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
-                                stonePloughEntity.setPloughTimes(10000 - itemStack.getDamageValue());
+                                stonePloughEntity.setPloughTimes(itemStack.getDamageValue());
                                 return stonePloughEntity;
                         }));
         public static final RegistryObject<Item> IRON_PLOUGH_ENTITY_ITEM = ITEMS.register("iron_plough_entity_item",
@@ -138,7 +168,7 @@ public class CivilizationFireItems {
                                 PloughEntity.IronPloughEntity stonePloughEntity = new PloughEntity.IronPloughEntity(
                                                 CivilizationEntityTypes.IRON_PLOUGH_ENTITY.get(), level);
                                 stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
-                                stonePloughEntity.setPloughTimes(20000 - itemStack.getDamageValue());
+                                stonePloughEntity.setPloughTimes(itemStack.getDamageValue());
                                 return stonePloughEntity;
                         }));
         public static final RegistryObject<Item> CURVILINEAR_PLOUGH_ENTITY_ITEM = ITEMS
@@ -146,8 +176,28 @@ public class CivilizationFireItems {
                                 PloughEntity.CurvilinearPloughEntity stonePloughEntity = new PloughEntity.CurvilinearPloughEntity(
                                                 CivilizationEntityTypes.CURVILINEAR_PLOUGH_ENTITY.get(), level);
                                 stonePloughEntity.entityItem = (EntityItem) itemStack.getItem();
-                                stonePloughEntity.setPloughTimes(30000 - itemStack.getDamageValue());
+                                stonePloughEntity.setPloughTimes(itemStack.getDamageValue());
                                 return stonePloughEntity;
                         }));
 
+        public static final RegistryObject<Item> KEEL_WATERWHEEL_ENTITY_ITEM = ITEMS
+                        .register("keel_waterwheel_entity_item", () -> new EntityItem(50000000, (level, itemStack) -> {
+                                KeelWaterwheelEntity keelWaterwheelEntity = new KeelWaterwheelEntity(
+                                                CivilizationEntityTypes.KEEL_WATER_WHEEL_ENTITY.get(), level);
+                                keelWaterwheelEntity.entityItem = (EntityItem) itemStack.getItem();
+                                keelWaterwheelEntity.setUseTimes(itemStack.getDamageValue());
+                                return keelWaterwheelEntity;
+                        }));
+
+        public static final RegistryObject<Item> BUCKETS_WATERWHEEL_ENTITY_ITEM = ITEMS
+                        .register("buckets_waterwheel_entity_item",
+                                        () -> new EntityItem(100000000, (level, itemStack) -> {
+                                                BucketsWaterwheelEntity bucketsWaterwheelEntity = new BucketsWaterwheelEntity(
+                                                                CivilizationEntityTypes.BUCKETS_WATER_WHEEL_ENTITY
+                                                                                .get(),
+                                                                level);
+                                                bucketsWaterwheelEntity.entityItem = (EntityItem) itemStack.getItem();
+                                                bucketsWaterwheelEntity.setUseTimes(itemStack.getDamageValue());
+                                                return bucketsWaterwheelEntity;
+                                        }));
 }

@@ -1,6 +1,5 @@
 package com.daylight.civilization_fire.common;
 
-import java.util.Random;
 
 import javax.annotation.Nonnull;
 
@@ -17,8 +16,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(CivilizationFire.MODID)
 public class CivilizationFire {
 
-    public static final Random RANDOM = new Random(114514);
-
     /**
      * Define mod id in a common place for everything to reference
      */
@@ -31,7 +28,6 @@ public class CivilizationFire {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public CivilizationFire() {
-        //加载植物
         initialize_content(FMLJavaModLoadingContext.get().getModEventBus());
 
     }
@@ -41,7 +37,8 @@ public class CivilizationFire {
         CivilizationFireItems.ITEMS.register(eventBus);
         CivilizationFireBlockEntities.BLOCK_ENTITIES.register(eventBus);
         CivilizationEntityTypes.ENTITY_TYPES.register(eventBus);
-        CivilizationMenuTypes.MENUS.register(eventBus);
+        CivilizationFireMenuTypes.MENUS.register(eventBus);
+        CivilizationFireSounds.DEFERRED_REGISTER.register(eventBus);
         new CivilizationCookingRecipes();
     }
 

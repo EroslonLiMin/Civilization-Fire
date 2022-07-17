@@ -28,17 +28,18 @@ public class CivilizationFireBlocks {
                         () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(0.6F)
                                         .sound(SoundType.GRAVEL)
                                         .requiresCorrectToolForDrops().noOcclusion()));//菌丝
+        public static final RegistryObject<Block> WELL_BLOCK = BLOCKS.register("well_block", WellBlock::new);
 
         //烹饪工具
         public static final RegistryObject<Block> IRON_POT_BLOCK = BLOCKS.register("iron_pot_block",
                         IronPotBlock::new);//铁锅
         public static final RegistryObject<Block> FOOD_STEAMER_BLOCK = BLOCKS.register("food_steamer_block",
-                FoodSteamerBlock::new);//蒸笼
+                        FoodSteamerBlock::new);//蒸笼
         public static final RegistryObject<Block> CASSEROLE_BLOCK = BLOCKS.register("casserole_block",
-                CasseroleBlock::new);//铁锅
+                        CasseroleBlock::new);//铁锅
         public static final RegistryObject<Block> FOOD_STEAMER_HAT_BLOCK = BLOCKS.register("food_steamer_hat_block",
-                () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F)
-                        .requiresCorrectToolForDrops().noOcclusion()));//盘子
+                        () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F)
+                                        .requiresCorrectToolForDrops().noOcclusion()));//盘子
         public static final RegistryObject<Block> COOKING_BENCH_BLOCK = BLOCKS.register("cooking_bench_block",
                         CookingBench::new);//灶炉
         public static final RegistryObject<Block> PLATE = BLOCKS.register("plate",
@@ -47,7 +48,6 @@ public class CivilizationFireBlocks {
         public static final RegistryObject<Block> BOWL = BLOCKS.register("bowl",
                         () -> new Block(BlockBehaviour.Properties.of(Material.EGG).strength(0.6F)
                                         .requiresCorrectToolForDrops().noOcclusion()));//碗
-
 
         /////树木植物
         //肉桂
@@ -99,7 +99,7 @@ public class CivilizationFireBlocks {
                         PlantBlock.PlantModel.DestroyModel, CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*黄米*/
         public static final PlantLoad YELLOW_RICE_PLANT = new PlantLoad("yellow_rice", 7, 2000, false,
-                        new String[] { "", "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.DestroyModel,
+                        new String[] { "civilization_fire:sand_block" }, false, PlantBlock.PlantModel.DestroyModel,
                         CivilizationFireTab.GRAIN_CROPS_CREATIVE_MODE_TAB, 2);
         /*高粱*/
         public static final PlantLoad SORGHUM_PLANT = new PlantLoad("sorghum", 7, 2000, false,
@@ -335,4 +335,10 @@ public class CivilizationFireBlocks {
         public static final DishesVarietyLoad POT_STEWED_MEAT = new DishesVarietyLoad("pot_stewed_meat",
                         CookingDishesType.Plate, 10, 12);
 
+        /**
+         * Agriculture enchantment table.
+         * @author Heckerpowered
+         */
+        public static final RegistryObject<AgricultureEnchantmentTableBlock> AGRICULTURE_ENCHANTMENT_TABLE = BLOCKS
+                        .register("agriculture_enchantment_table", AgricultureEnchantmentTableBlock::new);
 }

@@ -117,7 +117,7 @@ public class WateringToolItem extends Item {
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                 level.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
                 player.playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
-            } else if (blockState.getBlock() instanceof SoilBlock && e.getEnergyStored() > 100) {
+            } else if (blockState.getBlock() instanceof SoilBlock && e.getEnergyStored() >= 100) {
                 if (blockState.hasProperty(SoilBlock.BE_WATERED)
                         && (blockState.hasProperty(SoilBlock.BE_PLOUGHED) ? blockState.getValue(SoilBlock.BE_PLOUGHED)
                                 : true)) {
