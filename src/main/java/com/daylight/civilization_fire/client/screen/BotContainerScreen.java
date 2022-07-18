@@ -34,7 +34,7 @@ public class BotContainerScreen extends BaseContainerScreen<BotMenu> {
     protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         RenderSystem.setShaderTexture(0, CivilizationFire.resource("textures/gui/bot_screen_energy.png"));
-        blit(matrixStack, leftPos + 46, topPos + 116, 0, 0, 8, (int) (104 * ((bot.getEnergy() + 0.0) / bot.getMaxEnergy())), 8, 104);
+        blit(matrixStack, leftPos + 7, topPos + 27, 0, 0, 8, (int) (104 * ((bot.getEnergy() + 0.0) / bot.getMaxEnergy())), 8, 104);
         InventoryScreen.renderEntityInInventory(leftPos + 50, topPos + 100, 30, (float) (leftPos + 50) - this.mouseX, (float) (topPos + 100 - 50) - this.mouseY, bot);
     }
 }

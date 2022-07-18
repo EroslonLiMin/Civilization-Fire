@@ -1,4 +1,4 @@
-package com.daylight.civilization_fire.common.content.datapck;
+package com.daylight.civilization_fire.common.content.datapack;
 
 import com.daylight.civilization_fire.client.screen.BotContainerScreen;
 import com.daylight.civilization_fire.common.content.entity.bot.Bot;
@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;

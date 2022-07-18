@@ -5,6 +5,7 @@ import com.daylight.civilization_fire.common.content.register.CivilizationFireTa
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -19,6 +20,10 @@ public class EntityItem extends Item {
         this.onPress = onPress;
     }
 
+    public EntityItem(int durability, WithEntity onPress, CreativeModeTab creativeModeTab) {
+        super(new Properties().tab(creativeModeTab).durability(durability));
+        this.onPress = onPress;
+    }
 
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {

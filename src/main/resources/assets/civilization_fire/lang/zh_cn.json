@@ -4,34 +4,49 @@
   "block.civilization_fire.sand_block": "砂土",
   "block.civilization_fire.paddy_soil_block": "水田",
   "block.civilization_fire.mycelial_soil_block": "菌丝",
-<<<<<<< HEAD
   "block.civilization_fire.buckets_waterwheel_entity_item": "筒车",
   "condiment_item.hover.text": "剩余使用次数:%s",
-  "itemGroup.agriculture_creative_mode_tab": "农业",
-  "itemGroup.grain_crops_creative_mode_tab": "粮食作物",
-  "itemGroup.spice_crops_creative_mode_tab": "香料作物",
-  "itemGroup.vegetable_crops_creative_mode_tab": "蔬菜作物",
-  "itemGroup.cooking_creative_mode_tab": "烹饪",
+  "itemGroup.agriculture_creative_mode_tab": "§5五谷神农火-农业",
+  "itemGroup.grain_crops_creative_mode_tab": "§e五谷神农火-粮食作物",
+  "itemGroup.spice_crops_creative_mode_tab": "§4五谷神农火-香料作物",
+  "itemGroup.vegetable_crops_creative_mode_tab": "§a五谷神农火-蔬菜作物",
+  "itemGroup.cooking_creative_mode_tab": "§6五谷神农火-烹饪",
+  "itemGroup.component_creative_mode_tab": "§8五谷神农火-部件",
+  "itemGroup.add_creative_mode_tab": "§b五谷神农火-附加",
   "item.civilization_fire.wood_handle_plough": "木制耒耜",
   "item.civilization_fire.stone_handle_plough": "石制耒耜",
   "item.civilization_fire.iron_handle_plough": "铁制耒耜",
-=======
   "item.civilization_fire.buckets_waterwheel_entity_item": "筒车",
   "item.civilization_fire.keel_waterwheel_entity_item": "龙骨水车",
 
-  "condiment_item.hover.text" : "剩余使用次数:%s",
   "civilization_fire.bot_menu": "机器人界面",
 
-  "itemGroup.agriculture_creative_mode_tab" : "五谷神农火-农业",
-  "itemGroup.grain_crops_creative_mode_tab" : "五谷神农火-粮食作物",
-  "itemGroup.spice_crops_creative_mode_tab" : "五谷神农火-香料作物",
-  "itemGroup.vegetable_crops_creative_mode_tab" : "五谷神农火-蔬菜作物",
-  "itemGroup.cooking_creative_mode_tab" : "五谷神农火-烹饪",
-  "itemGroup.add_creative_mode_tab": "五谷神农火-附加",
+  "civilization_fire.destroy_mode" : "直接破坏模式",
+  "civilization_fire.picking_mode" : "右键采摘模式",
+  "plant_item.hover_text.sp": "§a§m               §f[植物信息]§a§m               ",
+  "plant_item.hover_text.plant_mode": "§b种植模式：§7[%s]",
+  "plant_item.hover_text.plant_stage" : "§b种植总共阶段：§7[%s]",
+  "plant_item.hover_text.plant_mature_tick" : "§b种植需要时间：§7[%s]",
+  "plant_item.hover_text.plant_blocks" : "§b可种植方块：§7[%s]",
 
-  "item.civilization_fire.wood_handle_plough" : "木制耒耜",
-  "item.civilization_fire.stone_handle_plough" : "石制耒耜",
-  "item.civilization_fire.iron_handle_plough" : "铁制耒耜",
+  "effect.civilization_fire.vegetable_effect": "白菜汁汁汁",
+  "item.civilization_fire.vegetable_juice": "白菜汁",
+  "vegetable_juice.hover_text": "§A喝下去之后你将无比幸运",
+  "effect.civilization_fire.eggplant_effect": "§4ฬ๔ภ๓๔-茄子",
+  "item.civilization_fire.eggplant_juice": "§4ฬ๔ภ๓๔-茄子",
+  "eggplant_juice.hover_text": "§4喝下去之后你化生茄子然后§eฬ๔ภ๓๔，获得强大的力量与击退力",
+  "effect.civilization_fire.bean_effect": "豆汁汁汁",
+  "item.civilization_fire.bean_juice": "豆汁",
+  "bean_juice.hover_text": "§e喝下去之后你获得王者的气息让敌人无法靠近你",
+  "effect.civilization_fire.tomato_effect": "番茄汁汁汁",
+  "item.civilization_fire.tomato_juice": "番茄汁",
+  "tomato_juice.hover_text": "§4红红火火恍恍惚惚，你将获得生命的加持",
+
+
+  "item.civilization_fire.farming_bot_entity_item": "农耕蜘蛛机器人",
+  "item.civilization_fire.mining_bot_entity_item": "挖矿机器人",
+  "item.civilization_fire.guarding_bot_entity_item": "守卫机器人",
+
 
   "item.civilization_fire.dragon_channel_fire" : "龙渠道火",
 
@@ -42,10 +57,20 @@
   "item.civilization_fire.grain_channel_fire" : "五谷道火",
 
   "item.civilization_fire.esophagus_channel_fire" : "食神道火",
+  "item.civilization_fire.grain_shennong_channel_fire" : "§e五谷神农火",
+
+  "item.civilization_fire.energy_add_level_1": "能量提升一",
+  "item.civilization_fire.energy_add_level_2": "§b能量提升二",
+  "item.civilization_fire.energy_add_level_3": "§e能量提升三",
+
+  "item.civilization_fire.mc_attribute_add_level_1": "原本属性提升一",
+  "item.civilization_fire.mc_attribute_add_level_2": "§4原本属性提升二",
+  "item.civilization_fire.mc_attribute_add_level_3": "§5原本属性提升三",
 
 
-
->>>>>>> 19ac8e0e59c92cbc7d67790ba2a718df3f6e7afc
+  "item.civilization_fire.corresponding_add_level_1": "能力提升一",
+  "item.civilization_fire.corresponding_add_level_2": "§7能力提升二",
+  "item.civilization_fire.corresponding_add_level_3": "§8能力提升三",
   "block.civilization_fire.well_block": "水井",
   "item.civilization_fire.wood_bucket": "木桶",
   "item.civilization_fire.dipper": "水瓢",
@@ -87,9 +112,9 @@
   "food_steamer.block_entity": "蒸笼",
   "casserole.block_entity": "蒸笼",
   "item.civilization_fire.carob_fruit": "绿豆果实",
-  "item.civilization_fire.fragrant": "香叶",
-  "item.civilization_fire.cinnamon_bark": "桂皮",
-  "item.civilization_fire.sichuan_pepper": "花椒",
+  "item.civilization_fire.fragrant_fruit": "香叶",
+  "item.civilization_fire.cinnamon_bark_fruit": "桂皮",
+  "item.civilization_fire.sichuan_pepper_fruit": "花椒",
   "block.civilization_fire.cinnamon_tree_wood": "肉桂木",
   "block.civilization_fire.cinnamon_tree_leaf": "肉桂叶子",
   "block.civilization_fire.cinnamon_tree_sapling": "肉桂植株",

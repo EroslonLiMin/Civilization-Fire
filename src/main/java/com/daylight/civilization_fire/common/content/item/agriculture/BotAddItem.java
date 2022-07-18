@@ -14,7 +14,7 @@ public class BotAddItem extends Item {
     }
 
     public BotAddItem(int level,BotAddType addType) {
-        super(new Properties().stacksTo(1).tab(CivilizationFireTab.ADD_MODE_TAB));
+        super(new Properties().stacksTo(1).tab(CivilizationFireTab.COMPONENT_MODE_TAB));
         this.level = level;
         this.botAddType = addType;
     }

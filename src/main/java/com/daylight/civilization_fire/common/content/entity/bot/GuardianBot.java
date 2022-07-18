@@ -3,14 +3,11 @@ package com.daylight.civilization_fire.common.content.entity.bot;
 import javax.annotation.Nullable;
 
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -31,7 +28,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.IAnimationTickable;
 import software.bernie.geckolib3.core.PlayState;
@@ -120,7 +116,7 @@ public final class GuardianBot extends Bot implements IAnimatable, IAnimationTic
             //
             // TODO: Open gui.
             //
-            openHorseInventory((ServerPlayer) player,this);
+            openBotInventory((ServerPlayer) player,this);
             return InteractionResult.SUCCESS;
         }
 

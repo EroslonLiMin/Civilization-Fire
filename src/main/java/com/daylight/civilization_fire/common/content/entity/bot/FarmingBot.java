@@ -1,22 +1,16 @@
 package com.daylight.civilization_fire.common.content.entity.bot;
 
-import com.daylight.civilization_fire.client.screen.BotContainerScreen;
 import com.daylight.civilization_fire.common.content.block.agriculture.SoilBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
-import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
@@ -146,7 +140,7 @@ public class FarmingBot extends Bot implements IAnimatable, IAnimationTickable {
     @Override
     public final InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
         if(player.isShiftKeyDown() && !player.level.isClientSide()){
-            openHorseInventory((ServerPlayer) player,this);
+            openBotInventory((ServerPlayer) player,this);
             return InteractionResult.SUCCESS;
         }
         if (player.isSpectator()) {
@@ -180,6 +174,8 @@ public class FarmingBot extends Bot implements IAnimatable, IAnimationTickable {
             } else {
                 return InteractionResult.FAIL;
             }
+        } else {
+            player.addItem(this.writeEntityItemStack());
         }
         return super.interactAt(player, location, hand);
     }

@@ -30,7 +30,17 @@ public class BotMenu extends CivilizationBaseMenu {
             this.addSlot(new SlotItemHandler(addItemStackHandler, i, 18 + i * 18, 116) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    return super.mayPlace(stack) && stack.getItem() instanceof BotAddItem;
+                    boolean could = false;
+                    if(!(stack.getItem() instanceof BotAddItem)){
+                        return false;
+                    }
+                    BotAddItem botAddItem = (BotAddItem) stack.getItem();
+                    switch (this.getSlotIndex()) {
+                        case 0 -> could = botAddItem.botAddType == BotAddItem.BotAddType.EnergyAdd;
+                        case 1 -> could = botAddItem.botAddType == BotAddItem.BotAddType.MCAttributeAdd;
+                        case 2 -> could = botAddItem.botAddType == BotAddItem.BotAddType.CorrespondingAbilityAdd;
+                    }
+                    return could && super.mayPlace(stack);
                 }
                 {
                     if(this.getSlotIndex() == 0) this.set(bot.getEnergyAdd());

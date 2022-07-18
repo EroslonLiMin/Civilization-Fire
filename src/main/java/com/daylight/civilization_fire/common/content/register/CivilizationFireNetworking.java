@@ -1,7 +1,7 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
-import com.daylight.civilization_fire.common.content.datapck.ClientBotScreenOpenPacket;
+import com.daylight.civilization_fire.common.content.datapack.ClientBotScreenOpenPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
