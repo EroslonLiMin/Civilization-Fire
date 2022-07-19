@@ -39,6 +39,7 @@ public class CivilizationFire {
         CivilizationEntityTypes.ENTITY_TYPES.register(eventBus);
         CivilizationFireMenuTypes.MENUS.register(eventBus);
         CivilizationFireSounds.DEFERRED_REGISTER.register(eventBus);
+        CivilizationFireEffect.EFFECTS.register(eventBus);
         new CivilizationCookingRecipes();
     }
 

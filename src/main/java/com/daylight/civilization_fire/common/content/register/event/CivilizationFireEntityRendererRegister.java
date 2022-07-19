@@ -35,6 +35,7 @@ public class CivilizationFireEntityRendererRegister {
                 event.registerEntityRenderer(CivilizationEntityTypes.MINING_BOT.get(), MiningBotRenderer::new);
                 event.registerEntityRenderer(CivilizationEntityTypes.KEEL_WATER_WHEEL_ENTITY.get(), KeelWaterwheelRenderer::new);
                 event.registerEntityRenderer(CivilizationEntityTypes.BUCKETS_WATER_WHEEL_ENTITY.get(), BucketsWaterwheelRenderer::new);
+                event.registerEntityRenderer(CivilizationEntityTypes.FARMING_BOT_ENTITY.get(), FarmingBotRenderer::new);
         }
 
         @SubscribeEvent

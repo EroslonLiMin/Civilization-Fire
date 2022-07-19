@@ -1,8 +1,10 @@
 package com.daylight.civilization_fire.common.content.block.agriculture;
 
+import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -35,26 +37,29 @@ import java.util.Random;
 
 public class PlantBlock extends BaseEntityBlock {
 
-    public enum PlantModel {
-        DestroyModel, //直接打破模式
-        PickingModel,//摘下模式
+    public enum PlantMode {
+        DestroyMode("destroy_mode"), //直接打破模式
+        PickingMode("picking_mode"),
+        ;//摘下模式
+        public String name;
+        PlantMode(String s) {
+            this.name = s;
+        }
     }
 
     public static final IntegerProperty GROW_UP_STATE = IntegerProperty.create("state", 0, 7);//生长阶段
 
     //方块属性
-    public ResourceLocation fruitID;
-    public PlantModel plantModel;//种植模式
+    public PlantMode plantMode;//种植模式
     public int stageLevel;//种植的阶段
     public int matureTick;//成熟需要的时间
     public String[] plantBlocks;//所能种植的方块
     public int roundItem;
 
-    public PlantBlock(PlantModel plantModel, ResourceLocation fruitID, int stageLevel, int matureTick,
-            String[] plantBlocks, int roundItem) {
+    public PlantBlock(PlantMode plantMode, int stageLevel, int matureTick,
+                      String[] plantBlocks, int roundItem) {
         super(Properties.of(Material.PLANT).noCollission().strength(0));
-        this.fruitID = fruitID;
-        this.plantModel = plantModel;
+        this.plantMode = plantMode;
         this.stageLevel = stageLevel;
         this.matureTick = matureTick;
         this.plantBlocks = plantBlocks;
@@ -78,7 +83,7 @@ public class PlantBlock extends BaseEntityBlock {
             boolean willHarvest, FluidState fluid) {
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) level.getBlockEntity(pos);
         if (plantBlockEntity != null) {
-            if (plantModel != PlantModel.PickingModel && plantBlockEntity.growingState == this.stageLevel) {
+            if (plantMode != PlantMode.PickingMode && plantBlockEntity.growingState == this.stageLevel) {
                 giveFruitItem(player);
             }
         }
@@ -92,9 +97,11 @@ public class PlantBlock extends BaseEntityBlock {
         //判断一下是否为摘取类型
         PlantBlockEntity plantBlockEntity = (PlantBlockEntity) pLevel.getBlockEntity(pPos);
         if (plantBlockEntity != null) {
-            if (plantModel == PlantModel.PickingModel && plantBlockEntity.growingState == this.stageLevel) {
-                plantBlockEntity.growingState -= 1;
-                plantBlockEntity.growingTick -= this.matureTick / this.stageLevel * 2;
+            if (plantMode == PlantMode.PickingMode && plantBlockEntity.growingState == this.stageLevel) {
+                pLevel.setBlock(pPos, pState.setValue(GROW_UP_STATE, plantBlockEntity.growingState - 2),
+                        Block.UPDATE_ALL);
+                plantBlockEntity.growingState -= 2;
+                pLevel.gameEvent(GameEvent.BLOCK_PLACE, pPos);
                 giveFruitItem(pPlayer);
             }
         }
@@ -108,9 +115,17 @@ public class PlantBlock extends BaseEntityBlock {
 
     //给予果实物品
     public void giveFruitItem(Player pPlayer) {
-        ItemStack fruitStack = new ItemStack(CivilizationFireUtil.asPlantItem(this).get());
-        fruitStack.setCount(new Random().nextInt(roundItem) + 1);
-        pPlayer.addItem(fruitStack);
+        ResourceKey<Block> resourceKey = ForgeRegistries.BLOCKS.getResourceKey(this).get();
+        if(PlantLoad.BLOCK_FRUIT_MAP.get(resourceKey) != null) {
+            ItemStack fruitStack = new ItemStack(CivilizationFireUtil.asPlantItem(this).get());
+            if (!fruitStack.equals(ItemStack.EMPTY)) {
+                fruitStack.setCount(new Random().nextInt(roundItem) + 1);
+            }
+            pPlayer.addItem(fruitStack);
+        }
+        ItemStack itemStack = new ItemStack(ForgeRegistries.ITEMS
+                .getValue(CivilizationFire.resource(resourceKey.location().getPath() + "_item")));
+        pPlayer.addItem(itemStack);
     }
 
     //生长一个阶段
@@ -160,30 +175,27 @@ public class PlantBlock extends BaseEntityBlock {
             BlockState state = level.getBlockState(pos.below());//获取下方方块
             PlantBlock plantBlock = ((PlantBlock) blockState.getBlock());
             if (plantBlockEntity.stopGrowingTick < 500) {
-                //判断当前下方方块是否适合种植
-                if (SoilBlock.isSuitability(state)) {
-                    Random random = new Random();//随即一下
-                    //还有火焰处理 如果符合对应需要的block，就增加生长进度，没用就停止生长直到枯萎
-                    int add = 1;
-                    if (plantBlock.getPlantBlock().contains(state.getBlock())) {
-                        add += 1 + random.nextInt(5);
-                    } else
-                        add = random.nextInt(2);
-                    if (add > 1)
+                if(plantBlock.stageLevel > plantBlockEntity.growingState) {
+                    //判断当前下方方块是否适合种植
+                    if (SoilBlock.isSuitability(state)) {
+                        Random random = new Random();//随即一下
+                        //还有火焰处理 如果符合对应需要的block，就增加生长进度，没用就停止生长直到枯萎
+                        int add = 2;
+                        if (plantBlock.getPlantBlock().contains(state.getBlock())) {
+                            add += 1 + random.nextInt(2);
+                        }
                         plantBlockEntity.growingTick += add;
-                    else
+                        //判断是否到达了阶段性时期
+                        if (((plantBlock.matureTick + 0.0) / plantBlock.stageLevel)
+                                * (plantBlockEntity.growingState + 1) < plantBlockEntity.growingTick) {
+                            level.setBlock(pos, blockState.setValue(GROW_UP_STATE, plantBlockEntity.growingState + 1),
+                                    Block.UPDATE_ALL);
+                            plantBlockEntity.growingState += 1;
+                            level.gameEvent(GameEvent.BLOCK_PLACE, pos);
+                        }
+                    } else {
                         plantBlockEntity.stopGrowingTick += 1;
-                    //判断是否到达了阶段性时期
-                    if (plantBlock.matureTick / plantBlock.stageLevel
-                            * plantBlockEntity.growingState > plantBlockEntity.growingTick
-                            && plantBlock.stageLevel > plantBlockEntity.growingState) {
-                        level.setBlock(pos, blockState.setValue(GROW_UP_STATE, plantBlockEntity.growingState + 1),
-                                Block.UPDATE_ALL);
-                        level.gameEvent(GameEvent.BLOCK_PLACE, pos);
                     }
-
-                } else {
-                    plantBlockEntity.stopGrowingTick += 1;
                 }
             } else {
                 //如果停止生长太久就直接枯萎
@@ -191,6 +203,7 @@ public class PlantBlock extends BaseEntityBlock {
                 level.gameEvent(GameEvent.BLOCK_PLACE, pos);
             }
         }
+
 
         public void load(CompoundTag nbt) {
             super.load(nbt);
