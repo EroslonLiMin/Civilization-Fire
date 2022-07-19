@@ -53,7 +53,13 @@ public class AgricultureEnchantmentTableBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos location, Player player, InteractionHand hand,
             BlockHitResult hit) {
+        //
+        // More safety :)
+        //
         if (player instanceof ServerPlayer serverPlayer) {
+            //
+            // Open gui
+            //
             NetworkHooks.openGui(serverPlayer, (AgricultureEnchantmentTableBlockEntity) level.getBlockEntity(location),
                     location);
             return InteractionResult.SUCCESS;

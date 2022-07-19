@@ -100,9 +100,9 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
                     final var maxZ = chunkPosition.getMaxBlockZ();
                     final var maxY = level.getMaxBuildHeight();
 
-                    for (int x = chunkPosition.getMinBlockX(); x < maxX; x = -~x) {
-                        for (int z = chunkPosition.getMinBlockZ(); z < maxZ; z = -~z) {
-                            for (int y = level.getMinBuildHeight(); y < maxY; y = -~y) {
+                    for (int x = chunkPosition.getMinBlockX(); x <= maxX; x = -~x) {
+                        for (int z = chunkPosition.getMinBlockZ(); z <= maxZ; z = -~z) {
+                            for (int y = level.getMinBuildHeight(); y <= maxY; y = -~y) {
                                 //
                                 // Is it thread safe ?
                                 //
