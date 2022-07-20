@@ -6,6 +6,7 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.network.packet.severbound.ServerboundRenameItemPacket;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -235,7 +236,7 @@ public final class CivilizationFireNetwork {
     }
 
     public static final void initialize() {
-
+        registerServerboundMessage(ServerboundRenameItemPacket.class, ServerboundRenameItemPacket::decode);
     }
 
     /**

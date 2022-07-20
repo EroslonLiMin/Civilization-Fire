@@ -5,6 +5,8 @@ import javax.annotation.Nonnull;
 import com.daylight.civilization_fire.client.screen.BaseContainerScreen;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureAnvilMenu;
+import com.daylight.civilization_fire.common.network.CivilizationFireNetwork;
+import com.daylight.civilization_fire.common.network.packet.severbound.ServerboundRenameItemPacket;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -77,6 +79,21 @@ public final class AgricultureAnvilScreen extends BaseContainerScreen<Agricultur
      * @param name The new name of the input stack.
      */
     private void onNameChanged(@Nonnull final String name) {
+        if (name.isEmpty()) {
+            return;
+        }
 
+        //
+        // Get the input slot.
+        //
+        final var slot = menu.getSlot(4);
+
+        //
+        // Determine whether the new name is different from the old name.
+        //
+        if (!slot.getItem().getHoverName().getString().equals(name)) {
+            menu.setItemName(name);
+            CivilizationFireNetwork.sendToServer(new ServerboundRenameItemPacket(name));
+        }
     }
 }

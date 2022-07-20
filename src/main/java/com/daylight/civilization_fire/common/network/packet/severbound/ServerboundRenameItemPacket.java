@@ -45,5 +45,4 @@ public final class ServerboundRenameItemPacket implements CivilizationFirePacket
     public static final ServerboundRenameItemPacket decode(@Nonnull final FriendlyByteBuf buffer) {
         return new ServerboundRenameItemPacket(buffer.readUtf());
     }
-
 }
