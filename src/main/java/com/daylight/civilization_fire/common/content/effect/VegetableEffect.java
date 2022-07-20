@@ -9,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.OreBlock;
-import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,8 +50,9 @@ public class VegetableEffect extends MobEffect {
         if (event.getPlayer().hasEffect(CivilizationFireEffect.VEGETABLE_EFFECT.get()) && new Random().nextBoolean()) {
             event.setExpToDrop(event.getExpToDrop() * 2);
             if (event.getState().getBlock() instanceof OreBlock) {
-                if(!event.getWorld().isClientSide())
-                    event.getWorld().addFreshEntity(new ItemEntity(event.getPlayer().getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getY(), new ItemStack(event.getState().getBlock())));
+                if (!event.getWorld().isClientSide())
+                    event.getWorld().addFreshEntity(new ItemEntity(event.getPlayer().getLevel(), event.getPos().getX(),
+                            event.getPos().getY(), event.getPos().getY(), new ItemStack(event.getState().getBlock())));
             }
         }
     }

@@ -26,6 +26,10 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public final class AgricultureAnvil extends AnvilBlock {
+
+    /**
+     * Container's title, which is displayed in the top of the container.
+     */
     private static final Component CONTAINER_TITLE = new TranslatableComponent("container.repair");
 
     /**

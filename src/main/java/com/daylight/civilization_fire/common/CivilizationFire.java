@@ -1,15 +1,17 @@
 package com.daylight.civilization_fire.common;
 
-
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.content.register.*;
+
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -26,6 +28,12 @@ public class CivilizationFire {
      * @author Heckerpowered
      */
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    /**
+     * Set our version number to match the mods.toml file, which matches the one in our build.gradle
+     */
+    public static final ArtifactVersion VERSION = ModLoadingContext.get().getActiveContainer().getModInfo()
+            .getVersion();
 
     public CivilizationFire() {
         initialize_content(FMLJavaModLoadingContext.get().getModEventBus());

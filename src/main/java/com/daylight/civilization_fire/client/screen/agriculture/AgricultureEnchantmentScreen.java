@@ -1,11 +1,14 @@
 package com.daylight.civilization_fire.client.screen.agriculture;
 
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.client.screen.BaseContainerScreen;
@@ -21,6 +24,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
  * @author Heckerpowered
  * @see AgricultureEnchantmentTableBlock
  */
+@FieldsAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 @OnlyIn(Dist.CLIENT)
 public final class AgricultureEnchantmentScreen extends BaseContainerScreen<AgricultureEnchantmentMenu> {
 
@@ -40,7 +45,8 @@ public final class AgricultureEnchantmentScreen extends BaseContainerScreen<Agri
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
+    public final void render(@Nonnull final PoseStack poseStack, @Nonnegative final int mouseX,
+            @Nonnegative final int mouseY, @Nonnegative final float partialTick) {
         super.render(poseStack, mouseX, mouseY, partialTick);
         for (int i = 0; i < 6; i = -~i) {
             renderContentBackground(poseStack, i);
