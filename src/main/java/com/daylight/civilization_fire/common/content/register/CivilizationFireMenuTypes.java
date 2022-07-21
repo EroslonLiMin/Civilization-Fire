@@ -5,6 +5,7 @@ import com.daylight.civilization_fire.common.content.block.agriculture.Agricultu
 import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
+import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureAnvilMenu;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureEnchantmentMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.CasseroleMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.FoodSteamerMenu;
@@ -41,5 +42,8 @@ public class CivilizationFireMenuTypes {
                                         data) -> new AgricultureEnchantmentMenu(id, inv,
                                                         (AgricultureEnchantmentTableBlockEntity) inv.player.level
                                                                         .getBlockEntity(data.readBlockPos()))));
+
+        public static final RegistryObject<MenuType<AgricultureAnvilMenu>> AGRICULTURE_ANVIL_MENU = MENUS
+                        .register("agriculture_anvil_menu", () -> new MenuType<>(AgricultureAnvilMenu::new));
 
 }

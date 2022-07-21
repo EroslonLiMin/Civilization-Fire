@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
+import com.daylight.civilization_fire.client.screen.agriculture.AgricultureAnvilScreen;
 import com.daylight.civilization_fire.client.screen.agriculture.AgricultureEnchantmentScreen;
 import com.daylight.civilization_fire.client.screen.cooking.CasseroleScreen;
 import com.daylight.civilization_fire.client.screen.cooking.FoodSteamerScreen;
@@ -21,6 +22,7 @@ public class CivilizationFireScreenRegister {
             MenuScreens.register(CivilizationFireMenuTypes.CASSEROLE_MENU.get(), CasseroleScreen::new);
             MenuScreens.register(CivilizationFireMenuTypes.AGRICULTURE_ENCHANTMENT_MENU.get(),
                     AgricultureEnchantmentScreen::new);
+            MenuScreens.register(CivilizationFireMenuTypes.AGRICULTURE_ANVIL_MENU.get(), AgricultureAnvilScreen::new);
             //            MenuScreens.register(CivilizationFireMenuTypes.BOT_MENU.get(),
             //                    BotContainerScreen::new);
         });

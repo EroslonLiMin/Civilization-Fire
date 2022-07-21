@@ -44,6 +44,7 @@ public final class AgricultureAnvilScreen extends BaseContainerScreen<Agricultur
     public AgricultureAnvilScreen(@Nonnull final AgricultureAnvilMenu menu, @Nonnull final Inventory inventory,
             @Nonnull final Component title) {
         super(menu, inventory, title, ANVIL_LOCATION);
+        imageHeight = imageWidth = 216;
     }
 
     @Override

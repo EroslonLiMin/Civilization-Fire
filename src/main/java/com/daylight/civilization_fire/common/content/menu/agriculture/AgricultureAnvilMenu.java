@@ -71,6 +71,12 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
     };
 
     /**
+     * Container level access which is used to access the level.
+     * @see #removed(Player)
+     */
+    private final ContainerLevelAccess access;
+
+    /**
      * Create a new agriculture anvil menu, do not call this constructor manually.
      *
      * @param containerId The container id.
@@ -83,7 +89,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         //
         // Add player's inventory slots.
         //
-        layoutPlayerInventorySlots(containerId, containerId);
+        layoutPlayerInventorySlots(28, 134);
 
         //
         // Add 4 fruit input slots and 1 item input slot.
@@ -224,12 +230,14 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
      * Create a new agriculture anvil menu.
      *
      * @param containerId The container id.
-     * @param playerInventory The player's inventory {@link Player#getInventory()}
+     * @param inventory The player's inventory {@link Player#getInventory()}
      * @param access The container level access {@link AnvilBlock#getMenuProvider(BlockState, Level, BlockPos)}
      * @see AgricultureAnvil#getMenuProvider(BlockState, Level, BlockPos)
     */
-    public AgricultureAnvilMenu(final int containerId, Inventory playerInventory, ContainerLevelAccess access) {
-        super(CivilizationMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, playerInventory);
+    public AgricultureAnvilMenu(final int containerId, @Nonnull final Inventory inventory,
+            @Nonnull final ContainerLevelAccess access) {
+        super(CivilizationMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, inventory);
+        this.access = access;
     }
 
     /**
@@ -264,7 +272,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         // - supplied fruits are less than cosst.
         // - stack is not damaged and hasn't been renamed.
         //
-        if (inputStack.isEmpty() || getTotalCost() > totalGrowthTime
+        if (inputStack.isEmpty() || getTotalCost() > totalGrowthTime || totalGrowthTime == 0
                 || (inputStack.getDamageValue() == 0 && !itemNamePresented)) {
             resultSlots.setItem(5, ItemStack.EMPTY);
         } else {
@@ -272,12 +280,17 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
             // Create result stack.
             //
             final var resultStack = inputStack.copy();
+            resultStack.setCount(1);
             resultStack.setDamageValue(resultStack.getDamageValue() - toDurability(totalGrowthTime));
 
             if (itemNamePresented) {
                 resultStack.setHoverName(new TextComponent(itemName));
             }
+
+            resultSlots.setItem(5, resultStack);
         }
+
+        broadcastChanges();
     }
 
     /**
@@ -315,6 +328,8 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
             //
             consumeFruits(getTotalCost());
         }
+
+        inputSlots.getItem(4).shrink(1);
     }
 
     /**
@@ -332,6 +347,22 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         if (container == inputSlots) {
             createResult();
         }
+    }
+
+    /**
+     * Called when the container is closed.
+     */
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+
+        //
+        // Clear container correctly, otherwise,
+        // the player's item will lose.
+        //
+        access.execute((level, location) -> {
+            clearContainer(player, inputSlots);
+        });
     }
 
     /**
@@ -415,7 +446,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         // Get the input stack.
         //
         final var inputStack = inputSlots.getItem(4);
-        if (inputStack.isEmpty() || inputStack.isDamageableItem()) {
+        if (inputStack.isEmpty() || !inputStack.isDamageableItem()) {
             return 0;
         }
 
@@ -505,7 +536,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
                         cost -= currentCost;
                         stack.setCount(0);
                     } else {
-                        stack.shrink(cost / time);
+                        stack.shrink(cost / time + 1);
                     }
                 }
             }
