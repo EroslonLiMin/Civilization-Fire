@@ -341,4 +341,7 @@ public class CivilizationFireBlocks {
          */
         public static final RegistryObject<AgricultureEnchantmentTableBlock> AGRICULTURE_ENCHANTMENT_TABLE = BLOCKS
                         .register("agriculture_enchantment_table", AgricultureEnchantmentTableBlock::new);
+
+        public static final RegistryObject<AgricultureAnvil> AGRICULTURE_ANVIL = BLOCKS.register("agriculture_anvil",
+                        AgricultureAnvil::new);
 }
