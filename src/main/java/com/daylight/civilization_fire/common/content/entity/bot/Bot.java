@@ -6,8 +6,10 @@ import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.common.content.datapack.ClientBotScreenOpenPacket;
 import com.daylight.civilization_fire.common.content.item.agriculture.BotAddItem;
+import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireNetworking;
+import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
@@ -15,6 +17,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PathfinderMob;
@@ -101,6 +104,8 @@ public abstract class Bot extends PathfinderMob {
         pCompound.put("entity_item_stack",getEntityItemStack().serializeNBT());
     }
 
+
+
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
@@ -138,7 +143,7 @@ public abstract class Bot extends PathfinderMob {
     }
 
     public void setEnergyAdd(ItemStack energyAdd) {
-        this.entityData.set(CORRESPONDING_ABILITY_ADD, energyAdd);
+        this.entityData.set(ENERGY_ADD, energyAdd);
     }
 
     public int getEnergyAddLevel(){
@@ -231,6 +236,23 @@ public abstract class Bot extends PathfinderMob {
     @Override
     public void tick() {
         super.tick();
+        final var item = this.getFruitAdd().getItem();
+        if (item instanceof PlantItem.PlantFruitItem fruit) {
+            if (getEnergy() <= getMaxEnergy()) {
+                //
+                // Charge the bot.
+                //
+                final var growTime = CivilizationFireUtil.getPlantGrowTime(fruit);
+                if (growTime.isPresent()) {
+                    //
+                    // Allow a small "overflow" when charging,
+                    // So we don't need to check the amount of charge.
+                    //
+                    setEnergy(getEnergy() + growTime.get());
+                    this.getFruitAdd().shrink(1);
+                }
+            }
+        }
         setEnergy(getEnergy() - getEnergyCost());
     }
 

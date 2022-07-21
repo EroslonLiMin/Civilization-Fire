@@ -87,7 +87,7 @@ public class FarmingBot extends Bot implements IAnimatable, IAnimationTickable {
                 }
             }
             if (this.targetPos != null) {
-                this.getNavigation().moveTo(targetPos.getX(), targetPos.getY(), targetPos.getZ(), this.followLeashSpeed() * (1 + this.getCorrespondingAbilityAddLevel()));
+                this.getNavigation().moveTo(targetPos.getX(), targetPos.getY(), targetPos.getZ(), this.followLeashSpeed() * (1 + (this.getCorrespondingAbilityAddLevel() / 15.0)));
                 double dir = Math.sqrt(Math.pow(targetPos.getX()-this.getOnPos().getX(),2)+Math.pow(targetPos.getY()-this.getOnPos().getY(),2) +Math.pow(targetPos.getZ()-this.getOnPos().getZ(),2));
                 if (dir <= 4 && getWorkTime() <= 0) {
                     SoilBlock.setPloughed(null, this.level, this.targetPos, true);
@@ -139,7 +139,7 @@ public class FarmingBot extends Bot implements IAnimatable, IAnimationTickable {
 
     @Override
     public final InteractionResult interactAt(Player player, Vec3 location, InteractionHand hand) {
-        if(player.isShiftKeyDown() && !player.level.isClientSide()){
+        if(!player.level.isClientSide()){
             openBotInventory((ServerPlayer) player,this);
             return InteractionResult.SUCCESS;
         }
@@ -174,8 +174,9 @@ public class FarmingBot extends Bot implements IAnimatable, IAnimationTickable {
             } else {
                 return InteractionResult.FAIL;
             }
-        } else {
+        } else if(player.isShiftKeyDown()){
             player.addItem(this.writeEntityItemStack());
+            this.kill();
         }
         return super.interactAt(player, location, hand);
     }

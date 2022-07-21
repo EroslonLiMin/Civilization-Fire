@@ -31,10 +31,9 @@ public class BotMenu extends CivilizationBaseMenu {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     boolean could = false;
-                    if(!(stack.getItem() instanceof BotAddItem)){
+                    if(!(stack.getItem() instanceof BotAddItem botAddItem)){
                         return false;
                     }
-                    BotAddItem botAddItem = (BotAddItem) stack.getItem();
                     switch (this.getSlotIndex()) {
                         case 0 -> could = botAddItem.botAddType == BotAddItem.BotAddType.EnergyAdd;
                         case 1 -> could = botAddItem.botAddType == BotAddItem.BotAddType.MCAttributeAdd;
@@ -51,9 +50,11 @@ public class BotMenu extends CivilizationBaseMenu {
                 @Override
                 public void set(@NotNull ItemStack stack) {
                     super.set(stack);
-                    if(this.getSlotIndex() == 0) bot.setEnergyAdd(stack);
-                    else if(this.getSlotIndex() == 1) bot.setMcAttributeAdd(stack);
-                    else bot.setCorrespondingAbilityAdd(stack);
+                    if(!bot.getLevel().isClientSide()) {
+                        if (this.getSlotIndex() == 0) bot.setEnergyAdd(stack);
+                        else if (this.getSlotIndex() == 1) bot.setMcAttributeAdd(stack);
+                        else bot.setCorrespondingAbilityAdd(stack);
+                    }
                 }
             });
         }
@@ -69,7 +70,7 @@ public class BotMenu extends CivilizationBaseMenu {
             @Override
             public void set(@NotNull ItemStack stack) {
                 super.set(stack);
-                bot.setFruitAdd(stack);
+                if(!bot.getLevel().isClientSide())  bot.setFruitAdd(stack);
             }
         });
     }

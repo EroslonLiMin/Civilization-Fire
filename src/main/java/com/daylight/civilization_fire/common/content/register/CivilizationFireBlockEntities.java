@@ -8,6 +8,7 @@ import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBloc
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
 
+import com.daylight.civilization_fire.common.content.block.cooking.JuicerBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -102,4 +103,11 @@ public class CivilizationFireBlockEntities {
                                                                         CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE
                                                                                         .get())
                                                         .build(null));
+        public static final RegistryObject<BlockEntityType<JuicerBlock.JuicerBlockEntity>> JUICER_BLOCK_ENTITY = BLOCK_ENTITIES
+                .register("juicer_entity_block",
+                        () -> BlockEntityType.Builder
+                                .of(JuicerBlock.JuicerBlockEntity::new,
+                                        CivilizationFireBlocks.JUICER_BLOCK
+                                                .get())
+                                .build(null));
 }

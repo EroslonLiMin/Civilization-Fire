@@ -128,6 +128,9 @@ public class CivilizationFireRenderTypeRegister {
                                 RenderType.translucent());
                         ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.WELL_BLOCK.get(),
                                 RenderType.translucent());
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.JUICER_BLOCK.get(),
+                                RenderType.translucent());
+
                 });
         }
 }

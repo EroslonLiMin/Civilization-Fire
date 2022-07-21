@@ -21,6 +21,9 @@
 
   "civilization_fire.bot_menu": "机器人界面",
 
+  "juicer_menu.display.name": "榨汁机",
+  "item.civilization_fire.rookie_armor_head": "菜鸟头盔",
+
   "civilization_fire.destroy_mode" : "直接破坏模式",
   "civilization_fire.picking_mode" : "右键采摘模式",
   "plant_item.hover_text.sp": "§a§m               §f[植物信息]§a§m               ",
@@ -32,21 +35,41 @@
   "effect.civilization_fire.vegetable_effect": "白菜汁汁汁",
   "item.civilization_fire.vegetable_juice": "白菜汁",
   "vegetable_juice.hover_text": "§A喝下去之后你将无比幸运",
+
   "effect.civilization_fire.eggplant_effect": "§4ฬ๔ภ๓๔-茄子",
   "item.civilization_fire.eggplant_juice": "§4ฬ๔ภ๓๔-茄子",
   "eggplant_juice.hover_text": "§4喝下去之后你化生茄子然后§eฬ๔ภ๓๔，获得强大的力量与击退力",
+
   "effect.civilization_fire.bean_effect": "豆汁汁汁",
   "item.civilization_fire.bean_juice": "豆汁",
   "bean_juice.hover_text": "§e喝下去之后你获得王者的气息让敌人无法靠近你",
+
   "effect.civilization_fire.tomato_effect": "番茄汁汁汁",
   "item.civilization_fire.tomato_juice": "番茄汁",
   "tomato_juice.hover_text": "§4红红火火恍恍惚惚，你将获得生命的加持",
 
+  "effect.civilization_fire.carrot_effect": "萝卜汁汁汁",
+  "item.civilization_fire.carrot_juice": "萝卜汁",
+  "carrot_juice.hover_text": "§5喝下它，你将受到萝卜的保护，受的伤害不会超过2点",
+
+  "effect.civilization_fire.ginger_effect": "姜汁汁汁",
+  "item.civilization_fire.ginger_juice": "姜汁",
+  "ginger_juice.hover_text": "§b喝下它，你将感到无比的清醒，你的所作所为都会更加有效率且不受失明和饥饿的干扰",
+
+  "effect.civilization_fire.pumpkin_effect": "南瓜汁汁汁",
+  "item.civilization_fire.pumpkin_juice": "南瓜汁",
+  "pumpkin_juice.hover_text": "§5喝下它，你将免除一切负面buff的干扰",
 
   "item.civilization_fire.farming_bot_entity_item": "农耕蜘蛛机器人",
   "item.civilization_fire.mining_bot_entity_item": "挖矿机器人",
   "item.civilization_fire.guarding_bot_entity_item": "守卫机器人",
 
+  "effect.civilization_fire.celery_effect": "芹菜汁汁汁",
+  "item.civilization_fire.celery_juice": "芹菜汁",
+  "celery_juice.hover_text": "§3喝下它，你将跳得高且无掉落伤害",
+
+  "item.civilization_fire.assorted_vegetables_juice": "§a蔬菜§e什锦§b随机§f效果",
+  "assorted_vegetables_juice.hover_text": "§5喝下它，你将随机获得一种或多种效果！",
 
   "item.civilization_fire.dragon_channel_fire" : "龙渠道火",
 
@@ -81,6 +104,7 @@
   "item.civilization_fire.vinegar": "醋",
   "item.civilization_fire.cooking_wine": "料酒",
   "block.civilization_fire.cooking_bench_block": "灶台",
+  "block.civilization_fire.juicer_block": "榨汁机",
   "block.civilization_fire.steamed_sichuan_fish": "清蒸江团",
   "block.civilization_fire.sichuan_cooked_pork": "回锅肉",
   "block.civilization_fire.chinese_cabbage_soup": "开水白菜",

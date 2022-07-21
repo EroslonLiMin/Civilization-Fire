@@ -37,6 +37,8 @@ public class CivilizationFireBlocks {
                         FoodSteamerBlock::new);//蒸笼
         public static final RegistryObject<Block> CASSEROLE_BLOCK = BLOCKS.register("casserole_block",
                         CasseroleBlock::new);//铁锅
+        public static final RegistryObject<Block> JUICER_BLOCK = BLOCKS.register("juicer_block",
+                JuicerBlock::new);//榨汁机
         public static final RegistryObject<Block> FOOD_STEAMER_HAT_BLOCK = BLOCKS.register("food_steamer_hat_block",
                         () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F)
                                         .requiresCorrectToolForDrops().noOcclusion()));//盘子

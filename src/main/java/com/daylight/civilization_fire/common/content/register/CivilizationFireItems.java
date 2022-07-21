@@ -10,10 +10,13 @@ import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import com.daylight.civilization_fire.common.content.item.agriculture.*;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
+import com.daylight.civilization_fire.common.content.item.armor.RookieArmor;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 
 import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +27,11 @@ import net.minecraftforge.registries.RegistryObject;
 public class CivilizationFireItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
             CivilizationFire.MODID);
+
+    //ARMOR
+    public static final RegistryObject<RookieArmor> ROOKIE_ARMOR_HEAD = ITEMS.register("rookie_armor_head",
+            () -> new RookieArmor(EquipmentSlot.HEAD));
+
     //土壤
     public static final RegistryObject<Item> CLAY_BLOCK = ITEMS.register("clay_block",
             () -> new BlockItem(CivilizationFireBlocks.CLAY_BLOCK.get(),
@@ -43,7 +51,9 @@ public class CivilizationFireItems {
     public static final RegistryObject<Item> WELL_BLOCK = ITEMS.register("well_block",
             () -> new BlockItem(CivilizationFireBlocks.WELL_BLOCK.get(),
                     new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
-
+    public static final RegistryObject<Item> JUICER_BLOCK = ITEMS.register("juicer_block",
+            () -> new BlockItem(CivilizationFireBlocks.JUICER_BLOCK.get(),
+                    new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB)));
     //烹饪
     public static final RegistryObject<Item> IRON_POT_BLOCK = ITEMS.register("iron_pot_block",
             () -> new BlockItem(CivilizationFireBlocks.IRON_POT_BLOCK.get(),
@@ -242,8 +252,23 @@ public class CivilizationFireItems {
     public static final RegistryObject<Item> CORRESPONDING_ADD_LEVEL_3 = ITEMS.register("corresponding_add_level_3", () -> new BotAddItem(3, BotAddItem.BotAddType.CorrespondingAbilityAdd));
 
     //汁水
-    public static final RegistryObject<Item> VEGETABLE_JUICE = ITEMS.register("vegetable_juice", () -> new VegetableJuiceItem(() -> new MobEffectInstance(CivilizationFireEffect.VEGETABLE_EFFECT.get(), 30 * 25, 1)));
-    public static final RegistryObject<Item> EGGPLANT_JUICE = ITEMS.register("eggplant_juice", () -> new VegetableJuiceItem(() -> new MobEffectInstance(CivilizationFireEffect.EGGPLANT_EFFECT.get(), 30 * 25, 1)));
-    public static final RegistryObject<Item> BEAN_JUICE = ITEMS.register("bean_juice", () -> new VegetableJuiceItem(() -> new MobEffectInstance(CivilizationFireEffect.BEAN_EFFECT.get(), 30 * 25, 1)));
-    public static final RegistryObject<Item> TOMATO_JUICE = ITEMS.register("tomato_juice", () -> new VegetableJuiceItem(() -> new MobEffectInstance(CivilizationFireEffect.TOMATO_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> VEGETABLE_JUICE = ITEMS.register("vegetable_juice", () -> new VegetableJuiceItem("big_chinese_cabbage_fruit",() -> new MobEffectInstance(CivilizationFireEffect.VEGETABLE_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> EGGPLANT_JUICE = ITEMS.register("eggplant_juice", () -> new VegetableJuiceItem("eggplant_fruit",() -> new MobEffectInstance(CivilizationFireEffect.EGGPLANT_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> BEAN_JUICE = ITEMS.register("bean_juice", () -> new VegetableJuiceItem("broad_bean_fruit",() -> new MobEffectInstance(CivilizationFireEffect.BEAN_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> TOMATO_JUICE = ITEMS.register("tomato_juice", () -> new VegetableJuiceItem("tomatoes_fruit",() -> new MobEffectInstance(CivilizationFireEffect.TOMATO_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> CARROT_JUICE = ITEMS.register("carrot_juice", () -> new VegetableJuiceItem("carrot",() -> new MobEffectInstance(CivilizationFireEffect.CARROT_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> GINGER_JUICE = ITEMS.register("ginger_juice", () -> new VegetableJuiceItem("ginger_item",() -> new MobEffectInstance(CivilizationFireEffect.GINGER_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> PUMPKIN_JUICE = ITEMS.register("pumpkin_juice", () -> new VegetableJuiceItem("pumpkin",() -> new MobEffectInstance(CivilizationFireEffect.PUMPKIN_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> CELERY_JUICE = ITEMS.register("celery_juice", () -> new VegetableJuiceItem("celery_fruit",() -> new MobEffectInstance(CivilizationFireEffect.CELERY_EFFECT.get(), 30 * 25, 1)));
+    public static final RegistryObject<Item> ASSORTED_VEGETABLES_JUICE = ITEMS.register("assorted_vegetables_juice", () -> new VegetableJuiceItem(new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB).stacksTo(1).food(new FoodProperties.Builder().alwaysEat().saturationMod(0.5F).nutrition(1).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.CELERY_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.EGGPLANT_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.BEAN_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.TOMATO_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.VEGETABLE_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.CARROT_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.GINGER_EFFECT.get(), 30 * 25, 1), 0.125F).
+            effect(()->new MobEffectInstance(CivilizationFireEffect.PUMPKIN_EFFECT.get(), 30 * 25, 1), 0.125F).
+            build())));
+
 }

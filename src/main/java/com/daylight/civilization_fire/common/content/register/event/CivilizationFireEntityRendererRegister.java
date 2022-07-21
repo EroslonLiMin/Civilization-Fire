@@ -3,6 +3,7 @@ package com.daylight.civilization_fire.common.content.register.event;
 import com.daylight.civilization_fire.client.model.CurvilinearPloughModel;
 import com.daylight.civilization_fire.client.model.IronPloughModel;
 import com.daylight.civilization_fire.client.model.StonePloughModel;
+import com.daylight.civilization_fire.client.model.armor.RookieHeadArmorModel;
 import com.daylight.civilization_fire.client.renderer.*;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
@@ -44,5 +45,7 @@ public class CivilizationFireEntityRendererRegister {
                 event.registerLayerDefinition(IronPloughModel.LAYER_LOCATION, IronPloughModel::createBodyLayer);
                 event.registerLayerDefinition(CurvilinearPloughModel.LAYER_LOCATION,
                                 CurvilinearPloughModel::createBodyLayer);
+                event.registerLayerDefinition(RookieHeadArmorModel.LAYER_LOCATION,
+                        RookieHeadArmorModel::createBodyLayer);
         }
 }

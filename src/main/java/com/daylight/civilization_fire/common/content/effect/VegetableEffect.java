@@ -48,13 +48,14 @@ public class VegetableEffect extends MobEffect {
     //挖矿处理
     @SubscribeEvent
     public static void onVegetableEffectOnPlayerBreakOre(BlockEvent.BreakEvent event) {
+
         if (event.getPlayer().hasEffect(CivilizationFireEffect.VEGETABLE_EFFECT.get()) && new Random().nextBoolean()) {
             event.setExpToDrop(event.getExpToDrop() * 2);
             if (event.getState().getBlock() instanceof OreBlock) {
-                if(!event.getWorld().isClientSide())
-                    event.getWorld().addFreshEntity(new ItemEntity(event.getPlayer().getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getY(), new ItemStack(event.getState().getBlock())));
+                System.out.println(true);
+                System.out.println(event.getState().getBlock().getRegistryName().toString());
+                event.getPlayer().addItem(new ItemStack(event.getState().getBlock()));
             }
         }
     }
-
 }
