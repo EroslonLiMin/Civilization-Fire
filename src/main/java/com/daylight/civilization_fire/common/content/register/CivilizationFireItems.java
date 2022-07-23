@@ -7,10 +7,11 @@ import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEn
 import com.daylight.civilization_fire.common.content.entity.bot.FarmingBot;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
+import com.daylight.civilization_fire.common.content.item.GunpowderPepper;
 import com.daylight.civilization_fire.common.content.item.agriculture.*;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
-import com.daylight.civilization_fire.common.content.item.armor.RookieArmor;
+import com.daylight.civilization_fire.common.content.item.armor.*;
 import com.daylight.civilization_fire.common.content.item.cooking.CondimentItem;
 
 import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
@@ -28,9 +29,15 @@ public class CivilizationFireItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
             CivilizationFire.MODID);
 
-    //ARMOR
-    public static final RegistryObject<RookieArmor> ROOKIE_ARMOR_HEAD = ITEMS.register("rookie_armor_head",
+    //ADD
+    public static final RegistryObject<RookieArmor> ROOKIE_ARMOR_HAT  = ITEMS.register("rookie_armor_hat",
             () -> new RookieArmor(EquipmentSlot.HEAD));
+    public static final RegistryObject<GunpowderPepper> GUNPOWDER_PEPPER  = ITEMS.register("gunpowder_pepper",GunpowderPepper::new);
+    public static final RegistryObject<WaxGourdArmor> WAX_GOURD_ARMOR_BODY  = ITEMS.register("wax_gourd_armor_body",() -> new WaxGourdArmor(EquipmentSlot.CHEST));
+    public static final RegistryObject<SuperTaroArmor> SUPER_TARO_ARMOR_PANTS  = ITEMS.register("super_taro_armor_pants",() -> new SuperTaroArmor(EquipmentSlot.LEGS));
+    public static final RegistryObject<BalsamPearArmor> BALSAM_PEAR_ARMOR_HAT  = ITEMS.register("balsam_pear_armor_hat",() -> new BalsamPearArmor(EquipmentSlot.HEAD));
+    public static final RegistryObject<CucumberRocketArmor> CUCUMBER_ROCKET_ARMOR_FEET  = ITEMS.register("cucumber_rocket_armor_feet",() -> new CucumberRocketArmor(EquipmentSlot.FEET));
+    public static final RegistryObject<MushroomArmor> MUSHROOM_ARMOR_REGISTRY_OBJECT  = ITEMS.register("mushroom_armor_head",() -> new MushroomArmor(EquipmentSlot.HEAD));
 
     //土壤
     public static final RegistryObject<Item> CLAY_BLOCK = ITEMS.register("clay_block",

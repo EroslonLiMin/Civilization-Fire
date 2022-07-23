@@ -10,9 +10,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum VegetableMaterials implements ArmorMaterial {
-    LOW_VEGETABLE("low_vegetable", 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_CHAIN, 0.1F, 0.1F, () -> null),
-    NORMAL_VEGETABLE("normal_vegetable", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.3F, 0.3F, () -> null),
-    HIGH_VEGETABLE("high_vegetable", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 0.5F, () -> null);
+    LOW_VEGETABLE("low_vegetable", 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_CHAIN, 0.1F, 0.2F, () -> null),
+    NORMAL_VEGETABLE("normal_vegetable", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.3F, 0.4F, () -> null),
+    HIGH_VEGETABLE("high_vegetable", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 0.8F, () -> null);
+
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;

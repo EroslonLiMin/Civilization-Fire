@@ -131,6 +131,8 @@ public class CivilizationFireRenderTypeRegister {
                         ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.JUICER_BLOCK.get(),
                                 RenderType.translucent());
 
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.CHINESE_CABBAGE_SOUP.dishesVarietyBlockRegistry.get(),
+                                RenderType.translucent());
                 });
         }
 }

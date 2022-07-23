@@ -22,7 +22,21 @@
   "civilization_fire.bot_menu": "机器人界面",
 
   "juicer_menu.display.name": "榨汁机",
-  "item.civilization_fire.rookie_armor_head": "菜鸟头盔",
+  "item.civilization_fire.rookie_armor_hat": "菜鸟头盔",
+  "item.civilization_fire.gunpowder_pepper": "火药辣椒",
+  "item.civilization_fire.wax_gourd_armor_body": "冬瓜胸甲",
+  "item.civilization_fire.super_taro_armor_pants": "超级芋头裤",
+  "item.civilization_fire.balsam_pear_armor_hat": "苦瓜头盔",
+  "item.civilization_fire.cucumber_rocket_armor_feet": "黄瓜火箭靴",
+  "item.civilization_fire.mushroom_armor_head": "蘑菇保护伞",
+
+
+  "balsam_pear_armor.hover_text" : "§4它尖锐的头顶可以帮你刺破头上的方块，它苦涩的味道会淡化你的味蕾",
+  "cucumber_rocket_armor.hover_text" : "§a黄瓜一飞冲天的能力当然可以让你变成超级飞侠",
+  "mushroom_armor.hover_text": "§5巨大的蘑菇如同保护伞一半让你免受掉落物的伤害",
+  "rookie_armor.hover_text" : "§b大白菜独特的能力以及菜叶独特的缓降能力足以让菜鸟们在这个世界上安然生存",
+  "super_taro.hover_text": "§6超级芋头足以让你的'夜不闭户'",
+  "wax_gourd.hover_text": "§2冬瓜独特的保护机制可以很大程度上保护好你",
 
   "civilization_fire.destroy_mode" : "直接破坏模式",
   "civilization_fire.picking_mode" : "右键采摘模式",

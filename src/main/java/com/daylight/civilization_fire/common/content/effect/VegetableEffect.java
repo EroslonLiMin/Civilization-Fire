@@ -52,8 +52,6 @@ public class VegetableEffect extends MobEffect {
         if (event.getPlayer().hasEffect(CivilizationFireEffect.VEGETABLE_EFFECT.get()) && new Random().nextBoolean()) {
             event.setExpToDrop(event.getExpToDrop() * 2);
             if (event.getState().getBlock() instanceof OreBlock) {
-                System.out.println(true);
-                System.out.println(event.getState().getBlock().getRegistryName().toString());
                 event.getPlayer().addItem(new ItemStack(event.getState().getBlock()));
             }
         }

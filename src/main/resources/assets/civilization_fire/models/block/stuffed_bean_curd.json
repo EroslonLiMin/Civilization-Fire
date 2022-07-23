@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "civilization_fire:block/plate",
 		"1": "civilization_fire:block/stuffed_bean_curd",
-		"particle": "civilization_fire:block/plate"
+		"particle": "civilization_fire:block/plate",
 	},
 	"elements": [
 		{
@@ -151,48 +151,48 @@
 			}
 		},
 		{
-			"from": [2, 4, 3],
-			"to": [5, 4, 7],
+			"from": [2, 4.2, 3],
+			"to": [5, 4.2, 7],
 			"faces": {
 				"up": {"uv": [0, 0, 3, 4], "texture": "#1"},
 				"down": {"uv": [0, 0, 3, 4], "texture": "#1"}
 			}
 		},
 		{
-			"from": [11, 4, 3],
-			"to": [14, 4, 7],
+			"from": [11, 4.2, 3],
+			"to": [14, 4.2, 7],
 			"faces": {
 				"up": {"uv": [0, 0, 3, 4], "texture": "#1"},
 				"down": {"uv": [3, 3, 6, 7], "texture": "#1"}
 			}
 		},
 		{
-			"from": [11, 4, 9],
-			"to": [14, 4, 13],
+			"from": [11, 4.2, 9],
+			"to": [14, 4.2, 13],
 			"faces": {
 				"up": {"uv": [3, 0, 6, 4], "texture": "#1"},
 				"down": {"uv": [5, 0, 8, 4], "texture": "#1"}
 			}
 		},
 		{
-			"from": [2, 4, 9],
-			"to": [5, 4, 13],
+			"from": [2, 4.2, 9],
+			"to": [5, 4.2, 13],
 			"faces": {
 				"up": {"uv": [3, 3, 6, 7], "texture": "#1"},
 				"down": {"uv": [5, 0, 8, 4], "texture": "#1"}
 			}
 		},
 		{
-			"from": [6.5, 4, 9],
-			"to": [9.5, 4, 13],
+			"from": [6.5, 4.2, 9],
+			"to": [9.5, 4.2, 13],
 			"faces": {
 				"up": {"uv": [1, 3, 4, 7], "texture": "#1"},
 				"down": {"uv": [5, 0, 8, 4], "texture": "#1"}
 			}
 		},
 		{
-			"from": [6.5, 4, 3],
-			"to": [9.5, 4, 7],
+			"from": [6.5, 4.2, 3],
+			"to": [9.5, 4.2, 7],
 			"faces": {
 				"up": {"uv": [5, 0, 8, 4], "texture": "#1"},
 				"down": {"uv": [5, 0, 8, 4], "texture": "#1"}
