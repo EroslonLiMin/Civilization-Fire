@@ -8,6 +8,7 @@ import com.daylight.civilization_fire.client.renderer.*;
 import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.register.CivilizationEntityTypes;
 
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
@@ -37,6 +38,8 @@ public class CivilizationFireEntityRendererRegister {
                 event.registerEntityRenderer(CivilizationEntityTypes.KEEL_WATER_WHEEL_ENTITY.get(), KeelWaterwheelRenderer::new);
                 event.registerEntityRenderer(CivilizationEntityTypes.BUCKETS_WATER_WHEEL_ENTITY.get(), BucketsWaterwheelRenderer::new);
                 event.registerEntityRenderer(CivilizationEntityTypes.FARMING_BOT_ENTITY.get(), FarmingBotRenderer::new);
+                event.registerEntityRenderer(CivilizationEntityTypes.CIVILIZATION_FIRE_PROJECTILE_ENTITY.get(), ThrownItemRenderer::new);
+
         }
 
         @SubscribeEvent

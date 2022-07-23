@@ -49,11 +49,11 @@ public class CucumberRocketArmor extends ArmorItem {
         }
         LivingEntity livingEntity = updateEvent.getEntityLiving();
         Vec3 vec3 = livingEntity.getDeltaMovement();
-        if(!livingEntity.getPersistentData().getBoolean("isCucumber")) {
-            livingEntity.setDeltaMovement(vec3.x * 5 , vec3.y, vec3.z * 5);
+        if(!livingEntity.getPersistentData().getBoolean("isCucumber") && livingEntity.isShiftKeyDown()) {
+            livingEntity.setDeltaMovement(vec3.x * 5 , vec3.y * 3, vec3.z * 5);
             livingEntity.getPersistentData().putBoolean("isCucumber",true);
         }
-        if(vec3.y <= 0.1){
+        if(vec3.y <= 0.1 && !livingEntity.isShiftKeyDown()){
             livingEntity.getPersistentData().remove("isCucumber");
         }
     }

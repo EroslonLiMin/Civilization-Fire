@@ -8,6 +8,7 @@ import com.daylight.civilization_fire.common.content.entity.bot.FarmingBot;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import com.daylight.civilization_fire.common.content.item.GunpowderPepper;
+import com.daylight.civilization_fire.common.content.item.ScallionCrownBladeItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.*;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
@@ -38,6 +39,8 @@ public class CivilizationFireItems {
     public static final RegistryObject<BalsamPearArmor> BALSAM_PEAR_ARMOR_HAT  = ITEMS.register("balsam_pear_armor_hat",() -> new BalsamPearArmor(EquipmentSlot.HEAD));
     public static final RegistryObject<CucumberRocketArmor> CUCUMBER_ROCKET_ARMOR_FEET  = ITEMS.register("cucumber_rocket_armor_feet",() -> new CucumberRocketArmor(EquipmentSlot.FEET));
     public static final RegistryObject<MushroomArmor> MUSHROOM_ARMOR_REGISTRY_OBJECT  = ITEMS.register("mushroom_armor_head",() -> new MushroomArmor(EquipmentSlot.HEAD));
+    public static final RegistryObject<ScallionCrownBladeItem> SCALLION_CROWN_BLADE_ITEM  = ITEMS.register("scallion_crown_blade_item", ScallionCrownBladeItem::new);
+
 
     //土壤
     public static final RegistryObject<Item> CLAY_BLOCK = ITEMS.register("clay_block",
