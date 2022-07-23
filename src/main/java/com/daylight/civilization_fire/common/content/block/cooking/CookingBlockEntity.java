@@ -1,9 +1,10 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
-import com.daylight.civilization_fire.common.content.item.cooking.DishesVarietyItem;
 import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
+import com.daylight.civilization_fire.common.content.recipe.CookingDishesType;
 import com.daylight.civilization_fire.common.content.recipe.CookingRecipe;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
+import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -34,6 +35,7 @@ public abstract class CookingBlockEntity extends BlockEntity {
     public CookingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
     }
+
 
     //tick进行刷新
     public static void tick(Level level, BlockPos pos, BlockState blockState,
@@ -86,16 +88,18 @@ public abstract class CookingBlockEntity extends BlockEntity {
         ItemStack itemStack = ItemStack.EMPTY;
         for(CookingRecipe cookingRecipe : CookingRecipe.COOKING_RECIPE_MAP.values()){
             //烹饪工具
-            if(this.isComplianceCookingTool(cookingRecipe.cookingTool)){
+            if(this.isComplianceCookingTool(cookingRecipe.cookingTool)) {
                 //装盘工具
-                if(this.toolsItemStackHandler.getStackInSlot(0).getItem() instanceof DishesVarietyItem && ((DishesVarietyItem)this.toolsItemStackHandler.getStackInSlot(0).getItem()).cookingDishesType == cookingRecipe.cookingDishesType)
-                //烹饪材料
-                if(cookingRecipe.isComplianceItemsWithMenu(this.cookingStacksItemStackHandler, this.addCondimentItemStackHandler)){
-                    itemStack = new ItemStack(cookingRecipe.getCookingItem());
-                    couldTake = true;
-                    break;
-                } else {
-                    couldTake = false;
+                boolean isWith = cookingRecipe.cookingDishesType == CookingDishesType.Bowl ? this.toolsItemStackHandler.getStackInSlot(0).getItem() == CivilizationFireItems.BOWL.get() : this.toolsItemStackHandler.getStackInSlot(0).getItem() == CivilizationFireItems.PLATE.get() ;
+                if (isWith) {
+                    //烹饪材料
+                    if (cookingRecipe.isComplianceItemsWithMenu(this.cookingStacksItemStackHandler, this.addCondimentItemStackHandler)) {
+                        itemStack = new ItemStack(cookingRecipe.getCookingItem());
+                        couldTake = true;
+                        break;
+                    } else {
+                        couldTake = false;
+                    }
                 }
             }
         }

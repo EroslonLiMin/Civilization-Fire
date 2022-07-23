@@ -1,31 +1,141 @@
 {
   "variants": {
-    "bench=0": {
+    "facing=east,bench=0": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block"
     },
-    "bench=1": {
+    "facing=east,bench=1": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_with_wood"
     },
-    "bench=2": {
+    "facing=east,bench=2": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=3": {
+    "facing=east,bench=3": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=4": {
+    "facing=east,bench=4": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=5": {
+    "facing=east,bench=5": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=6": {
+    "facing=east,bench=6": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=7": {
+    "facing=east,bench=7": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
     },
-    "bench=8": {
+    "facing=east,bench=8": {
       "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire"
+    },
+    "facing=west,bench=0": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block",
+      "y": 180
+    },
+    "facing=west,bench=1": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_with_wood",
+      "y": 180
+    },
+    "facing=west,bench=2": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=3": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=4": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=5": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=6": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=7": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+    "facing=west,bench=8": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 180
+    },
+
+    "facing=south,bench=0": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block",
+      "y": 90
+    },
+    "facing=south,bench=1": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_with_wood",
+      "y": 90
+    },
+    "facing=south,bench=2": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=3": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=4": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=5": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=6": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=7": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+    "facing=south,bench=8": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
+    },
+
+    "facing=north,bench=0": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block",
+      "y": 270
+    },
+    "facing=north,bench=1": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_with_wood",
+      "y": 270
+    },
+    "facing=north,bench=2": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=3": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=4": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=5": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=6": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=7": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 270
+    },
+    "facing=north,bench=8": {
+      "model": "civilization_fire:block/cooking_bench_block/cooking_bench_block_fire",
+      "y": 90
     }
   }
 }

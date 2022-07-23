@@ -37,7 +37,7 @@ public class CivilizationCookingRecipes {
     /*番茄炒鸡蛋*/
     public static final CookingRecipe SCRAMBLED_TOMATO_EGG = new CookingRecipe(CookingDishesType.Plate, "scrambled_tomato_egg", CookingTool.IronPot).setNeedCondimentItems("oil", "salt", "sauce", "vinegar").setNeedCookingItems("tomatoes_fruit", "egg");
     /*白米饭*/
-    public static final CookingRecipe RICE = new CookingRecipe(CookingDishesType.Plate, "rice", CookingTool.FoodSteamer).setNeedCookingItems("rice_item").setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("rice_item", "glutinous_rice_item", "yellow_rice_item", "sorghum_item"));
+    public static final CookingRecipe RICE = new CookingRecipe(CookingDishesType.Plate, "rice_dishes", CookingTool.FoodSteamer).setNeedCookingItems("rice_item").setCanChangeCookingItems(new CookingRecipe.CanChangeCookingItem("rice_item", "glutinous_rice_item", "yellow_rice_item", "sorghum_item"));
     /*杂粮饭*/
     public static final CookingRecipe COARSE_GRAIN_RICE = new CookingRecipe(CookingDishesType.Plate, "coarse_grain_rice", CookingTool.FoodSteamer).setNeedCookingItems("rice_item", "glutinous_rice_item", "yellow_rice_item", "sorghum_item");
     /*芹菜炒肉*/

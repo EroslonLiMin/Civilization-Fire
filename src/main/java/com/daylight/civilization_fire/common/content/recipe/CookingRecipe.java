@@ -38,6 +38,7 @@ public class CookingRecipe {
     }
 
     public Item getCookingItem() {
+        System.out.println(cookingItem);
         return ForgeRegistries.ITEMS.getHolder(CivilizationFire.resource(cookingItem)).get().value();
     }
 
