@@ -9,7 +9,6 @@ import com.daylight.civilization_fire.common.content.entity.bot.FarmingBot;
 import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
-import com.daylight.civilization_fire.common.content.entity.projectile.CivilizationFireProjectileEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -74,8 +73,4 @@ public class CivilizationEntityTypes {
                                 .of(FarmingBot::new, MobCategory.MISC)
                                 .sized(1.5F, 1.5F).clientTrackingRange(10)
                                 .build("farming_bot"));
-        public static final RegistryObject<EntityType<CivilizationFireProjectileEntity>> CIVILIZATION_FIRE_PROJECTILE_ENTITY = ENTITY_TYPES.register("civilization_fire_projectile_entity",
-                ()->EntityType.Builder.<CivilizationFireProjectileEntity>of(CivilizationFireProjectileEntity::new, MobCategory.MISC).setCustomClientFactory(CivilizationFireProjectileEntity::new)
-                        .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f).build("civilization_fire_projectile_entity"));
-
 }
