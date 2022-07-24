@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock.AgricultureAnvilBlockEntity;
 import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentTableBlock.AgricultureEnchantmentTableBlockEntity;
 import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
@@ -44,6 +45,9 @@ public class CivilizationFireMenuTypes {
                                                                         .getBlockEntity(data.readBlockPos()))));
 
         public static final RegistryObject<MenuType<AgricultureAnvilMenu>> AGRICULTURE_ANVIL_MENU = MENUS
-                        .register("agriculture_anvil_menu", () -> new MenuType<>(AgricultureAnvilMenu::new));
+                        .register("agriculture_anvil_menu",
+                                        () -> IForgeMenuType.create((id, inv, data) -> new AgricultureAnvilMenu(id, inv,
+                                                        (AgricultureAnvilBlockEntity) inv.player.level
+                                                                        .getBlockEntity(data.readBlockPos()))));
 
 }

@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.client.screen.agriculture;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 import com.daylight.civilization_fire.client.screen.BaseContainerScreen;
@@ -7,9 +8,11 @@ import com.daylight.civilization_fire.common.CivilizationFire;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureAnvilMenu;
 import com.daylight.civilization_fire.common.network.CivilizationFireNetwork;
 import com.daylight.civilization_fire.common.network.packet.severbound.ServerboundRenameItemPacket;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -45,16 +48,36 @@ public final class AgricultureAnvilScreen extends BaseContainerScreen<Agricultur
             @Nonnull final Component title) {
         super(menu, inventory, title, ANVIL_LOCATION);
         imageHeight = imageWidth = 216;
+        menu.onContentsChanged(slot -> {
+            if (slot == 0) {
+                final var stack = menu.getEntity().inpuItemStackHandler.getStackInSlot(0);
+                if (stack.isEmpty()) {
+                    name.setEditable(false);
+                    name.setValue("");
+                } else {
+                    name.setEditable(true);
+
+                    final var hoverName = stack.getHoverName().getString();
+
+                    name.setValue(hoverName);
+                    setFocused(name);
+                    menu.setItemName(hoverName);
+                }
+            }
+        });
     }
 
     @Override
     protected final void init() {
         super.init();
 
+        final var xOffset = (this.width - this.imageWidth) / 2;
+        final var yOffset = (this.height - this.imageHeight) / 2;
+
         //
         // Create a new edit box.
         //
-        name = new EditBox(font, 61, 57, 94, 12, new TranslatableComponent("container.repair"));
+        name = new EditBox(font, 61 + xOffset, 57 + yOffset, 94, 12, new TranslatableComponent("container.repair"));
 
         //
         // Set the edit box's properties.
@@ -85,16 +108,27 @@ public final class AgricultureAnvilScreen extends BaseContainerScreen<Agricultur
         }
 
         //
-        // Get the input slot.
-        //
-        final var slot = menu.getSlot(4);
-
-        //
         // Determine whether the new name is different from the old name.
         //
-        if (!slot.getItem().getHoverName().getString().equals(name)) {
+        final var stack = menu.getEntity().inpuItemStackHandler.getStackInSlot(0);
+        if (!stack.getHoverName().getString().equals(name)) {
             menu.setItemName(name);
             CivilizationFireNetwork.sendToServer(new ServerboundRenameItemPacket(name));
         }
+    }
+
+    @Override
+    public void render(@Nonnull final PoseStack poseStack, @Nonnegative final int mouseX, @Nonnegative final int mouseY,
+            @Nonnegative final float partialTick) {
+        super.render(poseStack, mouseX, mouseY, partialTick);
+        name.render(poseStack, mouseX, mouseY, partialTick);
+    }
+
+    @Override
+    public void resize(@Nonnull final Minecraft minecraft, @Nonnegative final int width,
+            @Nonnegative final int height) {
+        final var string = name.getValue();
+        super.resize(minecraft, width, height);
+        name.setValue(string);
     }
 }

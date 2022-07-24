@@ -1,12 +1,16 @@
 package com.daylight.civilization_fire.common.content.menu.agriculture;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvil;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock.AgricultureAnvilBlockEntity;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.menu.CivilizationBaseMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationMenuTypes;
@@ -14,23 +18,18 @@ import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.ItemCombinerMenu;
-import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.MenuType.MenuSupplier;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AnvilBlock;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.SlotItemHandler;
 
 /**
  * Agriculture anvil menu, wich is opened when the player right-clicks the agriculture anvil.
@@ -52,39 +51,26 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
     private String itemName;
 
     /**
-     * A container which is used to store the item after enchanted, renamed or repaired.
+     * Agriculture anvil's block entity.
      */
-    private final ResultContainer resultSlots = new ResultContainer();
+    private final AgricultureAnvilBlockEntity entity;
 
     /**
-     * 4 fruit input slot and 1 item input slot.
+     * Called when slots changed.
      */
-    private final Container inputSlots = new SimpleContainer(5) {
-        /**
-         * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think
-         * it hasn't changed and skip it.
-         */
-        public void setChanged() {
-            super.setChanged();
-            AgricultureAnvilMenu.this.slotsChanged(this);
-        }
-    };
-
-    /**
-     * Container level access which is used to access the level.
-     * @see #removed(Player)
-     */
-    private final ContainerLevelAccess access;
+    private final List<Consumer<Integer>> onContentsChanged = new ArrayList<>();
 
     /**
      * Create a new agriculture anvil menu, do not call this constructor manually.
      *
      * @param containerId The container id.
-     * @param playerInventory The player inventory.
+     * @param inventory The player inventory.
      * @see MenuSupplier
      */
-    public AgricultureAnvilMenu(final int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, ContainerLevelAccess.NULL);
+    public AgricultureAnvilMenu(final int containerId, @Nonnull final Inventory inventory,
+            @Nonnull final AgricultureAnvilBlockEntity entity) {
+        super(CivilizationMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, inventory);
+        this.entity = entity;
 
         //
         // Add player's inventory slots.
@@ -98,98 +84,42 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         //
         // Top-left
         //
-        addSlot(new Slot(inputSlots, 0, 91, 83) {
-            /**
-             * Check if the stack is allowed to be placed in this slot,
-             * used for armor slots as well as furnace fuel.
-             * <p> Only fruits can be placed in this slot.
-             *
-             * @param stack Stack to be placed.
-             * @return Always returns {@code false}, because player
-             * cannot place items in the result slot.
-             */
-            @Override
-            public boolean mayPlace(@Nonnull final ItemStack stack) {
-                return stack.getItem() instanceof PlantItem.PlantFruitItem;
-            }
-        });
+        addSlot(entity.cropsItemStackHandler, 0, 91, 83);
 
         //
         // Top-right
         //
-        addSlot(new Slot(inputSlots, 1, 109, 83) {
-            /**
-             * Check if the stack is allowed to be placed in this slot,
-             * used for armor slots as well as furnace fuel.
-             * <p> Only fruits can be placed in this slot.
-             *
-             * @param stack Stack to be placed.
-             * @return Always returns {@code false}, because player
-             * cannot place items in the result slot.
-             */
-            @Override
-            public boolean mayPlace(@Nonnull final ItemStack stack) {
-                return stack.getItem() instanceof PlantItem.PlantFruitItem;
-            }
-        });
+        addSlot(entity.cropsItemStackHandler, 1, 109, 83);
 
         //
         // Bottom-left
         //
-        addSlot(new Slot(inputSlots, 2, 91, 101) {
-            /**
-             * Check if the stack is allowed to be placed in this slot,
-             * used for armor slots as well as furnace fuel.
-             * <p> Only fruits can be placed in this slot.
-             *
-             * @param stack Stack to be placed.
-             * @return Always returns {@code false}, because player
-             * cannot place items in the result slot.
-             */
-            @Override
-            public boolean mayPlace(@Nonnull final ItemStack stack) {
-                return stack.getItem() instanceof PlantItem.PlantFruitItem;
-            }
-        });
+        addSlot(entity.cropsItemStackHandler, 2, 91, 101);
 
         //
         // Bottom-right
         //
-        addSlot(new Slot(inputSlots, 3, 109, 101) {
-            /**
-             * Check if the stack is allowed to be placed in this slot,
-             * used for armor slots as well as furnace fuel.
-             * <p> Only fruits can be placed in this slot.
-             *
-             * @param stack Stack to be placed.
-             * @return Always returns {@code false}, because player
-             * cannot place items in the result slot.
-             */
-            @Override
-            public boolean mayPlace(@Nonnull final ItemStack stack) {
-                return stack.getItem() instanceof PlantItem.PlantFruitItem;
-            }
-        });
+        addSlot(entity.cropsItemStackHandler, 3, 109, 101);
 
         //
         // Add item input slot.
         //
-        addSlot(new Slot(inputSlots, 4, 78, 27));
+        addSlot(entity.inpuItemStackHandler, 0, 78, 27);
 
         //
         // Right (result)
         //
-        addSlot(new Slot(resultSlots, 5, 122, 27) {
+        addSlot(new SlotItemHandler(entity.inpuItemStackHandler, 1, 122, 27) {
             /**
-             * Check if the stack is allowed to be placed in this slot,
-             * used for armor slots as well as furnace fuel.
-             * <p> This function always returns false so that player
-             * can not place stack in the result slot.
-             *
-             * @param stack Stack to be placed.
-             * @return Always returns {@code false}, because player
-             * cannot place items in the result slot.
-             */
+            * Check if the stack is allowed to be placed in this slot,
+            * used for armor slots as well as furnace fuel.
+            * <p> This function always returns false so that player
+            * can not place stack in the result slot.
+            *
+            * @param stack Stack to be placed.
+            * @return Always returns {@code false}, because player
+            * cannot place items in the result slot.
+            */
             @Override
             public final boolean mayPlace(@Nonnull final ItemStack stack) {
                 //
@@ -224,20 +154,39 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
                 AgricultureAnvilMenu.this.onTake(player, stack);
             }
         });
+
+        entity.cropsItemStackHandler.onContentsChanged(slot -> {
+            onContentsChanged(slot);
+        });
+
+        entity.inpuItemStackHandler.onContentsChanged(slot -> {
+            onContentsChanged(slot);
+        });
     }
 
     /**
-     * Create a new agriculture anvil menu.
+     * Called when contents changed.
      *
-     * @param containerId The container id.
-     * @param inventory The player's inventory {@link Player#getInventory()}
-     * @param access The container level access {@link AnvilBlock#getMenuProvider(BlockState, Level, BlockPos)}
-     * @see AgricultureAnvil#getMenuProvider(BlockState, Level, BlockPos)
-    */
-    public AgricultureAnvilMenu(final int containerId, @Nonnull final Inventory inventory,
-            @Nonnull final ContainerLevelAccess access) {
-        super(CivilizationMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, inventory);
-        this.access = access;
+     * @param slot The slot that changed.
+     */
+    private void onContentsChanged(@Nonnegative final int slot) {
+        createResult();
+
+        //
+        // Active all listeners.
+        //
+        for (final var handler : onContentsChanged) {
+            handler.accept(slot);
+        }
+    }
+
+    /**
+     * Add a callback to be called when contents changed.
+     *
+     * @param handler The callback to be called.
+     */
+    public void onContentsChanged(@Nonnull final Consumer<Integer> handler) {
+        onContentsChanged.add(handler);
     }
 
     /**
@@ -254,7 +203,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         //
         // Get input stack.
         //
-        final var inputStack = inputSlots.getItem(4);
+        final var inputStack = entity.inpuItemStackHandler.getStackInSlot(0);
 
         //
         // Check if item name is presented.
@@ -272,9 +221,9 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         // - supplied fruits are less than cosst.
         // - stack is not damaged and hasn't been renamed.
         //
-        if (inputStack.isEmpty() || getTotalCost() > totalGrowthTime || totalGrowthTime == 0
-                || (inputStack.getDamageValue() == 0 && !itemNamePresented)) {
-            resultSlots.setItem(5, ItemStack.EMPTY);
+        if ((inputStack.isEmpty() || getTotalCost() > totalGrowthTime || totalGrowthTime == 0
+                || inputStack.getDamageValue() == 0) && !itemNamePresented) {
+            entity.inpuItemStackHandler.setStackInSlotUnchecked(1, ItemStack.EMPTY);
         } else {
             //
             // Create result stack.
@@ -287,27 +236,36 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
                 resultStack.setHoverName(new TextComponent(itemName));
             }
 
-            resultSlots.setItem(5, resultStack);
+            entity.inpuItemStackHandler.setStackInSlotUnchecked(1, resultStack);
         }
 
         broadcastChanges();
     }
 
     /**
-     * If player can build instantly (creative mode), or the player has enough experience,
-     * they can pick the stack (result) from this slot({@link #resultSlots}).
-     * <p> The only exception is the cost is zero, that means the result is empty,
-     * if the cost is zero, the player can not pick the stack from the result slot,
-     * and the result slot is empty (so idk what the purpose of returing false is).
-     * see also {@link AnvilMenu#mayPickup}. <p> However, this is for the vanilla anvil
-     * (because i realized i wrote it wrong halfway through, and I didn't want to rewrite it),
-     * agriculture anvil do not consume experience, but use crops instead, with a conversion
-     * efficiency of 1:100.
+     * Get the block entity of the menu.
      *
-     * @param player The player who pick the stack from this slot.
-     * @param hasStack Indicates if this slot contains a stack, usually {@link Slot#hasItem()}
-     * @return Returns {@code true} if this slot's stack can be taken from this slot.
+     * @return {@link AgricultureAnvilBlockEntity} Block entity.
      */
+    public final AgricultureAnvilBlockEntity getEntity() {
+        return entity;
+    }
+
+    /**
+    * If player can build instantly (creative mode), or the player has enough experience,
+    * they can pick the stack (result) from this slot({@link #resultSlots}).
+    * <p> The only exception is the cost is zero, that means the result is empty,
+    * if the cost is zero, the player can not pick the stack from the result slot,
+    * and the result slot is empty (so idk what the purpose of returing false is).
+    * see also {@link AnvilMenu#mayPickup}. <p> However, this is for the vanilla anvil
+    * (because i realized i wrote it wrong halfway through, and I didn't want to rewrite it),
+    * agriculture anvil do not consume experience, but use crops instead, with a conversion
+    * efficiency of 1:100.
+    *
+    * @param player The player who pick the stack from this slot.
+    * @param hasStack Indicates if this slot contains a stack, usually {@link Slot#hasItem()}
+    * @return Returns {@code true} if this slot's stack can be taken from this slot.
+    */
     private final boolean mayPickup(@Nonnull final Player player, final boolean hasStack) {
         return (player.getAbilities().instabuild || getTotalGrowthTime() >= getTotalCost()) && getTotalCost() > 0;
     }
@@ -329,40 +287,8 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
             consumeFruits(getTotalCost());
         }
 
-        inputSlots.getItem(4).shrink(1);
-    }
-
-    /**
-     * Callback for when the crafting matrix is changed.
-     * @param container The container which is changed.
-     * @see #inputSlots
-     */
-    @Override
-    public final void slotsChanged(@Nonnull final Container container) {
-        super.slotsChanged(container);
-
-        //
-        // Determine whether the slot changed is the input slot.
-        //
-        if (container == inputSlots) {
-            createResult();
-        }
-    }
-
-    /**
-     * Called when the container is closed.
-     */
-    @Override
-    public void removed(Player player) {
-        super.removed(player);
-
-        //
-        // Clear container correctly, otherwise,
-        // the player's item will lose.
-        //
-        access.execute((level, location) -> {
-            clearContainer(player, inputSlots);
-        });
+        entity.inpuItemStackHandler.getStackInSlot(0).shrink(1);
+        entity.inpuItemStackHandler.getStackInSlot(1).shrink(1);
     }
 
     /**
@@ -376,7 +302,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
             //
             // Get stack in the specificed input slot.
             //
-            final var stack = inputSlots.getItem(i);
+            final var stack = entity.cropsItemStackHandler.getStackInSlot(i);
 
             //
             // Determine whether item is presented in this slot.
@@ -405,7 +331,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
                         //
                         // Add the growth time to the total growth time.
                         //
-                        totalGrowthTime += growTime.get();
+                        totalGrowthTime += growTime.get() * stack.getCount();
                     }
                 }
             }
@@ -445,7 +371,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
         //
         // Get the input stack.
         //
-        final var inputStack = inputSlots.getItem(4);
+        final var inputStack = entity.inpuItemStackHandler.getStackInSlot(0);
         if (inputStack.isEmpty() || !inputStack.isDamageableItem()) {
             return 0;
         }
@@ -478,6 +404,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
      */
     public final void setItemName(@Nullable final String name) {
         itemName = name;
+        createResult();
     }
 
     /**
@@ -491,7 +418,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
             //
             // Get the stack in the slot.
             //
-            final var stack = inputSlots.getItem(i);
+            final var stack = entity.cropsItemStackHandler.getStackInSlot(i);
 
             //
             // Determine whether the stack is empty.

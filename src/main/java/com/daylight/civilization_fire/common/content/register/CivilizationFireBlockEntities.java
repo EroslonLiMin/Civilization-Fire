@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentTableBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.TreePlant;
@@ -95,11 +96,24 @@ public class CivilizationFireBlockEntities {
                                                                         CivilizationFireBlocks.CASSEROLE_BLOCK.get())
                                                         .build(null));
 
+        /**
+         * Agriculture enchantment table block entity.
+         */
         public static final RegistryObject<BlockEntityType<AgricultureEnchantmentTableBlock.AgricultureEnchantmentTableBlockEntity>> AGRICULTURE_ENCHANTMENT_TABLE_BLOCK_ENTITY = BLOCK_ENTITIES
                         .register("agriculture_enchantment_table_block_entity",
                                         () -> BlockEntityType.Builder
                                                         .of(AgricultureEnchantmentTableBlock.AgricultureEnchantmentTableBlockEntity::new,
                                                                         CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE
                                                                                         .get())
+                                                        .build(null));
+
+        /**
+         * Agriculture anvil block entity.
+         */
+        public static final RegistryObject<BlockEntityType<AgricultureAnvilBlock.AgricultureAnvilBlockEntity>> AGRICULTURE_ANVIL_BLOCK_ENTITY = BLOCK_ENTITIES
+                        .register("agriculture_anvil_block_entity",
+                                        () -> BlockEntityType.Builder
+                                                        .of(AgricultureAnvilBlock.AgricultureAnvilBlockEntity::new,
+                                                                        CivilizationFireBlocks.AGRICULTURE_ANVIL.get())
                                                         .build(null));
 }
