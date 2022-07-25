@@ -5,6 +5,7 @@ import com.daylight.civilization_fire.client.screen.agriculture.AgricultureEncha
 import com.daylight.civilization_fire.client.screen.cooking.CasseroleScreen;
 import com.daylight.civilization_fire.client.screen.cooking.FoodSteamerScreen;
 import com.daylight.civilization_fire.client.screen.cooking.IronPotScreen;
+import com.daylight.civilization_fire.client.screen.cooking.JuicerScreen;
 import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -25,6 +26,7 @@ public class CivilizationFireScreenRegister {
                     AgricultureEnchantmentScreen::new);
 //            MenuScreens.register(CivilizationFireMenuTypes.BOT_MENU.get(),
 //                    BotContainerScreen::new);
+            MenuScreens.register(CivilizationFireMenuTypes.JUICER_MENU.get(), JuicerScreen::new);
         });
     }
 }

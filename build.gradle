@@ -147,7 +147,10 @@ repositories {
     }
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
-
+//    maven {
+//        name 'Jared\'s Maven' // Patchouli
+//        url 'https://maven.blamejared.com'
+//    }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
     // flatDir {
     //     dir 'libs'
@@ -161,6 +164,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
     implementation fg.deobf("software.bernie.geckolib:geckolib-1.18-forge:3.0.23")
 
+//    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+//    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

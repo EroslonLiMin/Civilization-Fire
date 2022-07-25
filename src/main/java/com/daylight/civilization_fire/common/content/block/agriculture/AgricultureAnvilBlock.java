@@ -107,7 +107,7 @@ public final class AgricultureAnvilBlock extends BaseEntityBlock implements Fall
          * @param blockState The block state of agriculture enchantment table block.
          */
         public AgricultureAnvilBlockEntity(final BlockPos location, final BlockState blockState) {
-            super(CivilizationFireBlockEntities.AGRICULTURE_ANVIL_BLOCK_ENTITY.get(), location, blockState);
+            super(CivilizationFireBlockEntities.AGRICULTURE_ANVIL_TABLE_BLOCK_ENTITY.get(), location, blockState);
         }
 
         @Override

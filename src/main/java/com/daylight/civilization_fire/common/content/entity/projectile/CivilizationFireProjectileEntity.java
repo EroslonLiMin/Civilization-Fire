@@ -7,6 +7,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -22,10 +23,7 @@ public class CivilizationFireProjectileEntity extends AbstractArrow implements I
     private static final EntityDataAccessor<ItemStack> ENTITY_ITEM_STACK = SynchedEntityData.defineId(FarmingBot.class,
             EntityDataSerializers.ITEM_STACK);
 
-    public CivilizationFireProjectileEntity(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        super(CivilizationEntityTypes.CIVILIZATION_FIRE_PROJECTILE_ENTITY.get(), world);
-    }
-    public CivilizationFireProjectileEntity(EntityType<? extends CivilizationFireProjectileEntity> type, Level world) {
+    public CivilizationFireProjectileEntity(EntityType<? extends AbstractArrow> type, Level world) {
         super(type, world);
     }
 
@@ -35,6 +33,10 @@ public class CivilizationFireProjectileEntity extends AbstractArrow implements I
 
     public CivilizationFireProjectileEntity(EntityType<? extends CivilizationFireProjectileEntity> type, LivingEntity entity, Level world) {
         super(type, entity, world);
+    }
+
+    public CivilizationFireProjectileEntity(PlayMessages.SpawnEntity spawnEntity, Level level) {
+        super(CivilizationEntityTypes.CIVILIZATION_FIRE_PROJECTILE_ENTITY.get(),level);
     }
 
 

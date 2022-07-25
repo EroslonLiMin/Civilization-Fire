@@ -1,6 +1,7 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentTableBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.PlantBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.TreePlant;
@@ -8,6 +9,7 @@ import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBloc
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
 
+import com.daylight.civilization_fire.common.content.block.cooking.JuicerBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -94,7 +96,12 @@ public class CivilizationFireBlockEntities {
                                                         .of(CasseroleBlock.CasseroleBlockEntity::new,
                                                                         CivilizationFireBlocks.CASSEROLE_BLOCK.get())
                                                         .build(null));
-
+        public static final RegistryObject<BlockEntityType<JuicerBlock.JuicerBlockEntity>> JUICER_BLOCK_ENTITY = BLOCK_ENTITIES
+                .register("juicer_block_entity",
+                        () -> BlockEntityType.Builder
+                                .of(JuicerBlock.JuicerBlockEntity::new,
+                                        CivilizationFireBlocks.JUICER_BLOCK.get())
+                                .build(null));
         public static final RegistryObject<BlockEntityType<AgricultureEnchantmentTableBlock.AgricultureEnchantmentTableBlockEntity>> AGRICULTURE_ENCHANTMENT_TABLE_BLOCK_ENTITY = BLOCK_ENTITIES
                         .register("agriculture_enchantment_table_block_entity",
                                         () -> BlockEntityType.Builder
@@ -102,4 +109,11 @@ public class CivilizationFireBlockEntities {
                                                                         CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE
                                                                                         .get())
                                                         .build(null));
+        public static final RegistryObject<BlockEntityType<AgricultureAnvilBlock.AgricultureAnvilBlockEntity>> AGRICULTURE_ANVIL_TABLE_BLOCK_ENTITY = BLOCK_ENTITIES
+                .register("agriculture_anvil_table_block_entity",
+                        () -> BlockEntityType.Builder
+                                .of(AgricultureAnvilBlock.AgricultureAnvilBlockEntity::new,
+                                        CivilizationFireBlocks.AGRICULTURE_ANVIL
+                                                .get())
+                                .build(null));
 }

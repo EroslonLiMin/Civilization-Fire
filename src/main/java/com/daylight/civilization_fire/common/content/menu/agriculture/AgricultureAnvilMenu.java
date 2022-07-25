@@ -8,12 +8,12 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.daylight.civilization_fire.common.content.register.CivilizationFireMenuTypes;
 import org.apache.commons.lang3.StringUtils;
 
 import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock.AgricultureAnvilBlockEntity;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.menu.CivilizationBaseMenu;
-import com.daylight.civilization_fire.common.content.register.CivilizationMenuTypes;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 
 import net.minecraft.FieldsAreNonnullByDefault;
@@ -69,7 +69,7 @@ public final class AgricultureAnvilMenu extends CivilizationBaseMenu {
      */
     public AgricultureAnvilMenu(final int containerId, @Nonnull final Inventory inventory,
             @Nonnull final AgricultureAnvilBlockEntity entity) {
-        super(CivilizationMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, inventory);
+        super(CivilizationFireMenuTypes.AGRICULTURE_ANVIL_MENU.get(), containerId, inventory);
         this.entity = entity;
 
         //

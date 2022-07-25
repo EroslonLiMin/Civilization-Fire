@@ -1,15 +1,19 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock;
 import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentTableBlock.AgricultureEnchantmentTableBlockEntity;
 import com.daylight.civilization_fire.common.content.block.cooking.CasseroleBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.FoodSteamerBlock;
 import com.daylight.civilization_fire.common.content.block.cooking.IronPotBlock;
+import com.daylight.civilization_fire.common.content.block.cooking.JuicerBlock;
 import com.daylight.civilization_fire.common.content.menu.BotMenu;
+import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureAnvilMenu;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureEnchantmentMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.CasseroleMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.FoodSteamerMenu;
 import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
+import com.daylight.civilization_fire.common.content.menu.cooking.JuicerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,6 +37,15 @@ public class CivilizationFireMenuTypes {
                         () -> IForgeMenuType.create((id, inv, data) -> new CasseroleMenu(inv, id,
                                         (CasseroleBlock.CasseroleBlockEntity) inv.player.getLevel()
                                                         .getBlockEntity(data.readBlockPos()))));
+        public static final RegistryObject<MenuType<JuicerMenu>> JUICER_MENU = MENUS.register("juicer_menu",
+                () -> IForgeMenuType.create((id, inv, data) -> new JuicerMenu(id,inv,
+                        (JuicerBlock.JuicerBlockEntity) inv.player.getLevel()
+                                .getBlockEntity(data.readBlockPos()))));
+        public static final RegistryObject<MenuType<AgricultureAnvilMenu>> AGRICULTURE_ANVIL_MENU = MENUS
+                .register("agriculture_anvil_menu", () -> IForgeMenuType.create((id, inv,
+                                                                                       data) -> new AgricultureAnvilMenu(id, inv,
+                        (AgricultureAnvilBlock.AgricultureAnvilBlockEntity) inv.player.level
+                                .getBlockEntity(data.readBlockPos()))));
         /**
          * Agriculture enchantment table's menu, which is opened when the player right-clicks the block.
          * @author Heckerpowered
