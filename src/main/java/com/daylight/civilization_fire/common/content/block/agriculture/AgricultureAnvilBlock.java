@@ -32,6 +32,7 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Agriculture anvil block, used to enchant, repair or rename item with fruits.
@@ -62,8 +63,8 @@ public final class AgricultureAnvilBlock extends BaseEntityBlock implements Fall
 
     @Override
     public InteractionResult use(@Nonnull final BlockState block, @Nonnull final Level level,
-            @Nonnull final BlockPos location, @Nonnull final Player player, @Nonnull final InteractionHand hand,
-            BlockHitResult hit) {
+                                 @Nonnull final BlockPos location, @Nonnull final Player player, @Nonnull final InteractionHand hand,
+                                 @NotNull BlockHitResult hit) {
         if (player instanceof ServerPlayer serverPlayer) {
             NetworkHooks.openGui(serverPlayer, (AgricultureAnvilBlockEntity) level.getBlockEntity(location),
                     location);

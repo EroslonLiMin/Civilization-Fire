@@ -29,7 +29,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class CivilizationFireItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
             CivilizationFire.MODID);
-
+    public static final RegistryObject<Item> SHENNONG_FIRE_PORTAL = ITEMS.register("shennong_fire_portal",
+            () -> new BlockItem(CivilizationFireBlocks.SHENNONG_FIRE_PORTAL.get(),
+                    new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> SHENNONG_FIRE_PORTAL_BLOCK = ITEMS.register("shennong_fire_portal_block",
+            () -> new BlockItem(CivilizationFireBlocks.SHENNONG_FIRE_PORTAL_BLOCK.get(),
+                    new Item.Properties().tab(CivilizationFireTab.AGRICULTURE_CREATIVE_MODE_TAB)));
     //ADD
     public static final RegistryObject<RookieArmor> ROOKIE_ARMOR_HAT  = ITEMS.register("rookie_armor_hat",
             () -> new RookieArmor(EquipmentSlot.HEAD));

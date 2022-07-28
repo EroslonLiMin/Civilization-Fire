@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:seed_bag"
+    },
+    "title": {
+      "translate": "advancements.barter.title"
+    },
+    "description": {
+      "translate": "advancements.barter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shennong_fire_base": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:shennong_portal"
+}

@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:shennong_fire_portal_block"
+    },
+    "title": {
+      "translate": "advancements.shennong_portal.title"
+    },
+    "description": {
+      "translate": "advancements.shennong_portal.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shennong_portal": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "items": [
+            "civilization_fire:shennong_fire_portal_block"
+          ]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:shennong_fire_base"
+}

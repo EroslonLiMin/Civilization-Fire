@@ -1,12 +1,10 @@
 package com.daylight.civilization_fire.common.content.register.event;
 
-import com.daylight.civilization_fire.client.screen.BotContainerScreen;
 import com.daylight.civilization_fire.client.screen.agriculture.AgricultureEnchantmentScreen;
 import com.daylight.civilization_fire.client.screen.cooking.CasseroleScreen;
 import com.daylight.civilization_fire.client.screen.cooking.FoodSteamerScreen;
 import com.daylight.civilization_fire.client.screen.cooking.IronPotScreen;
 import com.daylight.civilization_fire.client.screen.cooking.JuicerScreen;
-import com.daylight.civilization_fire.common.content.menu.BotMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;

@@ -1,0 +1,21 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "PHP",
+    "P P",
+    "PHP"
+  ],
+  "key":{
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "H": {
+      "item": "minecraft:hay_block"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:food_steamer_block",
+    "count": 1
+  }
+
+}

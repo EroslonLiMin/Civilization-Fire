@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "ingredients": [
+    {
+      "item":"minecraft:oak_log"
+    },
+    [
+      {
+        "item":"minecraft:wooden_axe"
+      },
+      {
+        "item":"minecraft:stone_axe"
+      },
+      {
+        "item":"minecraft:golden_axe"
+      },
+      {
+        "item":"minecraft:iron_axe"
+      },
+      {
+        "item":"minecraft:diamond_axe"
+      },
+      {
+        "item":"minecraft:netherite_axe"
+      }
+    ]
+  ],
+  "result": {
+    "item": "civilization_fire:dipper",
+    "count": 1
+  }
+
+}

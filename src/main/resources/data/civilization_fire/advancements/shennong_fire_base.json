@@ -1,0 +1,29 @@
+{
+  "display": {
+    "background": "civilization_fire:textures/gui/advancements_background.png",
+    "icon": {
+      "item": "civilization_fire:grain_shennong_channel_fire"
+    },
+    "title": {
+      "translate": "advancements.shennong_fire_base.title"
+    },
+    "description": {
+      "translate": "advancements.shennong_fire_base.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shennong_fire_base": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:shennong_fire_portal_block"
+    ]
+  }
+}

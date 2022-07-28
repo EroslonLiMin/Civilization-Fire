@@ -1,5 +1,4 @@
 {
-  "item.civilization_fire.book" : "神农火书",
   "block.civilization_fire.loam_block": "壤土",
   "block.civilization_fire.clay_block": "粘土",
   "block.civilization_fire.sand_block": "砂土",
@@ -244,5 +243,31 @@
   "item.civilization_fire.curvilinear_plough_entity_item": "曲辕犁",
   "item.civilization_fire.stone_plough_entity_item": "石犁",
   "item.civilization_fire.iron_plough_entity_item": "铁犁",
-  "block.civilization_fire.agriculture_enchantment_table.display_name": "农业附魔台"
+  "block.civilization_fire.agriculture_enchantment_table.display_name": "农业附魔台",
+  "block.civilization_fire.shennong_fire_portal" : "神农火焰传送门",
+  "block.civilization_fire.shennong_fire_portal_block" : "神农火焰方块",
+
+
+
+
+
+
+
+  "advancements.shennong_fire_base.title": "§e五谷神农火！",
+  "advancements.shennong_fire_base.description": "天色茫茫，雨水打湿了嫩叶，当你在田地中辛勤耕作时，一盏星星之火骤燃化作一张古朴的卷轴，你翻开卷轴仔细阅读，以火焰串联起来的农业文明，正将你带入了名为“神农”的时代",
+
+  "advancements.shennong_portal.title": "§4神农时代",
+  "advancements.shennong_portal.description": "用岩浆敲击黑曜石来搭建神农火焰传送门，沟通那个传奇的时代吧！",
+
+  "advancements.barter.title": "以物易物",
+  "advancements.barter.description": "以物易物向来是古代交易的守则之一，用有价值的物品去右键神农门来与传奇的时代交易吧！",
+
+  "advancements.agricultural_spot.title": "农业起步！",
+  "advancements.agricultural_spot.description": "快用锄头右键神农门开启农业时代吧！",
+
+  "advancements.dragon_channel.title": "水利灌溉",
+  "advancements.dragon_channel.description": "快用水桶右键神农门学习水利灌溉吧！",
+
+  "advancements.agricultural_spot_base.title": "农业-开端",
+  "advancements.agricultural_spot_base.description": "火焰是人类文明的星星之火，农业是人类文明的开天辟地"
 }

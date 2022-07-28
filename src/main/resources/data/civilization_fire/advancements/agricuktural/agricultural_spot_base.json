@@ -1,0 +1,38 @@
+{
+  "display": {
+    "background": "civilization_fire:textures/gui/agricultural_spot_base.png",
+    "icon": {
+      "item": "civilization_fire:agricultural_spot_fire"
+    },
+    "title": {
+      "translate": "advancements.agricultural_spot_base.title"
+    },
+    "description": {
+      "translate": "advancements.agricultural_spot_base.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "agricultural_spot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:agricultural_spot_fire"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:shennong_fire_portal_block"
+    ]
+  }
+}

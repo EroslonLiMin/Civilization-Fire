@@ -1,0 +1,21 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "I I",
+        "IMI",
+        "III"
+    ],
+    "key":{
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "M": {
+            "item": "minecraft:porkchop"
+        }
+    },
+    "result": {
+        "item": "civilization_fire:iron_pot_block",
+        "count": "1"
+    }
+
+}

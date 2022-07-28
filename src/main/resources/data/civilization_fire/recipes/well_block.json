@@ -1,0 +1,29 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "SAS",
+    "BTB",
+    "BUB"
+  ],
+  "key":{
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:oak_log"
+    },
+    "T": {
+      "item": "minecraft:string"
+    },
+    "U": {
+      "item": "minecraft:bucket"
+    },
+    "B": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:well_block"
+  }
+
+}

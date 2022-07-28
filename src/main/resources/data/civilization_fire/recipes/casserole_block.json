@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " C ",
+    "C C",
+    "CCC"
+  ],
+  "key":{
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:casserole_block",
+    "count": 1
+  }
+
+}

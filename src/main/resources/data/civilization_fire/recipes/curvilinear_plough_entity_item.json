@@ -1,0 +1,24 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "PSP",
+    " PS",
+    "TT "
+  ],
+  "key":{
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "T": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:curvilinear_plough_entity_item",
+    "count": "1"
+  }
+
+}

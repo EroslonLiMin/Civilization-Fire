@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PWP",
+    "WSW",
+    "PWP"
+  ],
+  "key":{
+    "W": {
+      "item": "civilization_fire:wood_bucket"
+    },
+    "P": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:buckets_waterwheel_entity_item",
+    "count": 1
+  }
+
+}

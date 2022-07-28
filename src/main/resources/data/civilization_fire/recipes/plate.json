@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "   ",
+    "   ",
+    "CCC"
+  ],
+  "key":{
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:plate",
+    "count": 1
+  }
+
+}
