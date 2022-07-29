@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:buckets_waterwheel_entity_item"
+    },
+    "title": {
+      "translate": "advancements.buckets_waterwheel.title"
+    },
+    "description": {
+      "translate": "advancements.buckets_waterwheel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "buckets_waterwheel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:buckets_waterwheel_entity_item"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:dragon_channel/keel_waterwheel"
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:loam_block"
+    },
+    "title": {
+      "translate": "advancements.irrigation_knowledge.title"
+    },
+    "description": {
+      "translate": "advancements.irrigation_knowledge.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "irrigation_knowledge": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:dragon_channel/dragon_channel_base"
+}

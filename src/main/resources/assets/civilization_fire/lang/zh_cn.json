@@ -293,5 +293,27 @@
   "advancements.seeding.description": "将光标移到种子上可以看见种植信息，种植的土壤（除水田外）必须经过耕种和浇灌，种植到吻合的土壤上可以植物成熟会更快！",
 
   "advancements.paddy_soil_block.title": "水田",
-  "advancements.paddy_soil_block.description": "水田是一种比较特殊土壤，它无需耕种，它属于mc种的含水方块，只需要在其中倒入水即可播种！"
+  "advancements.paddy_soil_block.description": "水田是一种比较特殊土壤，它无需耕种，它属于mc种的含水方块，只需要在其中倒入水即可播种！",
+
+  "advancements.dragon_channel_base.title": "§5龙渠道火",
+  "advancements.dragon_channel_base.description": "§b灌溉是土壤能够种植农作物的基础",
+
+  "advancements.dipper.title": "水瓢是最基础的灌溉工具",
+  "advancements.dipper.description": "§b灌溉工具需要右键水进行装罐，然后再右键泥土浇灌，灌溉工具有一个含水量的属性，每次灌溉会消耗特点的含水量",
+
+
+  "advancements.wooden_bucket.title": "升级版-水桶",
+  "advancements.wooden_bucket.description": "§b灌溉工具需要右键水进行装罐，容量是水瓢的三倍！",
+
+  "advancements.well.title" : "水井！",
+  "advancements.well.description": "是否厌倦了到处跑去浇水？快用铁桶和石砖合成水井吧！",
+
+  "advancements.irrigation_knowledge.title": "何为灌溉？",
+  "advancements.irrigation_knowledge.description" : "游戏内只需要让耕地保持湿润即可种植，但是土壤会不定时间干渴",
+
+  "advancements.keel_waterwheel.title": "§4技术革命-龙骨水车！",
+  "advancements.keel_waterwheel.description" : "您是否以及厌倦了无时无刻都盯着田地灌溉的生活？快制造水车吧！他会无时无刻帮你灌溉！§b[只能放在水中，右键可以回收]",
+
+  "advancements.buckets_waterwheel.title": "再次升级-筒车！",
+  "advancements.buckets_waterwheel.description" : "筒车拥有更广阔的浇灌面积和更久的使用时间！"
 }
