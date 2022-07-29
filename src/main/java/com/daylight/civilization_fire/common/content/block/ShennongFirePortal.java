@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block;
 
+import com.daylight.civilization_fire.common.content.register.CivilizationFireBlocks;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.Tags;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class ShennongFirePortal extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -33,6 +35,7 @@ public class ShennongFirePortal extends Block {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack handItemStack = pPlayer.getItemInHand(pHand);
         if(handItemStack.getItem() == Items.DIRT){
+            pPlayer.addItem(randomDirtRandom());
             handItemStack.shrink(1);
         } else if(handItemStack.getItem() instanceof HoeItem){
             ItemStack itemStack = new ItemStack(CivilizationFireItems.AGRICULTURAL_SPOT_FIRE.get());
@@ -42,14 +45,26 @@ public class ShennongFirePortal extends Block {
         } else if(handItemStack.getItem() == Items.WATER_BUCKET){
             pPlayer.addItem(new ItemStack(CivilizationFireItems.DRAGON_CHANNEL_FIRE.get()));
             handItemStack.shrink(1);
+        } else if(handItemStack.getItem() == Items.GOLD_INGOT){
+            pPlayer.addItem(new ItemStack(CivilizationFireItems.SEED_BAG_ITEM.get()));
+            handItemStack.shrink(1);
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
-    public static int switchLevel(TieredItem diggerItem){
+    public int switchLevel(TieredItem diggerItem){
         return diggerItem.getTier().getLevel();
     }
 
+    public ItemStack randomDirtRandom(){
+        return switch (new Random().nextInt(6)) {
+            case 2 -> new ItemStack(CivilizationFireItems.CLAY_BLOCK.get());
+            case 3 -> new ItemStack(CivilizationFireItems.SAND_BLOCK.get());
+            case 4 -> new ItemStack(CivilizationFireItems.PADDY_SOIL.get());
+            case 5 -> new ItemStack(CivilizationFireItems.MYCELIAL_SOIL.get());
+            default -> new ItemStack(CivilizationFireItems.LOAM_BLOCK.get());
+        };
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

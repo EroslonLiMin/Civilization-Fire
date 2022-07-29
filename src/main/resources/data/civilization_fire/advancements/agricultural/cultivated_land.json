@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:mycelial_soil_block"
+    },
+    "title": {
+      "translate": "advancements.cultivated_land.title"
+    },
+    "description": {
+      "translate": "advancements.cultivated_land.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cultivated_land": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:loam_block",
+              "civilization_fire:clay_block",
+              "civilization_fire:sand_block",
+              "civilization_fire:paddy_soil_block",
+              "civilization_fire:mycelial_soil_block"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:agricultural/agricultural_spot_base"
+}

@@ -1,7 +1,8 @@
 {
   "variants": {
     "facing=east": {
-      "model": "civilization_fire:block/shennong_fire_portal"
+      "model": "civilization_fire:block/shennong_fire_portal",
+      "y": 90
     },
     "facing=west": {
       "model": "civilization_fire:block/shennong_fire_portal",
@@ -13,7 +14,7 @@
     },
     "facing=north": {
       "model": "civilization_fire:block/shennong_fire_portal",
-      "y": 270
+      "y": 180
     }
   }
 }

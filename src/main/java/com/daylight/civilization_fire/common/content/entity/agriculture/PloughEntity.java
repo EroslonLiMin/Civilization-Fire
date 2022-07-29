@@ -90,17 +90,23 @@ public abstract class PloughEntity extends PathfinderMob {
     public void tick() {
         boolean isPlough = false;
         //获取一下方块并且经行耕种处理
-        BlockPos pos = new BlockPos(this.getBlockX(), this.getBlockY() - 1, this.getBlockZ());
-        BlockState state = this.level.getBlockState(pos);
-        //判断是否为soilBlock
-        if (state.getBlock() instanceof SoilBlock) {
-            //判断是否含有value
-            if (state.hasProperty(SoilBlock.BE_PLOUGHED) && !state.getValue(SoilBlock.BE_PLOUGHED)) {
-                this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.HOE_TILL,
-                        this.getSoundSource(), 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F, false);
-                level.setBlock(pos, state.setValue(SoilBlock.BE_PLOUGHED, true), Block.UPDATE_ALL);
-                level.gameEvent(GameEvent.BLOCK_PLACE, pos);
-                isPlough = true;
+        for(int x = this.getBlockX() - getPloughLevel();x < this.getBlockX() + getPloughLevel();x++) {
+            for (int y = this.getBlockY() - getPloughLevel(); y < this.getBlockY() + getPloughLevel(); y++) {
+                for (int z = this.getBlockZ() - getPloughLevel(); z < this.getBlockZ() + getPloughLevel(); z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    BlockState state = this.level.getBlockState(pos);
+                    //判断是否为soilBlock
+                    if (state.getBlock() instanceof SoilBlock) {
+                        //判断是否含有value
+                        if (state.hasProperty(SoilBlock.BE_PLOUGHED) && !state.getValue(SoilBlock.BE_PLOUGHED)) {
+                            this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.HOE_TILL,
+                                    this.getSoundSource(), 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F, false);
+                            level.setBlock(pos, state.setValue(SoilBlock.BE_PLOUGHED, true), Block.UPDATE_ALL);
+                            level.gameEvent(GameEvent.BLOCK_PLACE, pos);
+                            isPlough = true;
+                        }
+                    }
+                }
             }
         }
         if (isPlough) {
@@ -118,7 +124,7 @@ public abstract class PloughEntity extends PathfinderMob {
     public InteractionResult interactAt(Player player, Vec3 pVec, InteractionHand hand) {
         if (player.isShiftKeyDown()) {
             ItemStack itemStack = new ItemStack(this.entityItem);
-            CivilizationFireUtil.hurtItem(itemStack, player, hand, getPloughLevel() * 10000 - this.getPloughTimes());
+            itemStack.setDamageValue(this.getPloughTimes());
             player.addItem(itemStack);
             //删除它
             this.discard();

@@ -41,7 +41,7 @@ public abstract class IrrigationEntity extends PathfinderMob implements IAnimata
     public InteractionResult interactAt(Player player, Vec3 pVec, InteractionHand hand) {
         if (player.isShiftKeyDown()) {
             ItemStack itemStack = new ItemStack(this.entityItem);
-            CivilizationFireUtil.hurtItem(itemStack, player, hand, getIrrigationLevel() * 10000000 - this.getUseTimes());
+            itemStack.setDamageValue(this.getUseTimes());
             player.addItem(itemStack);
             //删除它
             this.discard();

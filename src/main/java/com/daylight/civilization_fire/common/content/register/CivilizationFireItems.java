@@ -9,6 +9,7 @@ import com.daylight.civilization_fire.common.content.entity.bot.GuardianBot;
 import com.daylight.civilization_fire.common.content.entity.bot.MiningBot;
 import com.daylight.civilization_fire.common.content.item.GunpowderPepper;
 import com.daylight.civilization_fire.common.content.item.ScallionCrownBladeItem;
+import com.daylight.civilization_fire.common.content.item.ShennongFireScroll;
 import com.daylight.civilization_fire.common.content.item.agriculture.*;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.ModHoeingToolItem;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
@@ -46,6 +47,8 @@ public class CivilizationFireItems {
     public static final RegistryObject<MushroomArmor> MUSHROOM_ARMOR_REGISTRY_OBJECT  = ITEMS.register("mushroom_armor_head",() -> new MushroomArmor(EquipmentSlot.HEAD));
     public static final RegistryObject<ScallionCrownBladeItem> SCALLION_CROWN_BLADE_ITEM  = ITEMS.register("scallion_crown_blade_item", ScallionCrownBladeItem::new);
 
+
+    public static final RegistryObject<Item> SHENNONG_FIRE_SCROLL = ITEMS.register("shennong_fire_scroll", ShennongFireScroll::new);
 
     //土壤
     public static final RegistryObject<Item> CLAY_BLOCK = ITEMS.register("clay_block",

@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:curvilinear_plough_entity_item"
+    },
+    "title": {
+      "translate": "advancements.plough_level_up.title"
+    },
+    "description": {
+      "translate": "advancements.plough_level_up.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "plough_level_up": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:curvilinear_plough_entity_item"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:agricultural/plough"
+}

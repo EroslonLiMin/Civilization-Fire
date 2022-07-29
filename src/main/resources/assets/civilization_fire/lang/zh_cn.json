@@ -246,10 +246,10 @@
   "block.civilization_fire.agriculture_enchantment_table.display_name": "农业附魔台",
   "block.civilization_fire.shennong_fire_portal" : "神农火焰传送门",
   "block.civilization_fire.shennong_fire_portal_block" : "神农火焰方块",
-
-
-
-
+  "item.civilization_fire.shennong_fire_scroll": "§e神农卷轴",
+  "shennong_fire_scroll_hover_text_0": "§5神农火焰卷轴记载了那个传奇的时代",
+  "shennong_fire_scroll_hover_text_1": "§5他将带你领略那个以火焰串联起来的传奇时代的风采",
+  "shennong_fire_scroll_hover_text_2": "§8农业、灌溉、种植、食道",
 
 
 
@@ -262,12 +262,36 @@
   "advancements.barter.title": "以物易物",
   "advancements.barter.description": "以物易物向来是古代交易的守则之一，用有价值的物品去右键神农门来与传奇的时代交易吧！",
 
-  "advancements.agricultural_spot.title": "农业起步！",
+  "advancements.agricultural_spot.title": "§5农业起步！",
   "advancements.agricultural_spot.description": "快用锄头右键神农门开启农业时代吧！",
 
-  "advancements.dragon_channel.title": "水利灌溉",
+  "advancements.dragon_channel.title": "§5水利灌溉",
   "advancements.dragon_channel.description": "快用水桶右键神农门学习水利灌溉吧！",
 
-  "advancements.agricultural_spot_base.title": "农业-开端",
-  "advancements.agricultural_spot_base.description": "火焰是人类文明的星星之火，农业是人类文明的开天辟地"
+  "advancements.agricultural_spot_base.title": "§e农业-开端",
+  "advancements.agricultural_spot_base.description": "火焰是人类文明的星星之火，农业是人类文明的开天辟地",
+
+  "advancements.cultivated_land.title": "§6土壤、耕地",
+  "advancements.cultivated_land.description": "耕地是一切农业的基础，用泥土去右键神农门来获得五种不同的土壤吧！",
+
+  "advancements.plough_tool.title": "双手劳动-耒耜！",
+  "advancements.plough_tool.description": "§b游戏内的土壤被赋予了 §6[耕种] §b以及 §6[浇灌] §b俩个属性，快用木头合成木制耒耜耕种吧！",
+
+  "advancements.plough_tool_level_up.title": "升级工具-铁质耒耜",
+  "advancements.plough_tool_level_up.description": "每一个阶段的[耒耜]，耕种速度和耐久都会提升",
+
+  "advancements.seed_bag.title" : "§a获得种子！",
+  "advancements.seed_bag.description": "种子是农耕的基础，快用金锭与传送门兑换种子吧！",
+
+  "advancements.plough.title": "§4技术革命-车犁",
+  "advancements.plough.description": "车犁是古代耕种的重要工具之一，在游戏中制造出来以后可以用拴绳拉动",
+
+  "advancements.plough_level_up.title": "§8高端车犁",
+  "advancements.plough_level_up.description": "车犁升级会提高耕种速度和面积和使用时间！",
+
+  "advancements.seeding.title": "§b启程-播种！",
+  "advancements.seeding.description": "将光标移到种子上可以看见种植信息，种植的土壤（除水田外）必须经过耕种和浇灌，种植到吻合的土壤上可以植物成熟会更快！",
+
+  "advancements.paddy_soil_block.title": "水田",
+  "advancements.paddy_soil_block.description": "水田是一种比较特殊土壤，它无需耕种，它属于mc种的含水方块，只需要在其中倒入水即可播种！"
 }
