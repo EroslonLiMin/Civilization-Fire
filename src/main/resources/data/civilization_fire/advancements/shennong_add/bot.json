@@ -1,14 +1,13 @@
 {
   "display": {
-    "background": "civilization_fire:textures/gui/dragon_channel_background.png",
     "icon": {
-      "item": "civilization_fire:dragon_channel_fire"
+      "item": "civilization_fire:guarding_bot_entity_item"
     },
     "title": {
-      "translate": "advancements.dragon_channel_base.title"
+      "translate": "advancements.bot.title"
     },
     "description": {
-      "translate": "advancements.dragon_channel_base.description"
+      "translate": "advancements.bot.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,13 +15,15 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "wood_bucket": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "civilization_fire:dragon_channel_fire"
+              "civilization_fire:guarding_bot_entity_item",
+              "civilization_fire:mining_bot_entity_item",
+              "civilization_fire:farming_bot_entity_item"
             ]
           }
         ]
@@ -31,5 +32,6 @@
   },
   "rewards": {
     "experience": 10
-  }
+  },
+  "parent": "civilization_fire:shennong_add/shennong_add_base"
 }

@@ -1,14 +1,13 @@
 {
   "display": {
-    "background": "civilization_fire:textures/gui/dragon_channel_background.png",
     "icon": {
-      "item": "civilization_fire:dragon_channel_fire"
+      "item": "civilization_fire:mushroom_armor_head"
     },
     "title": {
-      "translate": "advancements.dragon_channel_base.title"
+      "translate": "item.civilization_fire.mushroom_armor_head"
     },
     "description": {
-      "translate": "advancements.dragon_channel_base.description"
+      "translate": "mushroom_armor.hover_text"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,13 +15,13 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "wood_bucket": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "civilization_fire:dragon_channel_fire"
+              "civilization_fire:mushroom_armor_head"
             ]
           }
         ]
@@ -31,5 +30,6 @@
   },
   "rewards": {
     "experience": 10
-  }
+  },
+  "parent": "civilization_fire:shennong_add/armor"
 }

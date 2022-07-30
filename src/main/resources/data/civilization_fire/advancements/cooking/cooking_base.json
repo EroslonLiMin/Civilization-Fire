@@ -1,14 +1,14 @@
 {
   "display": {
-    "background": "civilization_fire:textures/gui/dragon_channel_background.png",
+    "background": "civilization_fire:textures/gui/cooking_base.png",
     "icon": {
-      "item": "civilization_fire:dragon_channel_fire"
+      "item": "civilization_fire:esophagus_channel_fire"
     },
     "title": {
-      "translate": "advancements.dragon_channel_base.title"
+      "translate": "advancements.cooking_base.title"
     },
     "description": {
-      "translate": "advancements.dragon_channel_base.description"
+      "translate": "advancements.cooking_base.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "civilization_fire:dragon_channel_fire"
+              "civilization_fire:esophagus_channel_fire"
             ]
           }
         ]

@@ -1,14 +1,13 @@
 {
   "display": {
-    "background": "civilization_fire:textures/gui/dragon_channel_background.png",
     "icon": {
-      "item": "civilization_fire:dragon_channel_fire"
+      "item": "civilization_fire:casserole_block"
     },
     "title": {
-      "translate": "advancements.dragon_channel_base.title"
+      "translate": "advancements.casserole.title"
     },
     "description": {
-      "translate": "advancements.dragon_channel_base.description"
+      "translate": "advancements.casserole.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -22,7 +21,7 @@
         "items": [
           {
             "items": [
-              "civilization_fire:dragon_channel_fire"
+              "civilization_fire:casserole_block"
             ]
           }
         ]
@@ -31,5 +30,6 @@
   },
   "rewards": {
     "experience": 10
-  }
+  },
+  "parent": "civilization_fire:cooking/cooking_bench"
 }

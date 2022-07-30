@@ -1,14 +1,13 @@
 {
   "display": {
-    "background": "civilization_fire:textures/gui/dragon_channel_background.png",
     "icon": {
-      "item": "civilization_fire:dragon_channel_fire"
+      "item": "civilization_fire:shennong_channel_fire"
     },
     "title": {
-      "translate": "advancements.dragon_channel_base.title"
+      "translate": "advancements.shennong_channel.title"
     },
     "description": {
-      "translate": "advancements.dragon_channel_base.description"
+      "translate": "advancements.shennong_channel.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,13 +15,13 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "wither_skull": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "civilization_fire:dragon_channel_fire"
+              "civilization_fire:shennong_channel_fire"
             ]
           }
         ]
@@ -31,5 +30,6 @@
   },
   "rewards": {
     "experience": 10
-  }
+  },
+  "parent": "civilization_fire:barter"
 }

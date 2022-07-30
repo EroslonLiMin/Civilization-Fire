@@ -38,6 +38,7 @@
   "rookie_armor.hover_text" : "§b大白菜独特的能力以及菜叶独特的缓降能力足以让菜鸟们在这个世界上安然生存",
   "super_taro.hover_text": "§6超级芋头足以让你的'夜不闭户'",
   "wax_gourd.hover_text": "§2冬瓜独特的保护机制可以很大程度上保护好你",
+  "gunpowder_pepper.hover_text" : "§4吃下它可以用爆炸将你周围的敌人驱逐",
 
   "civilization_fire.destroy_mode" : "直接破坏模式",
   "civilization_fire.picking_mode" : "右键采摘模式",
@@ -315,5 +316,38 @@
   "advancements.keel_waterwheel.description" : "您是否以及厌倦了无时无刻都盯着田地灌溉的生活？快制造水车吧！他会无时无刻帮你灌溉！§b[只能放在水中，右键可以回收]",
 
   "advancements.buckets_waterwheel.title": "再次升级-筒车！",
-  "advancements.buckets_waterwheel.description" : "筒车拥有更广阔的浇灌面积和更久的使用时间！"
+  "advancements.buckets_waterwheel.description" : "筒车拥有更广阔的浇灌面积和更久的使用时间！",
+
+  "advancements.shennong_channel.title": "§e神农道!",
+  "advancements.shennong_channel.description" : "在那个遥远的时代，先辈们用自己的指挥创造出了近乎神迹的道具",
+
+  "advancements.bot.title": "机器人",
+  "advancements.bot.description": "游戏内提供了三种需要用蔬菜来驱动的机器人，用蔬菜右键给予他们能量，分别对应保卫、挖矿、耕种，他们可以更好的帮你完成生存",
+
+  "advancements.bot_level_up.title": "升级机器人",
+  "advancements.bot_level_up.description" : "游戏内提供了三种升级水晶，Shift+右键打开机器人界面将水晶放进去即可提示机器人的属性、能力、能量",
+
+  "advancements.armor.title": "装备、道具",
+  "advancements.armor.description": "那个时代的人们以难以揣摩的手法锻造出了以农作物为核心的装备/道具",
+
+  "advancements.cooking_base.title": "§e食神道！",
+  "advancements.cooking_base.description": "种了菜怎么能不做饭？！",
+
+  "advancements.cooking_bench.title": "§e灶台",
+  "advancements.cooking_bench.description" : "烹饪怎么能没了灶台呢？！[用木材右键放入灶台再点火]",
+
+  "advancements.iron_pot.title": "铁锅",
+  "advancements.iron_pot.description": "爆炒的东西能不香嘛",
+
+  "advancements.iron_spatula.title" : "锅铲",
+  "advancements.iron_spatula.description": "没有锅铲怎么抄菜？！",
+
+  "advancements.food_steamer.title" : "蒸笼",
+  "advancements.food_steamer.description": "蒸出来的东西挺健康",
+
+  "advancements.food_steamer_hat.title" : "蒸笼帽",
+  "advancements.food_steamer_hat.description": "没盖上帽子怎么蒸嘛！(直接放在蒸笼主体上即可)",
+
+  "advancements.casserole.title" : "砂锅！",
+  "advancements.casserole.description": "砂锅焖出来的菜味道十足！"
 }
