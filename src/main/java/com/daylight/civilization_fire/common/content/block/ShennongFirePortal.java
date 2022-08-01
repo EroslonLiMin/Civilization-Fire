@@ -48,6 +48,9 @@ public class ShennongFirePortal extends Block {
         } else if(handItemStack.getItem() == Items.GOLD_INGOT){
             pPlayer.addItem(new ItemStack(CivilizationFireItems.SEED_BAG_ITEM.get()));
             handItemStack.shrink(1);
+        }else if(handItemStack.getItem() == Items.COOKED_BEEF){
+            pPlayer.addItem(new ItemStack(CivilizationFireItems.ESOPHAGUS_CHANNEL_FIRE.get()));
+            handItemStack.shrink(1);
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }

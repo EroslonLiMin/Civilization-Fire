@@ -255,7 +255,7 @@
 
 
   "advancements.shennong_fire_base.title": "§e五谷神农火！",
-  "advancements.shennong_fire_base.description": "天色茫茫，雨水打湿了嫩叶，当你在田地中辛勤耕作时，一盏星星之火骤燃化作一张古朴的卷轴，你翻开卷轴仔细阅读，以火焰串联起来的农业文明，正将你带入了名为“神农”的时代",
+  "advancements.shennong_fire_base.description": "天色茫茫，雨水打湿了嫩叶，当你在田地中辛勤耕作时，一盏星星之火骤燃化作一张古朴的卷轴，你翻开卷轴仔细阅读，以火焰串联起来的农业文明，正将你带入了名为“神农”的时代§e[PS:游戏内提到的物品都可以在工作台合成]",
 
   "advancements.shennong_portal.title": "§4神农时代",
   "advancements.shennong_portal.description": "用岩浆敲击黑曜石来搭建神农火焰传送门，沟通那个传奇的时代吧！",
@@ -331,7 +331,7 @@
   "advancements.armor.description": "那个时代的人们以难以揣摩的手法锻造出了以农作物为核心的装备/道具",
 
   "advancements.cooking_base.title": "§e食神道！",
-  "advancements.cooking_base.description": "种了菜怎么能不做饭？！",
+  "advancements.cooking_base.description": "种了菜怎么能不做饭？！快用熟牛肉右键神农门吧！",
 
   "advancements.cooking_bench.title": "§e灶台",
   "advancements.cooking_bench.description" : "烹饪怎么能没了灶台呢？！[用木材右键放入灶台再点火]",
@@ -349,5 +349,17 @@
   "advancements.food_steamer_hat.description": "没盖上帽子怎么蒸嘛！(直接放在蒸笼主体上即可)",
 
   "advancements.casserole.title" : "砂锅！",
-  "advancements.casserole.description": "砂锅焖出来的菜味道十足！"
+  "advancements.casserole.description": "砂锅焖出来的菜味道十足！",
+
+  "advancements.cooking_knowledge.title": "如何烹饪？",
+  "advancements.cooking_knowledge.description": "右键烹饪工具打开ui，格子分为上下俩部分，上部分9个格子放置食材，下部分5个格子放调料，然后在能放置的一个小格子中放置装盘工具，等到燃烧条过半即可烹饪完成（ps：铁锅需要在第二个格子放置锅铲）",
+
+  "advancements.cooking_seasoning.title" : "调料",
+  "advancements.cooking_seasoning.description" : "烹饪怎么能少了调料呢？",
+
+  "advancements.loading_tool.title" : "装盘",
+  "advancements.loading_tool.description" : "烹饪怎么能少了装盘工具呢？！",
+
+  "advancements.juicer.title": "榨汁机",
+  "advancements.juicer.description": "美汁汁！[用水瓶和对应蔬菜水果在榨汁机内]"
 }

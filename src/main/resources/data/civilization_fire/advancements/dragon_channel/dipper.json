@@ -29,7 +29,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:wood_bucket"
+    ]
   },
   "parent": "civilization_fire:dragon_channel/dragon_channel_base"
 }

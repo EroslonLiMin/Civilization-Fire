@@ -29,7 +29,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:keel_waterwheel_entity_item"
+    ]
   },
   "parent": "civilization_fire:dragon_channel/dipper"
 }

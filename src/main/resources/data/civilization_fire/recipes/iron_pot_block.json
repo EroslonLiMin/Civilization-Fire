@@ -1,5 +1,5 @@
 {
-    "type": "crafting_shaped",
+    "type": "minecraft:crafting_shaped",
     "pattern": [
         "I I",
         "IMI",
@@ -14,8 +14,7 @@
         }
     },
     "result": {
-        "item": "civilization_fire:iron_pot_block",
-        "count": "1"
+        "item": "civilization_fire:iron_pot_block"
     }
 
 }

@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:quartz_block"
+    },
+    "1": {
+      "item": "minecraft:carved_pumpkin"
+    },
+    "2": {
+      "item": "minecraft:quartz_block"
+    },
+    "3": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "4": {
+      "item": "minecraft:iron_chestplate"
+    },
+    "5": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "6": {
+      "item": "minecraft:quartz_block"
+    },
+    "7": {
+      "item": "minecraft:golden_carrot"
+    },
+    "8": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:mining_bot_entity_item",
+    "count": 1
+  }
+}

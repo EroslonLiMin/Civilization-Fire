@@ -29,7 +29,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:stone_plough_entity_item"
+    ]
   },
   "parent": "civilization_fire:agricultural/plough_tool"
 }

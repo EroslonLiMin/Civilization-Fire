@@ -5,10 +5,10 @@
       "item": "civilization_fire:shennong_channel_fire"
     },
     "title": {
-      "translate": "advancements.shennong_channel.title"
+      "translate": "沟通神农之道！"
     },
     "description": {
-      "translate": "advancements.shennong_channel.description"
+      "translate": "快学习那个时代强大的制造吧！"
     },
     "frame": "task",
     "show_toast": true,
@@ -30,6 +30,11 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:farming_bot_entity_item",
+      "civilization_fire:guarding_bot_entity_item",
+      "civilization_fire:mining_bot_entity_item"
+    ]
   }
 }

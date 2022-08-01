@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$$$",
+    "$ $",
+    "$ $"
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:taro_item"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:super_taro_armor_pants",
+    "count": 1
+  }
+}

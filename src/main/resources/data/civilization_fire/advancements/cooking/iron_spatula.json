@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "iron_spatula": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

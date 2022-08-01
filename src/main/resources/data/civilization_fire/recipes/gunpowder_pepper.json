@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " $ ",
+    " Z "
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:hot_pepper_fruit"
+    },
+    "Z": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:gunpowder_pepper",
+    "count": 1
+  }
+}

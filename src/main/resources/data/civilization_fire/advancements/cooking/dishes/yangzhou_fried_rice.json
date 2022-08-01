@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:yangzhou_fried_rice"
+    },
+    "title": {
+      "translate": "扬州炒饭"
+    },
+    "description": {
+      "translate": "用米类、鸡蛋、豆类、水萝卜、猪肉在锅中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chinese_cabbage_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:yangzhou_fried_rice"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/iron_pot"
+}

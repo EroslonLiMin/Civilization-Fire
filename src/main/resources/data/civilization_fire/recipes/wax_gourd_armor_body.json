@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$ $",
+    "$$$",
+    "$$$"
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:wax_gourd_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:wax_gourd_armor_body",
+    "count": 1
+  }
+}

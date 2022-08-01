@@ -20,7 +20,17 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:rookie_armor_hat",
+      "civilization_fire:gunpowder_pepper",
+      "civilization_fire:wax_gourd_armor_body",
+      "civilization_fire: super_taro_armor_pants",
+      "civilization_fire:balsam_pear_armor_hat",
+      "civilization_fire:cucumber_rocket_armor_feet",
+      "civilization_fire:mushroom_armor_head",
+      "civilization_fire:scallion_crown_blade_item"
+    ]
   },
   "parent": "civilization_fire:shennong_add/shennong_add_base"
 }

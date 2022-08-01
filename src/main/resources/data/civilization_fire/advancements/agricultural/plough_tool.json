@@ -29,7 +29,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:iron_handle_plough"
+    ]
   },
   "parent": "civilization_fire:agricultural/agricultural_spot_base"
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$$$",
+    "$ $"
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:big_chinese_cabbage_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:rookie_armor_hat",
+    "count": 1
+  }
+}

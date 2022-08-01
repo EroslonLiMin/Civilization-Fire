@@ -156,7 +156,7 @@ public class CivilizationFireBlocks {
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantMode.DestroyMode,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 1, 0);
         /*大葱*/
-        public static final PlantLoad GREEN_CHINESE_ONION_PLANT = new PlantLoad("green_chinese_onion", 3, 1200, false,
+        public static final PlantLoad GREEN_CHINESE_ONION_PLANT = new PlantLoad("green_chinese_onion", 3, 1200, true,
                         new String[] { "civilization_fire:sand_block" }, true, PlantBlock.PlantMode.DestroyMode,
                         CivilizationFireTab.VEGETABLE_CROPS_CREATIVE_MODE_TAB, 1, 1, 0);
         /*茄子*/

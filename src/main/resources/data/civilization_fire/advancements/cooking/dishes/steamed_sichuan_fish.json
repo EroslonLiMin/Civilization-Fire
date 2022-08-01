@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:steamed_sichuan_fish"
+    },
+    "title": {
+      "translate": "清蒸鱼团"
+    },
+    "description": {
+      "translate": "用鱼、香菇、葱、辣椒、酱、盐、尖椒在蒸笼中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "steamed_sichuan_fish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:steamed_sichuan_fish"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/food_steamer"
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " $ ",
+    " $ ",
+    " Z "
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:green_chinese_onion_fruit"
+    },
+    "Z": {
+      "item": "civilization_fire:shallot_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:balsam_pear_armor_hat",
+    "count": 1
+  }
+}

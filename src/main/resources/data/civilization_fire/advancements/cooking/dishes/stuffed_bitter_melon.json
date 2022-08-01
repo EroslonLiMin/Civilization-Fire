@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:stuffed_bitter_melon"
+    },
+    "title": {
+      "translate": "酿苦瓜"
+    },
+    "description": {
+      "translate": "用苦瓜、肉、姜、酱、盐在砂锅中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chinese_cabbage_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:stuffed_bitter_melon"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/casserole"
+}

@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "casserole": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

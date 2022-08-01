@@ -31,7 +31,18 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+        "recipes": [
+            "civilization_fire:mc_attribute_add_level_1",
+            "civilization_fire:mc_attribute_add_level_2",
+            "civilization_fire:mc_attribute_add_level_3",
+            "civilization_fire:corresponding_add_level_1",
+            "civilization_fire:corresponding_add_level_2",
+            "civilization_fire:corresponding_add_level_3",
+            "civilization_fire:energy_add_level_1",
+            "civilization_fire:energy_add_level_2",
+            "civilization_fire:energy_add_level_3"
+        ]
   },
   "parent": "civilization_fire:shennong_add/shennong_add_base"
 }

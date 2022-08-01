@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:braised_intestines_brown_sauce"
+    },
+    "title": {
+      "translate": "九转大肠"
+    },
+    "description": {
+      "translate": "用猪肉、肉桂、豆类、葱、姜、油、盐、醋在锅中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chinese_cabbage_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:braised_intestines_brown_sauce"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/iron_pot"
+}

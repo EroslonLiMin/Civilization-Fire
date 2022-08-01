@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$$$",
+    "$ $"
+  ],
+  "key": {
+    "$": {
+      "item": "civilization_fire:soybean_item"
+    }
+  },
+  "result": {
+    "item": "civilization_fire:balsam_pear_armor_hat",
+    "count": 1
+  }
+}

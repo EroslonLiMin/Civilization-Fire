@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:fish_flavored_eggplant"
+    },
+    "title": {
+      "translate": "鱼香茄子"
+    },
+    "description": {
+      "translate": "用鱼、茄子、花椒、油、盐、酱、尖椒在锅中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fish_flavored_eggplant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:fish_flavored_eggplant"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/iron_pot"
+}

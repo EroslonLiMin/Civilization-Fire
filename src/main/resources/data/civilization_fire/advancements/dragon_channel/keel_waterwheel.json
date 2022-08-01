@@ -29,7 +29,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:buckets_waterwheel_entity_item"
+    ]
   },
   "parent": "civilization_fire:dragon_channel/wooden_bucket"
 }

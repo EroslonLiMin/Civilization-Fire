@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:pot_stewed_meat"
+    },
+    "title": {
+      "translate": "卤肉"
+    },
+    "description": {
+      "translate": "用茴香、桂皮、香叶、鸡肉、牛肉、猪肉在砂锅中烹饪"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chinese_cabbage_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:pot_stewed_meat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/casserole"
+}

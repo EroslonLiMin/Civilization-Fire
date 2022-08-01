@@ -30,6 +30,10 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:well_block",
+      "civilization_fire:dipper"
+    ]
   }
 }

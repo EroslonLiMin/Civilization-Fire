@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:oil"
+    },
+    "title": {
+      "translate": "advancements.cooking_seasoning.title"
+    },
+    "description": {
+      "translate": "advancements.cooking_seasoning.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "food_steamer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:oil",
+              "civilization_fire:salt",
+              "civilization_fire:sauce",
+              "civilization_fire:vinegar",
+              "civilization_fire:cooking_wine"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:cooking/cooking_bench"
+}

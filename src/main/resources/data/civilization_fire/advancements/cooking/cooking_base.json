@@ -5,10 +5,10 @@
       "item": "civilization_fire:esophagus_channel_fire"
     },
     "title": {
-      "translate": "advancements.cooking_base.title"
+      "translate": "恰饭！食神道！"
     },
     "description": {
-      "translate": "advancements.cooking_base.description"
+      "translate": "快制作美食佳肴吧！"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "agricultural_spot": {
+    "esophagus_channel_fire": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,6 +30,11 @@
     }
   },
   "rewards": {
-    "experience": 10
+    "experience": 10,
+    "recipes": [
+      "civilization_fire:cooking_bench_block",
+      "civilization_fire:plate",
+      "civilization_fire:bowl"
+    ]
   }
 }

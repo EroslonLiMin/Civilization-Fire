@@ -1,5 +1,5 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "PSP",
     " PS",
@@ -17,8 +17,7 @@
     }
   },
   "result": {
-    "item": "civilization_fire:iron_plough_entity_item",
-    "count": "1"
+    "item": "civilization_fire:iron_plough_entity_item"
   }
 
 }
