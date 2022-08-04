@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "civilization_fire:shennong_fire_portal_block"
+      "item": "civilization_fire:shennong_fire_portal"
     },
     "title": {
       "translate": "advancements.shennong_portal.title"
@@ -20,7 +20,7 @@
       "conditions": {
         "item": {
           "items": [
-            "civilization_fire:shennong_fire_portal_block"
+            "civilization_fire:shennong_fire_portal"
           ]
         }
       }

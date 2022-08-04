@@ -19,7 +19,6 @@ public class CivilizationFireBlocks {
         public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
                         CivilizationFire.MODID);
         public static final RegistryObject<Block> SHENNONG_FIRE_PORTAL = BLOCKS.register("shennong_fire_portal", ShennongFirePortal::new);
-        public static final RegistryObject<Block> SHENNONG_FIRE_PORTAL_BLOCK = BLOCKS.register("shennong_fire_portal_block", ()->new Block(BlockBehaviour.Properties.of(Material.STONE).lightLevel((level)->10).strength(3)));
         //土地类型
         public static final RegistryObject<Block> LOAM_BLOCK = BLOCKS.register("loam_block", SoilBlock::new);
         public static final RegistryObject<Block> CLAY_BLOCK = BLOCKS.register("clay_block", SoilBlock::new);

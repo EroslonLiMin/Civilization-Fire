@@ -361,5 +361,9 @@
   "advancements.loading_tool.description" : "烹饪怎么能少了装盘工具呢？！",
 
   "advancements.juicer.title": "榨汁机",
-  "advancements.juicer.description": "美汁汁！[用水瓶和对应蔬菜水果在榨汁机内]"
+  "advancements.juicer.description": "美汁汁！[用水瓶和对应蔬菜水果在榨汁机内]",
+
+  "advancements.cooking_fire_base.title" : "恰饭！食神道！",
+
+  "advancements.shennong_add_fire.title": "沟通！神农之道！"
 }

@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -31,12 +32,12 @@ import java.util.Random;
 import com.daylight.civilization_fire.common.util.CivilizationFireUtil;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingBench extends Block {
+public class CookingBench extends HasDropBlock {
     public static final IntegerProperty BENCH_STATE = IntegerProperty.create("bench", 0, 8);//阶段
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public CookingBench() {
-        super(Properties.of(Material.STONE).randomTicks().noOcclusion().strength(2F).sound(SoundType.STONE)
+        super(2,Properties.of(Material.STONE).randomTicks().noOcclusion().strength(2F).sound(SoundType.STONE)
                 .requiresCorrectToolForDrops());
         this.registerDefaultState(this.stateDefinition.any().setValue(BENCH_STATE, 0).setValue(FACING, Direction.NORTH));
     }

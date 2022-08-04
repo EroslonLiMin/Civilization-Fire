@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.agriculture;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.material.MaterialColor;
 import java.util.Random;
 
 //泥土方块
-public class SoilBlock extends Block {
+public class SoilBlock extends HasDropBlock {
     //创建属性
     public static final BooleanProperty BE_PLOUGHED = BooleanProperty.create("ploughed");//被耕锄
     public static final BooleanProperty BE_WATERED = BooleanProperty.create("watered");//被浇水
@@ -26,15 +27,16 @@ public class SoilBlock extends Block {
     //种植属性 - 基准都为0 - 1
 
     public SoilBlock() {
-        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).randomTicks().strength(0.6F).sound(SoundType.GRAVEL)
+        super(1,Properties.of(Material.DIRT, MaterialColor.QUARTZ).randomTicks().strength(0.5F).sound(SoundType.GRAVEL)
                 .requiresCorrectToolForDrops());
         this.registerDefaultState(
                 this.stateDefinition.any().setValue(BE_PLOUGHED, Boolean.FALSE).setValue(BE_WATERED, Boolean.FALSE));//设置states
     }
 
     public SoilBlock(Properties properties) {
-        super(properties);
+        super(1,properties);
     }
+
 
     /*修改渲染类型—（因为这傻逼玩意卡了一天的我也是傻逼
     public RenderShape getRenderShape(BlockState p_49232_) {

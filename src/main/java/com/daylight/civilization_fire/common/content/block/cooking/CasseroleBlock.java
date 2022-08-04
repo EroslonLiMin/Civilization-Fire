@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.menu.cooking.CasseroleMenu;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -27,9 +27,9 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 //砂锅
-public class CasseroleBlock extends BaseEntityBlock {
+public class CasseroleBlock extends HasDropBlock.HasDropBlockBaseEntity {
     public CasseroleBlock() {
-        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.STONE)
+        super(1,Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.STONE)
                 .requiresCorrectToolForDrops());
     }
 

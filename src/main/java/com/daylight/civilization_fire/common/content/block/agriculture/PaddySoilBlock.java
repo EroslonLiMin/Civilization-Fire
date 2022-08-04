@@ -30,7 +30,7 @@ public class PaddySoilBlock extends SoilBlock implements SimpleWaterloggedBlock 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public PaddySoilBlock() {
-        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).strength(0.6F).sound(SoundType.GRAVEL)
+        super(Properties.of(Material.DIRT, MaterialColor.QUARTZ).strength(0.5F).sound(SoundType.GRAVEL)
                 .requiresCorrectToolForDrops().noOcclusion());
         this.registerDefaultState(
                 this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));//设置states

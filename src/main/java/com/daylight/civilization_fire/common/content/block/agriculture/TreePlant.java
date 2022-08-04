@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.agriculture;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -39,13 +40,13 @@ public class TreePlant {
     }
 
     //Tree的木
-    public static class TreeWood extends Block {
+    public static class TreeWood extends HasDropBlock {
         public static final BooleanProperty BE_SKINNED = BooleanProperty.create("skinned");//被剥皮
         public TreeHappened treeHappened;
         public boolean canBeSkinned;
 
         public TreeWood(boolean canBeSkinned, TreeHappened... happened) {
-            super(Properties.of(Material.WOOD).strength(1F).sound(SoundType.WOOD).requiresCorrectToolForDrops());
+            super(1,Properties.of(Material.WOOD).strength(1F).sound(SoundType.WOOD).requiresCorrectToolForDrops());
             this.registerDefaultState(this.stateDefinition.any().setValue(BE_SKINNED, Boolean.FALSE));//设置states
             this.treeHappened = happened == null || happened.length <= 0 ? null : happened[0];
             this.canBeSkinned = canBeSkinned;

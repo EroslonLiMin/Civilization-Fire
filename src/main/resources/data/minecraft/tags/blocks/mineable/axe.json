@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "civilization_fire:cinnamon_tree_wood",
+    "civilization_fire:fragrant_tree_wood",
+    "civilization_fire:sichuan_pepper_tree_wood"
+  ]
+}

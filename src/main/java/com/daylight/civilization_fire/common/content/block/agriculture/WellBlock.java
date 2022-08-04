@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.agriculture;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.tool.WateringToolItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -14,10 +15,10 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.energy.CapabilityEnergy;
 
-public class WellBlock extends Block {
+public class WellBlock extends HasDropBlock {
 
     public WellBlock() {
-        super(Properties.of(Material.STONE).noOcclusion().strength(0.6F).sound(SoundType.GRAVEL)
+        super(2,Properties.of(Material.STONE).noOcclusion().strength(0.6F).sound(SoundType.GRAVEL)
                 .requiresCorrectToolForDrops());
     }
 
