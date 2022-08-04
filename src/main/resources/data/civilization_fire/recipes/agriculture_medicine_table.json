@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#Z#",
+    "###"
+  ],
+  "key": {
+    "Z": {
+      "item": "minecraft:brewing_stand"
+    },
+    "#": {
+      "item": "civilization_fire:cucumber_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization:agriculture_medicine_table",
+    "count": 1
+  }
+}

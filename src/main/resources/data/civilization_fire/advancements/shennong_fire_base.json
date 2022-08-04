@@ -22,6 +22,7 @@
   },
   "rewards": {
     "experience": 10,
+    "function": "civilization_fire:fire_start_travel",
     "recipes": [
       "civilization_fire:shennong_fire_portal_block"
     ]

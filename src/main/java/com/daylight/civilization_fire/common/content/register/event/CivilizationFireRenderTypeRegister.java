@@ -136,6 +136,18 @@ public class CivilizationFireRenderTypeRegister {
 
                         ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.SHENNONG_FIRE_PORTAL.get(),
                                 RenderType.translucent());
+
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.AGRICULTURE_ANVIL.get(),
+                                RenderType.translucent());
+
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE.get(),
+                                RenderType.translucent());
+
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.AGRICULTURE_MEDICINE_TABLE.get(),
+                                RenderType.translucent());
+
+                        ItemBlockRenderTypes.setRenderLayer(CivilizationFireBlocks.AGRICULTURE_WORKBENCH.get(),
+                                RenderType.translucent());
                 });
         }
 }

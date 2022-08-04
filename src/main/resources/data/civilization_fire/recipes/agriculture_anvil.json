@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#Z#",
+    "###"
+  ],
+  "key": {
+    "Z": {
+      "item": "minecraft:anvil"
+    },
+    "#": {
+      "item": "civilization_fire:balsam_pear_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization:agriculture_anvil",
+    "count": 1
+  }
+}

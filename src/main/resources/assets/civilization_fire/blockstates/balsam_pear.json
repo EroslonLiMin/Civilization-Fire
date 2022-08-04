@@ -8,6 +8,21 @@
     },
     "state=2": {
       "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    },
+    "state=3": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    },
+    "state=5": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    },
+    "state=6": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
+    },
+    "state=7": {
+      "model": "civilization_fire:block/balsam_pear/balsam_pear_2"
     }
   }
 }

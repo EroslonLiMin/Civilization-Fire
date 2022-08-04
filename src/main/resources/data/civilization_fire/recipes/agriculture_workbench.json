@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#Z#",
+    "###"
+  ],
+  "key": {
+    "Z": {
+      "item": "minecraft:crafting_table"
+    },
+    "#": {
+      "item": "civilization_fire:yellow_rice_item"
+    }
+  },
+  "result": {
+    "item": "civilization:agriculture_workbench",
+    "count": 1
+  }
+}

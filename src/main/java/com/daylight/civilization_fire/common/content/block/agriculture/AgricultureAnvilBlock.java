@@ -2,6 +2,7 @@ package com.daylight.civilization_fire.common.content.block.agriculture;
 
 import javax.annotation.Nonnull;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.item.handler.CivilizationFireItemStackHandler;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureAnvilMenu;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Fallable;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -41,7 +43,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public final class AgricultureAnvilBlock extends BaseEntityBlock implements Fallable {
+public final class AgricultureAnvilBlock extends HasDropBlock.HasDropBlockBaseEntity implements Fallable {
 
     /**
      * Container's title, which is displayed in the top of the container.
@@ -52,8 +54,11 @@ public final class AgricultureAnvilBlock extends BaseEntityBlock implements Fall
      * Create a new agriculture anvil block.
      */
     public AgricultureAnvilBlock() {
-        super(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).requiresCorrectToolForDrops()
-                .strength(5.0F, 1200.0F).sound(SoundType.ANVIL));
+        super(2,BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).requiresCorrectToolForDrops()
+                .strength(5.0F, 1200.0F).sound(SoundType.ANVIL).noOcclusion());
+    }
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
     }
 
     @Override

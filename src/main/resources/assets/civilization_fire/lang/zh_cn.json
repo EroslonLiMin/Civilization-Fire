@@ -150,7 +150,7 @@
   "block.civilization_fire.food_steamer_hat_block": "蒸笼帽",
   "iron_pot.block_entity": "铁锅",
   "food_steamer.block_entity": "蒸笼",
-  "casserole.block_entity": "蒸笼",
+  "casserole.block_entity": "砂锅",
   "item.civilization_fire.carob_fruit": "绿豆果实",
   "item.civilization_fire.fragrant_fruit": "香叶",
   "item.civilization_fire.cinnamon_bark_fruit": "桂皮",
@@ -365,5 +365,12 @@
 
   "advancements.cooking_fire_base.title" : "恰饭！食神道！",
 
-  "advancements.shennong_add_fire.title": "沟通！神农之道！"
+  "advancements.shennong_add_fire.title": "沟通！神农之道！",
+
+  "shennong_fire_scroll_hover_text_3": "§7(请右键打开ui选择五谷神农火，请跟随成就列表不断探索五谷神农之旅吧)",
+
+  "block.civilization_fire.agriculture_enchantment_table": "农研附魔台",
+  "block.civilization_fire.agriculture_anvil": "农研铁砧",
+  "block.civilization_fire.agriculture_workbench": "农研工作台",
+  "block.civilization_fire.agriculture_medicine_table": "农研炼药台"
 }

@@ -1,6 +1,8 @@
 package com.daylight.civilization_fire.common.content.register;
 
 import com.daylight.civilization_fire.common.CivilizationFire;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureAnvilBlock;
+import com.daylight.civilization_fire.common.content.block.agriculture.AgricultureEnchantmentTableBlock;
 import com.daylight.civilization_fire.common.content.entity.agriculture.BucketsWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.KeelWaterwheelEntity;
 import com.daylight.civilization_fire.common.content.entity.agriculture.PloughEntity;
@@ -45,6 +47,23 @@ public class CivilizationFireItems {
     public static final RegistryObject<MushroomArmor> MUSHROOM_ARMOR_REGISTRY_OBJECT  = ITEMS.register("mushroom_armor_head",() -> new MushroomArmor(EquipmentSlot.HEAD));
     public static final RegistryObject<ScallionCrownBladeItem> SCALLION_CROWN_BLADE_ITEM  = ITEMS.register("scallion_crown_blade_item", ScallionCrownBladeItem::new);
 
+
+
+    public static final RegistryObject<Item> AGRICULTURE_ENCHANTMENT_TABLE = ITEMS.register("agriculture_enchantment_table",
+            () -> new BlockItem(CivilizationFireBlocks.AGRICULTURE_ENCHANTMENT_TABLE.get(),
+                    new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB)));
+
+    public static final RegistryObject<Item> AGRICULTURE_ANVIL = ITEMS.register("agriculture_anvil",
+            () -> new BlockItem(CivilizationFireBlocks.AGRICULTURE_ANVIL.get(),
+                    new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB)));
+
+    public static final RegistryObject<Item> AGRICULTURE_WORKBENCH = ITEMS.register("agriculture_workbench",
+            () -> new BlockItem(CivilizationFireBlocks.AGRICULTURE_WORKBENCH.get(),
+                    new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB)));
+
+    public static final RegistryObject<Item> AGRICULTURE_MEDICINE_TABLE = ITEMS.register("agriculture_medicine_table",
+            () -> new BlockItem(CivilizationFireBlocks.AGRICULTURE_MEDICINE_TABLE.get(),
+                    new Item.Properties().tab(CivilizationFireTab.ADD_MODE_TAB)));
 
     public static final RegistryObject<Item> SHENNONG_FIRE_SCROLL = ITEMS.register("shennong_fire_scroll", ShennongFireScroll::new);
 

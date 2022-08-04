@@ -2,6 +2,7 @@ package com.daylight.civilization_fire.common.content.block.agriculture;
 
 import javax.annotation.Nonnull;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.PlantItem;
 import com.daylight.civilization_fire.common.content.item.handler.CivilizationFireItemStackHandler;
 import com.daylight.civilization_fire.common.content.menu.agriculture.AgricultureEnchantmentMenu;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -35,15 +37,18 @@ import net.minecraftforge.network.NetworkHooks;
  */
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AgricultureEnchantmentTableBlock extends BaseEntityBlock {
+public class AgricultureEnchantmentTableBlock extends HasDropBlock.HasDropBlockBaseEntity {
 
     /**
      * Create a new agriculture enchantment table block
      */
     public AgricultureEnchantmentTableBlock() {
-        super(Properties.of(Material.STONE, MaterialColor.COLOR_RED).requiresCorrectToolForDrops().lightLevel(v -> 7));
+        super(2,Properties.of(Material.STONE, MaterialColor.COLOR_RED).requiresCorrectToolForDrops().noOcclusion().lightLevel(v -> 7));
     }
 
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
     @Nonnull
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

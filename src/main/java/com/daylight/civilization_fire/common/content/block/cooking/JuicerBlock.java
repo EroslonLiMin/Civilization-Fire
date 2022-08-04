@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.item.agriculture.VegetableJuiceItem;
 import com.daylight.civilization_fire.common.content.menu.cooking.JuicerMenu;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
@@ -36,9 +37,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class JuicerBlock extends BaseEntityBlock {
+public class JuicerBlock extends HasDropBlock.HasDropBlockBaseEntity {
     public JuicerBlock() {
-        super(Properties.of(Material.WOOD).strength(1F).noOcclusion().sound(SoundType.WOOD)
+        super(2,Properties.of(Material.WOOD).strength(1F).noOcclusion().sound(SoundType.WOOD)
                 .requiresCorrectToolForDrops());
     }
 

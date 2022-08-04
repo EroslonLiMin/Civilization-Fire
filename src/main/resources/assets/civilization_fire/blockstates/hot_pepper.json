@@ -17,6 +17,12 @@
     },
     "state=5": {
       "model": "civilization_fire:block/hot_pepper/hot_pepper_5"
+    },
+    "state=6": {
+      "model": "civilization_fire:block/hot_pepper/hot_pepper_5"
+    },
+    "state=7": {
+      "model": "civilization_fire:block/hot_pepper/hot_pepper_5"
     }
   }
 }

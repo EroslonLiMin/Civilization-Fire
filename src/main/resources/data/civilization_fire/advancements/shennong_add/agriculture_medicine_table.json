@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "civilization_fire:agriculture_medicine_table"
+    },
+    "title": {
+      "translate": "农研炼药台"
+    },
+    "description": {
+      "translate": "可以用农作物代替原版的药水配方进行更高级的炼药（某玄武鸽子了= =）"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "agriculture_medicine_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "civilization_fire:agriculture_medicine_table"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "civilization_fire:shennong_add/shennong_add_base"
+}

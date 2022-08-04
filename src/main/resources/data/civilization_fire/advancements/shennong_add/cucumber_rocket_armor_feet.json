@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "wood_bucket": {
+    "cucumber_rocket_armor_feet": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

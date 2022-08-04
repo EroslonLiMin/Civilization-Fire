@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "wood_bucket": {
+    "gunpowder_pepper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

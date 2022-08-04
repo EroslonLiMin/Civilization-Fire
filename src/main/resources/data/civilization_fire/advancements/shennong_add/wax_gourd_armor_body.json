@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "wood_bucket": {
+    "wax_gourd_armor_body": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

@@ -27,6 +27,7 @@ public class ShennongFireScroll extends Item {
         pTooltipComponents.add(new TranslatableComponent("shennong_fire_scroll_hover_text_0"));
         pTooltipComponents.add(new TranslatableComponent("shennong_fire_scroll_hover_text_1"));
         pTooltipComponents.add(new TranslatableComponent("shennong_fire_scroll_hover_text_2"));
+        pTooltipComponents.add(new TranslatableComponent("shennong_fire_scroll_hover_text_3"));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.menu.cooking.FoodSteamerMenu;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
 import com.daylight.civilization_fire.common.content.register.CivilizationFireBlockEntities;
@@ -28,9 +29,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class FoodSteamerBlock extends BaseEntityBlock {
+public class FoodSteamerBlock extends HasDropBlock.HasDropBlockBaseEntity {
     public FoodSteamerBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.WOOD)
+        super(2,BlockBehaviour.Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.WOOD)
                 .requiresCorrectToolForDrops());
     }
 

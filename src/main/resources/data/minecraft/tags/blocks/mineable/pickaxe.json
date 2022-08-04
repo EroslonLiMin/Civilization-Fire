@@ -2,6 +2,15 @@
   "replace": false,
   "values": [
     "civilization_fire:well_block",
-    "civilization_fire:casserole_block"
+    "civilization_fire:casserole_block",
+    "civilization_fire:cooking_bench_block",
+    "civilization_fire:food_steamer_block",
+    "civilization_fire:iron_pot_block",
+    "civilization_fire:juicer_block",
+    "civilization_fire:shennong_fire_portal",
+    "civilization_fire:agriculture_anvil",
+    "civilization_fire:agriculture_enchantment_table",
+    "civilization_fire:agriculture_workbench",
+    "civilization_fire:agriculture_medicine_table"
   ]
 }

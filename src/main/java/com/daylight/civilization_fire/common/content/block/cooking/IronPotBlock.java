@@ -1,5 +1,6 @@
 package com.daylight.civilization_fire.common.content.block.cooking;
 
+import com.daylight.civilization_fire.common.content.block.HasDropBlock;
 import com.daylight.civilization_fire.common.content.item.cooking.SpatulaItem;
 import com.daylight.civilization_fire.common.content.menu.cooking.IronPotMenu;
 import com.daylight.civilization_fire.common.content.recipe.CookingTool;
@@ -40,9 +41,9 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 //砂锅
-public class IronPotBlock extends BaseEntityBlock {
+public class IronPotBlock extends HasDropBlock.HasDropBlockBaseEntity {
     public IronPotBlock() {
-        super(Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL)
+        super(2,Properties.of(Material.STONE).strength(1F).noOcclusion().sound(SoundType.ANVIL)
                 .requiresCorrectToolForDrops());
     }
 

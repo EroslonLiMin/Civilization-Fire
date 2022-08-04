@@ -11,6 +11,18 @@
     },
     "state=3": {
       "model": "civilization_fire:block/carob/carob_3"
+    },
+    "state=4": {
+      "model": "civilization_fire:block/broad_bean/broad_bean_3"
+    },
+    "state=5": {
+      "model": "civilization_fire:block/broad_bean/broad_bean_3"
+    },
+    "state=6": {
+      "model": "civilization_fire:block/broad_bean/broad_bean_3"
+    },
+    "state=7": {
+      "model": "civilization_fire:block/broad_bean/broad_bean_3"
     }
   }
 }

@@ -89,7 +89,7 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
             return;
         }
 
-        if (energyAvailable()) {
+        if (energyAvailable() && this.getEnergy() > 100) {
             if (worker == null) {
                 //
                 // It is coroutine... in some ways?
@@ -168,6 +168,7 @@ public final class MiningBot extends Bot implements IAnimatable, IAnimationTicka
                         // Spawn entity in the level.
                         //
                         serverLevel.addFreshEntity(itemEntity);
+                        this.setEnergy(this.getEnergy() - 100);
                     }
 
                     //

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#Z#",
+    "###"
+  ],
+  "key": {
+    "Z": {
+      "item": "minecraft:enchanting_table"
+    },
+    "#": {
+      "item": "civilization_fire:big_chinese_cabbage_fruit"
+    }
+  },
+  "result": {
+    "item": "civilization:agriculture_enchantment_table",
+    "count": 1
+  }
+}
