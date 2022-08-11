@@ -37,6 +37,10 @@ public class ShennongFirePortal extends HasDropBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack handItemStack = pPlayer.getItemInHand(pHand);
+        if(handItemStack.getItem() == Items.DIAMOND){
+            pPlayer.addItem(new ItemStack(CivilizationFireItems.GRAIN_SHENNONG_CHANNEL_FIRE.get()));
+            handItemStack.shrink(1);
+        }
         if(handItemStack.getItem() == Items.DIRT){
             pPlayer.addItem(randomDirtRandom());
             handItemStack.shrink(1);
